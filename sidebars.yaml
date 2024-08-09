@@ -2,7 +2,11 @@
   page: index.md
   expanded: false
   pages:
-    - page: docs/cross-chain-dapps/cross-chain-faqs.md          
+    - page: docs/cross-chain-dapps/cross-chain-faqs.md
+    - group: Use Cases
+      expanded: false
+      pages:
+        - page: docs/cross-chain-dapps/use-cases/money-market-protocol.md       
     - group: Axelar Bridge
       page: docs/axelar/intro-to-axelar.md
       expanded: false
