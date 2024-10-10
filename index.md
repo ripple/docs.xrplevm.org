@@ -15,12 +15,12 @@ However developers may find these benefits aren't enough for their dApp needs. T
 
 ## Smart Contracts
 
-The XRP Ledger doesn't support general purpose smart contracts, but the [EVM compatible XRPL sidechain](../evm-sidechain/intro-to-evm-sidechain.md) does. There are two methods of interacting with the EVM sidechain:
+The XRP Ledger doesn't support general purpose smart contracts, but the [EVM compatible XRPL sidechain](docs/evm-sidechain/intro-to-evm-sidechain.md) does. There are two methods of interacting with the EVM sidechain:
 
-1. Directly execute smart contracts on the EVM sidechain, and bridge assets through the XRPL bridge when necessary. See: [Get Started with the EVM Sidechain](../evm-sidechain/get-started-evm-sidechain.md)
-2. Use the Axelar network's GMP functionality to execute a smart contract directly from  the XRPL. See: [Call a Smart Contract Function](../axelar/call-a-smart-contract-function.md)
+1. Directly execute smart contracts on the EVM sidechain, and bridge assets through the XRPL bridge when necessary. See: [Get Started with the EVM Sidechain](docs/evm-sidechain/get-started-evm-sidechain.md)
+2. Use the Axelar network's GMP functionality to execute a smart contract directly from  the XRPL. See: [Call a Smart Contract Function](docs/axelar/call-a-smart-contract-function.md)
 
 
 ## Liquidity Access
 
-The XRP Ledger is now integrated with the Axelar network, giving it access to the functionality and liquidity of any chain connected to Axelar. Moving XRP and tokens to and from the XRPL has never been easier. To learn how quickly assets can be bridged, see: [Bridge Tokens Between Ethereum and XRPL](../axelar/bridge-tokens-axelar.md).
+The XRP Ledger is now integrated with the Axelar network, giving it access to the functionality and liquidity of any chain connected to Axelar. Moving XRP and tokens to and from the XRPL has never been easier. To learn how quickly assets can be bridged, see: [Bridge Tokens Between Ethereum and XRPL](docs/axelar/bridge-tokens-axelar.md).
