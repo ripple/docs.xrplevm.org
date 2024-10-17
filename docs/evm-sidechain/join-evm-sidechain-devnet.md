@@ -1,7 +1,7 @@
 ---
 html: join-evm-sidechain-devnet.html
 parent: evm-sidechains.html
-blurb: Learn how to join the XRP Ledger EVM Sidechain Devnet.
+blurb: Learn how to join the XRPL EVM Sidechain Devnet.
 labels:
   - Development, Interoperability
 status: not_enabled
@@ -10,7 +10,9 @@ status: not_enabled
 
 <embed src="/snippets/_evm-sidechain-disclaimer.md" />
 
-This tutorial walks you through the steps to install the existing **XRP Ledger EVM Sidechain Devnet**.
+This tutorial walks you through the steps to join the existing **XRPL EVM Sidechain Devnet**. 
+
+For ease of use, create an alias, `exprd`, to run all commands inside your Docker container.
 
 ## XRPL EVM Sidechain Node Hardware Requirements
 

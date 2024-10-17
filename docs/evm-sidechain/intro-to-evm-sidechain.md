@@ -38,7 +38,7 @@ The underlying technology for the XRPL sidechain consensus is CometBFT, a fork o
 
 The blockchain uses the `cosmos-sdk` library on top of CometBFT to create and customize the blockchain using its built-in modules. The XRPL EVM sidechain uses the [Ethermint](https://github.com/evmos/ethermint) `cosmos-sdk` module to provides EVM compatibility.
 
-If you are interested in running your own node, please see: [Join the XRP Ledger EVM Sidechain Devnet](join-evm-sidechain-devnet.md).
+If you are interested in running your own node, please see: [Join the XRPL EVM Sidechain Devnet](join-evm-sidechain-devnet.md).
 
 ## Interoperability Using the XRPL EVM Sidechain
 

@@ -30,29 +30,28 @@
         - page: docs/evm-sidechain/join-the-proof-of-authority.md
         - page: docs/evm-sidechain/manage-the-validator-node.md
         - page: docs/evm-sidechain/evm-sidechain-validator-security.md
-    - group: Bridges
-      page: docs/evm-sidechain/bridges-intro.md
+    - group: Axelar 
       expanded: false
       pages:
-        - page: docs/evm-sidechain/deploy-a-bridge.md
-        - group: Bridge Doors
-          page: docs/evm-sidechain/bridge-doors.md
+        - page: docs/evm-sidechain/axelar-overview.md
+        - page: docs/evm-sidechain/axelar-general-message-passing.md
+        - group: Axelar Interchain Transfer
+          page: docs/evm-sidechain/axelar-interchain-transfer.md
           expanded: false
           pages:
-            - page: docs/evm-sidechain/bridge-door-interface.md
-            - page: docs/evm-sidechain/bridge-door-safety-mechanisms.md
-        - group: Witness Servers
-          page: docs/evm-sidechain/witness-servers.md
+            - page: docs/evm-sidechain/axelar-interchain-evm-sidechain-avalanche.md
+            - page: docs/evm-sidechain/axelar-interchain-evm-sidechain-xrpl.md
+        - group: Relaying messages manually
+          page: docs/evm-sidechain/axelar-manually-relay-messages.md
           expanded: false
           pages:
-            - page: docs/evm-sidechain/witness-server-configuration.md
-            - page: docs/evm-sidechain/build-and-run-witness-servers.md
-        - group: Bridge Client
-          page: docs/evm-sidechain/bridge-client.md
+            - page: docs/evm-sidechain/axelar-relay-transfer-xrpl-to-xrpl-evm-sidechain.md
+            - page: docs/evm-sidechain/axelar-relay-transfer-xrpl-evm-sidechain-to-xrpl.md
+        - group: Deployed contracts
+          page: docs/evm-sidechain/axelar-deployed-contracts.md
           expanded: false
           pages:
-            - page: docs/evm-sidechain/configure-the-bridge-client.md
-            - page: docs/evm-sidechain/start-the-bridge-client.md            
+            - page: docs/evm-sidechain/axelar-deployed-contracts-devnet.md
     - group: XRPL EVM CLI
       page: docs/evm-sidechain/evm-cli.md
       expanded: false
@@ -62,11 +61,5 @@
           pages:
             - page: docs/evm-sidechain/set-up-an-evm-sidechain.md
             - page: docs/evm-sidechain/stress-test-the-evm-sidechain.md
-        - group: Bridge Commands
-          expanded: false
-          pages:
-            - page: docs/evm-sidechain/create-a-bridge.md
-            - page: docs/evm-sidechain/execute-bridge-operations.md
-            - page: docs/evm-sidechain/stress-test-the-bridge.md
         - page: docs/evm-sidechain/bootstrap-a-local-environment.md
     - page: docs/evm-sidechain/xrpl-evm-sidechain-faq.md

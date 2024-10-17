@@ -1,7 +1,7 @@
 ---
 html: evm-sidechain-validator-security.html
 parent: join-evm-sidechain-devnet.html
-blurb: Learn how to join the XRP Ledger EVM Sidechain Devnet.
+blurb: Learn how to join the XRPL EVM Sidechain Devnet.
 labels:
   - Development, Interoperability
 status: not_enabled
@@ -24,7 +24,7 @@ For information on how to upgrade your validator infrastructure with Horcrux, re
 
 ## Tendermint KMS
 
-Tendermint KMS is a signature service with support for Hardware Security Modules (HSMs), such as YubiHSM 2 and Ledger Nano. It is intended to be run alongside XRP Ledger EVM Sidechain validators, ideally on separate physical hosts, providing defense-in-depth for online validator signing keys, double signing protection, and a central signing service that can be used when running multiple validators in several zones. <!-- SPELLING_IGNORE: kms, hsms, yubihsm, yubikey -->
+Tendermint KMS is a signature service with support for Hardware Security Modules (HSMs), such as YubiHSM 2 and Ledger Nano. It is intended to be run alongside XRPL EVM Sidechain validators, ideally on separate physical hosts, providing defense-in-depth for online validator signing keys, double signing protection, and a central signing service that can be used when running multiple validators in several zones. <!-- SPELLING_IGNORE: kms, hsms, yubihsm, yubikey -->
 
 ## Hardware Security Modules (HSM)
 
