@@ -8,7 +8,7 @@ The **XRP Ledger (XRPL)** is a decentralized, open-source blockchain designed fo
 
 - **Fast Transactions:** Transactions settle in just 3-5 seconds, ensuring near-instant finality.
 - **Low Fees:** Transaction fees are minimal, averaging less than a cent, making it ideal for high-frequency and micro-transactions.
-- **Energy Efficiency:** Unlike Proof-of-Work (PoW) blockchains like Bitcoin and Ethereum, XRPL uses a consensus algorithm that consumes minimal energy.
+- **Energy Efficiency:** Unlike Proof-of-Work (PoW) blockchains like Bitcoin (and Ethereum before its transition to Proof-of-Stake), XRPL uses a consensus algorithm that consumes minimal energy.
 
 ### Built-in Decentralized Exchange (DEX)
 
