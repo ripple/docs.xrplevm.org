@@ -22,7 +22,7 @@ A straightforward method that involves downloading the latest binaries and runni
     ```bash
     chmod +x exrpd
     ```
-
+test
 ### Building from Source
 
 This method involves cloning the source code repository and building the binaries from source. It is ideal for developers who want to customize the node.
