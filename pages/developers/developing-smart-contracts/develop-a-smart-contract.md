@@ -24,14 +24,17 @@ To develop, deploy, and interact with smart contracts on the XRPL EVM, you’ll 
    - **Hardhat** for advanced project management and automation.
 3. **Wallet:**
    - **MetaMask** to interact with the XRPL EVM network.
+
 ---
 
 ## Development Workflow
 
 ### 1. Write the Smart Contract
+
 Start by learning Solidity, the language used to write smart contracts. Use Remix IDE for simple contracts or Hardhat for more complex projects. Ensure your contracts follow best practices for security and efficiency.
 
 ### 2. Deploy the Smart Contract
+
 Refer to the [Deploy the Smart Contract](./deploy-the-smart-contract.md) page for a step-by-step guide to deploying your smart contract using Remix or Hardhat. You’ll:
 
 - Set up MetaMask to connect to the XRPL EVM.
@@ -39,9 +42,11 @@ Refer to the [Deploy the Smart Contract](./deploy-the-smart-contract.md) page fo
 - Deploy the contract on the XRPL EVM network.
 
 ### 3. Verify the Smart Contract
+
 After deployment, verify your smart contract’s source code on the XRPL EVM Explorer. This ensures transparency and allows others to interact with your contract confidently. Follow the guide on [Verify the Smart Contract](./verify-the-smart-contract.md).
 
 ### 4. Interact with the Smart Contract
+
 Once deployed and verified, you can interact with your smart contract using libraries like **web3.js** or **ethers.js**. Learn how to:
 
 - Connect to the XRPL EVM.
@@ -59,6 +64,7 @@ The XRPL EVM is not just about isolated smart contract functionality; it’s a g
 - **Leverage Axelar ITS:** Move assets like tokens and NFTs between chains with ease.
 
 ### Example:
+
 A decentralized exchange (DEX) on the XRPL EVM could interact with liquidity pools on Ethereum, Binance Smart Chain, or Cosmos Hub, creating a unified cross-chain trading experience.
 
 ---
@@ -76,4 +82,3 @@ Check out the following guides to continue your journey:
 - [Deploy the Smart Contract](./deploy-the-smart-contract.md)
 - [Verify the Smart Contract](./verify-the-smart-contract.md)
 - [Interact with the Smart Contract](./interact-with-the-smart-contract.md)
-

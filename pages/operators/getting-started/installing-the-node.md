@@ -19,9 +19,9 @@ A straightforward method that involves downloading the latest binaries and runni
 1. Download the latest binaries from the [official repository](https://github.com/xrplevm/node).
 2. Extract the binaries and move them to your preferred directory.
 3. Make the binaries executable:
-    ```bash
-    chmod +x exrpd
-    ```
+   ```bash
+   chmod +x exrpd
+   ```
 
 ### Building from Source
 
@@ -34,17 +34,17 @@ This method involves cloning the source code repository and building the binarie
 #### Steps
 
 1. Clone the repository:
-    ```bash
-    git clone https://github.com/xrplevm/node.git
-    ```
+   ```bash
+   git clone https://github.com/xrplevm/node.git
+   ```
 2. Navigate to the project directory:
-    ```bash
-    cd node
-    ```
+   ```bash
+   cd node
+   ```
 3. Build the project:
-    ```bash
-    make build
-    ```
+   ```bash
+   make build
+   ```
 4. The binaries will be available in the `build` directory.
 
 ### Using Docker
@@ -58,7 +58,6 @@ A containerized approach that ensures the node runs in a consistent environment.
 #### Steps
 
 1. Pull the Docker image:
-    ```bash
-    docker pull peersyst/exrp:latest
-    ```
-   
+   ```bash
+   docker pull peersyst/exrp:latest
+   ```

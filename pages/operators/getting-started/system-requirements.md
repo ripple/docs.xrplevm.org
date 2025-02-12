@@ -4,13 +4,13 @@ Before deploying and operating your XRPL EVM node, it’s crucial to ensure that
 
 ## Recommended Specifications
 
-| Resource        | Minimum Recommendation       | Notes                                   |
-|-----------------|------------------------------|-----------------------------------------|
-| Operating System | Linux (AMD64)               | A recent Linux distribution (e.g., Ubuntu 20.04 LTS, CentOS 8, Debian 11) is strongly recommended for stability, security, and compatibility. |
-| CPU             | 8 Physical Cores or More     | Multi-core processors provide enough parallel processing to efficiently handle validation, API requests, and block synchronization. Higher core counts can enhance performance under heavy load. |
-| Memory (RAM)    | 32GB                         | Sufficient memory ensures smooth operation during peak network load, handling large state DB operations, and responding to complex smart contract queries. More memory may further improve performance. |
-| Storage         | 1TB Cloud Storage (AWS), SSD or NVMe | A high-performance NVMe SSD provides fast random access and write speeds, which are essential for maintaining a responsive node database and quickly processing state updates. More storage capacity may be required for archive nodes or long-term data retention. |
-| Network          | 100Mbps                     | A stable 100Mbps connection or faster ensures timely propagation of blocks, efficient peer discovery, and responsive API endpoints. Lower bandwidth may lead to delayed synchronization or performance bottlenecks. |
+| Resource         | Minimum Recommendation               | Notes                                                                                                                                                                                                                                                               |
+| ---------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Operating System | Linux (AMD64)                        | A recent Linux distribution (e.g., Ubuntu 20.04 LTS, CentOS 8, Debian 11) is strongly recommended for stability, security, and compatibility.                                                                                                                       |
+| CPU              | 8 Physical Cores or More             | Multi-core processors provide enough parallel processing to efficiently handle validation, API requests, and block synchronization. Higher core counts can enhance performance under heavy load.                                                                    |
+| Memory (RAM)     | 32GB                                 | Sufficient memory ensures smooth operation during peak network load, handling large state DB operations, and responding to complex smart contract queries. More memory may further improve performance.                                                             |
+| Storage          | 1TB Cloud Storage (AWS), SSD or NVMe | A high-performance NVMe SSD provides fast random access and write speeds, which are essential for maintaining a responsive node database and quickly processing state updates. More storage capacity may be required for archive nodes or long-term data retention. |
+| Network          | 100Mbps                              | A stable 100Mbps connection or faster ensures timely propagation of blocks, efficient peer discovery, and responsive API endpoints. Lower bandwidth may lead to delayed synchronization or performance bottlenecks.                                                 |
 
 ## Additional Considerations
 

@@ -8,7 +8,7 @@ status: not_enabled
 
 {% partial file="/snippets/_axelar-overview-disclaimer.md" /%}
 
-# Overview 
+# Overview
 
 Bridges are specialized protocols designed to facilitate interoperability between distinct blockchain networks, allowing them to communicate and exchange assets or data despite differences in consensus algorithms, data structures, and other foundational technologies. They typically consist of smart contracts and off-chain components that validate and relay information between the connected chains, ensuring that transactions are securely executed across heterogeneous environments.
 
@@ -16,8 +16,7 @@ Currently, the transfer of XRP from the XRP Ledger (XRPL) to the XRPL EVM Sidech
 
 Leveraging Axelar's decentralised network of validators and robust message-passing protocol enables assets to move between the XRPL's native ledger and its EVM-compatible sidechain with full transactional consistency. This integration combines the XRPL's high-throughput and low-cost transactions with the programmable smart contract capabilities of the EVM ecosystem, allowing for expanded use cases, such as decentralised finance (DeFi) applications and cross-chain liquidity solutions.
 
-
-For further details on the implementation of the Axelar bridge on the XRPL EVM sidechain, see: 
+For further details on the implementation of the Axelar bridge on the XRPL EVM sidechain, see:
 
 - [Axelar Interchain Transfer](interchain-transfer): Learn more about Axelar interchain transfer.
 - [Axelar General Message Passing (GMP)](general-message-passing): Learn more about Axelar general message passing.

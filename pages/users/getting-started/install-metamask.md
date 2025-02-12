@@ -27,7 +27,7 @@ Follow these steps to create a new MetaMask wallet:
 4. Secure your wallet:
    - Save the **seed phrase** provided by MetaMask in a safe location. This is the only way to recover your wallet if you lose access to it.
    - **Never share your seed phrase with anyone.**
-   ![Back Up MetaMask Mnemonic](../images/backupmnemonic.png)
+     ![Back Up MetaMask Mnemonic](../images/backupmnemonic.png)
 
 Your MetaMask wallet is now ready to use.
 
@@ -54,9 +54,11 @@ Your existing account will now be accessible in MetaMask.
 Now that you’ve successfully installed and set up MetaMask, you’re ready to connect it to the **XRPL EVM**. This will allow you to interact with the network, deploy smart contracts, and manage assets.
 
 ### Continue to the Next Guide:
+
 - **[Connect MetaMask to the XRPL EVM Sidechain](../getting-started/connect-to-the-xrpl-evm.md)**: Learn how to configure MetaMask to connect to the XRPL EVM and start using its features.
 
 ### Additional Resources:
+
 - **MetaMask Security Tips**:
   - Always back up your seed phrase in a secure location.
   - Be cautious when interacting with unknown websites or dApps.

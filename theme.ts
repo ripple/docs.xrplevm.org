@@ -1,4 +1,4 @@
-import { lighten, darken, readableColor } from 'polished';
+import { lighten, darken, readableColor } from "polished";
 
 /* https://redocly.com/docs/developer-portal/configuration/theme/ */
 
@@ -10,70 +10,70 @@ export const theme = {
   // },
   breakpoints: {
     xs: 0,
-    small: '550px',
-    medium: '900px',
-    large: '1200px',
+    small: "550px",
+    medium: "900px",
+    large: "1200px",
   },
 
   logo: {
-    height: '1.3rem',
-    maxWidth: '100%',
+    height: "1.3rem",
+    maxWidth: "100%",
     margin: 0,
   },
 
   colors: {
     tonalOffset: 0.2,
     RippleBrand: {
-      main: '#003D99',
-      contrastText: '#ffffff',
+      main: "#003D99",
+      contrastText: "#ffffff",
     },
     primary: {
-      contrastText: '#ffffff',
+      contrastText: "#ffffff",
       main: ({ colors }) => colors.text.primary,
       // light: ({ colors }) => lighten(colors.tonalOffset, colors.primary.main),
       // dark: ({ colors }) => darken(colors.tonalOffset, colors.primary.main),
       // contrastText: ({ colors }) => readableColor(colors.primary.main),
     },
     accent: {
-      main: '#005BCC',
+      main: "#005BCC",
     },
     headings: {
-      main: '#003D99',
+      main: "#003D99",
     },
     links: {
-      main: '#003D99',
+      main: "#003D99",
     },
     error: {
-      main: '#BD0F5A',
-      light: '#FFE6EB',
+      main: "#BD0F5A",
+      light: "#FFE6EB",
       dark: ({ colors }) => darken(colors.tonalOffset, colors.error.main),
       contrastText: ({ colors }) => colors.error.main,
     },
     info: {
-      main: '#003D99',
-      light: '#E6F8FF',
+      main: "#003D99",
+      light: "#E6F8FF",
       dark: ({ colors }) => darken(colors.tonalOffset, colors.info.main),
       contrastText: ({ colors }) => colors.info.main,
     },
     success: {
-      main: '#006622',
-      light: '#F4FFE6',
+      main: "#006622",
+      light: "#F4FFE6",
       dark: ({ colors }) => darken(colors.tonalOffset, colors.success.main),
       contrastText: ({ colors }) => colors.success.main,
     },
     warning: {
-      main: '#992700',
-      light: '#FFF2E6',
+      main: "#992700",
+      light: "#FFF2E6",
       dark: ({ colors }) => darken(colors.tonalOffset, colors.warning.main),
       contrastText: ({ colors }) => colors.warning.main,
     },
     text: {
-      primary: '#141A1F',
-      secondary: '#5E676E',
+      primary: "#141A1F",
+      secondary: "#5E676E",
     },
     jumbotronButton: {
-      main: '#005BCC',
-      contrastText: '#F8FAFC',
+      main: "#005BCC",
+      contrastText: "#F8FAFC",
     },
     // border: {
     //   dark: 'rgba(0,0,0, 0.15)',
@@ -98,26 +98,26 @@ export const theme = {
       },
     },
     http: {
-      get: '#6bbd5b',
-      post: '#248fb2',
-      put: '#9b708b',
-      options: '#d3ca12',
-      patch: '#e09d43',
-      delete: '#e27a7a',
-      basic: '#999',
-      link: '#31bbb6',
-      head: '#c167e4',
+      get: "#6bbd5b",
+      post: "#248fb2",
+      put: "#9b708b",
+      options: "#d3ca12",
+      patch: "#e09d43",
+      delete: "#e27a7a",
+      basic: "#999",
+      link: "#31bbb6",
+      head: "#c167e4",
     },
     /* Sets the color variations for the navigation bar.
     Additional theming options can be set in the main navbar section of the portal theme.
     */
     navbar: {
-      gradient: '#ffffff',
-      main: '#ffffff',
+      gradient: "#ffffff",
+      main: "#ffffff",
       contrastText: ({ colors }) => colors.text.primary,
     },
     footer: {
-      main: '#ffffff',
+      main: "#ffffff",
       contrastText: ({ colors }) => colors.text.secondary,
     },
   },
@@ -126,17 +126,17 @@ export const theme = {
   You must define the contents of the navigation bar in the nav section of the siteConfig.yaml file.
   */
   navbar: {
-    activeBgColor: '#ffffff',
-    activeTextColor: '#005BCC',
-    position: 'sticky',
+    activeBgColor: "#ffffff",
+    activeTextColor: "#005BCC",
+    position: "sticky",
     zIndex: 50,
-    top: '0',
-    left: '0',
-    right: '0',
-    fontSize: '16px',
+    top: "0",
+    left: "0",
+    right: "0",
+    fontSize: "16px",
     fontFamily: '"TT Ripple", sans-serif',
     fontWeight: 600,
-    lineHeight: '1.5em',
+    lineHeight: "1.5em",
     /*  activeTextDecoration: '',   */
     /*  borderRadius: '',           */
     /*  marginHorizontal: '',       */
@@ -236,12 +236,12 @@ export const theme = {
     },
   },
   rightPanel: {
-    backgroundColor: '#263238',
-    width: '40%',
+    backgroundColor: "#263238",
+    width: "40%",
     // textColor: '#ffffff',
   },
   schema: {
-    nestedBackground: '#fafafa',
+    nestedBackground: "#fafafa",
     // linesColor: theme => lighten( theme.colors.tonalOffset, desaturate(theme.colors.tonalOffset, theme.colors.primary.main) ),
     // defaultDetailsWidth: '75%',
     // typeNameColor: theme => theme.colors.text.secondary,
@@ -258,7 +258,7 @@ export const theme = {
   //   backgroundColor: ({ rightPanel }) => darken(0.1, rightPanel.backgroundColor),
   //   tokens: {},
   // },
-  
+
   components: {
     search: {
       iconColor: "#777F86",

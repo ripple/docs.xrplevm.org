@@ -23,9 +23,10 @@ With XRPL EVM, your dApps can benefit from interoperability with other networks 
 
 3. **Infrastructure and Tooling:**  
    XRPL EVM supports the familiar suite of Ethereum tools for local development, testing, and deployment. You can rely on tools like:
-    - **Hardhat** or **Truffle** for contract development and testing
-    - **Ethers.js** or **Web3.js** for on-chain interactions
-    - **OpenZeppelin Contracts** for secure, audited smart contract standards
+
+   - **Hardhat** or **Truffle** for contract development and testing
+   - **Ethers.js** or **Web3.js** for on-chain interactions
+   - **OpenZeppelin Contracts** for secure, audited smart contract standards
 
 4. **Bridging and Cross-Chain Interactions:**  
    While this section focuses mainly on direct development within XRPL EVM, you’ll also find opportunities to connect and move assets between XRPL EVM and other chains, leveraging cross-chain bridges and interoperability solutions.

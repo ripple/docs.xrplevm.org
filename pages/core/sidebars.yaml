@@ -18,4 +18,3 @@
   items:
     - page: ./security/security-audits.md
     - page: ./security/bugs.md
-

@@ -2,9 +2,9 @@
 
 Cosmos SDK exposes three primary interfaces for interacting with a node. Each interface is accessible through a different port:
 
-* **gRPC**: Port `9090`
-* **REST**: Port `1317`
-* **CometBFT RPC**: Port `26657`
+- **gRPC**: Port `9090`
+- **REST**: Port `1317`
+- **CometBFT RPC**: Port `26657`
 
 Nodes also expose other endpoints, such as the CometBFT P2P endpoint, or the [Prometheus endpoint](https://docs.cometbft.com/v1.0/explanation/core/metrics), which are not directly related to the Cosmos SDK. For detailed instructions on configuring these additional CometBFT endpoints, refer to the [CometBFT Configuration Manual](https://docs.cometbft.com/v1.0/references/config/).
 
@@ -227,21 +227,21 @@ The response includes metadata about the request and the encoded result. The `va
 
 ```json
 {
-    "jsonrpc": "2.0",
-    "id": -1,
-    "result": {
-        "response": {
-            "code": 0,
-            "log": "",
-            "info": "",
-            "index": "0",
-            "key": null,
-            "value": "CqwCCAEShgEKKC9...dsZXR5am12cAESAhAx",
-            "proofOps": null,
-            "height": "13713161",
-            "codespace": ""
-        }
+  "jsonrpc": "2.0",
+  "id": -1,
+  "result": {
+    "response": {
+      "code": 0,
+      "log": "",
+      "info": "",
+      "index": "0",
+      "key": null,
+      "value": "CqwCCAEShgEKKC9...dsZXR5am12cAESAhAx",
+      "proofOps": null,
+      "height": "13713161",
+      "codespace": ""
     }
+  }
 }
 ```
 

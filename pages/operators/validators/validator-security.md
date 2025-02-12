@@ -50,10 +50,7 @@ Ensure the `~/.exrpd` directory is accessible only by the owner. This directory 
 
 ### Peering Settings
 
-Update `config.toml` with the following recommended settings:
-    - `max_num_inbound_peers = 100`
-    - `max_num_outbound_peers = 10`
-    - `flush_throttle_timeout = "100ms"`
+Update `config.toml` with the following recommended settings: - `max_num_inbound_peers = 100` - `max_num_outbound_peers = 10` - `flush_throttle_timeout = "100ms"`
 
 ### Disk Optimization
 

@@ -27,14 +27,17 @@ Axelar, a decentralized cross-chain communication protocol, powers the XRPL EVM 
 The Axelar-powered bridge works as follows:
 
 1. **Asset Transfer Initiation:**
+
    - A transaction is initiated on the XRPL specifying the amount, destination chain, and recipient address.
    - Axelar processes this transaction through its decentralized network.
 
 2. **Verification and Relaying:**
+
    - Axelar’s validators verify the transaction, ensuring no double-spending or malicious activity occurs.
    - Once verified, the transaction is relayed to the XRPL EVM Sidechain.
 
 3. **Execution on Destination Chain:**
+
    - The Axelar Gateway smart contract on the XRPL EVM Sidechain processes the transaction.
    - Assets or data are transferred to the specified address on the XRPL EVM Sidechain.
 
@@ -46,12 +49,14 @@ The Axelar-powered bridge works as follows:
 ## Benefits of the Axelar Bridge
 
 ### Interchain dApp Development
+
 Axelar’s General Message Passing (GMP) enables the creation of interchain dApps, expanding functionalities across blockchains. Examples include:
 
 - **Cross-Chain DeFi:** A lending protocol on XRPL EVM Sidechain can accept collateral from other blockchains.
 - **NFT Marketplaces:** Build marketplaces that span XRPL, XRPL EVM, and Ethereum.
 
 ### Scalability and Flexibility
+
 Axelar’s infrastructure supports scalable operations, enabling:
 
 - Token transfers between XRPL and XRPL EVM.

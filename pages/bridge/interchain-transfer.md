@@ -5,7 +5,8 @@ labels:
   - Interoperability
 status: not_enabled
 ---
-# Axelar Interchain Transfer 
+
+# Axelar Interchain Transfer
 
 ## Feature Overview
 
@@ -13,7 +14,7 @@ Axelar's Interchain Token Service (ITS) connects tokens across multiple blockcha
 
 ## How It Works
 
-Interchain transfers are executed through Axelar Interchain Token Service (ITS). ITS is a set of smart contracts deployed on the XRPL EVM Sidechain that are responsible for the interchain token transfer functionality. 
+Interchain transfers are executed through Axelar Interchain Token Service (ITS). ITS is a set of smart contracts deployed on the XRPL EVM Sidechain that are responsible for the interchain token transfer functionality.
 
 The following diagram shows the process of transferring a token from the XRPL to the XRPL EVM Sidechain.
 

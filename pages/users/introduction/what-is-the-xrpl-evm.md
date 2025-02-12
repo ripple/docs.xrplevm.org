@@ -2,7 +2,6 @@
 
 The **XRPL Ethereum Virtual Machine (EVM)** is a transformative extension of the XRP Ledger ecosystem that introduces Ethereum’s smart contract capabilities through a dedicated sidechain. Built on the Cosmos SDK, this sidechain leverages a Proof-of-Authority (PoA) consensus model to maintain high performance and low latency while preserving the core attributes of the XRP Ledger. It connects to the XRP Ledger via the Axelar network, using XRP bridged from the XRPL as its native currency, facilitating seamless asset transfers and communication between the XRPL and the EVM sidechain. This integration fuses the XRP Ledger’s proven speed, cost-efficiency, and security with Ethereum’s versatility, empowering developers to build and deploy Solidity-based smart contracts in a high-speed, low-cost, and liquidity-rich environment.
 
-
 ## Key Features of the XRPL EVM
 
 ### Ethereum Compatibility
@@ -60,4 +59,3 @@ With Axelar and the XRPL EVM bridge, assets can move seamlessly between the XRPL
 
 - Developers familiar with Ethereum can transition to XRPL EVM without learning new tools or languages.
 - Users benefit from XRPL's speed and low fees while interacting with Ethereum-compatible dApps.
-

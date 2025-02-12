@@ -12,6 +12,7 @@ The fastest way to acquire $XRP is by using the Chains.tools Faucet. This tool a
    Go to the XRPL EVM Devnet Chains.tools [Faucet](https://chains.tools/faucet/xrplevm).
 
 2. **Enter Your Wallet Address:**
+
    - Copy your wallet address from an EVM-compatible wallet, such as MetaMask.
    - Paste the wallet address into the faucet’s input field.
 
@@ -19,6 +20,7 @@ The fastest way to acquire $XRP is by using the Chains.tools Faucet. This tool a
    Verify you are not a robot by completing the CAPTCHA.
 
 4. **Request $XRP:**
+
    - Click the button to request $XRP.
    - Each wallet can request up to **10 XRP every 60 minutes**.
 

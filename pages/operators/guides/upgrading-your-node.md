@@ -1,6 +1,6 @@
 # Upgrading your node
 
-Blockchain upgrades are a complex process that requires all network participants to agree on a specific time to execute a specific change in the protocol. Cosmos based networks, like the XRPL EVM Sidechain, solve this complexity with a set of fixed operations that need to happen when  upgrading the chain:
+Blockchain upgrades are a complex process that requires all network participants to agree on a specific time to execute a specific change in the protocol. Cosmos based networks, like the XRPL EVM Sidechain, solve this complexity with a set of fixed operations that need to happen when upgrading the chain:
 
 1. A governance proposal containing a chain upgrade transaction is created. This transaction contains specific details of the upgrade such as which block will the upgrade be executed, the version number and some metadata.
 2. Once the proposal is created it is voted as another regular governance proposal.
@@ -16,7 +16,6 @@ In the [Networks](../resources/networks.md) page, you can find all the hard fork
 
 Manual actions required by node operators during the chain upgrades can be automated using Cosmovisor. This client automatically detects new binaries for newer versions available and downloads them. Once a new chain upgrade is triggered, the cosmovisor restarts the node with the new binary, reducing the downtime of your node.
 
-
 {% admonition type="info" name="Important" %}
 The following instructions are adapted from the official Cosmovisor documentation. If you want more in-depth information or advanced usage, consult that resource.
 {% /admonition %}
@@ -26,15 +25,19 @@ The following instructions are adapted from the official Cosmovisor documentatio
 You can download Cosmovisor from the [GitHub releases](https://github.com/cosmos/cosmos-sdk/releases/tag/cosmovisor%2Fv1.5.0).
 
 To install the latest version of cosmovisor, run the following command:
+
 ```bash
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest
 ```
+
 To install a specific version, you can specify the version:
+
 ```bash
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@v1.5.0
 ```
 
 Run cosmovisor version to check the cosmovisor version.
+
 ```bash
 cosmovisor version
 ```
@@ -113,6 +116,7 @@ When an upgrade is triggered on-chain (via governance or other mechanisms), you 
 #### Example Upgrade Directory
 
 If the upgrade name is `v5`, the new binary should be placed at:
+
 ```
 ~/.exprd/cosmovisor/upgrades/v5/bin/exrpd
 ```

@@ -296,8 +296,8 @@ type = "flood"
 recheck = true
 
 # recheck_timeout is the time the application has during the rechecking process
-# to return CheckTx responses, once all requests have been sent. Responses that 
-# arrive after the timeout expires are discarded. It only applies to 
+# to return CheckTx responses, once all requests have been sent. Responses that
+# arrive after the timeout expires are discarded. It only applies to
 # non-local ABCI clients and when recheck is enabled.
 #
 # The ideal value will strongly depend on the application. It could roughly be estimated as the
@@ -576,7 +576,7 @@ index-events = []
 # IavlCacheSize set the size of the iavl tree cache (in number of nodes).
 iavl-cache-size = 781250
 
-# IAVLDisableFastNode enables or disables the fast node feature of IAVL. 
+# IAVLDisableFastNode enables or disables the fast node feature of IAVL.
 # Default is false.
 iavl-disable-fastnode = false
 

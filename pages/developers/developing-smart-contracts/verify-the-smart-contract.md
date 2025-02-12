@@ -31,6 +31,7 @@ The **XRPL EVM Explorer** supports multiple verification methods. For detailed a
 
 1. Open your contract in **Remix IDE** ([Remix](https://remix.ethereum.org)).
 2. Compile the contract:
+
    - Go to the **Solidity Compiler** plugin.
    - Select the correct **compiler version** used during deployment.
    - Enable **Optimizer** if it was used during deployment and configure it to match the deployment settings.
@@ -78,16 +79,19 @@ The explorer will match the JSON input with the deployed bytecode and verify you
 ## Additional Tips
 
 ### Matching Compiler Settings
+
 - Ensure the **Solidity compiler version** and **optimization settings** used during deployment match those used for verification.
 - Mismatched settings may result in verification failure.
 
 ### License Selection
+
 - Select a license that matches your contract’s codebase. Common licenses include:
   - MIT License
   - GNU General Public License (GPL)
   - Unlicense (No License)
 
 ### Future-Proofing
+
 - For upcoming developments involving cross-chain functionality with Cosmos IBC and Axelar GMP, always design smart contracts with interoperability in mind.
 
 ---

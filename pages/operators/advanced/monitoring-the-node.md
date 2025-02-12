@@ -67,4 +67,3 @@ For an optimized monitoring experience, you can use the following preconfigured 
 This dashboard provides detailed insights into node performance, including CPU usage, memory consumption, network activity, and transaction processing.
 
 By following this guide, you can ensure effective monitoring of your XRPL EVM sidechain node, allowing for proactive maintenance and optimal performance.
-

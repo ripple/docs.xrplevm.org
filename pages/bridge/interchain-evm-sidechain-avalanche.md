@@ -5,12 +5,13 @@ labels:
   - Interoperability
 status: not_enabled
 ---
+
 # Axelar Interchain Transfer to Avalanche Fuji
 
 You can transfer tokens from XRPL EVM sidechain to Avalanche Fuji using Axelar Portal. In this example, we will transfer 10 XRP to Avalanche Fuji as axlXRP.
 
 1. Set XRPL EVM sidechain as the source chain and Avalanche Fuji as the destination chain.
-![portal set chains](./img/axelar-set-chains.png)
+   ![portal set chains](./img/axelar-set-chains.png)
 
 2. Connect your wallet using Metamask for both chains.
 
@@ -31,4 +32,3 @@ Once the transaction is executed, you can see the transaction details in the fol
 To confirm the transfer, you can go to the Avalanche Fuji explorer and search for the transaction hash.
 
 ![portal transaction list](./img/axelar-verify-destination-transfer.png)
-

@@ -25,6 +25,9 @@ navbar:
       page: pages/bridge/index.md
       linkedSidebars:
         - pages/bridge/sidebars.yaml
+    - label: Ask GPT
+      href: https://chatgpt.com/g/g-6785069c998c819194463b60be890917-xrpl-evm-docs
+      external: true
     # - label: Core
     #   page: pages/core/index.md
     #   linkedSidebars:

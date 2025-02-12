@@ -4,7 +4,7 @@ The XRPL EVM ecosystem consists of multiple networks, each serving different sta
 
 | Name   | Chain ID         | Current Version | Genesis     | Peers     |
 | ------ | ---------------- | --------------- | ----------- | --------- |
-| Devnet | `exrp_1440002-1` | v6.0.0          | [Genesis]() | [Peers]() |
+| Devnet | `exrp_1440002-1` | v6.0.0          | [Genesis](https://raw.githubusercontent.com/Peersyst/xrp-evm-archive/main/poa-devnet/genesis.json) | [Peers](https://raw.githubusercontent.com/Peersyst/xrp-evm-archive/main/poa-devnet/peers.txt) |
 
 ## Upgrade information
 

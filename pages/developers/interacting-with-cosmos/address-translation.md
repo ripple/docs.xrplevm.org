@@ -2,8 +2,8 @@
 
 An Ethereum account can be represented in two formats:
 
-* **Bech32 (ethm...)** for Cosmos compatibility.
-* **EIP55 Hex (0x...)** for Ethereum's Web3 tooling compatibility.
+- **Bech32 (ethm...)** for Cosmos compatibility.
+- **EIP55 Hex (0x...)** for Ethereum's Web3 tooling compatibility.
 
 ## Bech32 to EIP55 Hex address
 
@@ -31,7 +31,7 @@ Addresses can be translated using the [`exrpd` CLI](../../operators/guides/inter
 exrpd debug addr ethm1akwntffy4us9nhgcmgjxdg78v5w3xtwletyjmv
 ```
 
- or
+or
 
 ```bash
 exrpd debug addr 0xed9D35A524AF2059dd18Da2466A3C7651D132Ddf
@@ -56,37 +56,37 @@ import { keccak256 } from "js-sha3";
 
 // Bech32 to EIP55 Hex
 function bech32ToEIP55(bech32Address: string): string {
-    const decoded = bech32.decode(bech32Address);
-    const data = bech32.fromWords(decoded.words);
-    const hexAddress = Buffer.from(data).toString("hex");
+  const decoded = bech32.decode(bech32Address);
+  const data = bech32.fromWords(decoded.words);
+  const hexAddress = Buffer.from(data).toString("hex");
 
-    return toChecksumAddress("0x" + hexAddress);
+  return toChecksumAddress("0x" + hexAddress);
 }
 
 // EIP55 Hex to Bech32
 function eip55ToBech32(hexAddress: string): string {
-    const cleanHex = hexAddress.substring(2).toLowerCase();
-    const rawBytes = Buffer.from(cleanHex, "hex");
-    const words = bech32.toWords(rawBytes);
+  const cleanHex = hexAddress.substring(2).toLowerCase();
+  const rawBytes = Buffer.from(cleanHex, "hex");
+  const words = bech32.toWords(rawBytes);
 
-    return bech32.encode("ethm", words);
+  return bech32.encode("ethm", words);
 }
 
 // EIP55 Checksum Calculation
 function toChecksumAddress(address: string): string {
-    const lowerAddress = address.toLowerCase().replace(/^0x/, "");
-    const hash = keccak256(lowerAddress);
+  const lowerAddress = address.toLowerCase().replace(/^0x/, "");
+  const hash = keccak256(lowerAddress);
 
-    let checksumAddress = "0x";
+  let checksumAddress = "0x";
 
-    for (let i = 0; i < lowerAddress.length; i++) {
-        if (parseInt(hash[i], 16) >= 8) {
-            checksumAddress += lowerAddress[i].toUpperCase();
-        } else {
-            checksumAddress += lowerAddress[i];
-        }
+  for (let i = 0; i < lowerAddress.length; i++) {
+    if (parseInt(hash[i], 16) >= 8) {
+      checksumAddress += lowerAddress[i].toUpperCase();
+    } else {
+      checksumAddress += lowerAddress[i];
     }
+  }
 
-    return checksumAddress;
+  return checksumAddress;
 }
 ```

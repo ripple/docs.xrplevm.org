@@ -2,9 +2,9 @@
 - group: Introduction
   expanded: true
   items:
-      - page: ./introduction/what-is-the-xrpl.md
-      - page: ./introduction/what-is-the-xrpl-evm.md
-      - page: ./introduction/what-is-the-xrpl-evm-bridge.md
+    - page: ./introduction/what-is-the-xrpl.md
+    - page: ./introduction/what-is-the-xrpl-evm.md
+    - page: ./introduction/what-is-the-xrpl-evm-bridge.md
 - group: Getting Started
   expanded: true
   items:

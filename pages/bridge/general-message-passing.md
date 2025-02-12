@@ -5,6 +5,7 @@ labels:
   - Interoperability
 status: not_enabled
 ---
+
 # Axelar General Message Passing (GMP)
 
 ## Feature Overview
@@ -23,7 +24,6 @@ For the XRPL Ledger, this integration unlocks smart contract functionality by br
 
 ## Key Components
 
-
 - **Axelar Multisig Account**: The Axelar Multisig account is the account that is responsible for submitting the message to the Axelar network (from XRP Ledger).
 - **Axelar Amplifier Gateway**: The Axelar Amplifier Gateway is the smart contract which communicates with the Axelar network, enabling the message passing functionality.
 - **XRPL EVM Sidechain**: The XRPL EVM Sidechain is the destination for the message.
@@ -35,6 +35,7 @@ The following example demonstrates how to complete a general message passing tra
 
 1. Compute the payload that you want to call on XRPL EVM Sidechain `AxelarExecutable` smart contract's `_execute` function.
 2. Create an XRPL `Payment` transaction with the following fields:
+
 ```json
 {
     TransactionType: "Payment",
@@ -66,8 +67,9 @@ The following example demonstrates how to complete a general message passing tra
 }
 ```
 
-3. Submit the transaction to the XRPL Ledger. Within a few minutes, the relayer should submit validator signatures of the XRPL Testnet deposit transaction to the XRPL EVM Sidechain `AxelarAmplifierGateway` contract, which records the approval of the payload hash and emits a `ContractCallApproved` event. 
+3. Submit the transaction to the XRPL Ledger. Within a few minutes, the relayer should submit validator signatures of the XRPL Testnet deposit transaction to the XRPL EVM Sidechain `AxelarAmplifierGateway` contract, which records the approval of the payload hash and emits a `ContractCallApproved` event.
 4. Once the transaction is confirmed, call the `execute` function on the XRPL EVM Sidechain `AxelarExecutable` smart contract.
+
 ```
 AXELAR_EXECUTABLE= # your `AxelarExecutable` contract
 COMMAND_ID= # the `commandId` that was emitted in the `ContractCallApproved` event

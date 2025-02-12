@@ -5,11 +5,12 @@ labels:
   - Interoperability
 status: not_enabled
 ---
+
 # XRPL EVM Sidechain to XRPL transfer
 
 This guide shows how relay a transfer message manually from an XRPL EVM Sidechain to XRPL.
 
-1. Send a `verify_messages` transaction to XRPL EVM Sidechain's source gateway address on Axelar. 
+1. Send a `verify_messages` transaction to XRPL EVM Sidechain's source gateway address on Axelar.
 
 ```bash
 axelard tx wasm execute '{
@@ -47,7 +48,7 @@ axelard tx wasm execute '{
 }' --gas 20000000 --gas-adjustment 1.5 --gas-prices 0.00005uamplifier --chain-id devnet-amplifier --node http://devnet-amplifier.axelar.dev:26657
 ```
 
-3. Execute the ITS Hub message. 
+3. Execute the ITS Hub message.
 
 ```bash
 axelard tx wasm execute axelar1yvfcrdke7fasxfaxx2r706h7h85rnk3w68cc5f4fkmafz5j755ssl8h9p0 '{
@@ -90,9 +91,9 @@ axelard q wasm contract-state smart axelar1upqj9paf2qhhp49fjtk4ghwnv2mzcqnpglggr
 ```javascript
 const client = new Client("wss://s.devnet.rippletest.net:51233");
 const request: SubmitRequest = {
-    command: "submit",
-    tx_blob: txBlob,
-    fail_hard: true,
+  command: "submit",
+  tx_blob: txBlob,
+  fail_hard: true,
 };
 
 await client.connect();
@@ -131,3 +132,4 @@ axelard tx wasm execute axelar1upqj9paf2qhhp49fjtk4ghwnv2mzcqnpglggr0hds8dy9a4st
     },
 }' --gas 20000000 --gas-adjustment 1.5 --gas-prices 0.00005uamplifier --chain-id devnet-amplifier --node http://devnet-amplifier.axelar.dev:26657
 
+```

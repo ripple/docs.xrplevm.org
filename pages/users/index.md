@@ -5,6 +5,7 @@ Welcome to the **XRPL EVM documentation**! Here you will find everything you nee
 ---
 
 ## Introduction
+
 [What is the XRPL?](./introduction/what-is-the-xrpl.md)
 
 [What is the XRPL EVM?](./introduction/what-is-the-xrpl-evm.md)
@@ -12,6 +13,7 @@ Welcome to the **XRPL EVM documentation**! Here you will find everything you nee
 [What is the XRPL EVM Bridge?](./introduction/what-is-the-xrpl-evm-bridge.md)
 
 ## Getting Started
+
 [Intro to the XRPL EVM](./getting-started/introduction.md)
 
 [Install MetaMask](./getting-started/install-metamask.md)
@@ -19,6 +21,7 @@ Welcome to the **XRPL EVM documentation**! Here you will find everything you nee
 [Connect MetaMask to the XRPL EVM](./getting-started/connect-to-the-xrpl-evm.md)
 
 ## Usage
+
 [Using the Bridge](./using-the-bridge.md)
 
 [Faucet](./faucet.md)

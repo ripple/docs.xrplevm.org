@@ -5,11 +5,12 @@ labels:
   - Interoperability
 status: not_enabled
 ---
+
 # XRPL to XRPL EVM Sidechain transfer
 
 This guide shows how relay a transfer message manually from XRPL to an XRPL EVM Sidechain.
 
-1. Send a `verify_messages` transaction 
+1. Send a `verify_messages` transaction
 
 ```bash
 axelard tx wasm execute axelar13w698a6pjytxj6jzprs6pznaxhan3flhf76fr0nc7jg3udcsa07q9c7da3 '{
@@ -93,7 +94,6 @@ axelard tx wasm execute axelar1yvfcrdke7fasxfaxx2r706h7h85rnk3w68cc5f4fkmafz5j75
 
 4. Route the message.
 
-
 ```bash
 axelard tx wasm execute axelar1yvfcrdke7fasxfaxx2r706h7h85rnk3w68cc5f4fkmafz5j755ssl8h9p0'{
     route_messages: [
@@ -141,10 +141,10 @@ const provider = new providers.JsonRpcProvider("XRPL_EVM_SIDECHAIN_RPC");
 const wallet = new Wallet("YOUR_PRIVATE_KEY", provider);
 
 const tx = await wallet.sendTransaction({
-    from: wallet.address,
-    to: "0x48CF6E93C4C1b014F719Db2aeF049AA86A255fE2",
-    data: "EXECUTE_DATA",
-    value: "0",
+  from: wallet.address,
+  to: "0x48CF6E93C4C1b014F719Db2aeF049AA86A255fE2",
+  data: "EXECUTE_DATA",
+  value: "0",
 });
 await tx.wait();
 ```
@@ -154,12 +154,16 @@ await tx.wait();
 ```javascript
 const provider = new providers.JsonRpcProvider("XRPL_EVM_SIDECHAIN_RPC");
 const wallet = new Wallet("YOUR_PRIVATE_KEY", provider);
-const appContract = new Contract("0x48CF6E93C4C1b014F719Db2aeF049AA86A255fE2", IAxelarExecutable.abi, wallet);
+const appContract = new Contract(
+  "0x48CF6E93C4C1b014F719Db2aeF049AA86A255fE2",
+  IAxelarExecutable.abi,
+  wallet
+);
 const tx = await appContract.execute(
-    "COMMAND_ID",
-    "axelarnet",
-    "TRANSLATED_SOURCE_ADDRESS",
-    `CALCULATED_PAYLOAD`,
+  "COMMAND_ID",
+  "axelarnet",
+  "TRANSLATED_SOURCE_ADDRESS",
+  `CALCULATED_PAYLOAD`
 );
 await tx.wait();
 ```

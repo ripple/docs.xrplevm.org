@@ -11,6 +11,7 @@ Remix is a web-based development environment for smart contracts, perfect for qu
 ### Steps:
 
 ### 1. Set Up Your Wallet
+
 - **Install MetaMask**:
   If you haven't already, install the [MetaMask wallet](https://metamask.io/) extension in your browser.
 - **Connect to XRPL EVM Sidechain**:
@@ -22,10 +23,13 @@ Remix is a web-based development environment for smart contracts, perfect for qu
   - **Block Explorer URL**: [https://explorer.xrplevm.org](https://explorer.xrplevm.org)
 
 ### 2. Open Remix IDE
+
 - Navigate to [Remix IDE](https://remix.ethereum.org/).
 
 ### 3. Write or Import Your Smart Contract
+
 - Write your Solidity smart contract or import an existing one. Example:
+
   ```solidity
   // SPDX-License-Identifier: MIT
   pragma solidity ^0.8.0;
@@ -44,16 +48,19 @@ Remix is a web-based development environment for smart contracts, perfect for qu
   ```
 
 ### 4. Compile the Contract
+
 - In Remix, navigate to the **Solidity Compiler** tab.
 - Select the appropriate Solidity version and click **Compile**.
 
 ### 5. Deploy the Contract
+
 - Go to the **Deploy & Run Transactions** tab.
 - Select **Injected Web3** as the environment (this will connect Remix to MetaMask).
 - Ensure MetaMask is connected to the XRPL EVM network.
 - Click **Deploy**, approve the transaction in MetaMask, and wait for the contract to be deployed.
 
 ### 6. Verify Deployment
+
 - After deployment, you can interact with the contract directly in Remix or view the deployed contract on the [XRPL EVM Explorer](https://explorer.xrplevm.org) using the contract address.
 
 ---
@@ -65,6 +72,7 @@ Hardhat is a development framework for Ethereum-compatible smart contracts, idea
 ### Steps:
 
 ### 1. Set Up Your Development Environment
+
 - **Install Node.js**:
   Download and install [Node.js](https://nodejs.org/).
 - **Install Hardhat**:
@@ -86,18 +94,22 @@ Hardhat is a development framework for Ethereum-compatible smart contracts, idea
 To manage sensitive information like RPC URLs and private keys, use a `.env` file.
 
 #### 2.1 Install dotenv
+
 ```bash
 npm install dotenv
 ```
 
 #### 2.2 Create a `.env` File
+
 - In the root directory of your project, create a file named `.env` and add the following:
+
   ```env
   XRPL_EVM_URL=https://rpc.xrplevm.org
   PRIVATE_KEY=your_private_key_here
   ```
 
 - Open the `hardhat.config.js` file and add the XRPL EVM network:
+
   ```javascript
   require("@nomicfoundation/hardhat-toolbox");
   require("dotenv").config();
@@ -108,19 +120,20 @@ npm install dotenv
       xrplEVM: {
         url: process.env.XRPL_EVM_URL,
         accounts: [process.env.PRIVATE_KEY],
-      }
-    }
+      },
+    },
   };
-
   ```
 
 > **Warning**: Never share your private key publicly. Use environment variables to manage sensitive information.
 
 ### 3. Write Your Smart Contract
+
 - Create a new file in the `contracts` folder, e.g., `HelloWorld.sol`.
 - Write or paste your Solidity smart contract (e.g., the `HelloWorld` contract provided earlier).
 
 ### 4. Compile the Contract
+
 - Run the following command to compile your contract:
   ```bash
   npx hardhat compile
@@ -199,13 +212,14 @@ The deployment script handles the asynchronous logic and interacts with the Igni
    - The script checks if the `initialMessage` is valid before proceeding with deployment.
 
 3. **Run the Deployment Script**
+
 - Deploy the contract using:
   ```bash
   npx hardhat run scripts/deploy.js --network xrplEVM
   ```
 
-
 ### 7. Verify Deployment
+
 - Check the contract address in the terminal output.
 - View the deployed contract on the [XRPL EVM Explorer](https://explorer.xrplevm.org) using the contract address.
 
@@ -214,4 +228,3 @@ The deployment script handles the asynchronous logic and interacts with the Igni
 ## Conclusion
 
 Both **Remix IDE** and **Hardhat** provide powerful tools for deploying smart contracts on the XRPL EVM. Remix is ideal for quick testing and learning, while Hardhat offers a robust framework for complex projects. Choose the method that best suits your needs and start building innovative decentralized applications (dApps) on the XRPL EVM Sidechain.
-
