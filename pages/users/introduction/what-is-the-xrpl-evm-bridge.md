@@ -24,25 +24,36 @@ Axelar, a decentralized cross-chain communication protocol, powers the XRPL EVM 
 
 ## How the Axelar-Powered Bridge Works
 
-The Axelar-powered bridge works as follows:
+### 1. Asset Transfer from XRPL to XRPL EVM
 
-1. **Asset Transfer Initiation:**
+- **Asset Transfer Initiation:** A user initiates a transaction on the XRPL, specifying the amount of assets to be transferred, the destination chain (XRPL EVM Sidechain), and the recipient address.
+  
+- **Verification and Relaying:** The transaction is sent to the Axelar Multisig account. Axelar’s validators verify the transaction to prevent double-spending or malicious activities. Upon successful verification, the transaction details are relayed to the Axelar Gateway on the XRPL EVM Sidechain.
 
-   - A transaction is initiated on the XRPL specifying the amount, destination chain, and recipient address.
-   - Axelar processes this transaction through its decentralized network.
+- **Execution on Destination Chain:** The Axelar Gateway smart contract processes the transaction on the XRPL EVM Sidechain, executing the transfer of the specified assets to the designated recipient address.
 
-2. **Verification and Relaying:**
+- **Completion Notification:** A completion event is emitted, ensuring transparency and traceability of the transaction, confirming the assets have been successfully transferred.
 
-   - Axelar’s validators verify the transaction, ensuring no double-spending or malicious activity occurs.
-   - Once verified, the transaction is relayed to the XRPL EVM Sidechain.
+See the following [example transaction](https://testnet.axelarscan.io/gmp/0x81460885229ec6190dd75138f8573a7c380389f0ddf3ee4f706959313378882a-445624):
 
-3. **Execution on Destination Chain:**
+![AxelarScan1](../images/axelarscanexamplefromxrpltoxrplevm.png)
 
-   - The Axelar Gateway smart contract on the XRPL EVM Sidechain processes the transaction.
-   - Assets or data are transferred to the specified address on the XRPL EVM Sidechain.
+### 2. Asset Transfer from XRPL EVM to XRPL
 
-4. **Completion Notification:**
-   - A completion event is emitted, ensuring transparency and traceability of the transaction.
+- **Asset Transfer Initiation:** A user initiates a transaction on the XRPL EVM Sidechain, detailing the assets to be transferred, the target chain (XRPL), and the recipient's address.
+
+- **Verification and Relaying:** The transaction is directed to the Axelar Multisig account. Axelar’s validators process and verify the transaction details to ensure security, preventing any potential double-spending or fraudulent activities. After validation, the transaction data is relayed back to the original XRPL network.
+
+- **Execution on Destination Chain:** The Axelar Gateway on the XRPL receives the transaction details and executes the corresponding smart contract to transfer the specified assets to the target address on the XRPL.
+
+- **Completion Notification:** A completion event is generated to confirm the successful transfer, providing transparency and the ability to track the transaction.
+
+See the following [example transaction](https://testnet.axelarscan.io/gmp/0x9ec224e41b407bf612984f266caca4274cec5549c8f2bac7b163adeff37af3b1-426602):
+
+![AxelarScan2](../images/axelarscanexamplefromxrplevmtoxrpl.png)
+
+**General Message Passing:**
+In addition to asset transfers, the Axelar net facilitates General Message Passing (GMP). This feature allows for arbitrary data transmission and function execution across different blockchain networks. With GMP, developers can trigger complex workflows involving multiple chains, enhancing the capabilities of decentralized applications (dApps) on the XRPL.
 
 ---
 

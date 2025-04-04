@@ -98,10 +98,10 @@ export const xrplEvmChainDevnet = defineChain({
     decimals: 18,
   },
   rpcUrls: {
-    default: { http: ["https://rpc.xrplevm.org"] },
+    default: { http: ["https://rpc.devnet.xrplevm.org"] },
   },
   blockExplorers: {
-    default: { name: "Blockscout", url: "https://explorer.xrplevm.org" },
+    default: { name: "Blockscout", url: "https://explorer.devnet.xrplevm.org" },
   },
 } as const satisfies Chain);
 ```

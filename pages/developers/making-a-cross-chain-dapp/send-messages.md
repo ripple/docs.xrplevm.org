@@ -112,32 +112,34 @@ const payment: Payment = {
   Memos: [
     {
       Memo: {
-        // hex(destination_address)
-        MemoType: Buffer.from("destination_address")
-          .toString("hex")
-          .toUpperCase(),
-        // Destination contract address (hexadecimal, without 0x prefix)
-        MemoData: "F16A31764C91805B6C8E1D488941E41A86531880",
+        MemoData: Buffer.from("interchain_transfer").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("type").toString("hex").toUpperCase(),
       },
     },
     {
       Memo: {
-        // hex(destination_chain)
-        MemoType: Buffer.from("destination_chain")
-          .toString("hex")
-          .toUpperCase(),
-        // The destination chain ID on the Axelar network (hexadecimal)
-        // for Testnet
-        MemoData: Buffer.from("xrpl-evm-test-1").toString("hex").toUpperCase(),
+        MemoData: Buffer.from(EvmDestinationAddress.slice(2)).toString("hex").toUpperCase(),
+        MemoType: Buffer.from("destination_address").toString("hex").toUpperCase(),
       },
     },
     {
       Memo: {
-        // hex(payload_hash)
-        MemoType: "7061796C6F61645F68617368", // "payload_hash" in hex
-        // ABI-encoded payload (hexadecimal, without 0x prefix)
-        MemoData: payload.slice(2),
+        // Here we assume the testnet bridge chain is "xrpl-evm-testnet"
+        MemoData: Buffer.from("xrpl-evm").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("destination_chain").toString("hex").toUpperCase(),
       },
+    },
+    {
+      Memo: {
+        MemoData: Buffer.from("1000000").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("gas_fee_amount").toString("hex").toUpperCase(),
+      },
+    },
+    {
+      // hex(payload_hash)
+      MemoType: "7061796C6F61645F68617368", // "payload_hash" in hex
+      // ABI-encoded payload (hexadecimal, without 0x prefix)
+      MemoData: payload.slice(2),
     },
   ],
 };

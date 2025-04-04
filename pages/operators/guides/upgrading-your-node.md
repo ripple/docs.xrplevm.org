@@ -115,16 +115,16 @@ When an upgrade is triggered on-chain (via governance or other mechanisms), you 
 
 #### Example Upgrade Directory
 
-If the upgrade name is `v6`, the new binary should be placed at:
+If the upgrade name is `v7`, the new binary should be placed at:
 
 ```
-~/.exprd/cosmovisor/upgrades/v6/bin/exrpd
+~/.exprd/cosmovisor/upgrades/v7/bin/exrpd
 ```
 
 Make sure to give execute permissions to the new binary:
 
 ```bash
-chmod +x ~/.exrpd/cosmovisor/upgrades/v6/bin/exrpd
+chmod +x ~/.exrpd/cosmovisor/upgrades/v7/bin/exrpd
 ```
 
 ### Automated downloads

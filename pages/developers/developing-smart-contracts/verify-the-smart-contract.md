@@ -10,7 +10,7 @@ This guide provides step-by-step instructions for verifying a smart contract usi
 
 {% tabs %}
 {% tab label="Devnet" %}
-1. Open the **XRPL EVM Devent Explorer**: [https://explorer.xrplevm.org](https://explorer.xrplevm.org).
+1. Open the **XRPL EVM Devent Explorer**: [https://explorer.devnet.xrplevm.org](https://explorer.devnet.xrplevm.org).
 2. Locate your deployed contract by searching for its **contract address** in the search bar.
 3. Navigate to the **Contract** tab and click **Verify & Publish**.
 {% /tab %}

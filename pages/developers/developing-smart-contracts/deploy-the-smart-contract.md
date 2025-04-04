@@ -35,10 +35,10 @@ Make sure MetaMask is switched to **XRPL EVM Testnet** before proceeding.
 **XRPL EVM Devnet MetaMask Settings**
 
 - **Network Name**: XRPL EVM Devnet
-- **RPC URL**: `https://rpc.xrplevm.org`
+- **RPC URL**: `https://rpc.devnet.xrplevm.org`
 - **Chain ID**: `1440002`
 - **Currency Symbol**: `XRP`
-- **Block Explorer URL**: `https://explorer.xrplevm.org`
+- **Block Explorer URL**: `https://explorer.devnet.xrplevm.org`
 
 Make sure MetaMask is switched to **XRPL EVM Devnet** before proceeding.
 {% /tab %}
@@ -160,7 +160,7 @@ Ensure your chain ID is set to `1449000` (if you use scripts that explicitly ref
 Create a file named `.env` with the **XRPL EVM Devnet** details:
 
 ```env
-XRPL_EVM_URL=https://rpc.xrplevm.org
+XRPL_EVM_URL=https://rpc.devnet.xrplevm.org
 PRIVATE_KEY=your_devnet_private_key_here
 ```
 
@@ -281,7 +281,7 @@ The deployment script handles the asynchronous logic and interacts with the Igni
 ### 7. Verify Deployment
 
 - Check the contract address in the terminal output.
-- View the deployed contract on the **XRPL EVM Explorer** ([Testnet](https://explorer.testnet.xrplevm.org) or [Devnet](https://explorer.xrplevm.org)) using the contract address.
+- View the deployed contract on the **XRPL EVM Explorer** ([Testnet](https://explorer.testnet.xrplevm.org) or [Devnet](https://explorer.devnet.xrplevm.org)) using the contract address.
 
 ---
 

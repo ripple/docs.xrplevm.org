@@ -1,43 +1,81 @@
 # Faucet
 
-To explore and interact with the **XRPL EVM Sidechain**, you need test XRP (`XRP`) to cover transaction fees and execute smart contracts. There are two primary ways to obtain test `XRP`:
+To explore and interact with the **XRPL EVM sidechain**, you need test XRP (`XRP`) to cover transaction fees and execute smart contracts. This guide explains how to obtain test XRP for both the **Testnet** and **Devnet** environments.
 
-- **Faucet** [Chains.tools](https://chains.tools/faucet/xrplevm) — **for Devnet**  
-- **[XRPL EVM Bridge](../users/using-the-bridge.md)** — for transferring XRP from XRPL Devnet
+{% tabs %}
+{% tab label="Testnet" %}
 
-## Using the Faucet (Devnet)
+## Testnet Faucets
 
-To acquire test `XRP` on the **XRPL EVM Devnet**, you can use the [Chains.tools Faucet](https://chains.tools/faucet/xrplevm) or transfer from the XRPL Devnet via the [XRPL EVM Bridge](../users/using-the-bridge.md).
+1. **[XRPL EVM Faucet](https://faucet.xrplevm.org)**
+   - [This](https://faucet.xrplevm.org) website supports both **Testnet** and **Devnet** .
+   - Paste your **0x** (EVM) address or connect MetaMask.
+   - If you don’t have [MetaMask installed](./getting-started/install-metamask.md) or the Testnet network configured, the faucet will guide you.
+   - You can claim up to **90 XRP** per request.
 
-### Steps to Use the Faucet (Devnet)
+2. **[Enigma Validator’s Faucet](https://enigma-validator.com/)**
+   - Join the XRPLEVM **[Discord channel](https://discord.com/channels/1143643230492168274/1352703976050528327)** and navigate to **#faucet**.
+   - Send the command:
+     ```
+     !faucet <YOUR_ADDRESS>
+     ```
+   - This faucet supports **0x... (EVM)** and **ethm... Cosmos** addresses, providing **50 XRP** per request.
 
-1. **Visit the Faucet Website**
+3. **Bridging via [SquidRouter](https://testnet.xrpl.squidrouter.com/)**
+   - If you already have some **XRPL Testnet** [funds](https://xrpl.org/resources/dev-tools/xrp-faucets), you can bridge assets from XRPL Testnet to **XRPL EVM Testnet** using the SquidRouter interface.
+   - See [Using the Bridge](./using-the-bridge.md) for more detailed instructions.
 
-   - Go to the **XRPL EVM Devnet** Chains.tools [Faucet](https://chains.tools/faucet/xrplevm).
+### Fund Your XRPL Testnet Account
+Before bridging from XRPL Testnet to XRPL EVM Testnet, you **must** fund an XRPL Testnet account with test XRP. One convenient option is:
 
-2. **Enter Your Wallet Address**
+- **[XRPL MetaMask Snap](https://snap.xrplevm.org)**  
+  - Install the Snap in MetaMask.  
+  - Use its built-in faucet or XRPL faucets it supports to fund your XRPL Testnet account.
 
-   - Copy your wallet address from an EVM-compatible wallet (e.g., MetaMask) configured for the XRPL EVM Devnet.
-   - Paste the wallet address into the faucet’s input field.
+Once your XRPL Testnet account is funded, follow the [bridge instructions](./using-the-bridge.md) or use [SquidRouter](https://testnet.xrpl.squidrouter.com/) to move assets to XRPL EVM Testnet.
 
-3. **Complete the CAPTCHA**
+{% /tab %}
+{% tab label="Devnet" %}
 
-   - Prove you’re not a robot.
+## Devnet Faucet
 
-4. **Request Test XRP**
+- **[XRPL EVM Devnet Faucet @ Chains.tools](https://chains.tools/faucet/xrplevm)**  
+  - For **XRPL EVM Devnet**.  
+  - Each wallet can request up to **10 XRP** every 60 minutes.  
+  - Alternatively, bridge from the XRPL Devnet using the [bridge guide](./using-the-bridge.md) or by manual interchain transactions.
 
-   - Click the button to request `XRP`.
-   - Each wallet can request up to **10 XRP every 60 minutes** (subject to change).
+## Bridging on Devnet (Axelar Bridge Overview)
 
-5. **Check Your Wallet**
-   - Open your wallet (e.g., MetaMask) on the **XRPL EVM Devnet**.
-   - Confirm your new test `XRP` balance.
+1. **Open the Axelar Bridge**  
+   - [https://bridge.devnet.xrplevm.org/](https://bridge.devnet.xrplevm.org)
 
-If you run out of faucet requests or need additional test tokens, consider bridging from the **XRPL Devnet** using the [XRPL EVM Bridge](../users/using-the-bridge.md).
+2. **Set Source & Destination**  
+   - **Source:** XRPL Devnet  
+   - **Destination:** XRPL EVM Devnet
 
-## Next Steps
+3. **Fund an XRPL Devnet Account**  
+   - You can automatically generate and fund a Devnet account with 100 XRP through the Axelar faucet option.
 
-- **Bridge Assets**: If you want to move tokens from the XRPL (Testnet or Devnet) to the XRPL EVM sidechain, check out the [XRPL EVM Bridge guide](../users/using-the-bridge.md).
-- **Deploy Smart Contracts**: Learn how to [deploy a contract](../developers/developing-smart-contracts/deploy-the-smart-contract.md) on the XRPL EVM Testnet or Devnet.
+4. **Connect Your Wallets**  
+   - **XRPL Devnet:** No manual signature needed for outgoing transactions.  
+   - **XRPL EVM Devnet:** Connect via MetaMask (ensure the XRPL EVM Devnet network is configured).
 
-By leveraging the bridge (or the Devnet faucet), you can quickly begin developing and experimenting on the XRPL EVM sidechains without spending real XRP.
+5. **Select Token & Amount**  
+   - Choose **XRP** or another supported Devnet token.
+
+6. **Confirm & Transfer**  
+   - **XRPL → EVM:** No signature required on XRPL side.  
+   - **EVM → XRPL:** You’ll sign in MetaMask.  
+   - Track status on the [Axelar Devnet Amplifier Explorer](https://devnet-amplifier.axelarscan.io/gmp/search).
+
+7. **Verify Balance**  
+   - Check the [XRPL EVM Devnet Explorer](https://explorer.devnet.xrplevm.org) once the transfer completes.
+
+{% /tab %}
+{% /tabs %}
+
+---
+
+## Manual Bridging with XRPL Payment Memos
+
+For advanced use cases or custom dApp integrations, you can trigger an interchain transfer by sending a **Payment transaction** on XRPL with specific memos (via axelar [**gpm**](https://docs.axelar.dev/dev/general-message-passing/overview/)). Detailed instructions on crafting these memos and handling cross-chain requests can be found in the [Send XRP, IOUs and ERC20s Guide](../developers/making-a-cross-chain-dapp/send-tokens.md) and [Send Cross-Chain Messages guide](../developers/making-a-cross-chain-dapp/send-messages.md).

@@ -22,10 +22,10 @@ Before interacting with a smart contract, ensure you have the following set up:
 **XRPL EVM Devnet Network Details**
 
 - **Network Name**: XRPL EVM Devnet
-- **RPC URL**: `https://rpc.xrplevm.org`
+- **RPC URL**: `https://rpc.devnet.xrplevm.org`
 - **Chain ID**: `1440002`
 - **Currency Symbol**: `XRP`
-- **Block Explorer URL**: [https://explorer.xrplevm.org](https://explorer.xrplevm.org)
+- **Block Explorer URL**: [https://explorer.devnet.xrplevm.org](https://explorer.devnet.xrplevm.org)
 {% /tab %}
 {% tab label="Testnet" %}
 **XRPL EVM Testnet Network Details**
@@ -97,7 +97,7 @@ The **web3.js** library provides a programmatic way to interact with smart contr
 const Web3 = require("web3");
 
 // XRPL EVM Devnet RPC
-const web3 = new Web3("https://rpc.xrplevm.org");
+const web3 = new Web3("https://rpc.devnet.xrplevm.org");
 
 // Chain ID = 1440002 (if needed in transaction config)
 ```
@@ -165,7 +165,7 @@ const { ethers } = require("ethers");
 
 // XRPL EVM Devnet RPC
 const provider = new ethers.providers.JsonRpcProvider(
-  "https://rpc.xrplevm.org"
+  "https://rpc.devnet.xrplevm.org"
 );
 const wallet = new ethers.Wallet("0xYourPrivateKey", provider);
 
@@ -226,7 +226,7 @@ You can also create a frontend to interact with smart contracts using frameworks
 1. **Use the XRPL EVM Explorer**
 
    - Access the appropriate explorer (Devnet or Testnet) to view transaction details, logs, and contract interactions:
-     - [Devnet Explorer](https://explorer.xrplevm.org)
+     - [Devnet Explorer](https://explorer.devnet.xrplevm.org)
      - [Testnet Explorer](https://explorer.testnet.xrplevm.org)
 
 2. **Check Gas Fees**

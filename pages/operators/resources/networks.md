@@ -4,8 +4,8 @@ The XRPL EVM ecosystem consists of multiple networks, each serving different sta
 
 | Name    | Chain ID         | Current Version | Genesis                                                                                            | Peers                                                                                         |
 | ------- | ---------------- | --------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| Devnet  | `exrp_1440002-1` | v6.0.0          | [Genesis](https://raw.githubusercontent.com/Peersyst/xrp-evm-archive/main/poa-devnet/genesis.json) | [Peers](https://raw.githubusercontent.com/Peersyst/xrp-evm-archive/main/poa-devnet/peers.txt) |
-| Testnet | `exrp_1449000-1` | v6.0.0          | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json) | [Peers](https://raw.githubusercontent.com/xrplevm/networks/main/testnet/peers.txt)            |
+| Devnet  | `exrp_1440002-1` | v7.0.0          | [Genesis](https://raw.githubusercontent.com/Peersyst/xrp-evm-archive/main/poa-devnet/genesis.json) | [Peers](https://raw.githubusercontent.com/Peersyst/xrp-evm-archive/main/poa-devnet/peers.txt) |
+| Testnet | `exrp_1449000-1` | v7.0.0          | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json) | [Peers](https://raw.githubusercontent.com/xrplevm/networks/main/testnet/peers.txt)            |
 
 ## Upgrade information
 
@@ -22,6 +22,8 @@ Below is a table indicating all the hard fork upgrades for each network:
 | v4           | 12803476     | 2024-11-26         | [v4.0.0](https://github.com/xrplevm/node/releases/tag/v4.0.0)               | [peersyst/exrp:v4.0.0](https://hub.docker.com/layers/peersyst/exrp/v4.0.0/images/sha256-117776dbf6dc8cf2ab77b5dfc699ad0a9180e8eb96b1123e5f8810953e1db5ad)                                             |
 | v5           | 13242557     | 2024-12-18         | [v5.0.0](https://github.com/xrplevm/node/releases/tag/v5.0.0)               | [peersyst/exrp:v5.0.0](https://hub.docker.com/layers/peersyst/exrp/v5.0.0/images/sha256-3e55164718fe2d81cba50cb426bfd6fecc103201db3f02df18290e7525a4cb71)                                             |
 | v6           | 14052581     | 2025-01-22         | [v6.0.0](https://github.com/xrplevm/node/releases/tag/v6.0.0)               | [peersyst/exrp:v6.0.0](https://hub.docker.com/layers/peersyst/exrp/v6.0.0/images/sha256-9d8c9f96e27c648216fddbc4bb67c10529aa5ea03d303cf56060e453c02a4ca9)                                             |
+| v7           | 15288387     | 2025-03-24         | [v7.0.0](https://github.com/xrplevm/node/releases/tag/v7.0.0)               | [peersyst/exrp:v7.0.0](https://hub.docker.com/layers/peersyst/exrp/v7.0.0/images/sha256-9d8c9f96e27c648216fddbc4bb67c10529aa5ea03d303cf56060e453c02a4ca9)    
+
 
 {% /tab %}
 {% tab label="Testnet" %}
@@ -29,6 +31,7 @@ Below is a table indicating all the hard fork upgrades for each network:
 | Upgrade Name | Block Height | Upgrade Date | Binary Version                                                | Docker image                                                                                                                                              |
 | ------------ | ------------ | ------------ | ------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Genesis      | 0            | 2025-02-17   | [v6.0.0](https://github.com/xrplevm/node/releases/tag/v6.0.0) | [peersyst/exrp:v6.0.0](https://hub.docker.com/layers/peersyst/exrp/v6.0.0/images/sha256-9d8c9f96e27c648216fddbc4bb67c10529aa5ea03d303cf56060e453c02a4ca9) |
+| v7           | 547100       | 2025-03-25   | [v7.0.0](https://github.com/xrplevm/node/releases/tag/v7.0.0) | [peersyst/exrp:v7.0.0](https://hub.docker.com/layers/peersyst/exrp/v7.0.0/images/sha256-9d8c9f96e27c648216fddbc4bb67c10529aa5ea03d303cf56060e453c02a4ca9) |
 
 {% /tab %}
 {% /tabs %}

@@ -21,7 +21,6 @@
     - page: ./advanced/monitoring-the-node.md
     - page: ./advanced/adding-horocrux.md
 - group: Resources
-  page: ./resources/index.md
   items:
     - page: ./resources/configuration-reference.md
     - page: ./resources/networks.md

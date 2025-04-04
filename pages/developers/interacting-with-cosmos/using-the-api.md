@@ -16,7 +16,7 @@ Nodes also expose other endpoints, such as the CometBFT P2P endpoint, or the [Pr
 The Cosmos SDK uses [Protobuf](https://protobuf.dev/) as its primary encoding library. This allows seamless integration with [gRPC](https://grpc.io/). Below is an example of querying the list of governance proposals using [grpcurl](https://github.com/fullstorydev/grpcurl):
 
 ```bash
-grpcurl -plaintext cosmos.xrplevm.org:9090 cosmos.gov.v1.Query/Proposals
+grpcurl -plaintext cosmos.devnet.xrplevm.org:9090 cosmos.gov.v1.Query/Proposals
 ```
 
 <details>
@@ -55,7 +55,7 @@ The full gRPC server specification is available at [buf.build/cosmos/cosmos-sdk]
 The Cosmos SDK also provides a REST API for interacting with the blockchain using HTTP requests. Below is an example of querying the list of governance proposals with [curl](https://github.com/curl/curl):
 
 ```bash
-curl -X GET "http://cosmos.xrplevm.org:1317/cosmos/gov/v1/proposals" -H "accept: application/json"
+curl -X GET "http://cosmos.devnet.xrplevm.org:1317/cosmos/gov/v1/proposals" -H "accept: application/json"
 ```
 
 <details>
@@ -86,7 +86,7 @@ curl -X GET "http://cosmos.xrplevm.org:1317/cosmos/gov/v1/proposals" -H "accept:
 </details>
 
 Learn more about the Cosmos REST server in the [Cosmos SDK REST Server documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest#rest-server).  
-Access the full REST API specification at [cosmos.xrplevm.org:1317](http://cosmos.xrplevm.org:1317).
+Access the full REST API specification at [cosmos.devnet.xrplevm.org:1317](http://cosmos.devnet.xrplevm.org:1317).
 
 ---
 
@@ -95,7 +95,7 @@ Access the full REST API specification at [cosmos.xrplevm.org:1317](http://cosmo
 CometBFT exposes an RPC server for consensus-related data and includes methods for interacting with the Cosmos SDK via the `abci_query` endpoint. Below is an example of querying governance proposals with [curl](https://github.com/curl/curl):
 
 ```bash
-curl -X GET 'http://cosmos.xrplevm.org:26657/abci_query?path="/cosmos.gov.v1.Query/Proposals"' -H "accept: application/json"
+curl -X GET 'http://cosmos.devnet.xrplevm.org:26657/abci_query?path="/cosmos.gov.v1.Query/Proposals"' -H "accept: application/json"
 ```
 
 <details>
@@ -124,7 +124,7 @@ curl -X GET 'http://cosmos.xrplevm.org:26657/abci_query?path="/cosmos.gov.v1.Que
 </details>
 
 Explore the [Cosmos CometBFT RPC documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest#cometbft-rpc) for more details.  
-Access the CometBFT RPC interface at [cosmos.xrplevm.org:26657](http://cosmos.xrplevm.org:26657).
+Access the CometBFT RPC interface at [cosmos.devnet.xrplevm.org:26657](http://cosmos.devnet.xrplevm.org:26657).
 
 {% /tab %}
 {% tab label="Testnet" %}

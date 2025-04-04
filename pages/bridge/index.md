@@ -8,7 +8,7 @@ status: not_enabled
 
 {% partial file="/snippets/_axelar-overview-disclaimer.md" /%}
 
-# Overview
+# Bridge 🌉
 
 Bridges are specialized protocols designed to facilitate interoperability between distinct blockchain networks, allowing them to communicate and exchange assets or data despite differences in consensus algorithms, data structures, and other foundational technologies. They typically consist of smart contracts and off-chain components that validate and relay information between the connected chains, ensuring that transactions are securely executed across heterogeneous environments.
 

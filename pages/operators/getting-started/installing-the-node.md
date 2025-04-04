@@ -27,11 +27,11 @@ This method involves downloading precompiled binaries from the repository's late
 
    - **AMD64:**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v6.0.0/node_6.0.0_Linux_amd64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Linux_amd64.tar.gz
      ```
    - **ARM64:**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v6.0.0/node_6.0.0_Linux_arm64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Linux_arm64.tar.gz
      ```
    {% /tab %}
 
@@ -40,11 +40,11 @@ This method involves downloading precompiled binaries from the repository's late
 
    - **Intel (x86_64):**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v6.0.0/node_6.0.0_Darwin_amd64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Darwin_amd64.tar.gz
      ```
    - **Apple Silicon (ARM64):**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v6.0.0/node_6.0.0_Darwin_arm64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Darwin_arm64.tar.gz
      ```
    {% /tab %}
    
@@ -56,7 +56,7 @@ This method involves downloading precompiled binaries from the repository's late
    - **Download using curl:**  
      Open PowerShell and run:
      ```powershell
-     curl -LO https://github.com/xrplevm/node/releases/download/v6.0.0/node_6.0.0_Windows_amd64.zip
+     curl -LO https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Windows_amd64.zip
      ```
    {% /tab %}
    {% /tabs %}
@@ -64,7 +64,7 @@ This method involves downloading precompiled binaries from the repository's late
 2. **Extract the Binaries:**  
    Once downloaded, extract the file using the appropriate command for your platform. For example, on Linux:
    ```bash
-   tar -xzf node_6.0.0_Linux_amd64.tar.gz
+   tar -xzf node_7.0.0_Linux_amd64.tar.gz
    ```
    This will extract the files into a directory.
 
@@ -94,7 +94,7 @@ This method involves downloading precompiled binaries from the repository's late
    ```bash
    exrpd version
    ```
-   You should see version information (e.g., `v6.0.0`).
+   You should see version information (e.g., `v7.0.0`).
 
 6. **Configure and Run Your Node (Optional):**  
    Once the binary is installed, follow the [node configuration instructions](./join-the-xrplevm.md)
@@ -179,7 +179,7 @@ go version
 
 A containerized approach ensures that the node runs in a consistent environment, avoiding dependency issues. This method is highly recommended if you prefer a ready-to-run environment.
 
-**Important:** If the Docker image you’re using does not match the genesis file, which will not unless you are using the first docker image: [peersyst/xrp-evm-blockchain:latest](https://hub.docker.com/layers/peersyst/xrp-evm-blockchain/latest/images/sha256-de9941203bb9f199e6125e3518d9c56a8106c93211cd2840cb9b0fc7652f5416?context=explore), you must start the container in interactive mode first to complete the setup steps. This interactive session lets you run the [join-the-xrplevm](join-the-xrplevm.md) instructions (such as `exrpd init`, downloading the correct genesis file, configuring persistent peers, adding keys and syncing) within the container. Once setup is complete, you can restart the node in detached mode.
+**Important:** If the Docker image you’re using does not match the genesis file, which will not unless you are using the first docker image: [peersyst/xrp-evm-blockchain:latest](https://hub.docker.com/layers/peersyst/exrp/latest/images/sha256-dd77f81a2f8e349349fcd1266c465c77e580681764f0abbdd052bd4f4360c24e), you must start the container in interactive mode first to complete the setup steps. This interactive session lets you run the [join-the-xrplevm](join-the-xrplevm.md) instructions (such as `exrpd init`, downloading the correct genesis file, configuring persistent peers, adding keys and syncing) within the container. Once setup is complete, you can restart the node in detached mode.
 
 ### Pre-requisites
 

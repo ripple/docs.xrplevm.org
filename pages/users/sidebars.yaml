@@ -28,13 +28,13 @@
    - group: Devnet
      expanded: false
      items:
-      - href: https://explorer.xrplevm.org
+      - href: https://explorer.devnet.xrplevm.org
         label: Explorer
         external: true
-      - href: https://governance.xrplevm.org
+      - href: https://governance.devnet.xrplevm.org
         label: Governance Explorer
         external: true
-      - href: https://safe.xrplevm.org
+      - href: https://safe.devnet.xrplevm.org
         label: Gnosis Safe
         external: true
    

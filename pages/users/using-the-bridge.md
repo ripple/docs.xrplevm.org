@@ -17,7 +17,7 @@ The Axelar Bridge connects multiple blockchain networks, enabling secure asset t
     - [Add the XRPL EVM Testnet network](./getting-started/connect-to-the-xrpl-evm.md#adding-xrpl-evm-to-metamask) to MetaMask.  
 
 - **Devnet Bridge**  
-  - **URL**: [https://bridge.xrplevm.org](https://bridge.xrplevm.org)  
+  - **URL**: [https://bridge.devnet.xrplevm.org/](https://bridge.devnet.xrplevm.org/)  
   - **Features**:  
     - Simpler interface; acts as a faucet for obtaining test XRP.  
     - Allows bridging between XRPL Devnet and XRPL EVM Devnet.  
@@ -92,7 +92,7 @@ The Axelar Bridge connects multiple blockchain networks, enabling secure asset t
    ### Steps to Use the Axelar Bridge (Devnet)
 
    1. **Open the Axelar Bridge**  
-      - Go to [https://bridge.xrplevm.org/](https://bridge.xrplevm.org).
+      - Go to [https://bridge.devnet.xrplevm.org/](https://bridge.devnet.xrplevm.org/).
 
    2. **Set XRPL Devnet as the Source Chain**  
       - Select **"XRPL Devnet"** as your source chain.  
@@ -116,12 +116,12 @@ The Axelar Bridge connects multiple blockchain networks, enabling secure asset t
    6. **Transfer and Confirm**  
       - **From XRPL to EVM**: No XRPL signature is needed; transactions are automatically funded.  
       - **From EVM to XRPL**: Sign the transaction using MetaMask.  
-      - Track your transaction status in the [Axelar Devnet Amplifier Explorer](https://devnet-amplifier.axelarscan.io/).  
+      - Track your transaction status in the [Axelar Devnet Amplifier Explorer](https://devnet-amplifier.axelarscan.io/gmp/search).  
       ![UsingTheBridge](./images/usingTheBridgeAxelar5.png)
 
    7. **Verify the Transaction**  
       - A success message appears once the transaction completes.  
-      - Check the [XRPL EVM Devnet Explorer](https://explorer.xrplevm.org) for additional transaction details.  
+      - Check the [XRPL EVM Devnet Explorer](https://explorer.devnet.xrplevm.org) for additional transaction details.  
       ![UsingTheBridge](./images/usingTheBridgeAxelar6.png)
 
    {% /tab %}

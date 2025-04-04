@@ -41,28 +41,33 @@ const payment: Payment = {
   TransactionType: "Payment",
   Account: wallet.address, // Sender's address
   Amount: "100000000", // 100 XRP in drops
+  EvmDestinationAddress: "0x94E9ba2f224d98918a64260F552ba7ce5C6E46e1", // Receiver address. 
   // ITS address on the XRPL Devnet
   Destination: "rGAbJZEzU6WaYv5y1LfyN7LBBcQJ3TxsKC",
   Memos: [
     {
       Memo: {
-        // hex(destination_address)
-        MemoType: Buffer.from("destination_address")
-          .toString("hex")
-          .toUpperCase(),
-        // Destination contract address (hexadecimal, without 0x prefix, and toUpperCase)
-        MemoData: "ECFA31764C91805B6C8E1D488941E41A86531880",
+        MemoData: Buffer.from("interchain_transfer").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("type").toString("hex").toUpperCase(),
       },
     },
     {
       Memo: {
-        // hex(destination_chain)
-        MemoType: Buffer.from("destination_chain")
-          .toString("hex")
-          .toUpperCase(),
-        // The destination chain ID on the Axelar network (hexadecimal)
-        // for Devnet
+        MemoData: Buffer.from(EvmDestinationAddress.slice(2)).toString("hex").toUpperCase(),
+        MemoType: Buffer.from("destination_address").toString("hex").toUpperCase(),
+      },
+    },
+    {
+      Memo: {
+        // Here we assume the testnet bridge chain is "xrpl-evm-testnet"
         MemoData: Buffer.from("xrpl-evm-devnet").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("destination_chain").toString("hex").toUpperCase(),
+      },
+    },
+    {
+      Memo: {
+        MemoData: Buffer.from("1000000").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("gas_fee_amount").toString("hex").toUpperCase(),
       },
     },
   ],
@@ -95,32 +100,32 @@ const payment: Payment = {
   TransactionType: "Payment",
   Account: wallet.address, // Sender's address
   Amount: "100000000", // 100 XRP in drops
+  EvmDestinationAddress: "0x94E9ba2f224d98918a64260F552ba7ce5C6E46e1", // Receiver address.
   // Gateway address on the XRPL Testnet
-  Destination: "rsCPY4vwEiGogSraV9FeRZXca6gUBWZkhg",
+  Destination: "rNrjh1KGZk2jBR3wPfAQnoidtFFYQKbQn2",
   Memos: [
     {
       Memo: {
-        // hex(destination_address)
-        MemoType: Buffer.from("destination_address")
-          .toString("hex")
-          .toUpperCase(),
-        // Destination contract address (hexadecimal, without 0x prefix, and toUpperCase)
-        MemoData: "ECFA31764C91805B6C8E1D488941E41A86531880",
+        MemoData: Buffer.from("interchain_transfer").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("type").toString("hex").toUpperCase(),
       },
     },
     {
       Memo: {
-        // hex(destination_chain)
-        MemoType: Buffer.from("destination_chain")
-          .toString("hex")
-          .toUpperCase(),
-        // The destination chain ID on the Axelar network (hexadecimal)
-        // for Devnet
-        MemoData: Buffer.from("xrpl-evm-test-1").toString("hex").toUpperCase(),
+        MemoData: Buffer.from(EvmDestinationAddress.slice(2)).toString("hex").toUpperCase(),
+        MemoType: Buffer.from("destination_address").toString("hex").toUpperCase(),
       },
-    },{
+    },
+    {
       Memo: {
-        MemoData: "00", // keccak256(abi.encode(gmpPayload)), in this example, keccak256(abi.encode(['string'], ['Just transferred XRP to Ethereum!']))
+        // Here we assume the testnet bridge chain is "xrpl-evm-testnet"
+        MemoData: Buffer.from("xrpl-evm").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("destination_chain").toString("hex").toUpperCase(),
+      },
+    },
+    {
+      Memo: {
+        MemoData: Buffer.from("1000000").toString("hex").toUpperCase(),
         MemoType: Buffer.from("gas_fee_amount").toString("hex").toUpperCase(),
       },
     },
@@ -163,28 +168,33 @@ const payment: Payment = {
     issuer: "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De", // RLUSD issuer address
     value: "100", // Amount to transfer
   },
+  EvmDestinationAddress: "0x94E9ba2f224d98918a64260F552ba7ce5C6E46e1", // Receiver address.
   // ITS address on the XRPL Devnet
   Destination: "rGAbJZEzU6WaYv5y1LfyN7LBBcQJ3TxsKC",
   Memos: [
     {
       Memo: {
-        // hex(destination_address)
-        MemoType: Buffer.from("destination_address")
-          .toString("hex")
-          .toUpperCase(),
-        // Destination contract address (hexadecimal, without 0x prefix)
-        MemoData: "ECFA31764C91805B6C8E1D488941E41A86531880",
+        MemoData: Buffer.from("interchain_transfer").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("type").toString("hex").toUpperCase(),
       },
     },
     {
       Memo: {
-        // hex(destination_chain)
-        MemoType: Buffer.from("destination_chain")
-          .toString("hex")
-          .toUpperCase(),
-        // The destination chain ID on the Axelar network (hexadecimal)
-        // for Devnet
+        MemoData: Buffer.from(EvmDestinationAddress.slice(2)).toString("hex").toUpperCase(),
+        MemoType: Buffer.from("destination_address").toString("hex").toUpperCase(),
+      },
+    },
+    {
+      Memo: {
+        // Here we assume the testnet bridge chain is "xrpl-evm-testnet"
         MemoData: Buffer.from("xrpl-evm-devnet").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("destination_chain").toString("hex").toUpperCase(),
+      },
+    },
+    {
+      Memo: {
+        MemoData: Buffer.from("1000000").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("gas_fee_amount").toString("hex").toUpperCase(),
       },
     },
   ],
@@ -221,27 +231,31 @@ const payment: Payment = {
     value: "100", // Amount to transfer
   },
   // ITS address on the XRPL Testnet
-  Destination: "rsCPY4vwEiGogSraV9FeRZXca6gUBWZkhg",
+  Destination: "rNrjh1KGZk2jBR3wPfAQnoidtFFYQKbQn2",
   Memos: [
     {
       Memo: {
-        // hex(destination_address)
-        MemoType: Buffer.from("destination_address")
-          .toString("hex")
-          .toUpperCase(),
-        // Destination contract address (hexadecimal, without 0x prefix)
-        MemoData: "ECFA31764C91805B6C8E1D488941E41A86531880",
+        MemoData: Buffer.from("interchain_transfer").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("type").toString("hex").toUpperCase(),
       },
     },
     {
       Memo: {
-        // hex(destination_chain)
-        MemoType: Buffer.from("destination_chain")
-          .toString("hex")
-          .toUpperCase(),
-        // The destination chain ID on the Axelar network (hexadecimal)
-        // for Devnet
-        MemoData: Buffer.from("xrpl-evm-test-1").toString("hex").toUpperCase(),
+        MemoData: Buffer.from(EvmDestinationAddress.slice(2)).toString("hex").toUpperCase(),
+        MemoType: Buffer.from("destination_address").toString("hex").toUpperCase(),
+      },
+    },
+    {
+      Memo: {
+        // Here we assume the testnet bridge chain is "xrpl-evm-testnet"
+        MemoData: Buffer.from("xrpl-evm").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("destination_chain").toString("hex").toUpperCase(),
+      },
+    },
+    {
+      Memo: {
+        MemoData: Buffer.from("1000000").toString("hex").toUpperCase(),
+        MemoType: Buffer.from("gas_fee_amount").toString("hex").toUpperCase(),
       },
     },
   ],
@@ -302,7 +316,7 @@ import { Contract } from "ethers";
 
 // Instantiate the ITS contract
 const its = new Contract(
-  "0x3b1ca8B18698409fF95e29c506ad7014980F0193", // ITS address in XRPL EVM Testnet
+  "0xB5FB4BE02232B1bBA4dC8f81dc24C26980dE9e3C", // ITS address in XRPL EVM Testnet
   ITS_ABI, // ABI for the ITS contract
   signer
 );
@@ -344,8 +358,8 @@ To transfer **XRP** back to the XRPL, call `interchainTransfer` on the ITS contr
 import { ethers } from "ethers";
 
 await its.interchainTransfer(
-  "0xa2946b60f1e20ff37404075fc85ea63d42e2b1fc9ce5ef3fff5223e06e7ff4c9", // XRP token ID (Testnet)
-  "xrpl-test-1", // Destination chain ID
+  "0xba5a21ca88ef6bba2bfff5088994f90e1077e2a1cc3dcc38bd261f00fce2824f", // XRP token ID (Testnet)
+  "xrpl", // Destination chain ID
   "0xcdaa5ba0215e9359fa62cb5a5650a17b362817ac", // Recipient address on XRP Ledger (r9bSdiUYuAHqqoSuvczxQt5fLoEuNMDZLQ) converted to EVM address
   "100000000000000000000", // 100 XRP in wei
   "0x", // Metadata (unused)
@@ -476,7 +490,7 @@ import { ethers } from "ethers";
 // Call the interchainTransfer method
 await its.interchainTransfer(
   "0x85f75bb7fd0753565c1d2cb59bd881970b52c6f06f3472769ba7b48621cd9d23", // RLUSD token ID (example)
-  "xrpl-test-1", // Destination chain ID
+  "xrpl", // Destination chain ID
   "0xcdaa5ba0215e9359fa62cb5a5650a17b362817ac", // Recipient address on XRP Ledger (r9bSdiUYuAHqqoSuvczxQt5fLoEuNMDZLQ) converted to EVM address
   "100000000000000000000", // 100 RLUSD in integer form
   "0x", // Metadata (unused)

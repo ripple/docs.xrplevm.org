@@ -10,24 +10,6 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
 
     {% tabs %}
 
-        {% tab label="Explorer" %}
-        | Provider/Validator          | Explorer URL                                                                                       |
-        | --------------------------- | -------------------------------------------------------------------------------------------------- |
-        | **Peersyst**                | [https://explorer.testnet.xrplevm.org](https://explorer.testnet.xrplevm.org)                       |
-        | **Peersyst**                | [https://governance.testnet.xrplevm.org](https://governance.testnet.xrplevm.org)                       |
-        | **STAKEME**                 | [https://testnet.xrpl.exploreme.pro/](https://testnet.xrpl.exploreme.pro/)                         |
-        | **ITRocket**                | [https://testnet.itrocket.net/xrplevm/staking](https://testnet.itrocket.net/xrplevm/staking)       |
-        | **LuckyStar**               | [https://explorer.luckystar.asia/xrpl-Testnet](https://explorer.luckystar.asia/xrpl-Testnet)       |
-        | **Mekong Labs**             | [https://testnet.mekonglabs.tech/xrpl/staking](https://testnet.mekonglabs.tech/xrpl/staking)       |
-        | **MictoNode**               | [https://explorer.mictonode.com/XRPL-Testnet/staking/](https://explorer.mictonode.com/XRPL-Testnet/staking/) |
-        | **UTSA (lesnik)**           | [https://exp.utsa.tech/xrpl-testnet/staking](https://exp.utsa.tech/xrpl-testnet/staking)           |
-        | **XSS**                     | [https://explorer.xsslabs.tech/XRPL-EVM](https://explorer.xsslabs.tech/XRPL-EVM)                   |
-        | **blockitize**              | [https://explorer.blockitize.com/](https://explorer.blockitize.com/)                               |
-        | **node9x**                  | [https://explorer.node9x.com/XRLP](https://explorer.node9x.com/XRLP)                               |
-        | **Nodes Hub**               | [https://testnet.explorer.nodeshub.online/xrpl](https://testnet.explorer.nodeshub.online/xrpl)                               |
-        
-        {% /tab %}
-
         {% tab label="RPC Endpoints" %}
         | Provider/Validator        | RPC Endpoint URL                                                                              |
         | ------------------------- | --------------------------------------------------------------------------------------------- |
@@ -110,6 +92,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | **Mekong Labs**           | [http://exrpd-testnet-snapshots.mekonglabs.tech/](http://exrpd-testnet-snapshots.mekonglabs.tech/)              |
         | **MictoNode**             | [https://services.mictonode.com/xrpl-evm/snapshot](https://services.mictonode.com/xrpl-evm/snapshot)            |
         | **UTSA (lesnik)**         | [https://utsa.gitbook.io/services/testnet/xrpl-evm/snapshots](https://utsa.gitbook.io/services/testnet/xrpl-evm/snapshots) |
+        | **Node9x**                | [https://service.node9x.com/testnet/xrpl-evm/service-and-snapshot]                                                         |
         {% /tab %}
 
         {% tab label="Documentation / Guide" %}
@@ -148,13 +131,13 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
 
 ## Devnet Public APIs
 
-| Type              | URL                                                                              |
-| ----------------- | -------------------------------------------------------------------------------- |
-| Ethereum JSON RPC | [https://rpc.xrplevm.org](https://rpc.xrplevm.org)                        |
-| Ethereum JSON WS  | [https://ws.xrplevm.org](https://ws.xrplevm.org)                          |
-| Tendermint RPC    | [http://cosmos.xrplevm.org:26657](http://cosmos.xrplevm.org:26657)        |
-| Cosmos gRPC       | [http://cosmos.xrplevm.org:9090](http://cosmos.xrplevm.org:9090)          |
-| Cosmos API        | [http://cosmos.xrplevm.org:1317](http://cosmos.xrplevm.org:1317)          |
+| Type              | URL                                                                                     |
+| ----------------- | --------------------------------------------------------------------------------------- |
+| Ethereum JSON RPC | [https://rpc.devnet.xrplevm.org](https://rpc.devnet.xrplevm.org)                        |
+| Ethereum JSON WS  | [https://ws.devnet.xrplevm.org](https://ws.devnet.xrplevm.org)                          |
+| Tendermint RPC    | [http://cosmos.devnet.xrplevm.org:26657](http://cosmos.devnet.xrplevm.org:26657)        |
+| Cosmos gRPC       | [http://cosmos.devnet.xrplevm.org:9090](http://cosmos.devnet.xrplevm.org:9090)          |
+| Cosmos API        | [http://cosmos.devnet.xrplevm.org:1317](http://cosmos.devnet.xrplevm.org:1317)          |
 
 {% /tab %}
 {% /tabs %}
