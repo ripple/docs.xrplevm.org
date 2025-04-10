@@ -25,6 +25,10 @@
 #   expanded: false
 #   items:
 #     - page: ./advanced-guides/using-a-precompile.md
+- group: Use Oracle Data
+  expanded: false
+  items:
+    - page: ./use-oracle-data/band-protocol.md
 - group: Resources
   expanded: false
   items:
