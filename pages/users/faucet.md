@@ -25,6 +25,14 @@ To explore and interact with the **XRPL EVM sidechain**, you need test XRP (`XRP
    - If you already have some **XRPL Testnet** [funds](https://xrpl.org/resources/dev-tools/xrp-faucets), you can bridge assets from XRPL Testnet to **XRPL EVM Testnet** using the SquidRouter interface.
    - See [Using the Bridge](./using-the-bridge.md) for more detailed instructions.
 
+4. **[Telegram Bot Faucet](https://t.me/XrplEvmFaucetBot)**
+   - Open the **[XRPL EVM Faucet bot](https://t.me/XrplEvmFaucetBot)**
+   - Send the command:
+     ```
+     /faucet 0x_YOUR_ADDRESS
+     ```
+   - This faucet supports **0x... (EVM)** addresses, providing up to **89 XRP** per request.
+
 ### Fund Your XRPL Testnet Account
 Before bridging from XRPL Testnet to XRPL EVM Testnet, you **must** fund an XRPL Testnet account with test XRP. One convenient option is:
 
