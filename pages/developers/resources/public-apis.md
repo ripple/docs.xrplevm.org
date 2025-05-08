@@ -77,6 +77,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | **Peersyst**              | [http://cosmos.testnet.xrplevm.org:26657](http://cosmos.testnet.xrplevm.org:26657)                   |
         | **Grove**                 | [https://xrpl-evm-testnet.rpc.grove.city/v1/0caa84c4](https://xrpl-evm-testnet.rpc.grove.city/v1/0caa84c4) |
         | **NodeStake**             | [https://evmrpc-t.xrp.nodestake.org](https://evmrpc-t.xrp.nodestake.org)                             |
+        | **Cumulo**                | [https://json-rpc.xrpl.cumulo.com.es](https://json-rpc.xrpl.cumulo.com.es)                             |
         {% /tab %}
 
         {% tab label="Snapshot / Genesis" %}
