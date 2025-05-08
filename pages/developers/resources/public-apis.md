@@ -34,6 +34,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | ------------------- | -------------------------------------------------------------------------------------------- |
         | **Peersyst**      | [ https://ws.testnet.xrplevm.org]( https://ws.testnet.xrplevm.org)      |
         | **MictoNode**       | [wss://xrpl-testnet-rpc.mictonode.com/websocket](wss://xrpl-testnet-rpc.mictonode.com/websocket) |
+        | **Cumulo**        | [ https://ws.xrpl.cumulo.com.es]( https://ws.xrpl.cumulo.com.es)      |
         {% /tab %}
 
         {% tab label="API Endpoints" %}
@@ -77,6 +78,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | **Peersyst**              | [http://cosmos.testnet.xrplevm.org:26657](http://cosmos.testnet.xrplevm.org:26657)                   |
         | **Grove**                 | [https://xrpl-evm-testnet.rpc.grove.city/v1/0caa84c4](https://xrpl-evm-testnet.rpc.grove.city/v1/0caa84c4) |
         | **NodeStake**             | [https://evmrpc-t.xrp.nodestake.org](https://evmrpc-t.xrp.nodestake.org)                             |
+        | **Cumulo**                | [https://json-rpc.xrpl.cumulo.com.es](https://json-rpc.xrpl.cumulo.com.es)                           |
         {% /tab %}
 
         {% tab label="Snapshot / Genesis" %}
