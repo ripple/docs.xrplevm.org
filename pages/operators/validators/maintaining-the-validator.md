@@ -11,8 +11,8 @@ The <key_name> specifies which validator you are editing. If you choose to not i
 The `--identity` can be used as to verify identity with systems like Keybase or UPort. When using with Keybase `--identity` must be populated with a 16-digit string that is generated with a [keybase.io](https://keybase.io/) account. It is a cryptographically secure method of verifying your identity across multiple online networks. The Keybase API allows us to retrieve your Keybase avatar. This is how you can add a logo to your validator profile. <!-- SPELLING_IGNORE: uport -->
 
 ```bash
-exrpd tx staking edit-validator
-  --moniker="<your_custom_moniker>" \
+exrpd tx staking edit-validator \
+  --new-moniker="<your_custom_moniker>" \
   --website="https://xrpl.org" \
   --identity=6A0D65E29A4CBC8E \
   --details="<your_validator_description>" \
