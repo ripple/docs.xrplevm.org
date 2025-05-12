@@ -30,6 +30,7 @@ Snapshots provide a quick way to bootstrap your node’s state by downloading a 
 | **MictoNode**             | [Download](https://services.mictonode.com/xrpl-evm/snapshot)                                                   |
 | **UTSA (lesnik)**         | [Download](https://utsa.gitbook.io/services/testnet/xrpl-evm/snapshots)                                        |
 | **Node9x**                | [Download](https://service.node9x.com/testnet/xrpl-evm/service-and-snapshot)                                   |
+| **Endorphine Stake**      | [Download](https://services.endorphinestake.com/testnets/XRPL)                                                 |
 
 ---
 {% /tab %}
