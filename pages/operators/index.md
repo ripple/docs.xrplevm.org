@@ -14,9 +14,9 @@
      - **Method 3: Using Docker**
 
 3. **[Join the XRPL EVM](./getting-started/join-the-xrplevm.md)**  
-   - **Purpose:** Guides you through initializing and connecting your node to the Devnet or Testnet.  
+   - **Purpose:** Guides you through initializing and connecting your node to the Testnet.  
    - **Subsections:**  
-     - **Devnet Setup**  
+     - **Mainnet Setup**
      - **Testnet Setup**  
      - **Sync the Node** (genesis, snapshot, state sync)  
      - **Validate the Setup** (checking logs/status)
@@ -78,16 +78,16 @@
 ## 4. Resources
 
 1. **[Networks](./resources/networks.md)**  
-   - **Purpose:** Provides details on XRPL EVM Devnet and Testnet (chain IDs, genesis files, upgrade info).  
+   - **Purpose:** Provides details on XRPL EVM Mainnet and Testnet (chain IDs, genesis files, upgrade info).  
    - **Key Topics:**  
-     - Devnet upgrades  
-     - Testnet upgrades  
+     - Mainnet upgrades  
+     - Testnet upgrades
      - Links to official Docker images and GitHub repos
 
 2. **[Snapshots](./resources/snapshots.md)**  
    - **Purpose:** Links to third-party snapshot providers for faster node bootstrapping.  
    - **Key Topics:**  
-     - Devnet/Testnet snapshot sources  
+     - Mainnet/Testnet snapshot sources  
      - Verification and usage notes
 
 3. **[Configuration Reference](./resources/configuration-reference.md)**  

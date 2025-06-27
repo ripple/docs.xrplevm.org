@@ -216,6 +216,223 @@ Prints the `exrpd` application’s binary version information. This can be helpf
 exrpd version
 ```
 
+## Quick Reference: Common Node CLI Tasks
+
+This section provides a practical cheat sheet for everyday tasks when working with the `exrpd` CLI. Whether you're managing wallets, staking tokens, operating a validator, or participating in governance, these ready-to-use commands help you move fast and confidently.
+
+---
+
+### 🔐 Key Management
+
+**Add New Wallet**
+
+```bash
+exrpd keys add $WALLET
+```
+
+**Restore Wallet from Mnemonic**
+
+```bash
+exrpd keys add $WALLET --recover
+```
+
+**List All Wallets**
+
+```bash
+exrpd keys list
+```
+
+**Delete a Wallet**
+
+```bash
+exrpd keys delete $WALLET
+```
+
+**Check Wallet Balance**
+
+```bash
+exrpd query bank balances $WALLET_ADDRESS
+```
+
+**Export Wallet Key (Save to File)**
+
+```bash
+exrpd keys export $WALLET > wallet.backup
+```
+
+**View EVM Private Key**
+
+```bash
+exrpd keys unsafe-export-eth-key $WALLET
+```
+
+**Import Wallet Key (Restore from Backup)**
+
+```bash
+exrpd keys import $WALLET wallet.backup
+```
+
+---
+
+### 💰 Tokens and Staking
+
+**Withdraw All Rewards**
+
+```bash
+exrpd tx distribution withdraw-all-rewards --from $WALLET --chain-id exrp_1440002-1 --gas auto --gas-adjustment 1.5
+```
+
+**Withdraw Rewards + Commission**
+
+```bash
+exrpd tx distribution withdraw-rewards $VALOPER_ADDRESS --from $WALLET --commission --chain-id exrp_1440002-1 --gas auto --gas-adjustment 1.5 -y
+```
+
+**Delegate to Yourself**
+
+```bash
+exrpd tx staking delegate $(exrpd keys show $WALLET --bech val -a) 1000000uxrp --from $WALLET --chain-id exrp_1440002-1 --gas auto --gas-adjustment 1.5 -y
+```
+
+**Delegate to Another Validator**
+
+```bash
+exrpd tx staking delegate <TO_VALOPER_ADDRESS> 1000000uxrp --from $WALLET --chain-id exrp_1440002-1 --gas auto --gas-adjustment 1.5 -y
+```
+
+**Redelegate Stake**
+
+```bash
+exrpd tx staking redelegate $VALOPER_ADDRESS <TO_VALOPER_ADDRESS> 1000000uxrp --from $WALLET --chain-id exrp_1440002-1 --gas auto --gas-adjustment 1.5 -y
+```
+
+**Unbond Tokens**
+
+```bash
+exrpd tx staking unbond $(exrpd keys show $WALLET --bech val -a) 1000000uxrp --from $WALLET --chain-id exrp_1440002-1 --gas auto --gas-adjustment 1.5 -y
+```
+
+**Transfer Funds**
+
+```bash
+exrpd tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 1000000uxrp --gas auto --gas-adjustment 1.5 -y
+```
+
+---
+
+### 🏛️ Validator Operations
+
+**Create a New Validator**
+
+```bash
+exrpd tx staking create-validator \
+--amount 1000000uxrp \
+--from $WALLET \
+--commission-rate 0.1 \
+--commission-max-rate 0.2 \
+--commission-max-change-rate 0.01 \
+--min-self-delegation 1 \
+--pubkey $(exrpd tendermint show-validator) \
+--moniker "$MONIKER" \
+--identity "" \
+--details "I love blockchain ❤️" \
+--chain-id exrp_1440002-1 \
+--gas auto --gas-adjustment 1.5 \
+-y
+```
+
+**Edit Existing Validator Info**
+
+```bash
+exrpd tx staking edit-validator \
+--commission-rate 0.1 \
+--new-moniker "$MONIKER" \
+--identity "" \
+--details "I love blockchain ❤️" \
+--from $WALLET \
+--chain-id exrp_1440002-1 \
+--gas auto --gas-adjustment 1.5 \
+-y
+```
+
+**Check Validator Status**
+
+```bash
+exrpd status 2>&1 | jq
+```
+
+**Get Validator Details**
+
+```bash
+exrpd query staking validator $(exrpd keys show $WALLET --bech val -a)
+```
+
+**Check Jailing Info**
+
+```bash
+exrpd query slashing signing-info $(exrpd tendermint show-validator)
+```
+
+**Check Slashing Parameters**
+
+```bash
+exrpd query slashing params
+```
+
+**Unjail Validator**
+
+```bash
+exrpd tx slashing unjail --from $WALLET --chain-id exrp_1440002-1 --gas auto --gas-adjustment 1.5 -y
+```
+
+**List Active Validators**
+
+```bash
+exrpd query staking validators -oj --limit=2000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
+```
+
+**Check Validator Key Consistency**
+
+```bash
+[[ $(exrpd query staking validator $VALOPER_ADDRESS -oj | jq -r .consensus_pubkey.key) = $(exrpd status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "Your key status is ok" || echo -e "Your key status is error"
+```
+
+---
+
+### 🗳️ Governance
+
+**Submit a Text Proposal**
+
+```bash
+exrpd tx gov submit-proposal \
+--title "" \
+--description "" \
+--deposit 1000000uxrp \
+--type Text \
+--from $WALLET \
+--gas auto --gas-adjustment 1.5 \
+-y
+```
+
+**List Proposals**
+
+```bash
+exrpd query gov proposals
+```
+
+**View a Proposal**
+
+```bash
+exrpd query gov proposal 1
+```
+
+**Vote on a Proposal**
+
+```bash
+exrpd tx gov vote 1 yes --from $WALLET --chain-id exrp_1440002-1 --gas auto --gas-adjustment 1.5
+```
+
+
 ## Learn more
 
 If you want to learn more about `exrpd`, you can explore the following resources:

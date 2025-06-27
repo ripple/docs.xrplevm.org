@@ -23,7 +23,9 @@ To explore and interact with the **XRPL EVM sidechain**, you need test XRP (`XRP
 
 3. **Bridging via [SquidRouter](https://testnet.xrpl.squidrouter.com/)**
    - If you already have some **XRPL Testnet** [funds](https://xrpl.org/resources/dev-tools/xrp-faucets), you can bridge assets from XRPL Testnet to **XRPL EVM Testnet** using the SquidRouter interface.
-   - See [Using the Bridge](./using-the-bridge.md) for more detailed instructions.
+   - [Transfer XRP with Axelar](./using-the-bridge/transfer-xrp-with-axelar.md)
+   - [Transfer IOU with Axelar](./using-the-bridge/transfer-iou-with-axelar.md)  
+   - [Transfer ERC20 with Axelar](./using-the-bridge/transfer-erc20-with-axelar.md)
 
 4. **[Telegram Bot Faucet](https://t.me/XrplEvmFaucetBot)**
    - Open the **[XRPL EVM Faucet bot](https://t.me/XrplEvmFaucetBot)**
@@ -40,7 +42,7 @@ Before bridging from XRPL Testnet to XRPL EVM Testnet, you **must** fund an XRPL
   - Install the Snap in MetaMask.  
   - Use its built-in faucet or XRPL faucets it supports to fund your XRPL Testnet account.
 
-Once your XRPL Testnet account is funded, follow the [bridge instructions](./using-the-bridge.md) or use [SquidRouter](https://testnet.xrpl.squidrouter.com/) to move assets to XRPL EVM Testnet.
+Once your XRPL Testnet account is funded, use [SquidRouter](https://testnet.xrpl.squidrouter.com/) to move assets to XRPL EVM Testnet.
 
 {% /tab %}
 {% tab label="Devnet" %}
@@ -50,7 +52,7 @@ Once your XRPL Testnet account is funded, follow the [bridge instructions](./usi
 - **[XRPL EVM Devnet Faucet @ Chains.tools](https://chains.tools/faucet/xrplevm)**  
   - For **XRPL EVM Devnet**.  
   - Each wallet can request up to **10 XRP** every 60 minutes.  
-  - Alternatively, bridge from the XRPL Devnet using the [bridge guide](./using-the-bridge.md) or by manual interchain transactions.
+  - Alternatively, bridge from the XRPL Devnet using the [devnet bridge faucet](https://bridge.xrplevm.org) or by manual interchain transactions.
 
 ## Bridging on Devnet (Axelar Bridge Overview)
 

@@ -3,14 +3,15 @@
 Block explorers are web-based tools that allow you to search, analyze, and view on-chain data. They provide insights into blocks, transactions, addresses, and other critical metrics, helping both developers and end-users understand the state and health of the network. Different explorers may offer unique features, such as advanced analytics, rich data visualization, or API integrations for programmatic queries.
 
 {% tabs %}
-{% tab label="Devnet" %}
 
-## Devnet Explorers
+{% tab label="Mainnet" %}
 
-| Name                    | URL                                                                            | Type   |
-| -------------------     | ------------------------------------------------------------------------------ | ------ |
-| **EVM Explorer**        | [https://explorer.devnet.xrplevm.org](https://explorer.devnet.xrplevm.org)     | EVM    |
-| **Governance Explorer** | [https://governance.devnet.xrplevm.org](https://governance.devnet.xrplevm.org) | Cosmos |
+## Testnet Explorers
+
+| Name                | URL                                                                                                  | Type   |
+| ------------------- | -----------------------------------------------------------------------------------------------------| ------ |
+| **Peersyst**        | [https://explorer.xrplevm.org](https://explorer.xrplevm.org)                                         | EVM    |
+| **Peersyst**        | [https://governance.xrplevm.org](https://governance.xrplevm.org)                                     | Cosmos |
 
 {% /tab %}
 

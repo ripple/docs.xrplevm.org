@@ -1,83 +1,95 @@
 # Join the XRPL EVM
 
-Now that you have successfully installed the `exrpd` binary, it’s time to take the next steps and fully connect to the XRPL EVM. This page provides separate instructions for **Devnet** and **Testnet**. Pick the environment you want to join and follow the steps in that tab.
+Now that you have successfully installed the `exrpd` binary, it’s time to take the next steps and fully connect to the XRPL EVM. This page provides separate instructions for **Mainnet** and **Testnet**. Pick the environment you want to join and follow the steps in that tab.
 
 ## Prerequisites
 
 > **Note**: Make sure the [`exrpd` is installed](./installing-the-node.md) before proceeding.
 
 {% tabs %}
-{% tab label="Devnet" %}
 
-## Configure the Node
+{% tab label="Mainnet" %}
 
-Once you have the `exrpd` binary installed, you need to initialize and configure the node. This involves generating initial configuration files, downloading the appropriate genesis file, and establishing connections to network peers.
+## Mainnet Setup
 
-### 1. Initialize the node
+The following guide outlines the steps for any participant to launch or join the **XRPL EVM**.
 
-Initializing your node creates the required configuration files, including validator keys and a default configuration structure. The `<moniker>` is a human-readable name you assign to your node (often the name of your organization or a recognizable identifier), and `<chain-id>` specifies the target network.
+### 1. Infrastructure Provision
 
-```bash
-exrpd init YOUR_MONIKER --chain-id exrp_1440002-1
-```
+Provision a new machine with stable connectivity and enough resources to run the node. Refer to the XRPL EVM documentation for [minimum specifications](./system-requirements.md).
 
-After running this, the necessary configuration and key files will be generated in `~/.exrpd`.
+### 2. Node Installation
 
-### 2. Download the Genesis File
+Download and install the XRPL EVM node binary using the official instructions:  
+[Installing the Node](./installing-the-node.md)
 
-Obtain the Devnet `genesis.json` file and place it in your node’s config directory. If you are trying to validate genesis with the latest version (v6.0.0) as genesis was created using v1.0.0. You can skip the validate genesis `exrpd validate-genesis`:
+### 3. Configure the Node
 
-```bash
-wget https://raw.githubusercontent.com/Peersyst/xrp-evm-archive/main/poa-devnet/genesis.json -O ~/.exrpd/config/genesis.json
-exrpd validate-genesis
-```
-
-If validation succeeds, the genesis file is correct.
-
-### 3. Add Peers
-
-Your node needs to connect to other nodes to synchronize. Fetch a list of Devnet peers and update `persistent_peers` in `~/.exrpd/config/config.toml`:
+Set up the node configuration with the **Mainnet** chain ID:
 
 ```bash
-PEERS=`curl -sL https://raw.githubusercontent.com/Peersyst/xrp-evm-archive/main/poa-devnet/peers.txt | sort -R | head -n 10 | awk '{print $1}' | paste -s -d, -`
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.exrpd/config/config.toml
-cat ~/.exrpd/config/config.toml | grep persistent_peers
+exrpd config set client chain-id xrplevm_1440000-1
 ```
 
-### 4. Advanced Configuration (Optional)
-
-If you need to adjust pruning, logging, or other advanced settings, see the [Advanced Configuration Options](../advanced/node-configuration-options.md).
-
-### 5. Create or Import a Key (Optional)
-
-If you plan to run a validator or sign transactions, generate a new key or import an existing one:
+Choose a secure keyring backend:
 
 ```bash
-exrpd keys add <key_name> --keyring-backend <os|file|test>
+exrpd config set client keyring-backend <keyring>
 ```
 
-Effective [key management](../validators/managing-keys.md) is critical for the security and operation of validators in the XRPL EVM sidechain.
+Adjust other recommended settings:
 
-### 6. (Optional) Download a Snapshot
+- **Pruning**: Default
+- **API Access**: Disable all except Tendermint RPC (restrict to localhost)
+- **Peer Exchange**: Keep default unless specific network config is required
 
-If you want to speed up synchronization, you can use a snapshot. See the [Snapshots page](../resources/snapshots.md) for details. For example:
+For more details, refer to the [node configuration documentation](https://docs.xrplevm.org/pages/operators/advanced/node-configuration-options) as well as the [node configuration reference](https://docs.xrplevm.org/pages/operators/resources/configuration-reference).
+
+### 4. Create a New Key
+
+Generate a new validator key:
 
 ```bash
-sudo apt-get install wget lz4 -y
-cd $HOME/.exrpd
-wget https://evm-sidechain-snapshots-devnet.s3.amazonaws.com/exrpd.tar.lz4
-tar -xI lz4 -f exrpd.tar.lz4
+exrpd keys add <key_name> --key-type eth_secp256k1
 ```
 
-### 7. Start the Node
+**Ensure that you back up the mnemonic securely**. Effective [key management](../validators/managing-keys.md) is critical for the security and operation of validators in the XRPL EVM sidechain.
+
+### 5. Initialize the Node
+
+Initialize your node with a moniker (a unique name for your node/validator) and the **Mainnet** chain ID:
 
 ```bash
-exrpd start
+exrpd init <moniker> --chain-id xrplevm_1440000-1
 ```
 
-Watch the logs to ensure your node syncs with the Devnet. If everything is correct, you should see blocks being processed.
+**Ensure that you back up the node keys securely**. [Read more](https://docs.xrplevm.org/pages/operators/validators/managing-keys).
+
+```sh
+~/.exrpd/config/node_key.json
+~/.exrpd/config/priv_validator_key.json
+```
+
+### 6. Download the Genesis File
+
+Fetch the **Mainnet** genesis file:
+
+```sh
+wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/mainnet/genesis.json
+```
+
+### 7. Add Seeds to the Node Configuration
+
+Add seeds to the node configuration that will allow connecting to the rest of the node. Modify the file `~/.exrpd/config/config.toml` to include the following seed node:
+
+```sh
+PEERS=`curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/mainnet/peers.txt | sort -R | head -n 10 | awk '{print $1}' | paste -s -d, -`
+sed -i.bak -e "s/^seeds *=.*/seeds = \"$PEERS\"/" ~/.exrpd/config/config.toml
+cat ~/.exrpd/config/config.toml | grep seeds
+```
 
 {% /tab %}
+
 {% tab label="Testnet" %}
 
 ## Testnet Setup
@@ -158,20 +170,31 @@ sed -i.bak -e "s/^seeds *=.*/seeds = \"$PEERS\"/" ~/.exrpd/config/config.toml
 cat ~/.exrpd/config/config.toml | grep seeds
 ```
 
-### 8. Initialize the Node with Final Genesis
-
-Initialize the node.
-
-```bash
-exrpd start
-```
-
-### 9. Testnet Start
-
-Monitor the node status to ensure it syncs with the network. Once it connects to the majority of validators, the network starts producing blocks.
-
 {% /tab %}
 {% /tabs %}
+
+### Start the Node
+
+Once your configuration is complete, start the node using your preferred process manager (e.g., systemd, Docker Compose, or another init system) as outlined in the [Installing the Node](./installing-the-node.md) guide. This ensures the node will run continuously and restart on failure:
+
+```sh
+# Example using systemd:
+systemctl enable exrpd
+systemctl start exrpd
+
+# Or, using Docker Compose:
+docker-compose up -d xrplevm-node
+````
+
+Monitor the logs to verify syncing:
+
+```sh
+journalctl -u exrpd -f      # systemd
+# or
+docker logs -f xrplevm-node # Docker
+```
+
+Once it connects to the majority of validators, blocks will start streaming in and your node will produce data.
 
 ### Sync the Node
 

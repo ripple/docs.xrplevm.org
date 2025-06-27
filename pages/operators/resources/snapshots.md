@@ -1,20 +1,20 @@
 # Snapshots
 
-Snapshots provide a quick way to bootstrap your node’s state by downloading a pre-synchronized version of the blockchain data. This reduces the time and resources required to sync from the genesis block. Different networks—mainnet, testnet, and devnet—offer snapshots for various use cases. Some snapshots are pruned (minimal historical data), others retain default state, and some include full historical archives for comprehensive analysis.
+Snapshots provide a quick way to bootstrap your node’s state by downloading a pre-synchronized version of the blockchain data. This reduces the time and resources required to sync from the genesis block. Different networks—mainnet and testnet snapshots for various use cases. Some snapshots are pruned (minimal historical data), others retain default state, and some include full historical archives for comprehensive analysis.
 
 ## Snapshots
 
 {% tabs %}
-{% tab label="Devnet" %}
 
-| Provider     | URL                                                                                         | Type    |
-| --------     | ------------------------------------------------------------------------------------------- | ------- |
-| **Peersyst** | [Download](https://evm-sidechain-snapshots-devnet.s3.us-east-1.amazonaws.com/exrpd.tar.lz4) | Default |
-| **Enigma**   | [Download](https://enigma-validator.com/stake-with-us/xrp-testnet#services)                 | Pruned  |
-| **Polkachu** | [Download](https://polkachu.com/testnets/xrp/snapshots)                                     | Default |
+{% tab label="Mainnet" %}
+
+| Provider | URL                                                                                                                             |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **Peersyst**              | [Download](https://evm-sidechain-snapshots-mainnet.s3.us-east-1.amazonaws.com/exrpd.tar.lz4)                   |
 
 ---
 {% /tab %}
+
 {% tab label="Testnet" %}
 
 | Provider | URL                                                                                                                             |

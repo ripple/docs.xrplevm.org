@@ -21,7 +21,7 @@ The following diagram shows the process of transferring a token from the XRPL to
 ![xrpl-evm-sidechain-axelar-its-transfer](./img/evm-sidechain-axelar-its-transfer.png)
 
 1. **Payment transaction**: A payment transaction is submitted on XRPL Ledger. It contains the amount to be transferred, the destination address on the XRPL EVM Sidechain. The payment transaction is submitted to the Axelar Multisig account.
-2. **Send Interchain Message through devnet-amplifier**: Once the payment transaction is submitted to the Axelar Multisig account, the devnet-amplifier will send a message to the XRPL EVM Sidechain Axelar Amplifier Gateway.
+2. **Send Interchain Message through amplifier**: Once the payment transaction is submitted to the Axelar Multisig account, the amplifier will send a message to the XRPL EVM Sidechain Axelar Amplifier Gateway.
 3. **Execute ITS contract on XRPL EVM Sidechain**: In the meantime, the relayer will call the ITS contract on the XRPL EVM Sidechain to start the token transfer process on the XRPL EVM Sidechain.
 4. **Confirm token transfer message**: Once the relayer calls the ITS contract on the XRPL EVM Sidechain, the ITS contract will ask to the AxelarAmplifierGateway on the XRPL EVM Sidechain to confirm the token transfer message.
 5. **Confirm response**: The AxelarAmplifierGateway on the XRPL EVM Sidechain will confirm the token transfer message.
@@ -35,9 +35,29 @@ The following diagram shows the process of transferring a token from the XRPL to
 - **XRPL EVM Sidechain**: The XRPL EVM Sidechain is the destination for the message.
 - **XRPL Ledger**: The XRPL Ledger is the source of the message.
 
-## Examples
+## Sending assets from XRP Ledger to XRPL EVM
 
-Here's a list of examples of interchain transfers for different chains:
+Sending assets from the XRP Ledger to the XRPL EVM or other chains is straightforward. The process involves executing a standard payment transaction, specifying the following key parameters:
 
-- [Axelar Interchain Transfer to XRPL](./interchain-evm-sidechain-xrpl.md)
-- [Axelar Interchain Transfer to Avalanche Fuji](./interchain-evm-sidechain-avalanche.md)
+- `Amount`: Specifies the quantity of the asset to be transferred. The format and value depend on the type of asset being sent (e.g., XRP or IOUs).
+- `Destination`: The address of the Gateway on the XRP Ledger.
+  - [**Mainnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/mainnet.json)
+  - [**Testnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/testnet.json#L2603)
+  - [**Devnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/devnet-amplifier.json#L985)
+
+- `Memos`: Hex-encoded data required for the transfer, including:
+  - The _type_ of call to initiate.
+  - The _destination chain_ on the Axelar network.
+  - The _recipient's address_ on the destination chain.
+  - The _gas fee_.
+
+See [Axelar's documentation](https://github.com/axelarnetwork/axelar-contract-deployments/tree/main/xrpl#contract-interactions) for a guide on interchain token transfers.
+
+## Sending assets from XRPL EVM to XRP Ledger
+
+To send assets from the XRPL EVM back to the XRPL, you’ll call the [`interchainTransfer`](https://github.com/axelarnetwork/interchain-token-service/blob/9edc4318ac1c17231e65886eea72c0f55469d7e5/contracts/interfaces/IInterchainTokenStandard.sol#L19) method of the **ITS contract** on the XRPL EVM. You must provide:
+
+- `tokenId`: The token’s Axelar ID.
+- `destinationChain`: The Axelar chain ID of the target chain (e.g., `"xrpl"` or `"xrpl-dev"`).
+- `destinationAddress`: The address on the XRPL where the assets will be received (an R-address).
+- `amount`: The amount to transfer, as an integer without decimals.

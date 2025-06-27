@@ -16,7 +16,7 @@ Sending assets from the XRP Ledger to the XRPL EVM or other chains is straightfo
 
 - `Amount`: Specifies the quantity of the asset to be transferred. The format and value depend on the type of asset being sent (e.g., XRP or IOUs).
 - `Destination`: The address of the Gateway on the XRP Ledger.
-  - [**Devnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/devnet-amplifier.json#L985)
+  - [**Mainnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/mainnet.json)
   - [**Testnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/testnet.json#L2603)
 - `Memos`: Hex-encoded data required for the transfer, including:
   - The _type_ of call to initiate.
@@ -37,25 +37,9 @@ To send assets from the XRPL EVM back to the XRPL, you’ll call the [`interchai
 
 ### ITS Contract Instantiation
 
-Below is an example of instantiating the ITS contract in the **XRPL EVM Devnet**:
+Below is an example of instantiating the ITS contract in the **XRPL EVM**:
 
 {% tabs %}
-{% tab label="Devnet" %}
-
-```ts
-import { Contract } from "ethers";
-
-// The signer initialization is omitted for brevity
-
-// Instantiate the ITS contract
-const its = new Contract(
-  "0x1a7580C2ef5D485E069B7cf1DF9f6478603024d3", // ITS address in XRPL EVM Devnet
-  ITS_ABI, // ABI for the ITS contract
-  signer
-);
-```
-
-{% /tab %}
 {% tab label="Testnet" %}
 
 
@@ -78,28 +62,6 @@ const its = new Contract(
 ### Sending XRP from XRPL EVM to XRP Ledger
 
 {% tabs %}
-{% tab label="Devnet" %}
-
-To transfer **XRP** back to the XRPL, call `interchainTransfer` on the ITS contract. Use the **XRP token ID** for Devnet:
-
-```ts
-import { ethers } from "ethers";
-
-await its.interchainTransfer(
-  "0xbfb47d376947093b7858c1c59a4154dd291d5b2251cb56a6f7159a070f0bd518", // XRP token ID (Devnet)
-  "xrpl-dev", // Destination chain ID
-  "0xcdaa5ba0215e9359fa62cb5a5650a17b362817ac", // Recipient address on XRP Ledger (r9bSdiUYuAHqqoSuvczxQt5fLoEuNMDZLQ) converted to EVM address
-  "100000000000000000000", // 100 XRP in wei
-  "0x", // Metadata (unused)
-  {
-    gasLimit: 8000000,
-    value: ethers.utils.parseEther("6"),
-  } // Gas
-);
-```
-
-{% /tab %}
-
 {% tab label="Testnet" %}
 
 To transfer **XRP** back to the XRPL, call `interchainTransfer` on the ITS contract. Use the **XRP token ID** for Testnet:
@@ -162,28 +124,6 @@ const result = await client.submit(signedTransaction);
 #### 2. Approve the ITS Contract on the XRPL EVM
 
 {% tabs %}
-{% tab label="Devnet" %}
-
-```ts
-import { Contract } from "ethers";
-
-// The signer initialization is omitted for brevity
-
-// Instantiate the ERC20 contract
-const erc20 = new Contract(
-  "0x20937978F265DC0C947AA8e136472CFA994FE1eD", // RLUSD ERC20 token address (example)
-  ERC20_ABI,
-  signer
-);
-
-// Call the approve method
-await erc20.approve(
-  "0x1a7580C2ef5D485E069B7cf1DF9f6478603024d3", // ITS address in XRPL EVM Devnet
-  "100000000000000000000" // >= the amount to be transferred
-);
-```
-
-{% /tab %}
 {% tab label="Testnet" %}
 
 ```ts
@@ -211,26 +151,6 @@ await erc20.approve(
 #### 3. Call `interchainTransfer` on the ITS Contract
 
 {% tabs %}
-{% tab label="Devnet" %}
-
-```ts
-import { ethers } from "ethers";
-
-// Call the interchainTransfer method
-await its.interchainTransfer(
-  "0x85f75bb7fd0753565c1d2cb59bd881970b52c6f06f3472769ba7b48621cd9d23", // RLUSD token ID (example)
-  "xrpl-dev", // Destination chain ID
-  "0xcdaa5ba0215e9359fa62cb5a5650a17b362817ac", // Recipient address on XRP Ledger (r9bSdiUYuAHqqoSuvczxQt5fLoEuNMDZLQ) converted to EVM address
-  "100000000000000000000", // 100 RLUSD in integer form
-  "0x", // Metadata (unused)
-  {
-    gasLimit: 8000000,
-    value: ethers.utils.parseEther("6"),
-  } // Gas
-);
-```
-
-{% /tab %}
 
 {% tab label="Testnet" %}
 

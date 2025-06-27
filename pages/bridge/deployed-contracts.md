@@ -25,4 +25,5 @@ Here's the list of the Axelar contracts deployed on the XRPL EVM Sidechain. You 
 
 ## Networks
 
-- [Devnet](./deployed-contracts-devnet.md): List of deployed contracts on the XRPL EVM Sidechain Devnet.
+- [Mainnet](./deployed-contracts-mainnet.md): List of deployed contracts on the XRPL EVM.
+- [Testnet](./deployed-contracts-testnet.md): List of deployed contracts on the XRPL EVM Testnet.

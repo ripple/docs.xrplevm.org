@@ -1,6 +1,18 @@
-# Installing the node
+# Installing the Node
 
-The `exrpd` binary is the primary software component for running XRPL EVM nodes. By installing and configuring `exrpd`, you will be able to join the network, synchronize with the blockchain, and participate in consensus (if you are a validator). The following steps will guide you through the installation process.
+The `exrpd` binary is the cornerstone of running an XRPL EVM node. It enables your machine to communicate with the XRPL EVM network, synchronize with the blockchain, and—if configured as a validator—actively participate in consensus. This guide walks you through the process of installing and configuring `exrpd` so you can join the network effectively.
+
+Before proceeding, it’s crucial to understand that node versioning plays a vital role in how you synchronize with the blockchain—especially if you're starting from genesis.
+
+ The XRPL EVM (Mainnet) initially launched using `exrpd` version 7. At block **497,000**, it upgraded to version 8. If you intend to sync your node from the very beginning of the chain (i.e., from genesis), you **must** install the same node version used at the network’s genesis—**v7**. Your node will sync until it reaches the block where a version upgrade occurred. At that point, you must manually upgrade your node to the corresponding version (e.g., from v7 to v8 at block 497,000 to continue syncing without interruption.)
+
+ The XRPL EVM Testnet initially launched using `exrpd` version 6. At block **547,100**, it upgraded to version 7, and later to version 8 at block **1,485,600**. If you intend to sync your node from the very beginning of the chain (i.e., from genesis), you **must** install the same node version used at the network’s genesis—**v6**. Your node will sync until it reaches the block where a version upgrade occurred. At that point, you must manually upgrade your node to the corresponding version (e.g., from v6 to v7 at block 547,100, and then from v7 to v8 at block 1,485,600) to continue syncing without interruption.
+
+Alternatively, if syncing from genesis is not required, you can take a more efficient approach by starting from a **snapshot** or using **state sync**, which allows you to join the network at a later state. In this case, you can install the **latest version** of `exrpd` and bypass the need for version hopping altogether.
+
+{% admonition type="info" name="List of upgrades" %}
+For a detailed list of XRPL EVM network versions—including timestamps, upgrade blocks, and version changes across all supported chains—refer to the official network documentation: [XRPL EVM Networks Overview](../resources/networks.md).
+{% /admonition %}
 
 ## Installation Methods
 
@@ -27,11 +39,11 @@ This method involves downloading precompiled binaries from the repository's late
 
    - **AMD64:**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Linux_amd64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v8.0.0/node_8.0.0_Linux_amd64.tar.gz
      ```
    - **ARM64:**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Linux_arm64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v8.0.0/node_8.0.0_Linux_arm64.tar.gz
      ```
    {% /tab %}
 
@@ -40,11 +52,11 @@ This method involves downloading precompiled binaries from the repository's late
 
    - **Intel (x86_64):**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Darwin_amd64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v8.0.0/node_8.0.0_Darwin_amd64.tar.gz
      ```
    - **Apple Silicon (ARM64):**  
      ```bash
-     wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Darwin_arm64.tar.gz
+     wget https://github.com/xrplevm/node/releases/download/v8.0.0/node_8.0.0_Darwin_arm64.tar.gz
      ```
    {% /tab %}
    
@@ -56,7 +68,7 @@ This method involves downloading precompiled binaries from the repository's late
    - **Download using curl:**  
      Open PowerShell and run:
      ```powershell
-     curl -LO https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Windows_amd64.zip
+     curl -LO https://github.com/xrplevm/node/releases/download/v8.0.0/node_8.0.0_Windows_amd64.zip
      ```
    {% /tab %}
    {% /tabs %}
@@ -64,7 +76,7 @@ This method involves downloading precompiled binaries from the repository's late
 2. **Extract the Binaries:**  
    Once downloaded, extract the file using the appropriate command for your platform. For example, on Linux:
    ```bash
-   tar -xzf node_7.0.0_Linux_amd64.tar.gz
+   tar -xzf node_8.0.0_Linux_amd64.tar.gz
    ```
    This will extract the files into a directory.
 
@@ -94,7 +106,7 @@ This method involves downloading precompiled binaries from the repository's late
    ```bash
    exrpd version
    ```
-   You should see version information (e.g., `v7.0.0`).
+   You should see version information (e.g., `v8.0.0`).
 
 6. **Configure and Run Your Node (Optional):**  
    Once the binary is installed, follow the [node configuration instructions](./join-the-xrplevm.md)
@@ -174,135 +186,130 @@ go version
    The compiled binaries will be available in the `build` directory.
 
 ---
+Here’s the updated **Method 3: Using Docker** guide—tested on Linux, macOS & Windows—with **v6.0.0** and the correct `--entrypoint` override so that `exrpd start` actually runs:
 
+---
 ## Method 3: Using Docker
 
-A containerized approach ensures that the node runs in a consistent environment, avoiding dependency issues. This method is highly recommended if you prefer a ready-to-run environment.
+A containerized approach ensures a consistent environment and avoids host-dependency issues. With version **v6.0.0**, you only need **two** Docker commands:
 
-**Important:** If the Docker image you’re using does not match the genesis file, which will not unless you are using the first docker image: [peersyst/xrp-evm-blockchain:latest](https://hub.docker.com/layers/peersyst/exrp/latest/images/sha256-dd77f81a2f8e349349fcd1266c465c77e580681764f0abbdd052bd4f4360c24e), you must start the container in interactive mode first to complete the setup steps. This interactive session lets you run the [join-the-xrplevm](join-the-xrplevm.md) instructions (such as `exrpd init`, downloading the correct genesis file, configuring persistent peers, adding keys and syncing) within the container. Once setup is complete, you can restart the node in detached mode.
+---
 
-### Pre-requisites
+### Prerequisites
 
-- [Docker 19+ installed](https://docs.docker.com/engine/install/).
+* Docker 19+ installed on your host.
+* Run as root (or via sudo) so that `/root/.exrpd` is writable.
 
-### Steps to Run the Node via Docker
+---
 
-{% tabs %}
-{% tab label="Linux" %}
+### 1. Interactive setup (one-time)
 
-1. **Pull the Docker Image:**
+Launch a shell in the container, mounting your host’s config directory. Inside, run **all** of the “Join the XRPL EVM” commands (chain-ID, keygen, init, genesis download, seed configuration, etc.) as per the Mainnet or Testnet guide—then exit when done.
 
-   ```bash
-   docker pull peersyst/exrp:latest
-   ```
-
-2. **Interactive Setup (if using an image that doesn’t match the genesis):**  
-   If the image you pulled isn’t the one that was used to generate the genesis (for example, if you’re using an image with a newer version), you need to set up the node configuration interactively. This allows you to run the necessary join-the-xrplevm steps inside the container. For example:
-   ```bash
-   docker run -it --name xrplevm-setup \
-     -v /home/xrplevmuser/.exrpd:/root/.exrpd \
-     -e DAEMON_NAME=exrpd \
-     -e DAEMON_HOME=/root/.exrpd \
-     peersyst/exrp:latest /bin/sh
-   ```
-   Complete the [join-the-xrplevm](join-the-xrplevm.md) steps (initialization, genesis file download, peer configuration, add keys and sync) inside the shell and then exit.
-
-3. **Run the Docker Container in Detached Mode:**  
-   Once the configuration is complete, you can start the container as a background service:
-   ```bash
-   docker run -d --name xrplevm-node \
-     -v /home/xrplevmuser/.exrpd:/root/.exrpd \
-     -e DAEMON_NAME=exrpd \
-     -e DAEMON_HOME=/root/.exrpd \
-     peersyst/exrp:latest
-   ```
-
-4. **Verify the Container:**  
-   Run:
-   ```bash
-   docker ps -a
-   ```
-   to ensure your container is running.
-
-{% /tab %}
-{% tab label="macOS" %}
-
-1. **Pull the Docker Image:**
-
-   ```bash
-   docker pull peersyst/exrp:latest
-   ```
-
-2. **Interactive Setup (if required):**  
-   Replace `<your-username>` with your macOS username:
-   ```bash
-   docker run -it --name xrplevm-setup \
-     -v /Users/<your-username>/.exrpd:/root/.exrpd \
-     -e DAEMON_NAME=exrpd \
-     -e DAEMON_HOME=/root/.exrpd \
-     peersyst/exrp:latest /bin/sh
-   ```
-   Complete the [join-the-xrplevm](join-the-xrplevm.md) steps (initialization, genesis file download, peer configuration, add keys and sync) inside the shell and then exit.
-
-3. **Run the Docker Container in Detached Mode:**
-   ```bash
-   docker run -d --name xrplevm-node \
-     -v /Users/<your-username>/.exrpd:/root/.exrpd \
-     -e DAEMON_NAME=exrpd \
-     -e DAEMON_HOME=/root/.exrpd \
-     peersyst/exrp:latest
-   ```
-   4. **Verify the Container:**  
-   Run:
-   ```bash
-   docker ps -a
-   ```
-   to ensure your container is running.
-
-{% /tab %}
-{% tab label="Windows" %}
-
-1. **Pull the Docker Image (via Docker Desktop):**
-
-   ```powershell
-   docker pull peersyst/exrp:latest
-   ```
-
-2. **Interactive Setup (if required):**  
-   Replace `<your-username>` with your Windows username:
-   ```powershell
-   docker run -it --name xrplevm-setup `
-     -v C:\Users\<your-username>\.exrpd:/root/.exrpd `
-     -e DAEMON_NAME=exrpd `
-     -e DAEMON_HOME=/root/.exrpd `
-     peersyst/exrp:latest /bin/sh
-   ```
-   Complete the [join-the-xrplevm](join-the-xrplevm.md) steps (initialization, genesis file download, peer configuration, add keys and sync) inside the shell and then exit.
-
-3. **Run the Docker Container in Detached Mode:**
-   ```powershell
-   docker run -d --name xrplevm-node `
-     -v C:\Users\<your-username>\.exrpd:/root/.exrpd `
-     -e DAEMON_NAME=exrpd `
-     -e DAEMON_HOME=/root/.exrpd `
-     peersyst/exrp:latest
-   ```
-   4. **Verify the Container:**  
-   Run:
-   ```bash
-   docker ps -a
-   ```
-   to ensure your container is running.
-
-{% /tab %}
-{% /tabs %}
-
-> **Note:**  
-> If you’re using a Docker image that isn’t the first one matching the genesis state (for example, an image that differs from the one used to generate the genesis file), you must run the container in interactive mode to complete the initial setup. Follow the join-the-xrplevm steps inside that session, then restart the node container in detached mode.
-
-Finally, verify that your container is running using:
 ```bash
-docker ps -a
+docker run -it --name xrplevm-setup \
+  -v /root/.exrpd:/root/.exrpd \
+  peersyst/exrp:v6.0.0 \
+  /bin/sh
+```
+
+*(Inside that shell, complete the join-the-xrplevm steps from the docs, then `exit`.)*
+
+---
+
+### 2. Detached, auto-restarting run
+
+Now start your fully-configured node in the background. The `--entrypoint` override ensures that `exrpd start` actually runs:
+
+```bash
+docker run -d \
+  --restart unless-stopped \
+  --name xrplevm-node \
+  -v /root/.exrpd:/root/.exrpd \
+  --entrypoint exrpd \
+  peersyst/exrp:v6.0.0 \
+  start
 ```
 
 ---
+
+### Verification
+
+```bash
+docker ps | grep xrplevm-node
+docker logs -f xrplevm-node
+```
+
+You should see your node’s Tendermint/exrpd startup logs and syncing progress.
+
+### Upgrade the node
+
+To upgrade your running XRPL EVM node from v6.0.0 to v7.0.0 in Docker, you just need to pull the new image, stop & remove the old container, and re-run it with the same volume mount. Here’s a concise step‐by‐step:
+
+1. **Pull the v7.0.0 image**
+
+   ```bash
+   docker pull peersyst/exrp:v7.0.0
+   ```
+
+2. **Stop and remove your old container**
+
+   ```bash
+   docker stop xrplevm-node
+   docker rm xrplevm-node
+   ```
+
+3. **Run the container with the new tag**
+
+   ```bash
+   docker run -d \
+     --restart unless-stopped \
+     --name xrplevm-node \
+     -v /root/.exrpd:/root/.exrpd \
+     --entrypoint exrpd \
+     peersyst/exrp:v7.0.0 \
+     start
+   ```
+
+   * You’re re-using the same `/root/.exrpd` data directory, so your ledger state stays intact.
+   * The `--entrypoint exrpd … start` invocation is exactly the same as before, just pointing to the new image.
+
+4. **Verify it’s running and has upgraded**
+
+   ```bash
+   docker logs -f --tail 50 xrplevm-node
+   ```
+
+   You should no longer see the `UPGRADE "v7.0.0" NEEDED at height` error and your node will proceed to sync/replay under the new binary.
+
+---
+
+### If you’re using Docker Compose
+
+If you prefer `docker-compose.yml`, just change the image tag and do a `docker-compose up -d`:
+
+```yaml
+version: '3.8'
+services:
+  xrplevm-node:
+    image: peersyst/exrp:v7.0.0
+    container_name: xrplevm-node
+    entrypoint: ["exrpd", "start"]
+    restart: unless-stopped
+    volumes:
+      - /root/.exrpd:/root/.exrpd
+```
+
+Then:
+
+```bash
+docker-compose pull xrplevm-node
+docker-compose up -d xrplevm-node
+```
+
+That’s it—your node will now run v7.0.0 and continue syncing from height 547100 onward.
+
+Do the same with v8.0.0 and future versions.
+
+If you don't want to sync from genesis you can also install the v8 directly and [**sync from snapshot**](https://docs.xrplevm.org/pages/operators/advanced/sync-options#sync-from-snapshot) or [**sync from state sync**](https://docs.xrplevm.org/pages/operators/advanced/sync-options#state-sync).
+

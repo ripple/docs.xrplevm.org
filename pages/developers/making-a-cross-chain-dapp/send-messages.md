@@ -13,7 +13,7 @@ To send a message from the XRP Ledger (XRPL) to the XRPL EVM, a `Payment` transa
 
 - `Amount`: Represents the value of the asset to be sent. If the message does not include an asset transfer, this can be set to 1 drop (the smallest XRP unit).
 - `Destination`: The address of the Gateway on the XRP Ledger.
-  - [**Devnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/devnet-amplifier.json#L985)
+  - [**Mainnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/mainnet.json)
   - [**Testnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/testnet.json#L2603)
 - `Memos`: Hex-encoded data required for the function call, including:
   - The _type_ of call to initiate.

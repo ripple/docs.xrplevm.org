@@ -21,14 +21,22 @@
     - page: ./interacting-with-cosmos/using-the-api.md
     - page: ./interacting-with-cosmos/address-translation.md
     - page: ./interacting-with-cosmos/using-ibc.md
-# - group: Advanced Guides
-#   expanded: false
-#   items:
-#     - page: ./advanced-guides/using-a-precompile.md
+- group: Advanced Guides
+  expanded: false
+  items:
+    - page: ./advanced-guides/using-xrp-as-wrapped-erc20.md
 - group: Use Oracle Data
   expanded: false
   items:
     - page: ./use-oracle-data/band-protocol.md
+- group: Use Goldsky Indexer
+  expanded: false
+  items:
+    - page: ./use-goldsky-indexer/goldsky-overview.md
+    - page: ./use-goldsky-indexer/setup-indexer.md
+    - page: ./use-goldsky-indexer/query-events.md
+    - page: ./use-goldsky-indexer/best-practices.md
+    - page: ./use-goldsky-indexer/goldsky-mirrors.md
 - group: Resources
   expanded: false
   items:

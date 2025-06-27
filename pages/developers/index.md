@@ -8,70 +8,110 @@ Below is a quick overview of all the available guides and resources in the devel
 
 ## Developing Smart Contracts
 
-1. **[Develop a Smart Contract](./developing-smart-contracts/develop-a-smart-contract.md)**  
+1. **[Develop a Smart Contract](./developing-smart-contracts/develop-a-smart-contract.md)**
    Start with the basics: learn about smart contracts, the benefits of building on XRPL EVM, and how to write Solidity contracts that leverage the XRPL’s speed and low fees.
 
-2. **[Deploy the Smart Contract](./developing-smart-contracts/deploy-the-smart-contract.md)**  
-   Walk through step-by-step instructions for deploying your contract on the XRPL EVM network. Covers both Remix IDE for quick deployment and Hardhat for more advanced workflows.
+2. **[Deploy the Smart Contract](./developing-smart-contracts/deploy-the-smart-contract.md)**
+   Step-by-step deployment guide using Remix or Hardhat.
 
-3. **[Interact with the Smart Contract](./developing-smart-contracts/interact-with-the-smart-contract.md)**  
-   Once your contract is deployed, discover how to call contract functions, query data, and integrate with libraries like `web3.js` or `ethers.js`.
+3. **[Interact with the Smart Contract](./developing-smart-contracts/interact-with-the-smart-contract.md)**
+   Call contract functions and integrate using `web3.js` or `ethers.js`.
 
-4. **[Verify the Smart Contract](./developing-smart-contracts/verify-the-smart-contract.md)**  
-   Learn how to verify your contract’s source code on the XRPL EVM Explorer, enabling transparency and trust for users who interact with your smart contract.
+4. **[Verify the Smart Contract](./developing-smart-contracts/verify-the-smart-contract.md)**
+   Learn how to verify code on the XRPL EVM Explorer.
 
-5. **[Next Steps](./developing-smart-contracts/next-steps.md)**  
-   Wrap up your initial learning by reviewing key concepts. Then dive deeper into advanced topics like cross-chain messaging, token standards, and building full-stack dApps.
+5. **[Next Steps](./developing-smart-contracts/next-steps.md)**
+   Explore advanced topics like token standards, GMP, and full-stack dApps.
 
 ---
 
-## Making a Cross-Chain DApp
+## Interacting with Axelar
 
-1. **[Introduction to Cross-Chain DApps](./making-a-cross-chain-dapp/introduction.md)**  
-   Understand how Axelar’s interoperability layer and the XRPL’s low-cost, high-speed environment open the door for cross-chain applications spanning the EVM and XRPL ecosystems.
+1. **[Introduction to Axelar](./making-a-cross-chain-dapp/introduction.md)**
+   Learn how Axelar powers secure cross-chain communication and opens the door to fully composable dApps between XRPL EVM and other ecosystems.
 
-2. **[Send Tokens Across Chains](./making-a-cross-chain-dapp/send-tokens.md)**  
-   Leverage Axelar’s Interchain Token Service (ITS) for bridging tokens between the XRPL Ledger and XRPL EVM. Learn how to send and receive both XRP and IOU/ERC-20 tokens.
+2. **[Send Tokens Across Chains](./making-a-cross-chain-dapp/send-tokens.md)**
+   Use Axelar's Interchain Token Service (ITS) to bridge tokens to/from XRPL EVM.
 
-3. **[Send Messages Across Chains](./making-a-cross-chain-dapp/send-messages.md)**  
-   Go beyond token transfers. Explore how to call any function on another chain using Axelar’s General Message Passing (GMP)—ideal for advanced cross-chain logic and workflows.
+3. **[Send Messages Across Chains](./making-a-cross-chain-dapp/send-messages.md)**
+   Execute smart contract logic on remote chains using Axelar General Message Passing (GMP).
 
-4. **[Cross-Chain DApps FAQ](./making-a-cross-chain-dapp/faqs.md)**  
-   Get answers to common questions about architecture, latency, liquidity considerations, and the best practices for building reliable multi-chain solutions.
+4. **[Integrate the Squid Widget](./making-a-cross-chain-dapp/swap-with-squid-widget.md)**
+   Add the [Squid Widget](https://docs.squidrouter.com/widget-integration/add-a-widget/widget/getting-started) to enable token swaps from any chain into XRP on XRPL EVM. Perfect for onboarding users directly from Ethereum, Arbitrum, Polygon, etc.
 
 ---
 
 ## Interacting with Cosmos
 
-1. **[Introduction](./interacting-with-cosmos/introduction.md)**  
-   The XRPL EVM is built on the Cosmos SDK, benefiting from its modular structure and native interoperability features. Learn how the Cosmos SDK and EVM work together under the hood.
+1. **[Introduction](./interacting-with-cosmos/introduction.md)**
+   Understand how XRPL EVM leverages the Cosmos SDK for performance and modularity.
 
-2. **[Using IBC](./interacting-with-cosmos/using-ibc.md)**  
-   Explore IBC (Inter-Blockchain Communication), a protocol that securely connects Cosmos-based networks. Discover how the XRPL EVM can connect and transfer assets to other IBC-enabled chains.
+2. **[Using IBC](./interacting-with-cosmos/using-ibc.md)**
+   Transfer assets to and from other Cosmos SDK chains using IBC.
 
-3. **[Using the API](./interacting-with-cosmos/using-the-api.md)**  
-   Query network data via Cosmos endpoints (gRPC, REST, and CometBFT RPC). Interact with governance, staking, and more through straightforward HTTP or gRPC calls.
+3. **[Using the API](./interacting-with-cosmos/using-the-api.md)**
+   Query network data using gRPC, REST, or CometBFT endpoints.
 
-4. **[Address Translation](./interacting-with-cosmos/address-translation.md)**  
-   Understand how the XRPL EVM represents addresses in two formats (Bech32 for Cosmos and `0x` for EVM). Learn to easily translate between them in your apps.
+4. **[Address Translation](./interacting-with-cosmos/address-translation.md)**
+   Convert addresses between Cosmos Bech32 and EVM-style `0x` formats.
+
+5. **[Integrate the Skip Widget](./interacting-with-cosmos/swap-with-skip-widget.md)**
+   Add the [Skip Widget](https://docs.skip.build/go/widget/getting-started) to enable users to swap from Cosmos chains like Osmosis or Injective directly into XRP on XRPL EVM.
+
+---
+
+## Use Oracle Data
+
+1. **[Overview of Oracles](./use-oracle-data/band-protocol.md)**
+   Learn how oracles provide external data feeds to smart contracts.
+
+2. **[Integrate Band Protocol Oracle](./use-oracle-data/band-protocol.md)**
+   Use Band’s oracle contracts to fetch real-time price data on-chain.
+
+3. **[Query Available Price Feeds](./use-oracle-data/band-protocol.md)**
+   Explore available assets (XRP, BTC, ETH, etc.) with secure on-chain access.
+
+---
+
+## Use Goldsky Indexers
+
+1. **[Introduction to Goldsky](./use-goldsky-indexer/goldsky-overview.md)**
+   Goldsky offers real-time data indexing for XRPL EVM, helping you track contract events, logs, and transactions without running your own infrastructure.
+
+2. **[Set Up Your Indexer](./use-goldsky-indexer/setup-indexer.md)**
+   Learn how to create and deploy an indexer for your XRPL EVM smart contracts using [Goldsky Studio](https://goldsky.com/).
+
+3. **[Query Indexed Events](./use-goldsky-indexer/query-events.md)**
+   Use GraphQL to query your data and integrate insights into your frontend.
+
+4. **[Best Practices](./use-goldsky-indexer/best-practices.md)**
+   Learn how to design indexers that are efficient, reliable, and compatible with frequent contract changes or upgrades.
+
+---
+
+## Advanced Guides
+
+1. **[Using XRP as a Wrapped ERC-20](./advanced-guides/using-xrp-as-wrapped-erc20.md)**
+   Discover why you *don’t* need to wrap XRP on XRPL EVM, how to work with the 18-decimal native ERC-20 at  
+   `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`, and how to migrate from wXRP to the canonical token.
 
 ---
 
 ## Developer Resources
 
-1. **[Block Explorers](./resources/block-explorers.md)**  
-   Locate and analyze on-chain data. Compare Devnet and Testnet explorers, and discover how to inspect blocks, transactions, and contracts in real time.
+1. **[Block Explorers](./resources/block-explorers.md)**
+   Track and inspect blocks, transactions, and contracts.
 
-2. **[Public APIs](./resources/public-apis.md)**  
-   Access the XRPL EVM networks (Devnet or Testnet) through various RPC endpoints, REST APIs, and gRPC interfaces—no need to run your own node.
+2. **[Public APIs](./resources/public-apis.md)**
+   Access XRPL EVM via public RPC and REST endpoints.
 
 ---
 
 ## Getting Started & Next Steps
 
-- If you’re new to XRPL EVM, you might want to start by writing a simple Solidity contract, deploying it, and then verifying it. You can then expand your skillset by exploring cross-chain features or diving into the Cosmos SDK.
-- For more advanced developers, check out the **Advanced Guides** and **Interacting with Cosmos** sections for extended interoperability and on-chain logic.  
+* Begin with deploying and verifying your first contract.
+* Dive into Axelar and Cosmos sections to explore cross-chain logic and liquidity flows.
+* Use Goldsky to index and query your contract data efficiently.
+* Join the XRPL EVM developer community on [Discord](https://discord.gg/xrplevm) and [GitHub](https://github.com/xrplevm).
 
-The XRPL EVM community is always growing. Join us on [Discord](https://discord.gg/xrplevm) or [GitHub](https://github.com/xrplevm) to share what you build, ask questions, and stay up to date on new features and improvements.
-
-We’re excited to see what you’ll create on the XRPL EVM. Happy building!
+We're excited to see what you build next on XRPL EVM. 🚀

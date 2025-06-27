@@ -13,7 +13,7 @@
     "@redocly/graphql-docs": "^0.9.0",
     "@redocly/openapi-docs": "^3.8.0",
     "@redocly/portal-plugin-mock-server": "^0.5.0",
-    "@redocly/realm": "^0.120.1",
+    "@redocly/realm": "^0.121.1",
     "@redocly/theme": "^0.52.0"
   },
   "devDependencies": {

@@ -2,22 +2,25 @@
 
 After deploying your smart contract on the **XRPL EVM**, it is essential to verify the contract source code on the **XRPL EVM Explorer**. Verification ensures transparency and allows users to interact with your contract directly through the explorer.
 
-This guide provides step-by-step instructions for verifying a smart contract using **Remix IDE** and **Hardhat**, with a recommended approach for using **Standard JSON Input** for seamless verification.
+This guide provides step-by-step instructions for verifying a smart contract using **Remix IDE**, **Hardhat**, and **Foundry**, with a recommended approach of using **Standard JSON Input** for seamless verification.
 
 ---
 
 ## Step 1: Access the XRPL EVM Explorer
 
 {% tabs %}
-{% tab label="Devnet" %}
-1. Open the **XRPL EVM Devnet Explorer**: [https://explorer.devnet.xrplevm.org](https://explorer.devnet.xrplevm.org).  
-2. Locate your deployed contract by searching for its **contract address** in the search bar.  
-3. Navigate to the **Contract** tab and click **Verify & Publish**.  
+{% tab label="Mainnet" %}
+
+1. Open the **XRPL EVM Mainnet Explorer**:
+   `https://explorer.xrplevm.org`
+2. Search for your deployed contract by **contract address**.
+3. Go to the **Contract** tab and click **Verify & Publish**.
 {% /tab %}
 {% tab label="Testnet" %}
-1. Open the **XRPL EVM Testnet Explorer**: [https://explorer.testnet.xrplevm.org](https://explorer.testnet.xrplevm.org).  
-2. Locate your deployed contract by searching for its **contract address** in the search bar.  
-3. Navigate to the **Contract** tab and click **Verify & Publish**.  
+4. Open the **XRPL EVM Testnet Explorer**:
+   `https://explorer.testnet.xrplevm.org`
+5. Search for your deployed contract by **contract address**.
+6. Go to the **Contract** tab and click **Verify & Publish**.
 {% /tab %}
 {% /tabs %}
 
@@ -25,275 +28,209 @@ This guide provides step-by-step instructions for verifying a smart contract usi
 
 ## Step 2: Select Verification Method
 
-The **XRPL EVM Explorer** supports multiple verification methods. For detailed and error-free verification, it is highly recommended to use **Standard JSON Input** generated from Remix or Hardhat.
+The **XRPL EVM Explorer** supports multiple methods. For the most reliable results, use **Standard JSON Input** exported from Remix, Hardhat, or Foundry.
 
-### Why Use Standard JSON Input?
+**Why Standard JSON Input?**
 
-- Ensures all compiler settings (e.g., optimization, Solidity version) match the deployed contract.  
-- Reduces the chance of mismatches between your source code and the deployed bytecode.
+* Captures all compiler settings (version, optimizer, metadata).
+* Minimizes bytecode mismatches.
 
 ---
 
 ## Step 3: Verification with Remix IDE
 
-### Generate Standard JSON Input in Remix
+### Generate Standard JSON Input
 
-1. Open your contract in **Remix IDE** ([Remix](https://remix.ethereum.org)).  
-2. Compile the contract:  
-   - Go to the **Solidity Compiler** plugin.  
-   - Select the correct **compiler version** used during deployment.  
-   - Enable **Optimizer** if it was used during deployment and configure it to match the deployment settings.  
-   - Click **Compile**.  
-3. Export the compiler details:  
-   - Scroll down to **Compilation Details** and copy **COMPILER INPUT**.  
-   - Create a `.json` file on your local machine and paste the **COMPILER INPUT**.  
+1. Open your contract in **Remix IDE** ([remix.ethereum.org](https://remix.ethereum.org)).
+2. Compile under **Solidity Compiler**:
 
-### Upload JSON Input to XRPL EVM Explorer
+   * Match the **compiler version** and **optimizer settings** from deployment.
+3. Under **Compilation Details**, copy **COMPILER INPUT**.
+4. Save it as `input.json` locally.
 
-1. Return to the **XRPL EVM Explorer**'s **Verify & Publish** page.  
-2. Select **Standard JSON Input** as the verification method.  
-3. Upload the JSON file you generated from Remix.  
-4. Choose the appropriate **License Type** (e.g., MIT, GPL, etc.).  
-5. Click **Verify**.  
+### Upload & Verify
 
-The explorer will process the JSON file and verify your contract. Once verified, the contract source code will be published on the explorer.
+1. In the XRPL EVM Explorer’s **Verify & Publish** page, choose **Standard JSON Input**.
+2. Upload `input.json`.
+3. Select your **License Type**.
+4. Click **Verify**.
 
 ---
 
 ## Step 4: Verification with Hardhat
 
-The XRPL EVM Explorer supports multiple verification methods. Below are two recommended approaches using Hardhat—configured separately for **Devnet** and **Testnet**.
-
----
+Two approaches—**Standard JSON Input** and the **Hardhat Verify Plugin**—each work on Mainnet, and Testnet.
 
 ### A) Standard JSON Input
 
-This method uses the same “compiler input” JSON that Hardhat generates during compilation.
+1. Compile:
 
-1. **Compile your contracts**  
    ```bash
    npx hardhat compile
    ```
-2. **Locate the JSON input**  
-   After a successful compile, you’ll find a file named `standard-input.json` in:
+2. Locate your JSON at:
+
    ```
-   artifacts/solc-input/
+   artifacts/solc-input/standard-input.json
    ```
-3. **Upload to XRPL EVM Explorer**  
-   1. Go to **Verify & Publish** on the Devnet or Testnet Explorer.  
-   2. Select **Standard JSON Input**.  
-   3. Upload your `standard-input.json`.  
-   4. Pick the matching **License Type** (e.g. MIT).  
-   5. Click **Verify**.  
+3. On the **Verify & Publish** page, choose **Standard JSON Input**, upload, pick license, and click **Verify**.
 
 ---
 
 ### B) Hardhat Verify Plugin
 
-Automate verification from your CLI with `@nomicfoundation/hardhat-verify`.
-
-#### 1. Install the plugin
-
-```bash
-npm install --save-dev @nomicfoundation/hardhat-verify
-# or
-yarn add --dev @nomicfoundation/hardhat-verify
-```
-
-#### 2. Update `hardhat.config.ts`
+Automate via CLI. Configuration varies per network:
 
 {% tabs %}
-{% tab label="Devnet" %}
+{% tab label="Mainnet" %}
+
 ```ts
-// ─── Devnet Configuration ───
+// hardhat.config.ts
 import "@nomicfoundation/hardhat-toolbox";
 import "@nomicfoundation/hardhat-verify";
 import * as dotenv from "dotenv";
-import { HardhatUserConfig } from "hardhat/config";
-
 dotenv.config();
 
-const config: HardhatUserConfig = {
+export default {
   solidity: "0.8.24",
   networks: {
-    xrplEVMDevnet: {
-      url: process.env.XRPL_EVM_DEVNET_URL!, // e.g. https://rpc.devnet.xrplevm.org
-      chainId: 1440002,                       // Devnet chain ID
+    xrplEVM: {
+      url: process.env.XRPL_EVM_URL,    // https://rpc.xrplevm.org
+      chainId: 1440000,
       accounts: [process.env.PRIVATE_KEY!],
     },
   },
   etherscan: {
-    apiKey: {
-      xrplEVMDevnet: "devnet-key",           // any non-empty string
-    },
-    customChains: [
-      {
-        network: "xrplEVMDevnet",
-        chainId: 1440002,
-        urls: {
-          apiURL:    "https://explorer.devnet.xrplevm.org/api",
-          browserURL:"https://explorer.devnet.xrplevm.org"
-        }
+    apiKey: { xrplEVM: "mainnet-key" },
+    customChains: [{
+      network: "xrplEVM",
+      chainId: 1440000,
+      urls: {
+        apiURL:    "https://explorer.xrplevm.org/api",
+        browserURL:"https://explorer.xrplevm.org"
       }
-    ]
+    }]
   }
-};
-
-export default config;
+}
 ```
+
 {% /tab %}
 {% tab label="Testnet" %}
+
 ```ts
-// ─── Testnet Configuration ───
+// hardhat.config.ts (Testnet)
 import "@nomicfoundation/hardhat-toolbox";
 import "@nomicfoundation/hardhat-verify";
 import * as dotenv from "dotenv";
-import { HardhatUserConfig } from "hardhat/config";
-
 dotenv.config();
 
-const config: HardhatUserConfig = {
+export default {
   solidity: "0.8.24",
   networks: {
     xrplEVMTestnet: {
-      url: process.env.XRPL_EVM_URL!,        // e.g. https://rpc.testnet.xrplevm.org
-      chainId: 1449000,                       // Testnet chain ID
+      url: process.env.XRPL_EVM_TESTNET_URL, // https://rpc.testnet.xrplevm.org
+      chainId: 1449000,
       accounts: [process.env.PRIVATE_KEY!],
     },
   },
   etherscan: {
-    apiKey: {
-      xrplEVMTestnet: "testnet-key",         // any non-empty string
-    },
-    customChains: [
-      {
-        network: "xrplEVMTestnet",
-        chainId: 1449000,
-        urls: {
-          apiURL:    "https://explorer.testnet.xrplevm.org/api",
-          browserURL:"https://explorer.testnet.xrplevm.org"
-        }
+    apiKey: { xrplEVMTestnet: "testnet-key" },
+    customChains: [{
+      network: "xrplEVMTestnet",
+      chainId: 1449000,
+      urls: {
+        apiURL:    "https://explorer.testnet.xrplevm.org/api",
+        browserURL:"https://explorer.testnet.xrplevm.org"
       }
-    ]
+    }]
   }
-};
-
-export default config;
+}
 ```
+
 {% /tab %}
 {% /tabs %}
 
+#### Verify via CLI
 
-> **Env vars**  
-> ```bash
-> XRPL_EVM_URL=           https://rpc.testnet.xrplevm.org
-> XRPL_EVM_DEVNET_URL=    https://rpc.devnet.xrplevm.org
-> PRIVATE_KEY=            0xYOUR_PRIVATE_KEY
-> ```
+Replace `<ADDRESS>` and `[args]`:
 
-#### 3. Verify via CLI
+```bash
+# Mainnet
+npx hardhat verify --network xrplEVM <ADDRESS> [constructorArg1] …
 
-Use the appropriate `--network` flag:
-
-- **Devnet**  
-  ```bash
-  npx hardhat verify \
-    --network xrplEVMDevnet \
-    <CONTRACT_ADDRESS> \
-    [constructorArg1] [constructorArg2] …
-  ```
-  Explorer: https://explorer.devnet.xrplevm.org
-
-- **Testnet**  
-  ```bash
-  npx hardhat verify \
-    --network xrplEVMTestnet \
-    <CONTRACT_ADDRESS> \
-    [constructorArg1] [constructorArg2] …
-  ```
-  Explorer: https://explorer.testnet.xrplevm.org
-
-> If your contract has no constructor parameters, just omit the args.  
-> Add `--force` to bypass the “already verified” check if needed.
-
-#### 4. Automating in a Script
-
-You can also embed this into your deploy script:
-
-```ts
-// scripts/deploy-and-verify.ts
-import { ethers, run } from "hardhat";
-
-async function main() {
-  const [deployer] = await ethers.getSigners();
-  console.log("Deploying with", deployer.address);
-
-  // 1) Deploy
-  const C = await ethers.getContractFactory("MyContract");
-  const c = await C.deploy(arg1, arg2);
-  await c.waitForDeployment();
-  console.log("✅ Deployed at", c.target);
-
-  // 2) Pause so explorer can index (10–15 s)
-  await new Promise(r => setTimeout(r, 15_000));
-
-  // 3) Verify on Devnet
-  await run("verify:verify", {
-    address: c.target,
-    constructorArguments: [arg1, arg2],
-    network: "xrplEVMDevnet",
-    force: true,
-  });
-  console.log("🔍 Verified on Devnet");
-
-  // — or on Testnet:
-  // await run("verify:verify", {
-  //   address: c.target,
-  //   constructorArguments: [arg1, arg2],
-  //   network: "xrplEVMTestnet",
-  //   force: true,
-  // });
-}
-
-main().catch(err => {
-  console.error(err);
-  process.exitCode = 1;
-});
+# Testnet
+npx hardhat verify --network xrplEVMTestnet <ADDRESS> …
 ```
+
+> If no constructor parameters, omit the args. Use `--force` to reverify.
+
+---
+
+## Step 5: Verification with Foundry
+
+Foundry’s `forge` can both generate Standard JSON and invoke on-chain verification via Etherscan-compatible API.
+
+### A) Export Standard JSON Input
+
+1. Build:
+
+   ```bash
+   forge build
+   ```
+2. Generate JSON input:
+
+   ```bash
+   forge inspect src/HelloWorld.sol:HelloWorld --pretty-json > input.json
+   ```
+3. On the Explorer’s **Verify & Publish**, choose **Standard JSON Input**, upload `input.json`, pick license, and click **Verify**.
+
+---
+
+### B) CLI Verification with `forge verify-contract`
+
+Use your `.env` for RPC, key, and chain ID:
+
+```dotenv
+# .env
+PRIVATE_KEY=0xYOUR_KEY
+CHAIN_ID=1440000           # 1440000=Mainnet, 1449000=Testnet
+RPC_URL=https://rpc.xrplevm.org  # switch URL per network
+```
+
+Run:
+
+```bash
+# Install etherscan support if needed:
+forge install foundry-rs/forge-etherscan
+
+# Then verify:
+forge verify-contract \
+  --chain-id $CHAIN_ID \
+  --constructor-args "Hello, XRPL EVM!" \
+  --etherscan-api-key any-string \
+  <DEPLOYED_ADDRESS> \
+  HelloWorld \
+  $RPC_URL
+```
+
+* Replace `<DEPLOYED_ADDRESS>` and `HelloWorld` with your contract’s name.
+* For Testnet, set `CHAIN_ID` and `RPC_URL` accordingly.
 
 ---
 
 ## Additional Tips
 
-### Matching Compiler Settings
-
-- Ensure the **Solidity compiler version** and **optimizer settings** used during deployment match those used for verification.  
-- Mismatched settings may result in verification failure.
-
-### License Selection
-
-- Select a license that matches your contract’s codebase. Common licenses include:
-  - MIT License  
-  - GNU General Public License (GPL)  
-  - Unlicense (No License)
-
-### Explorer Indexing Delays
-
-- BlockScout-based explorers can take a few seconds to index newly deployed bytecode.  
-- A brief `setTimeout` (10–15 s) or a retry loop usually resolves “no bytecode” or early-failure errors.
-
-### Future-Proofing
-
-- For upcoming cross-chain features (Cosmos IBC, Axelar GMP), design contracts with interoperability in mind.
+* **Compiler Settings**: Match version & optimizer exactly.
+* **License**: Choose MIT, GPL, or Unlicense.
+* **Explorer Indexing**: Wait \~10–15 s or retry on “no bytecode” errors.
+* **Cross-chain Ready**: Plan for Cosmos IBC or Axelar GMP if you need interoperability.
 
 ---
 
-## Why Verify Your Smart Contract?
+## Why Verify?
 
-1. **Transparency:** Verified contracts allow users to view the source code directly on the explorer.  
-2. **Trust:** Builds trust with the community by demonstrating the integrity of your contract.  
-3. **Ease of Use:** Enables users to interact with the contract directly through the explorer’s interface.
+1. **Transparency:** Users can audit your code on-chain.
+2. **Trust:** Builds community confidence.
+3. **Interaction:** Enables Read/Write directly in the explorer UI.
 
----
-
-By following these steps, you can verify your smart contract seamlessly on the XRPL EVM Explorer for both Devnet and Testnet environments. For advanced use cases, extend your contracts with cross-chain capabilities using **Axelar GMP** and **Cosmos IBC**.
+By following these steps—across **Mainnet** and **Testnet**, and with **Remix**, **Hardhat**, or **Foundry**—you’ll have a fully verified contract visible and interactable on the XRPL EVM Explorer.

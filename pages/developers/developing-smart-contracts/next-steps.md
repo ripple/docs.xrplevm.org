@@ -52,166 +52,215 @@ Take your skills to the next level by exploring advanced use cases and emerging 
 
 ## Build a Frontend dApp with XRPL EVM
 
-To complete your understanding of dApp development, create a frontend application that connects to the XRPL EVM. Below is a step-by-step guide to help you start building a **Next.js TypeScript Starter Kit** that integrates Wallet Connect, MetaMask, and XRPL EVM functionality.
+Here’s a quick-start guide for building a **Next.js (App Router) dApp** with the [**new Reown AppKit**](https://docs.reown.com/appkit/next/core/installation), fully configured for both **XRPL EVM Mainnet** and **Testnet** (plus social/email login, analytics, and more). You’ll be up and running in minutes—no manual chain definitions required, just grab the XRPL EVM networks straight from AppKit’s built-in list.
 
-### Setup Instructions
+---
 
-#### 1. Clone the Starter Kit
+## 1. Installation
 
 ```bash
-git clone https://github.com/kenyiu/web3_starter_kit.git
-cd nextjs-dapp-starter
+# npm
+npm install @reown/appkit @reown/appkit-adapter-wagmi wagmi viem @tanstack/react-query
+
+# or Yarn
+yarn add @reown/appkit @reown/appkit-adapter-wagmi wagmi viem @tanstack/react-query
 ```
 
-#### 2. Configure the Environment
+---
 
-Create a `.env.local` file with the following variable:
-
-```plaintext
-NEXT_PUBLIC_PROJECT_ID=<YOUR_WALLETCONNECT_PROJECT_ID>
-```
-
-Replace `<YOUR_WALLETCONNECT_PROJECT_ID>` with your actual WalletConnect project ID from [WalletConnect Cloud](https://cloud.walletconnect.com/).
-
-#### 3. Install Dependencies
+## 2. (Optional) Scaffold with CLI
 
 ```bash
-npm install
+npx @reown/appkit-cli
 ```
 
-#### 4. Add XRPL EVM Network Configuration
+Answer prompts for project name, framework (Next.js), and library (Wagmi/EVM). Then replace the dummy `projectId` in `.env.local` with your real one from Reown Cloud.
 
-Below, we show two tabs for **Devnet** and **Testnet**. Select the appropriate tab for the network you plan to support. In each code block, update the chain ID, RPC URL, and block explorer for your environment.
+---
 
-{% tabs %}
-{% tab label="Devnet" %}
+## 3. Cloud Setup
 
-```typescript
-import { defineChain, type Chain } from "viem";
+1. Visit [https://cloud.reown.com](https://cloud.reown.com)
+2. Create a project → copy its **Project ID**.
+3. In your repo root, add `.env.local`:
 
-export const xrplEvmChainDevnet = defineChain({
-  id: 1440002,
-  name: "XRPL EVM Devnet",
-  nativeCurrency: {
-    name: "XRP",
-    symbol: "XRP",
-    decimals: 18,
-  },
-  rpcUrls: {
-    default: { http: ["https://rpc.devnet.xrplevm.org"] },
-  },
-  blockExplorers: {
-    default: { name: "Blockscout", url: "https://explorer.devnet.xrplevm.org" },
-  },
-} as const satisfies Chain);
+   ```env
+   NEXT_PUBLIC_REOWN_PROJECT_ID=<YOUR_PROJECT_ID>
+   ```
+
+---
+
+## 4. Configure Reown & Wagmi Adapter
+
+Create `src/config/index.tsx`:
+
+```ts
+import { cookieStorage, createStorage } from "@wagmi/core";
+import { WagmiAdapter }              from "@reown/appkit-adapter-wagmi";
+import { xrplEvmTestnet, xrplEvm } from "@reown/appkit/networks";
+
+export const projectId = process.env.NEXT_PUBLIC_REOWN_PROJECT_ID!;
+export const networks  = {
+  testnet:  [xrplEvmTestnet],
+  mainnet:  [xrplEvm],
+};
+
+export const wagmiAdapter = new WagmiAdapter({
+  storage:  createStorage({ storage: cookieStorage }),
+  ssr:      true,
+  projectId,
+  networks: networks.testnet,   // swap to networks.mainnet for Mainnet
+});
+
+export const wagmiConfig = wagmiAdapter.wagmiConfig;
 ```
 
-{% /tab %}
+---
 
-{% tab label="Testnet" %}
+## 5. AppKit Context Provider
 
-```typescript
-import { defineChain, type Chain } from "viem";
+Create `src/context/AppKitProvider.tsx`:
 
-export const xrplEvmChainTestnet = defineChain({
-  id: 1449000,
-  name: "XRPL EVM Testnet",
-  nativeCurrency: {
-    name: "XRP",
-    symbol: "XRP",
-    decimals: 18,
+```tsx
+'use client';
+
+import React, { ReactNode }               from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { createAppKit }                     from "@reown/appkit/react";
+import { cookieToInitialState, WagmiProvider, type Config } from "wagmi";
+import { wagmiAdapter, projectId, networks } from "@/config";
+
+const queryClient = new QueryClient();
+
+const metadata = {
+  name:        "my-xrpl-app",
+  description: "An XRPL EVM dApp",
+  url:         "https://myxrplapp.com",
+  icons:       ["https://myxrplapp.com/favicon.ico"],
+};
+
+export const appKitModal = createAppKit({
+  adapters:       [wagmiAdapter],
+  projectId,
+  networks:       networks.testnet,       // or networks.mainnet
+  defaultNetwork: networks.testnet[0],
+  metadata,
+  features: {
+    analytics:       true,
+    email:           true,
+    socials:         ["google", "github", "discord", "apple"],
+    emailShowWallets:true,
   },
-  rpcUrls: {
-    default: { http: ["https://rpc.testnet.xrplevm.org"] },
-  },
-  blockExplorers: {
-    default: {
-      name: "Blockscout",
-      url: "https://explorer.testnet.xrplevm.org",
-    },
-  },
-} as const satisfies Chain);
+});
+
+export function AppKitProvider({ children, cookies }: { children: ReactNode; cookies: string | null }) {
+  const initialState = cookieToInitialState(wagmiConfig as Config, cookies);
+  return (
+    <WagmiProvider config={wagmiConfig as Config} initialState={initialState}>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    </WagmiProvider>
+  );
+}
 ```
 
-{% /tab %}
-{% /tabs %}
+---
 
-#### 5. Run the Development Server
+## 6. Wrap Your Root Layout
+
+In `app/layout.tsx`:
+
+```tsx
+import './globals.css';
+import { headers }                 from "next/headers";
+import { AppKitProvider }          from "@/context/AppKitProvider";
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const cookieHeader = await headers().get("cookie");
+  return (
+    <html lang="en">
+      <body>
+        <AppKitProvider cookies={cookieHeader}>
+          {children}
+        </AppKitProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+---
+
+## 7. Trigger the Wallet Modal
+
+Anywhere in your Client Components:
+
+```tsx
+export function ConnectButton() {
+  return <appkit-button />;
+}
+```
+
+This web component launches AppKit’s unified wallet/social/email modal.
+
+---
+
+## 8. Use Wagmi Hooks
+
+```tsx
+import { useAccount, useSignMessage, useSendTransaction } from "wagmi";
+
+export function Demo() {
+  const { address } = useAccount();
+  const signMessage    = useSignMessage();
+  const sendTransaction = useSendTransaction();
+
+  return (
+    <div>
+      <p>Connected: {address}</p>
+      <button onClick={() => signMessage.signMessage({ message: "Hello, XRPL EVM!" })}>
+        Sign Message
+      </button>
+      <button
+        onClick={() =>
+          sendTransaction.sendTransaction({
+            to:    "0x1234…",
+            value: BigInt(1e18),
+          })
+        }
+      >
+        Send 1 XRP
+      </button>
+    </div>
+  );
+}
+```
+
+---
+
+## 9. Switching Networks
+
+To switch between Testnet & Mainnet:
+
+1. In `src/config/index.tsx`, change:
+
+   ```ts
+   networks: networks.mainnet,
+   defaultNetwork: networks.mainnet[0],
+   ```
+2. Restart your server (`npm run dev`).
+
+---
+
+## 10. Run & Deploy
 
 ```bash
-npm run dev
+npm run dev    # for localhost; browse http://localhost:3000
+npm run build  # production build
 ```
 
-Visit [http://localhost:3000](http://localhost:3000) to interact with your dApp.
+Deploy on **Vercel**, **Netlify**, or any platform that supports Next.js.
 
 ---
 
-### Example Features
+You’re all set—Reown AppKit’s unified API plus XRPL EVM out of the box! Enjoy building your dApp.
 
-The Starter Kit includes basic functionality to interact with smart contracts and the XRPL EVM. Below are some key features:
-
-#### Connect Wallet
-
-Use Wallet Connect or MetaMask to connect to the XRPL EVM network:
-
-```tsx
-<Button onClick={handleConnect}>Connect Wallet</Button>
-```
-
-#### Sign Messages
-
-Allow users to sign messages programmatically:
-
-```tsx
-<Button onClick={() => signMessage({ message: "Hello, XRPL EVM!" })}>
-  Sign Message
-</Button>
-```
-
-#### Send Transactions
-
-Send transactions with custom amounts:
-
-```tsx
-<Button
-  onClick={() =>
-    sendTransaction({
-      to: "0xRecipientAddress",
-      value: parseEther("10"),
-    })
-  }
->
-  Send 10 XRP
-</Button>
-```
-
----
-
-## Learning Resources
-
-To further refine your skills, explore the following resources:
-
-- **Solidity Documentation**: Comprehensive guide to Solidity ([Read More](https://docs.soliditylang.org/)).
-- **Ethers.js Documentation**: Official guide for Ethers.js library ([Read More](https://docs.ethers.io/v5/)).
-- **Web3.js Documentation**: Learn how to use Web3.js to interact with blockchains ([Read More](https://web3js.readthedocs.io/)).
-- **Remix IDE Documentation**: Guide to using Remix for Solidity development ([Read More](https://remix-ide.readthedocs.io/)).
-- **Hardhat Documentation**: A robust framework for Ethereum smart contract development ([Read More](https://hardhat.org/docs)).
-- **Next.js Documentation**: Learn how to build scalable web applications using Next.js ([Read More](https://nextjs.org/docs)).
-- **WAGMI Documentation**: Integrate blockchain functionality into React applications ([Read More](https://wagmi.sh/react/getting-started)).
-- **Tailwind CSS**: Style your dApp with utility-first CSS ([Read More](https://tailwindcss.com/docs)).
-- **Viem Documentation**: Learn about Viem for seamless on-chain interactions ([Read More](https://viem.sh/docs/getting-started)).
-- **React Documentation**: Build dynamic user interfaces for your dApps ([Read More](https://react.dev/)).
-- **XRPL EVM Documentation**: Explore more about XRPL EVM ([Read More](https://docs.xrplevm.org)).
-
----
-
-## Deployment Options
-
-Once your dApp is ready, deploy it using platforms like:
-
-- **[Vercel](https://vercel.com)** for seamless Next.js hosting.
-- **[Juno](https://juno.build)** for decentralized Web3 deployments.
-
----
-
-With these tools and resources, you're well-equipped to create next-generation decentralized applications on the XRPL EVM. Keep building, innovating, and contributing to the ecosystem!
