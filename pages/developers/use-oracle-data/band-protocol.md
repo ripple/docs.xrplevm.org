@@ -4,13 +4,10 @@
 
 ### Band Oracle Deployment on XRPL EVM Sidechain
 
-| Network | StdReferenceProxy Contract Address                                                                                                                 |
-| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Testnet | [0x8c064bCf7C0DA3B3b090BAbFE8f3323534D84d68](https://explorer.testnet.xrplevm.org/address/0x8c064bCf7C0DA3B3b090BAbFE8f3323534D84d68?tab=contract) |
-
-{% admonition type="info" name="Note" %}
-Mainnet address will be listed when available.
-{% /admonition %}
+| Network | StdReferenceProxy Contract Address                                                                                                                       |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Mainnet | [0x6ec95bC946DcC7425925801F4e262092E0d1f83b](https://explorer-mainnet.aws.peersyst.tech/address/0x6ec95bC946DcC7425925801F4e262092E0d1f83b?tab=contract) |
+| Testnet | [0x8c064bCf7C0DA3B3b090BAbFE8f3323534D84d68](https://explorer.testnet.xrplevm.org/address/0x8c064bCf7C0DA3B3b090BAbFE8f3323534D84d68?tab=contract)       |
 
 ### How to Use Band Oracle in Your Smart Contracts
 
@@ -22,6 +19,10 @@ You can fetch real-time price data from Band’s oracle using the StdReferencePr
 
 The following price feeds are currently supported on XRPL EVM Sidechain:
 
-- XRP
 - BTC
 - ETH
+- RLUSD
+- USDC
+- USDT
+- WBTC
+- XRP
