@@ -86,7 +86,7 @@ await amm.addLiquidity(XRP_WRAPPED, otherToken, ethers.parseUnits("250", 18), mi
 
 ## 6 / Need help?
 
-* **Discord:** [https://discord.gg/xrpl-evm](https://discord.gg/xrpl-evm)
-* **Docs:** [https://xrpl.org/evm](https://xrpl.org/evm)
+* **Discord:** [https://discord.gg/xrplevm](https://discord.gg/xrplevm)
+* **Docs:** [https://docs.xrplevm.org/]([https://xrpl.org/evm](https://docs.xrplevm.org/))
 
 Happy building! 🚀
