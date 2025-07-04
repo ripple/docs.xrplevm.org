@@ -25,7 +25,7 @@ Remix is a web-based development environment for smart contracts, perfect for qu
 **XRPL EVM MetaMask Settings**
 
 - **Network Name**: XRPL EVM
-- **RPC URL**: `https://rpc.testnet.xrplevm.org`
+- **RPC URL**: `https://rpc.xrplevm.org`
 - **Chain ID**: `1440000`
 - **Currency Symbol**: `XRP`
 - **Block Explorer URL**: `https://explorer.xrplevm.org`
