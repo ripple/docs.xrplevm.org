@@ -16,6 +16,10 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
 | Cosmos gRPC       | [https://cosmos-grpc.xrplevm.org](https://cosmos-grpc.xrplevm.org)        |
 | Cosmos API        | [https://cosmos-api.xrplevm.org](https://cosmos-api.xrplevm.org)          |
 
+| Provider/Validator | Public RPC Endpoint URL                                                                  | Private Endpoints? | Ethereum JSON-RPC | Ethereum JSON WS | Tendermint RPC | Cosmos gRPC | Cosmos API |
+| -------------------| -----------------------------------------------------------------------------------------|--------------------|-------------------|------------------|----------------|-------------|------------|
+| **Grove**          | [https://xrplevm.rpc.grove.city/v1/0caa84c4](https://xrplevm.rpc.grove.city/v1/0caa84c4) | ✅                 | ✅                | ❌               | ❌             | ❌          | ❌        |  
+
 {% /tab %}
 
 {% tab label="Testnet" %}
@@ -26,6 +30,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | Provider/Validator              | RPC Endpoint URL                                                                              |
         | ------------------------------- | --------------------------------------------------------------------------------------------- |
         | **Peersyst**                    | [https://rpc.testnet.xrplevm.org](https://rpc.testnet.xrplevm.org)                            |
+        | **Grove**                       | [https://xrpl-evm-testnet.rpc.grove.city/v1/0caa84c4](https://xrpl-evm-testnet.rpc.grove.city/v1/0caa84c4) |
         | **Cumulo**                      | [https://json-rpc.xrpl.cumulo.com.es](https://json-rpc.xrpl.cumulo.com.es)                    |
         | **ITRocket**                    | [https://xrplevm-testnet-evm.itrocket.net](https://xrplevm-testnet-evm.itrocket.net)          |
         | **Mekong Labs**                 | [https://exrpd-testnet-json-rpc.mekonglabs.tech](https://exrpd-testnet-json-rpc.mekonglabs.tech)|
@@ -55,7 +60,6 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | Provider/Validator   | EVM RPC Endpoint URL                                                                                       |
         | ------------------------- | -----------------------------------------------------------------------------------------------------------|
         | **Peersyst**              | [http://cosmos.testnet.xrplevm.org:26657](http://cosmos.testnet.xrplevm.org:26657)                         |
-        | **Grove**                 | [https://xrpl-evm-testnet.rpc.grove.city/v1/0caa84c4](https://xrpl-evm-testnet.rpc.grove.city/v1/0caa84c4) |
         | **Polkachu**              | [https://xrp-testnet-rpc.polkachu.com/](https://xrp-testnet-rpc.polkachu.com/)                |
         | **Cumulo**                | [https://rpc.xrpl.cumulo.com.es](https://rpc.xrpl.cumulo.com.es)                              |
         | **Enigma**                | [https://xrp-rpc.enigma-validator.com/](https://xrp-rpc.enigma-validator.com/)                |
