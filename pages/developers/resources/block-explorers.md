@@ -6,12 +6,15 @@ Block explorers are web-based tools that allow you to search, analyze, and view 
 
 {% tab label="Mainnet" %}
 
-## Testnet Explorers
+## Mainnet Explorers
 
 | Name                | URL                                                                                                  | Type   |
 | ------------------- | -----------------------------------------------------------------------------------------------------| ------ |
 | **Peersyst**        | [https://explorer.xrplevm.org](https://explorer.xrplevm.org)                                         | EVM    |
 | **Peersyst**        | [https://governance.xrplevm.org](https://governance.xrplevm.org)                                     | Cosmos |
+| **Axelar Scan**        | [https://axelarscan.io/gmp/search?destinationChain=xrpl-evm](https://axelarscan.io/gmp/search?destinationChain=xrpl-evm)                 | Crosschain |
+| **Range**        | [https://explorer.range.org/transactions?sc=INTERCHAIN&sn=xrplevm_1440000-1](https://explorer.range.org/transactions?sc=INTERCHAIN&sn=xrplevm_1440000-1)                 | Crosschain |
+| **ITRocket**        | [https://mainnet.itrocket.net/xrplevm](https://mainnet.itrocket.net/xrplevm)                 | Cosmos |
 
 {% /tab %}
 
@@ -23,17 +26,9 @@ Block explorers are web-based tools that allow you to search, analyze, and view 
 | ------------------- | ------------------------------------------------------------------------------------------------------------ | ------ |
 | **Peersyst**        | [https://explorer.testnet.xrplevm.org](https://explorer.testnet.xrplevm.org)                                 | EVM    |
 | **Peersyst**        | [https://governance.testnet.xrplevm.org](https://governance.testnet.xrplevm.org)                             | Cosmos |
+| **Axelar Scan**        | [https://testnet.axelarscan.io/gmp/search?destinationChain=xrpl-evm](https://testnet.axelarscan.io/gmp/search?destinationChain=xrpl-evm)                 | Crosschain |
 | **STAKEME**         | [https://testnet.xrpl.exploreme.pro/](https://testnet.xrpl.exploreme.pro/)                                   | Cosmos |
 | **ITRocket**        | [https://testnet.itrocket.net/xrplevm/staking](https://testnet.itrocket.net/xrplevm/staking)                 | Cosmos |
-| **LuckyStar**       | [https://explorer.luckystar.asia/xrpl-Testnet](https://explorer.luckystar.asia/xrpl-Testnet)                 | Cosmos |
-| **Mekong Labs**     | [https://testnet.mekonglabs.tech/xrpl/staking](https://testnet.mekonglabs.tech/xrpl/staking)                 | Cosmos |
-| **MictoNode**       | [https://explorer.mictonode.com/XRPL-Testnet/staking/](https://explorer.mictonode.com/XRPL-Testnet/staking/) | Cosmos |
-| **UTSA (lesnik)**   | [https://exp.utsa.tech/xrpl-testnet/staking](https://exp.utsa.tech/xrpl-testnet/staking)                     | Cosmos |
-| **XSS**             | [https://explorer.xsslabs.tech/XRPL-EVM](https://explorer.xsslabs.tech/XRPL-EVM)                             | Cosmos |
-| **blockitize**      | [https://explorer.blockitize.com/](https://explorer.blockitize.com/)                                         | Cosmos |
-| **node9x**          | [https://explorer.node9x.com/XRLP](https://explorer.node9x.com/XRPLEVM)                                      | Cosmos |
-| **NodeStake**       | [https://explorer.nodestake.org/xrp-testnet](https://explorer.nodestake.org/xrp-testnet)                     | Cosmos |
-| **Nodes Hub**       | [https://testnet.explorer.nodeshub.online/xrpl](https://testnet.explorer.nodeshub.online/xrpl)               | Cosmos |
 
 {% /tab %}
 {% /tabs %}
