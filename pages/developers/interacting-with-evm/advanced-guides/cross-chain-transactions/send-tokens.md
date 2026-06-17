@@ -49,7 +49,7 @@ import { Contract } from "ethers";
 
 // Instantiate the ITS contract
 const its = new Contract(
-  "0x3b1ca8B18698409fF95e29c506ad7014980F0193", // ITS address in XRPL EVM Testnet
+  "0xB5FB4BE02232B1bBA4dC8f81dc24C26980dE9e3C", // ITS address in XRPL EVM Testnet
   ITS_ABI, // ABI for the ITS contract
   signer,
 );
@@ -139,7 +139,7 @@ const erc20 = new Contract(
 
 // Call the approve method
 await erc20.approve(
-  "0x3b1ca8B18698409fF95e29c506ad7014980F0193", // ITS address in XRPL EVM Testnet
+  "0xB5FB4BE02232B1bBA4dC8f81dc24C26980dE9e3C", // ITS address in XRPL EVM Testnet
   "100000000000000000000", // >= the amount to be transferred
 );
 ```

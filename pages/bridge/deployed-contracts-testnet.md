@@ -16,13 +16,13 @@ Here's the list of deployed and verified contracts on the XRPL EVM Sidechain Tes
 
 | Contract               | Address                                                                                                                               |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| ConstAddressDeployer   | [0x858Bd33dF5BeAabF16Dc0249Acd194564c16BB2d](https://explorer.testnet.xrplevm.org/address/0x858Bd33dF5BeAabF16Dc0249Acd194564c16BB2d) |
-| Create3Deployer        | [0x27A6E2Cf2d37B320EDaF5688ae89f21ef19099A8](https://explorer.testnet.xrplevm.org/address/0x27A6E2Cf2d37B320EDaF5688ae89f21ef19099A8) |
-| AxelarGateway          | [0x27a3daf3b243104E9b0afAe6b56026a416B852C9](https://explorer.testnet.xrplevm.org/address/0x27a3daf3b243104E9b0afAe6b56026a416B852C9) |
-| Operators              | [0x2e1C331cE54863555Ee1638c99eA9154b02bA831](https://explorer.testnet.xrplevm.org/address/0x2e1C331cE54863555Ee1638c99eA9154b02bA831) |
-| AxelarGasService       | [0x2CcdaDdc282D5F22F740398f1992003b525aE0F5](https://explorer.testnet.xrplevm.org/address/0x2CcdaDdc282D5F22F740398f1992003b525aE0F5) |
-| InterchainTokenService | [0x3b1ca8B18698409fF95e29c506ad7014980F0193](https://explorer.testnet.xrplevm.org/address/0x3b1ca8B18698409fF95e29c506ad7014980F0193) |
-| InterchainTokenFactory | [0x0E7620b73a53980f2138B43314fa944AE990d387](https://explorer.testnet.xrplevm.org/address/0x0E7620b73a53980f2138B43314fa944AE990d387) |
+| ConstAddressDeployer   | [0x98B2920D53612483F91F12Ed7754E51b4A77919e](https://explorer.testnet.xrplevm.org/address/0x98B2920D53612483F91F12Ed7754E51b4A77919e) |
+| Create3Deployer        | [0x6513Aedb4D1593BA12e50644401D976aebDc90d8](https://explorer.testnet.xrplevm.org/address/0x6513Aedb4D1593BA12e50644401D976aebDc90d8) |
+| AxelarGateway          | [0xe432150cce91c13a887f7D836923d5597adD8E31](https://explorer.testnet.xrplevm.org/address/0xe432150cce91c13a887f7D836923d5597adD8E31) |
+| Operators              | [0x7F83F5cA2AE4206AbFf8a3C3668e88ce5F11C0B5](https://explorer.testnet.xrplevm.org/address/0x7F83F5cA2AE4206AbFf8a3C3668e88ce5F11C0B5) |
+| AxelarGasService       | [0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6](https://explorer.testnet.xrplevm.org/address/0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6) |
+| InterchainTokenService | [0xB5FB4BE02232B1bBA4dC8f81dc24C26980dE9e3C](https://explorer.testnet.xrplevm.org/address/0xB5FB4BE02232B1bBA4dC8f81dc24C26980dE9e3C) |
+| InterchainTokenFactory | [0x83a93500d23Fbc3e82B410aD07A6a9F7A0670D66](https://explorer.testnet.xrplevm.org/address/0x83a93500d23Fbc3e82B410aD07A6a9F7A0670D66) |
 
 ---
 
