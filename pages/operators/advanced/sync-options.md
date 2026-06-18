@@ -53,8 +53,26 @@ State Sync is an efficient and fast way to bootstrap a new node. It works by rep
 
 1. **Retrieve a Recent Block Height and Hash**:
 
-   - Visit a blockchain explorer to get a recent block height and corresponding hash.
-   - Choose any height/hash in the current bonding period. It is recommended to select a height close to `current height - 1000` to align with the snapshot period.
+   Choose any height/hash within the current bonding period. A height close to `current height - 1000` aligns well with the snapshot period.
+
+   **Option A — automated (recommended).** Point `SNAP_RPC` at a trusted RPC endpoint and let the shell compute both values:
+
+   ```bash
+   SNAP_RPC="https://<trusted-rpc-endpoint>"
+
+   LATEST_HEIGHT=$(curl -s "$SNAP_RPC/block" | jq -r .result.block.header.height)
+   TRUST_HEIGHT=$((LATEST_HEIGHT - 1000))
+   TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$TRUST_HEIGHT" | jq -r .result.block_id.hash)
+
+   echo "trust_height = $TRUST_HEIGHT"
+   echo "trust_hash   = $TRUST_HASH"
+   ```
+
+   **Option B — manual.** Visit a blockchain explorer and read a recent block height and its corresponding block hash directly.
+
+   {% admonition type="warning" name="Use block_id.hash — the FIRST hash, not any hash" %}
+   The trust hash must be the block's **`block_id.hash`** (the `jq` path above), not the header hash or app hash. The `/block` response contains several `"hash"` fields. If you extract it without `jq` on a minimal image, a naive greedy match such as `sed 's/.*"hash":"\([A-F0-9]*\)".*/\1/'` grabs the **last** `"hash"` on the (single-line) JSON — an app/header hash — and the node crash-loops at startup with `expected header's hash X, but got Y`. Without `jq`, extract the first hash explicitly: `grep -oE '"hash":"[A-F0-9]{64}"' | head -1`.
+   {% /admonition %}
 
 2. **Update Configuration**:
 
@@ -68,6 +86,17 @@ State Sync is an efficient and fast way to bootstrap a new node. It works by rep
      trust_period = "168h0m0s"
      ```
    - Ensure you set `rpc_servers` to trusted providers. There must be at least two servers listed, though duplicates are technically allowed.
+
+   If you used **Option A** above, you can apply the computed values in place:
+
+   ```bash
+   CONFIG="$HOME/.exrpd/config/config.toml"
+   sed -i.bak \
+     -e "/^\[statesync\]/,/^\[/ s|^enable = .*|enable = true|" \
+     -e "/^\[statesync\]/,/^\[/ s|^trust_height = .*|trust_height = $TRUST_HEIGHT|" \
+     -e "/^\[statesync\]/,/^\[/ s|^trust_hash = .*|trust_hash = \"$TRUST_HASH\"|" \
+     "$CONFIG"
+   ```
 
 3. **Start the Node**:
 
