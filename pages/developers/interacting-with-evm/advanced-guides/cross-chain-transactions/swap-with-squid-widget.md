@@ -4,9 +4,9 @@ The **Squid Widget** allows your users to seamlessly swap from tokens on any cha
 
 ## Why Use the Squid Widget?
 
-* Frictionless onboarding for users with assets on other chains
-* No need to manually bridge or handle gas tokens
-* Embed and configure in just a few lines of code
+- Frictionless onboarding for users with assets on other chains
+- No need to manually bridge or handle gas tokens
+- Embed and configure in just a few lines of code
 
 ## Integration Guide
 
@@ -26,20 +26,20 @@ The **Squid Widget** allows your users to seamlessly swap from tokens on any cha
 
 ```js
 SquidWidget.init({
-  target: '#squid-widget',
+  target: "#squid-widget",
   config: {
-    integratorId: 'your-app-id',
-    toChainId: 'XRPL_EVM_CHAIN_ID',
-    toToken: 'XRP_CONTRACT_ADDRESS_ON_EVM',
-    fromTokenList: ['ETH', 'USDC', 'MATIC'],
+    integratorId: "your-app-id",
+    toChainId: "XRPL_EVM_CHAIN_ID",
+    toToken: "XRP_CONTRACT_ADDRESS_ON_EVM",
+    fromTokenList: ["ETH", "USDC", "MATIC"],
     enableRouterPriority: true,
-    appearance: 'auto'
-  }
+    appearance: "auto",
+  },
 });
 ```
 
 4. **Resources**:
 
-* Full guide: [Squid Widget Docs](https://docs.squidrouter.com/widget-integration/add-a-widget/widget/getting-started)
+- Full guide: [Squid Widget Docs](https://docs.squidrouter.com/widget-integration/add-a-widget/widget/getting-started)
 
 ---

@@ -9,7 +9,7 @@ labels:
 Wormhole's **Core Contract** lets any smart contract on the XRPL EVM publish arbitrary messages that can be verified and consumed on 40+ connected chains. This guide shows the raw messaging flow in Solidity: publishing a message on the source chain and verifying its **VAA** (Verifiable Action Approval) on the destination chain.
 
 {% admonition type="warning" name="Delivery on Mainnet uses the Executor" %}
-On **XRPL EVM Mainnet** there is no legacy `IWormholeRelayer` deployment, so tutorials built on `sendPayloadToEvm` only work on **Testnet**. For production delivery, publish through the Core Contract and request delivery through the [Executor framework](https://wormhole.com/docs/protocol/infrastructure/relayers/executor-framework/) — the [Wormhole TypeScript SDK](https://wormhole.com/docs/products/messaging/get-started/) manages Executor quoting and execution for you.
+On **XRPL EVM Mainnet** there is no legacy `IWormholeRelayer` deployment, so tutorials built on `sendPayloadToEvm` only work on **Testnet**. For production delivery, publish through the Core Contract and request delivery through the [Executor framework](https://wormhole.com/docs/protocol/infrastructure/relayers/executor-framework/). The [Wormhole TypeScript SDK](https://wormhole.com/docs/products/messaging/get-started/) manages Executor quoting and execution for you.
 {% /admonition %}
 
 ## Prerequisites
@@ -22,7 +22,7 @@ On **XRPL EVM Mainnet** there is no legacy `IWormholeRelayer` deployment, so tut
 forge install wormhole-foundation/wormhole-solidity-sdk@v1.0.0
 ```
 
-Use tagged releases of the SDK — the `main` branch is a nightly build.
+Use tagged releases of the SDK; the `main` branch is a nightly build.
 
 ## Publish a Message (Source Chain)
 
@@ -110,10 +110,10 @@ Wormhole verifies Guardian signatures, but your contract is responsible for appl
 
 ## Message Delivery
 
-Publishing a message does not deliver it — someone must submit the VAA to the destination chain. Your options on XRPL EVM:
+Publishing a message does not deliver it: someone must submit the VAA to the destination chain. Your options on XRPL EVM:
 
 - **Executor (recommended)**: Request permissionless execution with an off-chain quote; independent relay providers deliver the VAA. The [Wormhole SDK](https://wormhole.com/docs/products/messaging/get-started/) handles quotes and execution requests. The Executor contract on XRPL EVM is listed in [Deployed Contracts](./deployed-contracts.md).
-- **Self-relay**: Fetch the signed VAA from the WormholeScan API and submit it to your destination contract yourself — useful for testing and for flows where your backend already submits transactions.
+- **Self-relay**: Fetch the signed VAA from the WormholeScan API and submit it to your destination contract yourself. This is useful for testing and for flows where your backend already submits transactions.
 - **Legacy Wormhole Relayer (Testnet only)**: `IWormholeRelayer.sendPayloadToEvm` works on XRPL EVM **Testnet** (`0x362fca37E45fe1096b42021b543f462D49a5C8df`) and is the model used by the official [cross-chain contracts tutorial](https://wormhole.com/docs/products/messaging/tutorials/cross-chain-contracts/). Do not ship Mainnet integrations against it.
 
 ## Next Steps

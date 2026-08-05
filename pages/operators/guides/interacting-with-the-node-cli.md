@@ -255,7 +255,7 @@ This section provides a practical cheat sheet for everyday tasks when working wi
 
 ---
 
-### 🔐 Key Management
+### Key Management
 
 **Add New Wallet**
 
@@ -307,7 +307,7 @@ exrpd keys import $WALLET wallet.backup
 
 ---
 
-### 💰 Tokens and Staking
+### Tokens and Staking
 
 **Withdraw All Rewards**
 
@@ -353,7 +353,7 @@ exrpd tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 1000000uxrp --gas auto --
 
 ---
 
-### 🏛️ Validator Operations
+### Validator Operations
 
 **Create a New Validator**
 
@@ -368,7 +368,7 @@ exrpd tx staking create-validator \
 --pubkey $(exrpd tendermint show-validator) \
 --moniker "$MONIKER" \
 --identity "" \
---details "I love blockchain ❤️" \
+--details "I love blockchain" \
 --chain-id <chain-id> \
 --gas auto --gas-adjustment 1.5 \
 -y
@@ -381,7 +381,7 @@ exrpd tx staking edit-validator \
 --commission-rate 0.1 \
 --new-moniker "$MONIKER" \
 --identity "" \
---details "I love blockchain ❤️" \
+--details "I love blockchain" \
 --from $WALLET \
 --chain-id <chain-id> \
 --gas auto --gas-adjustment 1.5 \
@@ -432,7 +432,7 @@ exrpd query staking validators -oj --limit=2000 | jq '.validators[] | select(.st
 
 ---
 
-### 🗳️ Governance
+### Governance
 
 **Submit a Text Proposal**
 
@@ -465,10 +465,9 @@ exrpd query gov proposal 1
 exrpd tx gov vote 1 yes --from $WALLET --chain-id <chain-id> --gas auto --gas-adjustment 1.5
 ```
 
-
 ## Learn more
 
 If you want to learn more about `exrpd`, you can explore the following resources:
 
-- [Upgrading your node](./upgrading-your-node.md) — learn how to upgrade your node to the latest version.
-- [Node configuration options](../advanced/node-configuration-options.md) — discover configuration options for fine-tuning your node’s.
+- [Upgrading your node](./upgrading-your-node.md): learn how to upgrade your node to the latest version.
+- [Node configuration options](../advanced/node-configuration-options.md): discover configuration options for fine tuning your node.

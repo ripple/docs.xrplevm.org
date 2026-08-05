@@ -6,7 +6,7 @@ labels:
 
 # Transfer Tokens with Wormhole
 
-Wormhole's **Wrapped Token Transfers (WTT)** — formerly known as the Token Bridge — moves ERC-20 tokens between the XRPL EVM and 30+ connected chains using a lock-and-mint model:
+Wormhole's **Wrapped Token Transfers (WTT)**, formerly known as the Token Bridge, moves ERC-20 tokens between the XRPL EVM and 30+ connected chains using a lock-and-mint model:
 
 1. **Attestation (one-time)**: The token's metadata (symbol, name, decimals) is registered on the destination chain.
 2. **Lock**: Tokens are locked in custody by the WTT contract on the source chain.
@@ -17,7 +17,7 @@ WTT is available on XRPL EVM **Mainnet and Testnet**. Contract addresses are lis
 
 ## Option 1: Portal Bridge (UI)
 
-For manual transfers, use [Portal Bridge](https://portalbridge.com) — the official user-facing app built on Wormhole. Connect your wallet, pick the source and destination chains, and follow the prompts.
+For manual transfers, use [Portal Bridge](https://portalbridge.com), the official user-facing app built on Wormhole. Connect your wallet, pick the source and destination chains, and follow the prompts.
 
 ## Option 2: TypeScript SDK (Programmatic)
 

@@ -188,21 +188,21 @@ await its.interchainTransfer(
 
 ---
 
-Below is a high-level overview of how to convert an **XRPL classic address** (e.g., `r...`) to an **EVM‐style hex address** (`0x...`) and vice versa. These transformations are **mathematically reversible**, so you can go back and forth safely as long as you do not lose or alter the 20‐byte hash.
+Below is a high-level overview of how to convert an **XRPL classic address** (e.g., `r...`) to an **EVM-style hex address** (`0x...`) and vice versa. These transformations are **mathematically reversible**, so you can go back and forth safely as long as you do not lose or alter the 20-byte hash.
 
 ---
 
 ### Converting rAddress → EVM (20-byte) Hex
 
 1. **Base58 Decode**  
-   The classic XRP Ledger address (an "rAddress") is a Base58Check‐style encoding. To decode:
+   The classic XRP Ledger address (an "rAddress") is a Base58Check-style encoding. To decode:
 
    - Remove and check the **type prefix** (typically `0x00` for a normal address).
-   - Remove and verify the **4‐byte checksum** (from the end).
+   - Remove and verify the **4-byte checksum** (from the end).
    - The remaining 20 bytes are the **AccountID**.
 
 2. **Hex Encode**  
-   Once you have the 20‐byte `AccountID`, convert those bytes to a 40‐character hexadecimal string.
+   Once you have the 20-byte `AccountID`, convert those bytes to a 40-character hexadecimal string.
 
 3. **Prepend `0x`** (optional)  
    In EVM contexts, an address typically includes a `0x` prefix to indicate it’s a hex string.
@@ -218,7 +218,7 @@ const accountIDBytes = decodeAccountID(rAddress); // returns a 20-byte Buffer
 const evmAddress = `0x${accountIDBytes.toString("hex")}`;
 ```
 
-At this point, `evmAddress` is the EVM‐style address derived from the original XRPL classic address.
+At this point, `evmAddress` is the EVM-style address derived from the original XRPL classic address.
 
 ---
 
@@ -227,22 +227,22 @@ At this point, `evmAddress` is the EVM‐style address derived from the original
 1. **Strip `0x`** (if present)  
    If the address starts with `0x`, remove it, leaving just the hex string.
 
-2. **Convert Hex → 20‐Byte Buffer**  
+2. **Convert Hex → 20-Byte Buffer**  
    This is your **AccountID** on XRPL.
 
 3. **Add XRPL Address **Prefix** (`0x00`)**  
-   Classic XRP Ledger addresses use a **1‐byte** prefix `0x00`.
+   Classic XRP Ledger addresses use a **1-byte** prefix `0x00`.
 
-4. **Compute a 4‐Byte Checksum**
+4. **Compute a 4-Byte Checksum**
 
-   - Perform SHA‐256 on the **prefix + 20-byte AccountID**.
-   - Perform SHA‐256 again on the result.
-   - Take the first 4 bytes of that second SHA‐256 as the checksum.
+   - Perform SHA-256 on the **prefix + 20-byte AccountID**.
+   - Perform SHA-256 again on the result.
+   - Take the first 4 bytes of that second SHA-256 as the checksum.
 
 5. **Concatenate**  
-   `(Prefix + 20 bytes of AccountID + 4‐byte checksum)`
+   `(Prefix + 20 bytes of AccountID + 4-byte checksum)`
 
-6. **Base58‐Encode** using the XRPL alphabet  
+6. **Base58-Encode** using the XRPL alphabet  
    The specific alphabet is:
 
    ```
@@ -250,7 +250,7 @@ At this point, `evmAddress` is the EVM‐style address derived from the original
    ```
 
 7. **Result**  
-   The result is a valid **`rAddress`** that starts with `r` and is typically 25–35 characters long (including its internal checksum).
+   The result is a valid **`rAddress`** that starts with `r` and is typically 25 to 35 characters long (including its internal checksum).
 
 **Example using `xrpl.js`:**
 

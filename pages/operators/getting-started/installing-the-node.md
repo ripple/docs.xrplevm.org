@@ -14,11 +14,11 @@ If you specifically need full historical replay from block 0, use [Sync from Gen
 
 ## Network reference
 
-| Network | Chain ID | Current Version | Genesis |
-| ------- | -------- | --------------- | ------- |
-| Mainnet | `xrplevm_1440000-1` | `v10.1.0` | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/mainnet/genesis.json) |
-| Testnet | `xrplevm_1449000-1` | `v10.1.0` | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json) |
-| Devnet | `xrplevm_1449900-1` | `v9.0.3` | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/devnet/genesis.json) |
+| Network | Chain ID            | Current Version | Genesis                                                                                            |
+| ------- | ------------------- | --------------- | -------------------------------------------------------------------------------------------------- |
+| Mainnet | `xrplevm_1440000-1` | `v10.1.0`       | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/mainnet/genesis.json) |
+| Testnet | `xrplevm_1449000-1` | `v10.1.0`       | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json) |
+| Devnet  | `xrplevm_1449900-1` | `v9.0.3`        | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/devnet/genesis.json)  |
 
 ## Recommended flow (snapshot-first)
 
@@ -102,6 +102,7 @@ If this node is an active validator signer, do not re-run `exrpd init` on an exi
 {% tabs %}
 
 {% tab label="Mainnet" %}
+
 ```bash
 exrpd config set client chain-id xrplevm_1440000-1
 exrpd init <moniker> --chain-id xrplevm_1440000-1
@@ -109,9 +110,11 @@ wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/n
 PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/mainnet/peers.txt | sort -R | head -n 10 | paste -sd, -)
 sed -i.bak -e "s/^seeds *=.*/seeds = \"${PEERS}\"/" ~/.exrpd/config/config.toml
 ```
+
 {% /tab %}
 
 {% tab label="Testnet" %}
+
 ```bash
 exrpd config set client chain-id xrplevm_1449000-1
 exrpd init <moniker> --chain-id xrplevm_1449000-1
@@ -119,9 +122,11 @@ wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/n
 PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/testnet/peers.txt | sort -R | head -n 10 | paste -sd, -)
 sed -i.bak -e "s/^seeds *=.*/seeds = \"${PEERS}\"/" ~/.exrpd/config/config.toml
 ```
+
 {% /tab %}
 
 {% tab label="Devnet" %}
+
 ```bash
 exrpd config set client chain-id xrplevm_1449900-1
 exrpd init <moniker> --chain-id xrplevm_1449900-1
@@ -129,6 +134,7 @@ wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/n
 PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/devnet/peers.txt | sort -R | head -n 10 | paste -sd, -)
 sed -i.bak -e "s/^seeds *=.*/seeds = \"${PEERS}\"/" ~/.exrpd/config/config.toml
 ```
+
 {% /tab %}
 
 {% /tabs %}
@@ -348,4 +354,3 @@ For signer nodes, avoid `exrpd unsafe-reset-all`, snapshot overwrite on active s
 - [Join the XRPL EVM](./join-the-xrplevm.md)
 - [Sync from Genesis](./sync-from-genesis.md)
 - [Sync options](../advanced/sync-options.md)
-

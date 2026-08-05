@@ -19,7 +19,7 @@ The following Wormhole contracts are deployed on the **XRPL EVM Sidechain**. Alw
 | Guardian Governance           | `0x574B7864119C9223A9870Ea614dC91A8EE09E512` |
 
 {% admonition type="warning" name="No legacy Wormhole Relayer on Mainnet" %}
-The legacy `IWormholeRelayer` ("Standard Relayer") contract is **not deployed on XRPL EVM Mainnet**. Integrations that follow older Wormhole tutorials built on `sendPayloadToEvm` will not work on Mainnet — use the Core Contract together with the **Executor** framework instead. See [Send Cross-Chain Messages](./send-messages.md).
+The legacy `IWormholeRelayer` ("Standard Relayer") contract is **not deployed on XRPL EVM Mainnet**. Integrations that follow older Wormhole tutorials built on `sendPayloadToEvm` will not work on Mainnet. Use the Core Contract together with the **Executor** framework instead. See [Send Cross-Chain Messages](./send-messages.md).
 {% /admonition %}
 
 {% /tab %}
@@ -46,7 +46,7 @@ The legacy `IWormholeRelayer` above exists **only on Testnet**. It is useful for
 | ---------------------- | ----------------- | -------------- | ------------ |
 | XRPL EVM Mainnet       | `57`              | `XRPLEVM`      | `1440000`    |
 | XRPL EVM Testnet       | `57`              | `XRPLEVM`      | `1449000`    |
-| XRPL Mainnet / Testnet | `66`              | `Xrpl`         | —            |
+| XRPL Mainnet / Testnet | `66`              | `Xrpl`         | N/A          |
 
 ## Related References
 

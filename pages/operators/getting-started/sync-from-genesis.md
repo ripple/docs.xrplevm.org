@@ -11,6 +11,7 @@ When syncing from genesis, you must start from the network genesis binary and up
 {% tabs %}
 
 {% tab label="Mainnet" %}
+
 | Upgrade Name | Height    | Binary Version |
 | ------------ | --------- | -------------- |
 | Genesis      | `0`       | `v7.0.0`       |
@@ -21,6 +22,7 @@ When syncing from genesis, you must start from the network genesis binary and up
 {% /tab %}
 
 {% tab label="Testnet" %}
+
 | Upgrade Name | Height    | Binary Version |
 | ------------ | --------- | -------------- |
 | Genesis      | `0`       | `v6.0.0`       |
@@ -28,13 +30,14 @@ When syncing from genesis, you must start from the network genesis binary and up
 | v8           | `1485600` | `v8.0.0`       |
 | v9           | `3827000` | `v9.0.3`       |
 | v10          | `5601606` | `v10.0.1`      |
-{% /tab %}
+| {% /tab %}   |
 
 {% tab label="Devnet" %}
+
 | Upgrade Name | Height | Binary Version |
 | ------------ | ------ | -------------- |
 | Genesis      | `0`    | `v9.0.3`       |
-{% /tab %}
+| {% /tab %}   |
 
 {% /tabs %}
 

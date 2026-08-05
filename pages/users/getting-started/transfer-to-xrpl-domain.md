@@ -1,12 +1,13 @@
 # Transfer to .xrpl Domain
 
-Send XRP to human-readable .xrpl domain names instead of long wallet addresses! The XRPL EVM Transfer tool makes it easy to send XRP using names like **alice.xrpl** instead of complex addresses like `0x1234...abcd`.
+Sending XRP no longer requires copying long wallet addresses. With **.xrpl domains** you can transfer funds to human readable names like **alice.xrpl**, and the XRPL EVM Transfer tool resolves them to the correct address for you.
 
 ## What are .xrpl Domains?
 
 .xrpl domains are human-readable names that resolve to XRPL EVM wallet addresses, similar to how website domains work. Instead of asking someone for their full wallet address, you can simply ask for their .xrpl domain name.
 
 **Benefits:**
+
 - **Easy to remember:** `alice.xrpl` is much easier than `0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb4`
 - **Fewer errors:** No more copy-paste mistakes or typos
 - **Professional:** Share a clean, branded domain name
@@ -25,7 +26,7 @@ The easiest way to send XRP to a .xrpl domain is using the official transfer too
 1. **Visit the Transfer Tool**  
    Go to [ens.xrplevm.org](https://ens.xrplevm.org)
 
-2. **Connect MetaMask**  
+2. **Connect MetaMask**
    - Click **Connect Wallet** in the top right corner
    - Select **MetaMask** from the wallet options
    - Approve the connection request in MetaMask
@@ -61,12 +62,12 @@ The easiest way to send XRP to a .xrpl domain is using the official transfer too
    - Amount of XRP to send
    - Network (should be XRPL EVM Sidechain)
 
-2. **Confirm in MetaMask**  
+2. **Confirm in MetaMask**
    - MetaMask will pop up asking you to confirm the transaction
    - Review the gas fee and total amount
    - Click **Confirm** to send the transaction
 
-3. **Wait for Confirmation**  
+3. **Wait for Confirmation**
    - The transaction usually completes in a few seconds
    - You'll see a success message with a transaction ID
    - Click the transaction ID to view details on the block explorer
@@ -82,16 +83,16 @@ Want to receive transfers using your own .xrpl domain? You can register one on t
 1. **Visit ZNS**  
    Go to [zns.bio](https://zns.bio/search?tab=smart&domain=yourname&chain=1440000)
 
-2. **Search for Your Domain**  
+2. **Search for Your Domain**
    - Enter your desired name (e.g., `alice`)
    - The system will show if `alice.xrpl` is available
 
-3. **Purchase the Domain**  
+3. **Purchase the Domain**
    - Connect your wallet
    - Pay the registration fee in XRP
    - Set your domain as your **primary domain** for reverse lookups
 
-4. **Start Receiving Transfers**  
+4. **Start Receiving Transfers**
    - Share your .xrpl domain with friends and services
    - Receive XRP using your easy-to-remember name
 
@@ -125,4 +126,4 @@ If you encounter any issues or have questions:
 - **Transfer Tool:** [ens.xrplevm.org](https://ens.xrplevm.org)
 - **Register Domains:** [zns.bio](https://zns.bio/search?tab=smart&domain=yourname&chain=1440000)
 
-Happy transferring! 🚀
+Happy transferring!

@@ -6,7 +6,7 @@ labels:
 status: not_enabled
 ---
 
-# Bridge 🌉
+# Bridge
 
 The XRPL EVM Sidechain operates as a **standalone Layer 1 blockchain** with XRP as the gas token. For applications that require cross-chain functionality, several bridge options are available to connect with other blockchain networks.
 
@@ -32,12 +32,11 @@ As a Cosmos SDK-based blockchain, the XRPL EVM Sidechain natively supports Inter
 
 [Cosmos SDK Foundation](../developers/interacting-with-cosmos/introduction.md)
 
-
 ### Wormhole
 
 [Wormhole](https://wormhole.com/), one of the leading cross-chain interoperability protocols, is **live on the XRPL EVM Sidechain**. It enables cross-chain messaging, wrapped and native token transfers, and multichain token issuance, supporting use cases across DeFi, institutional onchain finance, and real-world assets (RWAs).
 
-[Wormhole on XRPL EVM](./wormhole/index.md) — overview, deployed contracts, and developer guides.
+[Wormhole on XRPL EVM](./wormhole/index.md): overview, deployed contracts, and developer guides.
 
 [Ripple Expands Multichain Interoperability Infrastructure with Wormhole Integration](https://wormhole.com/blog/ripple-expands-multichain-interoperability-infrastructure-with-wormhole)
 
@@ -61,5 +60,3 @@ For developers interested in adding cross-chain functionality to their applicati
 - [Squid Widget](../developers/interacting-with-evm/advanced-guides/cross-chain-transactions/swap-with-squid-widget.md): Add cross-chain swaps from EVM chains to your app.
 - [Axelar Deployed Contracts Mainnet](deployed-contracts-mainnet.md): Reference implementations for various bridge integrations.
 - [Axelar Deployed Contracts Testnet](deployed-contracts-testnet.md): Reference implementations for various bridge integrations.
-
-

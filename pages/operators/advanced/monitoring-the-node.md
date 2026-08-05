@@ -17,7 +17,7 @@ To enable Prometheus metrics collection for your XRPL EVM sidechain node, you ne
 
 ```yaml
 #######################################################
-###       Instrumentation Configuration Options     ###
+### Instrumentation Configuration Options     ###
 #######################################################
 [instrumentation]
 

@@ -2,7 +2,7 @@
 
 Deploying a smart contract on the **XRPL EVM** can be accomplished using many different tools; in this guide, we’ll focus on three of the most popular: **Remix IDE**, **Hardhat**, and **Foundry**. Remix IDE provides a web-based sandbox for rapid prototyping and interactive testing; Hardhat offers a full-featured framework with advanced testing, scripting, and plugin support; and Foundry delivers a blazing-fast, CLI-driven workflow for building, testing, and deploying at scale.
 
-This guide will walk you through end-to-end setups for all three methods—covering wallet configuration, network setup, contract authoring, testing, deployment, and on-chain verification—so you can choose the workflow that best fits your project.
+This guide will walk you through end-to-end setups for all three methods, covering wallet configuration, network setup, contract authoring, testing, deployment, and on-chain verification, so you can choose the workflow that best fits your project.
 
 {% partial file="/snippets/_evm-compatibility-notice.md" /%}
 
@@ -157,7 +157,7 @@ module.exports = {
 ```
 
 Ensure your chain ID is set to `1440000` (if you use scripts that explicitly reference it).  
- {% /tab %}
+{% /tab %}
 {% tab label="Testnet" %}
 Create a file named `.env` with the **XRPL EVM Testnet** details:
 
@@ -184,7 +184,7 @@ module.exports = {
 ```
 
 Ensure your chain ID is set to `1449000` (if you use scripts that explicitly reference it).  
- {% /tab %}
+{% /tab %}
 {% /tabs %}
 
 > **Warning**: Never share your private key publicly. Use environment variables to manage sensitive information.
@@ -321,7 +321,6 @@ Define your RPC endpoints in `foundry.toml` and use a `.env` for secrets.
 
 ```toml
 # foundry.toml
-
 # Default Solidity version
 solc_version = "0.8.24"
 

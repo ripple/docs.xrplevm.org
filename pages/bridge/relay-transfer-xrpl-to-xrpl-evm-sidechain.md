@@ -11,7 +11,7 @@ status: not_enabled
 This guide shows how to relay a transfer message manually from XRPL to the XRPL EVM Sidechain.
 
 {% admonition type="warning" name="Devnet-amplifier example values" %}
-The commands in this guide use the **Axelar devnet-amplifier** environment (contract addresses, `--chain-id devnet-amplifier`, and the `xrpl-evm-sidechain` chain name). On Axelar **mainnet** and **testnet** the chain names are `xrpl` and `xrpl-evm`, and contract addresses differ — always resolve the current values from the [axelar-contract-deployments](https://github.com/axelarnetwork/axelar-contract-deployments/tree/main/axelar-chains-config/info) config for your target network, or track transfers on [Axelarscan](https://axelarscan.io/) where relaying is handled automatically.
+The commands in this guide use the **Axelar devnet-amplifier** environment (contract addresses, `--chain-id devnet-amplifier`, and the `xrpl-evm-sidechain` chain name). On Axelar **mainnet** and **testnet** the chain names are `xrpl` and `xrpl-evm`, and contract addresses differ. Always resolve the current values from the [axelar-contract-deployments](https://github.com/axelarnetwork/axelar-contract-deployments/tree/main/axelar-chains-config/info) config for your target network, or track transfers on [Axelarscan](https://axelarscan.io/) where relaying is handled automatically.
 {% /admonition %}
 
 1. Send a `verify_messages` transaction
@@ -161,13 +161,13 @@ const wallet = new Wallet("YOUR_PRIVATE_KEY", provider);
 const appContract = new Contract(
   "0x48CF6E93C4C1b014F719Db2aeF049AA86A255fE2",
   IAxelarExecutable.abi,
-  wallet
+  wallet,
 );
 const tx = await appContract.execute(
   "COMMAND_ID",
   "axelarnet",
   "TRANSLATED_SOURCE_ADDRESS",
-  `CALCULATED_PAYLOAD`
+  `CALCULATED_PAYLOAD`,
 );
 await tx.wait();
 ```

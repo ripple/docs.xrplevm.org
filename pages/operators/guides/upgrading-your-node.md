@@ -156,7 +156,6 @@ sudo systemctl stop exrpd
 pgrep -fa exrpd
 
 # replace /usr/local/bin/exrpd with target binary
-
 sudo systemctl start exrpd
 sudo journalctl -u exrpd -f
 ```
@@ -238,8 +237,10 @@ cp ~/.exrpd/data/priv_validator_state.json ~/.exrpd/priv_validator_state.json
 ```
 
 4. Restore state:
-  - Recommended: restore from a compatible snapshot provider (for example PolkaChu, Cumulo, or XRPL EVM snapshot S3).
-  - Alternative (resource-heavy): `exrpd rollback`
+
+- Recommended: restore from a compatible snapshot provider (for example PolkaChu, Cumulo, or XRPL EVM snapshot S3).
+- Alternative (resource-heavy): `exrpd rollback`
+
 5. Apply required config changes announced with the hotfix.
 
 If governance requires an EVM chain-id update, set it in `app.toml` under `[evm]`:

@@ -4,9 +4,9 @@ The **Skip Widget** enables token swaps from Cosmos chains (like Osmosis, Inject
 
 ## Why Use the Skip Widget?
 
-* Tap into Cosmos-native liquidity
-* Supports swaps via IBC directly into XRPL EVM
-* Simple UI for fast user onboarding
+- Tap into Cosmos-native liquidity
+- Supports swaps via IBC directly into XRPL EVM
+- Simple UI for fast user onboarding
 
 ## Integration Steps
 
@@ -19,7 +19,7 @@ npm install @skip-router/widget-react
 2. **Embed in your React App**:
 
 ```tsx
-import { SwapWidget } from '@skip-router/widget-react';
+import { SwapWidget } from "@skip-router/widget-react";
 
 function App() {
   return (
@@ -34,6 +34,6 @@ function App() {
 
 3. **Resources**:
 
-* Full docs: [Skip Widget Docs](https://docs.skip.build/go/widget/getting-started)
+- Full docs: [Skip Widget Docs](https://docs.skip.build/go/widget/getting-started)
 
 ---

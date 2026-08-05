@@ -8,7 +8,7 @@ labels:
 
 [Wormhole](https://wormhole.com/) is a decentralized interoperability platform that connects the **XRPL EVM Sidechain** with more than 40 blockchain networks, including Ethereum, Solana, Base, Arbitrum, and the wider EVM ecosystem. Wormhole is **live on XRPL EVM**, giving EVM developers cross-chain messaging, token transfers, and multichain token issuance out of the box.
 
-Because the XRPL EVM is a fully EVM-compatible chain, every Wormhole EVM integration path — Solidity contracts, the TypeScript SDK, and the Connect widget — works on XRPL EVM the same way it does on any other EVM network.
+Because the XRPL EVM is a fully EVM-compatible chain, every Wormhole EVM integration path (Solidity contracts, the TypeScript SDK, and the Connect widget) works on XRPL EVM the same way it does on any other EVM network.
 
 ## How Wormhole Works
 
@@ -28,22 +28,22 @@ Read more in the [Wormhole architecture documentation](https://wormhole.com/docs
 | EVM chain ID      | `1440000` (Mainnet) / `1449000` (Testnet) |
 
 {% admonition type="info" name="Wormhole chain IDs are not EVM chain IDs" %}
-Wormhole assigns its own chain IDs to every connected network. When calling Wormhole contracts or the SDK, use the Wormhole chain ID `57` for XRPL EVM — not the EVM chain ID (`1440000`/`1449000`) you use in MetaMask or JSON-RPC calls. See the full [Wormhole chain ID reference](https://wormhole.com/docs/products/reference/chain-ids/).
+Wormhole assigns its own chain IDs to every connected network. When calling Wormhole contracts or the SDK, use the Wormhole chain ID `57` for XRPL EVM, not the EVM chain ID (`1440000`/`1449000`) you use in MetaMask or JSON-RPC calls. See the full [Wormhole chain ID reference](https://wormhole.com/docs/products/reference/chain-ids/).
 {% /admonition %}
 
 ### Supported Products
 
 | Product                                                         | Mainnet | Testnet | Use it for                                             |
 | --------------------------------------------------------------- | ------- | ------- | ------------------------------------------------------ |
-| [Messaging (Core Contract)](./send-messages.md)                 | ✅      | ✅      | Arbitrary cross-chain messages between smart contracts |
-| [Wrapped Token Transfers (WTT)](./transfer-tokens.md)           | ✅      | ✅      | Bridging existing ERC-20 tokens (lock-and-mint)        |
-| [Native Token Transfers (NTT)](./native-token-transfers.md)     | ✅      | ✅      | Multichain-native tokens without wrapped assets        |
-| [Connect widget](./connect-widget.md)                           | ✅      | ❌      | Drop-in bridging UI for your dApp                      |
-| [Queries](https://wormhole.com/docs/products/queries/overview/) | ✅      | ✅      | Guardian-attested on-chain data reads (`eth_call`)     |
+| [Messaging (Core Contract)](./send-messages.md)                 | Yes     | Yes     | Arbitrary cross-chain messages between smart contracts |
+| [Wrapped Token Transfers (WTT)](./transfer-tokens.md)           | Yes     | Yes     | Bridging existing ERC-20 tokens (lock-and-mint)        |
+| [Native Token Transfers (NTT)](./native-token-transfers.md)     | Yes     | Yes     | Multichain-native tokens without wrapped assets        |
+| [Connect widget](./connect-widget.md)                           | Yes     | No      | Drop-in bridging UI for your dApp                      |
+| [Queries](https://wormhole.com/docs/products/queries/overview/) | Yes     | Yes     | Guardian-attested on-chain data reads (`eth_call`)     |
 
 ### XRP Ledger (XRPL) Support
 
-Wormhole has [announced integration with the XRP Ledger mainnet](https://wormhole.com/blog/ripple-expands-multichain-interoperability-infrastructure-with-wormhole) (Wormhole chain ID `66`), covering XRP, Issued Assets (IOUs), and Multi-Purpose Tokens (MPTs). As of this writing, the XRPL (non-EVM) route is still rolling out and is not yet covered by the Wormhole product documentation — for live XRPL ↔ XRPL EVM transfers today, use the [Axelar bridge](../interchain-transfer.md).
+Wormhole has [announced integration with the XRP Ledger mainnet](https://wormhole.com/blog/ripple-expands-multichain-interoperability-infrastructure-with-wormhole) (Wormhole chain ID `66`), covering XRP, Issued Assets (IOUs), and Multi-Purpose Tokens (MPTs). As of this writing, the XRPL (non-EVM) route is still rolling out and is not yet covered by the Wormhole product documentation. For live transfers between XRPL and XRPL EVM today, use the [Axelar bridge](../interchain-transfer.md).
 
 ## Developer Guides
 
