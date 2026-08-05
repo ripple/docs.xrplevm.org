@@ -72,7 +72,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
 | Ethereum JSON WS  | [https://ws.testnet.xrplevm.org]( https://ws.testnet.xrplevm.org)                   |
 | Tendermint RPC    | [https://cosmos-rpc.testnet.xrplevm.org](https://cosmos-rpc.testnet.xrplevm.org)    |
 | Cosmos gRPC       | cosmos-grpc.testnet.xrplevm.org:443                                                 |
-| Cosmos API        | [http://cosmos-api.testnet.xrplevm.org](http://cosmos-api.testnet.xrplevm.org)      |
+| Cosmos API        | [https://cosmos-api.testnet.xrplevm.org](https://cosmos-api.testnet.xrplevm.org)      |
 
 ## Additional Endpoints
 

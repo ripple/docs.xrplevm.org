@@ -17,7 +17,7 @@ Nodes also expose other endpoints, such as the CometBFT P2P endpoint, or the [Pr
 Below is an example of querying the gRPC server for governance proposals on **Mainnet**:
 
 ```bash
-grpcurl -plaintext cosmos.xrplevm.org:9090 cosmos.gov.v1.Query/Proposals
+grpcurl cosmos-grpc.xrplevm.org:443 cosmos.gov.v1.Query/Proposals
 ```
 
 <details>
@@ -56,7 +56,7 @@ The full gRPC server specification is available at [buf.build/cosmos/cosmos-sdk]
 Example REST API query for governance proposals on **Mainnet**:
 
 ```bash
-curl -X GET "http://cosmos.xrplevm.org:1317/cosmos/gov/v1/proposals" -H "accept: application/json"
+curl -X GET "https://cosmos-api.xrplevm.org/cosmos/gov/v1/proposals" -H "accept: application/json"
 ```
 
 <details>
@@ -87,7 +87,7 @@ curl -X GET "http://cosmos.xrplevm.org:1317/cosmos/gov/v1/proposals" -H "accept:
 </details>
 
 Learn more about the Cosmos REST server in the [Cosmos SDK REST Server documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest#rest-server).  
-Access the full REST API specification at [cosmos.xrplevm.org:1317](http://cosmos.xrplevm.org:1317).
+Access the full REST API specification at [cosmos-api.xrplevm.org](https://cosmos-api.xrplevm.org).
 
 ---
 
@@ -96,7 +96,7 @@ Access the full REST API specification at [cosmos.xrplevm.org:1317](http://cosmo
 Example CometBFT RPC query for governance proposals on **Mainnet**:
 
 ```bash
-curl -X GET 'http://cosmos.xrplevm.org:26657/abci_query?path="/cosmos.gov.v1.Query/Proposals"' -H "accept: application/json"
+curl -X GET 'https://cosmos-rpc.xrplevm.org/abci_query?path="/cosmos.gov.v1.Query/Proposals"' -H "accept: application/json"
 ```
 
 <details>
@@ -125,7 +125,7 @@ curl -X GET 'http://cosmos.xrplevm.org:26657/abci_query?path="/cosmos.gov.v1.Que
 </details>
 
 Explore the [Cosmos CometBFT RPC documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest#cometbft-rpc) for more details.  
-Access the CometBFT RPC interface at [cosmos.xrplevm.org:26657](http://cosmos.xrplevm.org:26657).
+Access the CometBFT RPC interface at [cosmos-rpc.xrplevm.org](https://cosmos-rpc.xrplevm.org).
 {% /tab %}
 
 {% tab label="Testnet" %}
@@ -135,7 +135,7 @@ Access the CometBFT RPC interface at [cosmos.xrplevm.org:26657](http://cosmos.xr
 Below is an example of querying the gRPC server for governance proposals on **Testnet**:
 
 ```bash
-grpcurl -plaintext cosmos.testnet.xrplevm.org:9090 cosmos.gov.v1.Query/Proposals
+grpcurl cosmos-grpc.testnet.xrplevm.org:443 cosmos.gov.v1.Query/Proposals
 ```
 
 <details>
@@ -174,7 +174,7 @@ The full gRPC server specification is available at [buf.build/cosmos/cosmos-sdk]
 Example REST API query for governance proposals on **Testnet**:
 
 ```bash
-curl -X GET "http://cosmos.testnet.xrplevm.org:1317/cosmos/gov/v1/proposals" -H "accept: application/json"
+curl -X GET "https://cosmos-api.testnet.xrplevm.org/cosmos/gov/v1/proposals" -H "accept: application/json"
 ```
 
 <details>
@@ -205,7 +205,7 @@ curl -X GET "http://cosmos.testnet.xrplevm.org:1317/cosmos/gov/v1/proposals" -H 
 </details>
 
 Learn more about the Cosmos REST server in the [Cosmos SDK REST Server documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest#rest-server).  
-Access the full REST API specification at [cosmos.testnet.xrplevm.org:1317](http://cosmos.testnet.xrplevm.org:1317).
+Access the full REST API specification at [cosmos-api.testnet.xrplevm.org](https://cosmos-api.testnet.xrplevm.org).
 
 ---
 
@@ -214,7 +214,7 @@ Access the full REST API specification at [cosmos.testnet.xrplevm.org:1317](http
 Example CometBFT RPC query for governance proposals on **Testnet**:
 
 ```bash
-curl -X GET 'http://cosmos.testnet.xrplevm.org:26657/abci_query?path="/cosmos.gov.v1.Query/Proposals"' -H "accept: application/json"
+curl -X GET 'https://cosmos-rpc.testnet.xrplevm.org/abci_query?path="/cosmos.gov.v1.Query/Proposals"' -H "accept: application/json"
 ```
 
 <details>
@@ -243,7 +243,7 @@ curl -X GET 'http://cosmos.testnet.xrplevm.org:26657/abci_query?path="/cosmos.go
 </details>
 
 Explore the [Cosmos CometBFT RPC documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest#cometbft-rpc) for more details.  
-Access the CometBFT RPC interface at [cosmos.testnet.xrplevm.org:26657](http://cosmos.testnet.xrplevm.org:26657).
+Access the CometBFT RPC interface at [cosmos-rpc.testnet.xrplevm.org](https://cosmos-rpc.testnet.xrplevm.org).
 {% /tab %}
 {% /tabs %}
 

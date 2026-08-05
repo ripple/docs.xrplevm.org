@@ -4,8 +4,8 @@ The XRPL EVM ecosystem consists of multiple networks, each serving different sta
 
 | Name    | Chain ID         | Current Version | Genesis                                                                                            | Peers                                                                                         |
 | ------- | ---------------- | --------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| Mainnet | `xrplevm_1440000-1` | v10.0.2          | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/mainnet/genesis.json) | [Peers](https://raw.githubusercontent.com/xrplevm/networks/main/mainnet/peers.txt)            |
-| Testnet | `xrplevm_1449000-1` | v10.0.1          | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json) | [Peers](https://raw.githubusercontent.com/xrplevm/networks/main/testnet/peers.txt)            |
+| Mainnet | `xrplevm_1440000-1` | v10.1.0          | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/mainnet/genesis.json) | [Peers](https://raw.githubusercontent.com/xrplevm/networks/main/mainnet/peers.txt)            |
+| Testnet | `xrplevm_1449000-1` | v10.1.0          | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json) | [Peers](https://raw.githubusercontent.com/xrplevm/networks/main/testnet/peers.txt)            |
 | Devnet | `xrplevm_1449900-1` | v9.0.3          | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/devnet/genesis.json) | [Peers](https://raw.githubusercontent.com/xrplevm/networks/main/devnet/peers.txt)            |
 
 

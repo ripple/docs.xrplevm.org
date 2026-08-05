@@ -21,3 +21,16 @@ Axelar is one cross-chain communication protocol that facilitates interaction be
 Beyond token transfers, Axelar supports General Message Passing (GMP), a feature that enables direct function calls on other connected chains. This functionality expands the possibilities for dApps by allowing them to trigger complex workflows and interactions across chains. For more details, visit the [Send Messages page](./send-messages.md).
 
 For an in-depth understanding of Axelar's capabilities, explore their [official documentation](https://docs.axelar.dev/).
+
+### Example: Wormhole
+
+Wormhole is a decentralized interoperability platform live on the XRPL EVM, connecting it with more than 40 networks including Ethereum, Solana, Base, and Sui. Its Guardian network attests to messages emitted on a source chain, producing portable proofs (VAAs) that any destination chain can verify.
+
+For EVM developers, Wormhole offers several integration paths on XRPL EVM:
+
+- **[Cross-chain messaging](../../../../bridge/wormhole/send-messages.md)**: Publish and verify arbitrary messages from Solidity via the Wormhole Core Contract.
+- **[Wrapped Token Transfers](../../../../bridge/wormhole/transfer-tokens.md)**: Bridge ERC-20 tokens programmatically with the TypeScript SDK or through the Portal Bridge UI.
+- **[Native Token Transfers (NTT)](../../../../bridge/wormhole/native-token-transfers.md)**: Issue multichain-native tokens while retaining full contract ownership.
+- **[Connect widget](../../../../bridge/wormhole/connect-widget.md)**: Drop a complete bridging UI into your React dApp.
+
+Start with the [Wormhole section](../../../../bridge/wormhole/index.md) for contract addresses and chain IDs, or explore the [official Wormhole documentation](https://wormhole.com/docs/).

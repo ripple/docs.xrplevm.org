@@ -16,8 +16,8 @@ If you specifically need full historical replay from block 0, use [Sync from Gen
 
 | Network | Chain ID | Current Version | Genesis |
 | ------- | -------- | --------------- | ------- |
-| Mainnet | `xrplevm_1440000-1` | `v10.0.2` | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/mainnet/genesis.json) |
-| Testnet | `xrplevm_1449000-1` | `v10.0.1` | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json) |
+| Mainnet | `xrplevm_1440000-1` | `v10.1.0` | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/mainnet/genesis.json) |
+| Testnet | `xrplevm_1449000-1` | `v10.1.0` | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json) |
 | Devnet | `xrplevm_1449900-1` | `v9.0.3` | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/devnet/genesis.json) |
 
 ## Recommended flow (snapshot-first)
@@ -56,8 +56,8 @@ exrpd version
 
 Set `<target-tag>` from [Networks](../resources/networks.md) for your network:
 
-- Mainnet: `v10.0.2`
-- Testnet: `v10.0.1`
+- Mainnet: `v10.1.0`
+- Testnet: `v10.1.0`
 - Devnet: `v9.0.3`
 
 ### Method B: Build from source
@@ -326,7 +326,7 @@ docker run -d \
 docker logs -f xrplevm-node
 ```
 
-Use the exact `<target-tag>` from [Networks](../resources/networks.md) (for example, Mainnet `v10.0.2`).
+Use the exact `<target-tag>` from [Networks](../resources/networks.md) (for example, Mainnet `v10.1.0`).
 
 ## Validation
 

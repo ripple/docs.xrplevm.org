@@ -55,7 +55,7 @@ Integrate Band Protocol's oracle contracts to fetch real-time price data on-chai
   Add social login functionality to your dApp using Reown AppKit (formerly WalletConnect). Enable users to connect with Google, GitHub, Discord, and other social providers for a seamless onboarding experience.
 
 #### Cross-Chain Transactions
-Build applications that span multiple blockchains using Axelar's powerful cross-chain infrastructure:
+Build applications that span multiple blockchains using Axelar's and Wormhole's cross-chain infrastructure:
 
 1. **[Introduction to Cross-Chain Transactions](./interacting-with-evm/advanced-guides/cross-chain-transactions/introduction.md)**
    Learn the fundamentals of cross-chain development, available bridge options, and when to use different solutions for connecting XRPL EVM with other blockchain ecosystems.
@@ -66,10 +66,16 @@ Build applications that span multiple blockchains using Axelar's powerful cross-
 3. **[Send Tokens (Axelar ITS)](./interacting-with-evm/advanced-guides/cross-chain-transactions/send-tokens.md)**
    Implement cross-chain token transfers using Axelar's Interchain Token Service (ITS). Move assets seamlessly between XRPL EVM and other supported networks like Ethereum, Polygon, Avalanche, and more.
 
-4. **[Swap with Squid Widget](./interacting-with-evm/advanced-guides/cross-chain-transactions/swap-with-squid-widget.md)**
+4. **[Send Messages (Wormhole)](../bridge/wormhole/send-messages.md)**
+   Publish and receive arbitrary cross-chain messages from Solidity with the Wormhole Core Contract, connecting XRPL EVM to 40+ networks including Solana and Sui.
+
+5. **[Transfer Tokens (Wormhole)](../bridge/wormhole/transfer-tokens.md)**
+   Bridge ERC-20 tokens programmatically with the Wormhole TypeScript SDK, deploy multichain-native tokens with [NTT](../bridge/wormhole/native-token-transfers.md), or embed the [Connect widget](../bridge/wormhole/connect-widget.md) for a drop-in bridging UI.
+
+6. **[Swap with Squid Widget](./interacting-with-evm/advanced-guides/cross-chain-transactions/swap-with-squid-widget.md)**
    Integrate the Squid Widget to enable users to swap tokens from any supported chain directly into XRP on XRPL EVM. Perfect for onboarding users from Ethereum, Arbitrum, Polygon, and 70+ other chains.
 
-5. **[Cross-Chain FAQs](./interacting-with-evm/advanced-guides/cross-chain-transactions/faqs.md)**
+7. **[Cross-Chain FAQs](./interacting-with-evm/advanced-guides/cross-chain-transactions/faqs.md)**
    Common questions, troubleshooting tips, and best practices for cross-chain development on XRPL EVM.
 
 ---

@@ -1,5 +1,14 @@
 - page: index.md
 - page: ibc-protocol.md
+- group: Wormhole
+  page: wormhole/index.md
+  expanded: false
+  items:
+    - page: wormhole/deployed-contracts.md
+    - page: wormhole/send-messages.md
+    - page: wormhole/transfer-tokens.md
+    - page: wormhole/native-token-transfers.md
+    - page: wormhole/connect-widget.md
 - group: Axelar GMP
   page: general-message-passing.md
   expanded: false

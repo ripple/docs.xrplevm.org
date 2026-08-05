@@ -49,13 +49,7 @@ The XRPL EVM Sidechain currently maintains **active IBC connections** with sever
 
 ### Mainnet Channels
 
-| Destination  | From XRPL EVM (Source → Dest) | To XRPL EVM (Dest → Source) |
-| ------------ | ----------------------------- | --------------------------- |
-| Cosmos Hub   | `channel-2`                   | `channel-1377`              |
-| Elys Network | `channel-1`                   | `channel-27`                |
-| Injective    | `channel-0`                   | `channel-436`               |
-| Osmosis      | `channel-3`                   | `channel-104325`            |
-| Noble        | `channel-4`                   | `channel-152`               |
+{% partial file="/snippets/_ibc-channels-mainnet.md" /%}
 
 📖 Mainnet IBC JSON configs: [Cosmos Chain Registry](https://github.com/cosmos/chain-registry/tree/master/_IBC)
 
@@ -63,11 +57,6 @@ The XRPL EVM Sidechain currently maintains **active IBC connections** with sever
 
 ### Testnet Channels
 
-| Destination                | From XRPL EVM (Source → Dest) | To XRPL EVM (Dest → Source) |
-| -------------------------- | ----------------------------- | --------------------------- |
-| CosmosHub Provider Testnet | `channel-1`                   | `channel-374`               |
-| Osmosis Testnet            | `channel-2`                   | `channel-10361`             |
-| Elys Network Testnet       | `channel-3`                   | `channel-10`                |
-| Injective Testnet          | `channel-4`                   | `channel-77038`             |
+{% partial file="/snippets/_ibc-channels-testnet.md" /%}
 
 📖 Testnet IBC JSON configs: [Cosmos Chain Registry (testnets)](https://github.com/cosmos/chain-registry/tree/master/testnets/_IBC)

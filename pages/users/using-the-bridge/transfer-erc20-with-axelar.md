@@ -1,6 +1,6 @@
 ---
-html: interchain-transfer-evm-sidechain-avalanche.html
-blurb: Axelar interchain transfer to Avalanche Fuji.
+html: transfer-erc20-with-axelar.html
+blurb: Transfer ERC-20 tokens between XRPL and the XRPL EVM Sidechain with Axelar.
 labels:
   - Interoperability
 status: not_enabled

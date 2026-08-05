@@ -33,9 +33,12 @@ As a Cosmos SDK-based blockchain, the XRPL EVM Sidechain natively supports Inter
 [Cosmos SDK Foundation](../developers/interacting-with-cosmos/introduction.md)
 
 
-### Wormhole Integration
+### Wormhole
 
-Wormhole, one of the leading cross-chain interoperability protocols, is integrating with the XRPL EVM Sidechain. This integration will enable cross-chain messaging, asset transfers and multichain issuances of tokens which will support additional use cases across DeFi, institutional onchain finance, and real-world assets (RWAs).
+[Wormhole](https://wormhole.com/), one of the leading cross-chain interoperability protocols, is **live on the XRPL EVM Sidechain**. It enables cross-chain messaging, wrapped and native token transfers, and multichain token issuance, supporting use cases across DeFi, institutional onchain finance, and real-world assets (RWAs).
+
+[Wormhole on XRPL EVM](./wormhole/index.md) — overview, deployed contracts, and developer guides.
+
 [Ripple Expands Multichain Interoperability Infrastructure with Wormhole Integration](https://wormhole.com/blog/ripple-expands-multichain-interoperability-infrastructure-with-wormhole)
 
 ### Other Bridge Options
@@ -48,6 +51,10 @@ For developers interested in adding cross-chain functionality to their applicati
 
 - [Axelar ITS](../developers/interacting-with-evm/advanced-guides/cross-chain-transactions/send-tokens.md): Use bridge services to move tokens between XRPL EVM Sidechain and other networks.
 - [Axelar GMP](../developers/interacting-with-evm/advanced-guides/cross-chain-transactions/send-messages.md): Understand message passing between different blockchains.
+- [Wormhole Messaging](./wormhole/send-messages.md): Send cross-chain messages from Solidity with the Wormhole Core Contract.
+- [Wormhole Token Transfers](./wormhole/transfer-tokens.md): Bridge ERC-20 tokens with the Wormhole TypeScript SDK or Portal Bridge.
+- [Wormhole NTT](./wormhole/native-token-transfers.md): Deploy multichain-native tokens with the Native Token Transfers framework.
+- [Wormhole Connect](./wormhole/connect-widget.md): Add a drop-in bridging UI to your dApp.
 - [Cosmos IBC](../developers/interacting-with-cosmos/using-ibc.md): Technical reference for IBC implementation and available channels.
 - [Sending XRP Through IBC](../users/sending-through-ibc.md): User guide for IBC transfers using Keplr wallet.
 - [Skip Widget](../developers/interacting-with-cosmos/advanced-guides/cross-chain-transactions/swap-with-skip-widget.md): Add cross-chain swaps from Cosmos chains to your app.
