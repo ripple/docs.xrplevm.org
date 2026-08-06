@@ -9,7 +9,7 @@ labels:
 Wormhole's **Core Contract** lets any smart contract on the XRPL EVM publish arbitrary messages that can be verified and consumed on 40+ connected chains. This guide shows the raw messaging flow in Solidity: publishing a message on the source chain and verifying its **VAA** (Verifiable Action Approval) on the destination chain.
 
 {% admonition type="warning" name="Delivery on Mainnet uses the Executor" %}
-On **XRPL EVM Mainnet** there is no legacy `IWormholeRelayer` deployment, so tutorials built on `sendPayloadToEvm` only work on **Testnet**. For production delivery, publish through the Core Contract and request delivery through the [Executor framework](https://wormhole.com/docs/protocol/infrastructure/relayers/executor-framework/). The [Wormhole TypeScript SDK](https://wormhole.com/docs/products/messaging/get-started/) manages Executor quoting and execution for you.
+On **XRPL EVM Mainnet** the legacy `IWormholeRelayer` is not part of the official deployment and no delivery provider services it, so tutorials built on `sendPayloadToEvm` only work on **Testnet**. For production delivery, publish through the Core Contract and request delivery through the [Executor framework](https://wormhole.com/docs/protocol/infrastructure/relayers/executor-framework/). The [Wormhole TypeScript SDK](https://wormhole.com/docs/products/messaging/get-started/) manages Executor quoting and execution for you.
 {% /admonition %}
 
 ## Prerequisites

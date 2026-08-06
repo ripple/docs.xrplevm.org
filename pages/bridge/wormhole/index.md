@@ -49,6 +49,6 @@ Wormhole has [announced integration with the XRP Ledger mainnet](https://wormhol
 
 - [Deployed Contracts](./deployed-contracts.md): Wormhole contract addresses on XRPL EVM Mainnet and Testnet.
 - [Send Cross-Chain Messages](./send-messages.md): Publish and receive messages from Solidity with the Core Contract.
-- [Transfer Tokens](./transfer-tokens.md): Bridge ERC-20 tokens with the TypeScript SDK or Portal Bridge.
+- [Transfer Tokens](./transfer-tokens.md): Bridge ERC-20 tokens with the TypeScript SDK or Portal Bridge, including the [tokens live on XRPL EVM today](./transfer-tokens.md#tokens-available-on-xrpl-evm) (XRP, RLUSD, USDC.e, WETH).
 - [Native Token Transfers](./native-token-transfers.md): Deploy a multichain-native token with the NTT framework.
 - [Connect Widget](./connect-widget.md): Embed a bridging UI in your React app.
