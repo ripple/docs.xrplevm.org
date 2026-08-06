@@ -92,8 +92,11 @@ import { getSigner, getTokenDecimals } from "./helper";
   const source = await getSigner(sendChain);
   const destination = await getSigner(rcvChain);
 
-  // Transfer native XRP (or pass an ERC-20 address instead of "native")
-  const tokenId = Wormhole.tokenId("XRPLEVM", "native");
+  // Pass the address of the ERC20 token you want to bridge
+  const tokenId = Wormhole.tokenId(
+    "XRPLEVM",
+    "0xINSERT_YOUR_ERC20_TOKEN_ADDRESS",
+  );
   const amt = "1";
 
   const decimals = await getTokenDecimals(wh, tokenId, sendChain);
@@ -131,6 +134,10 @@ npx tsx transfer.ts
 ```
 
 This is a **manual** transfer: your script initiates the transfer on XRPL EVM, waits for the Guardian attestation, and completes it on the destination chain with the destination signer. For development, switch `"Mainnet"` to `"Testnet"` and fund your account from the [faucet](../../users/faucet.md).
+
+{% admonition type="warning" name="Native XRP is not supported by WTT" %}
+The WTT contract on XRPL EVM has no native token wrapping configured (its `WETH()` slot is unset), so `Wormhole.tokenId("XRPLEVM", "native")` transfers revert on-chain. Always pass an **ERC20 token address**. To bridge XRP itself, use the [Axelar bridge](../interchain-transfer.md) or swap into an ERC20 first.
+{% /admonition %}
 
 {% admonition type="info" name="First transfer of a token" %}
 A token must be **attested** on the destination chain once before it can be transferred there. If your token has never been bridged to the target chain, follow the [attestation guide](https://wormhole.com/docs/products/token-transfers/wrapped-token-transfers/guides/attest-tokens/) first.

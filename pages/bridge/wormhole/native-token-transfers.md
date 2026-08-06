@@ -67,6 +67,10 @@ ntt add-chain Ethereum --latest --mode burning --token INSERT_YOUR_TOKEN_ADDRESS
 
 For hub-and-spoke, deploy the hub chain with `--mode locking` and the spokes with `--mode burning`.
 
+{% admonition type="info" name="Simulation warning on XRPL EVM" %}
+On XRPL EVM the deployment simulation may fail with an `OwnableUnauthorizedAccount` trace and the CLI will warn that "the token contract is compiled against a different EVM version", asking whether to proceed without simulation. Answering yes completes the on-chain deployment successfully; the subsequent `ntt status` check confirms the configuration.
+{% /admonition %}
+
 ### 4. Grant Mint Authority
 
 On burn-and-mint chains, your token must expose `mint(address,uint256)` and `burn(uint256)` (see the [`INttToken` interface](https://wormhole.com/docs/products/token-transfers/native-token-transfers/guides/deploy-to-evm/)), and the NttManager needs minting rights:
