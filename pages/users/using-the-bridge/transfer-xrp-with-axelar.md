@@ -61,7 +61,7 @@ Choose one of the following XRPL wallets:
     ![UsingTheBridge](../images/SwapApproveXRPLWallet.png)
 
 5.  **View Your Assets on the XRPL EVM**
-    - Add the [XRPL EVM](../getting-started/connect-to-the-xrpl-evm.md#adding-xrpl-evm-to-metamask) network to MetaMask if you haven’t already.
+    - Add the [XRPL EVM](../getting-started/connect-to-the-xrpl-evm.md#adding-xrpl-evm-sidechain-to-metamask) network to MetaMask if you haven’t already.
     - Once the transaction completes, your XRP (or other assets) will be visible in your XRPL EVM wallet.
 
 {% /tab %}
@@ -116,7 +116,7 @@ Choose one of the following XRPL wallets:
     ![UsingTheBridge](../images/SwapApproveXRPLWallet.png)
 
 5.  **View Your Assets on the XRPL EVM Testnet**
-    - Add the [XRPL EVM Testnet network](../getting-started/connect-to-the-xrpl-evm.md#adding-xrpl-evm-to-metamask) to MetaMask if you haven’t already.
+    - Add the [XRPL EVM Testnet network](../getting-started/connect-to-the-xrpl-evm.md#adding-xrpl-evm-sidechain-to-metamask) to MetaMask if you haven’t already.
     - Once the transaction completes, your XRP (or other assets) will be visible in your XRPL EVM Testnet wallet.
 
 {% /tab %}

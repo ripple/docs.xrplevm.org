@@ -6,11 +6,11 @@ labels:
 
 # Transfer Tokens with Wormhole
 
-Wormhole's **Wrapped Token Transfers (WTT)**, formerly known as the Token Bridge, moves ERC-20 tokens between the XRPL EVM and 30+ connected chains using a lock-and-mint model:
+Wormhole's **Wrapped Token Transfers (WTT)**, formerly known as the Token Bridge, moves ERC-20 tokens between the XRPL EVM and the 30+ chains where WTT is deployed, using a lock-and-mint model:
 
-1. **Attestation (one-time)**: The token's metadata (symbol, name, decimals) is registered on the destination chain.
+1. **Token registration (one-time)**: The token's metadata (symbol, name, decimals) is attested and registered on the destination chain.
 2. **Lock**: Tokens are locked in custody by the WTT contract on the source chain.
-3. **Attest**: The Guardian network emits a signed VAA for the transfer.
+3. **Observe and sign**: The Guardian network emits a signed VAA for the transfer.
 4. **Mint / Release**: The VAA is verified on the destination chain, minting wrapped tokens (or releasing native ones on the way back). Wrapped tokens are backed 1:1.
 
 WTT is available on XRPL EVM **Mainnet and Testnet**. Contract addresses are listed in [Deployed Contracts](./deployed-contracts.md).
@@ -138,7 +138,7 @@ npx tsx transfer.ts
 This is a **manual** transfer: your script initiates the transfer on XRPL EVM, waits for the Guardian attestation, and completes it on the destination chain with the destination signer. For development, switch `"Mainnet"` to `"Testnet"` and fund your account from the [faucet](../../users/faucet.md).
 
 {% admonition type="warning" name="Do not use the native token ID for XRP" %}
-The WTT contract on XRPL EVM has no native token wrapping configured (its `WETH()` slot is unset), so `Wormhole.tokenId("XRPLEVM", "native")` transfers revert on-chain. Always pass an **ERC20 token address**. XRP itself is bridgeable this way: it is natively exposed as an [ERC20 at the sentinel address](../../developers/interacting-with-evm/advanced-guides/using-xrp-as-wrapped-erc20.md) `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`, which is also how the Connect widget and Portal Bridge route XRP.
+The WTT contract on XRPL EVM has no native token wrapping configured (its `WETH()` slot is unset), so `Wormhole.tokenId("XRPLEVM", "native")` transfers revert on-chain. Always pass an **ERC20 token address**. XRP itself is bridgeable this way: it is natively exposed as an [ERC20 at the sentinel address](../../developers/interacting-with-evm/advanced-guides/using-xrp-as-wrapped-erc20.md) `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`, which is also how the Connect widget and Portal Bridge route XRP. Mind the sentinel address usage limits documented in that guide when batching transfers.
 {% /admonition %}
 
 {% admonition type="info" name="First transfer of a token" %}
@@ -155,7 +155,7 @@ Wormhole moves tokens through two mechanisms: WTT (wrapped assets, listed in thi
 | Token                          | Address on XRPL EVM                                         | Mechanism                                   | Connected chains                   |
 | ------------------------------ | ----------------------------------------------------------- | ------------------------------------------- | ---------------------------------- |
 | XRP                            | `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` (native ERC20) | WTT                                         | Any WTT chain (attest first)       |
-| RLUSD                          | `0x8d58C0C60B8D6b88Fa98B291a646dB34d0F98258`                | NTT (burn and mint)                         | Ethereum, Base, Optimism, Unichain |
+| RLUSD                          | `0x8d58C0C60B8D6b88Fa98B291a646dB34d0F98258`                | NTT (burn-and-mint)                         | Ethereum, Base, Optimism, Unichain |
 | USDC.e (Wormhole-Bridged USDC) | `0xf75339EfD56B1da680BD4dE0f4086f24499275E7`                | NTT (hub on Ethereum, locks canonical USDC) | Ethereum                           |
 | WETH                           | `0xccD433A96A4DE148596F4E31Ab8ad1348077590B`                | WTT (wrapped from Ethereum)                 | Ethereum                           |
 

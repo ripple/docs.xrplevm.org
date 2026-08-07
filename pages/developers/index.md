@@ -62,7 +62,7 @@ Integrate Band Protocol's oracle contracts to fetch real-time price data on-chai
 
 #### Cross-Chain Transactions
 
-Build applications that span multiple blockchains using Axelar's and Wormhole's cross-chain infrastructure:
+Build applications that span multiple blockchains using Axelar and Wormhole cross-chain infrastructure:
 
 1. **[Introduction to Cross-Chain Transactions](./interacting-with-evm/advanced-guides/cross-chain-transactions/introduction.md)**
    Learn the fundamentals of cross-chain development, available bridge options, and when to use different solutions for connecting XRPL EVM with other blockchain ecosystems.

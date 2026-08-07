@@ -7,16 +7,18 @@ This page provides a reference for configuring the XRPL EVM sidechain nodes usin
 ```toml
 # This is a TOML config file.
 # For more information, see https://github.com/toml-lang/toml
+
 # NOTE: Any path below can be absolute (e.g. "/var/myawesomeapp/data") or
 # relative to the home directory (e.g. "data"). The home directory is
 # "$HOME/.cometbft" by default, but could be changed via $CMTHOME env variable
 # or --home cmd flag.
+
 # The version of the CometBFT binary that created or
 # last modified the config file. Do not modify this.
 version = "0.38.19"
 
 #######################################################################
-### Main Base Config Options                      ###
+###                   Main Base Config Options                      ###
 #######################################################################
 
 # TCP or UNIX socket address of the ABCI application,
@@ -28,23 +30,23 @@ moniker = "test"
 
 # Database backend: goleveldb | cleveldb | boltdb | rocksdb | badgerdb
 # * goleveldb (github.com/syndtr/goleveldb - most popular implementation)
-# - pure go
-# - stable
+#   - pure go
+#   - stable
 # * cleveldb (uses levigo wrapper)
-# - fast
-# - requires gcc
-# - use cleveldb build tag (go build -tags cleveldb)
+#   - fast
+#   - requires gcc
+#   - use cleveldb build tag (go build -tags cleveldb)
 # * boltdb (uses etcd's fork of bolt - github.com/etcd-io/bbolt)
-# - EXPERIMENTAL
-# - may be faster is some use-cases (random reads - indexer)
-# - use boltdb build tag (go build -tags boltdb)
+#   - EXPERIMENTAL
+#   - may be faster is some use-cases (random reads - indexer)
+#   - use boltdb build tag (go build -tags boltdb)
 # * rocksdb (uses github.com/tecbot/gorocksdb)
-# - EXPERIMENTAL
-# - requires gcc
-# - use rocksdb build tag (go build -tags rocksdb)
+#   - EXPERIMENTAL
+#   - requires gcc
+#   - use rocksdb build tag (go build -tags rocksdb)
 # * badgerdb (uses github.com/dgraph-io/badger)
-# - EXPERIMENTAL
-# - use badgerdb build tag (go build -tags badgerdb)
+#   - EXPERIMENTAL
+#   - use badgerdb build tag (go build -tags badgerdb)
 db_backend = "goleveldb"
 
 # Database directory
@@ -57,6 +59,7 @@ log_level = "info"
 log_format = "plain"
 
 ##### additional base config options #####
+
 # Path to the JSON file containing the initial validator set and other meta data
 genesis_file = "config/genesis.json"
 
@@ -82,11 +85,11 @@ filter_peers = false
 
 
 #######################################################################
-### Advanced Configuration Options                  ###
+###                 Advanced Configuration Options                  ###
 #######################################################################
 
 #######################################################
-### RPC Server Configuration Options          ###
+###       RPC Server Configuration Options          ###
 #######################################################
 [rpc]
 
@@ -150,7 +153,8 @@ experimental_subscription_buffer_size = 200
 # WebSocket endpoint fast enough, they will be disconnected, so increasing this
 # parameter may reduce the chances of them being disconnected (but will cause
 # the node to use more memory).
-# # Must be at least the same as "experimental_subscription_buffer_size",
+#
+# Must be at least the same as "experimental_subscription_buffer_size",
 # otherwise connections could be dropped unnecessarily. This value should
 # ideally be somewhat higher than "experimental_subscription_buffer_size" to
 # accommodate non-subscription-related RPC responses.
@@ -159,7 +163,8 @@ experimental_websocket_write_buffer_size = 200
 # If a WebSocket client cannot read fast enough, at present we may
 # silently drop events instead of generating an error or disconnecting the
 # client.
-# # Enabling this experimental parameter will cause the WebSocket connection to
+#
+# Enabling this experimental parameter will cause the WebSocket connection to
 # be closed instead if it cannot read fast enough, allowing for greater
 # predictability in subscription behavior.
 experimental_close_on_slow_client = false
@@ -200,7 +205,7 @@ tls_key_file = ""
 pprof_laddr = "localhost:6060"
 
 #######################################################
-### P2P Configuration Options             ###
+###           P2P Configuration Options             ###
 #######################################################
 [p2p]
 
@@ -254,7 +259,8 @@ pex = true
 
 # Seed mode, in which node constantly crawls the network and looks for
 # peers. If another node asks it for addresses, it responds and disconnects.
-# # Does not work if the peer-exchange reactor is disabled.
+#
+# Does not work if the peer-exchange reactor is disabled.
 seed_mode = false
 
 # Comma separated list of peer IDs to keep private (will not be gossiped to other peers)
@@ -268,17 +274,18 @@ handshake_timeout = "20s"
 dial_timeout = "3s"
 
 #######################################################
-### Mempool Configuration Option          ###
+###          Mempool Configuration Option          ###
 #######################################################
 [mempool]
 
 # The type of mempool for this node to use.
-# # Possible types:
-# - "flood" : concurrent linked list mempool with flooding gossip protocol
-# (default)
-# - "nop"   : nop-mempool (short for no operation; the ABCI app is responsible
-# for storing, disseminating and proposing txs). "create_empty_blocks=false" is
-# not supported.
+#
+#  Possible types:
+#  - "flood" : concurrent linked list mempool with flooding gossip protocol
+#  (default)
+#  - "nop"   : nop-mempool (short for no operation; the ABCI app is responsible
+#  for storing, disseminating and proposing txs). "create_empty_blocks=false" is
+#  not supported.
 type = "flood"
 
 # Recheck (default: true) defines whether CometBFT should recheck the
@@ -292,7 +299,8 @@ recheck = true
 # to return CheckTx responses, once all requests have been sent. Responses that
 # arrive after the timeout expires are discarded. It only applies to
 # non-local ABCI clients and when recheck is enabled.
-# # The ideal value will strongly depend on the application. It could roughly be estimated as the
+#
+# The ideal value will strongly depend on the application. It could roughly be estimated as the
 # average size of the mempool multiplied by the average time it takes the application to validate one
 # transaction. We consider that the ABCI application runs in the same location as the CometBFT binary
 # so that the recheck duration is not affected by network delays when making requests and receiving responses.
@@ -352,7 +360,7 @@ experimental_max_gossip_connections_to_persistent_peers = 0
 experimental_max_gossip_connections_to_non_persistent_peers = 0
 
 #######################################################
-### State Sync Configuration Options        ###
+###         State Sync Configuration Options        ###
 #######################################################
 [statesync]
 # State sync rapidly bootstraps a new node by discovering, fetching, and restoring a state machine
@@ -365,7 +373,8 @@ enable = false
 # RPC servers (comma-separated) for light client verification of the synced state machine and
 # retrieval of state data for node bootstrapping. Also needs a trusted height and corresponding
 # header hash obtained from a trusted source, and a period during which validators can be trusted.
-# # For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
+#
+# For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 # weeks) during which they can be financially punished (slashed) for misbehavior.
 rpc_servers = ""
 trust_height = 0
@@ -390,18 +399,20 @@ chunk_fetchers = "4"
 max_snapshot_chunks = 100000
 
 #######################################################
-### Block Sync Configuration Options          ###
+###       Block Sync Configuration Options          ###
 #######################################################
 [blocksync]
 
 # Block Sync version to use:
-# # In v0.37, v1 and v2 of the block sync protocols were deprecated.
+#
+# In v0.37, v1 and v2 of the block sync protocols were deprecated.
 # Please use v0 instead.
-# # 1) "v0" - the default block sync implementation
+#
+#   1) "v0" - the default block sync implementation
 version = "v0"
 
 #######################################################
-### Consensus Configuration Options         ###
+###         Consensus Configuration Options         ###
 #######################################################
 [consensus]
 
@@ -442,7 +453,7 @@ peer_gossip_sleep_duration = "100ms"
 peer_query_maj23_sleep_duration = "2s"
 
 #######################################################
-### Storage Configuration Options           ###
+###         Storage Configuration Options           ###
 #######################################################
 [storage]
 
@@ -453,27 +464,29 @@ peer_query_maj23_sleep_duration = "2s"
 discard_abci_responses = false
 
 #######################################################
-### Transaction Indexer Configuration Options     ###
+###   Transaction Indexer Configuration Options     ###
 #######################################################
 [tx_index]
 
 # What indexer to use for transactions
-# # The application will set which txs to index. In some cases a node operator will be able
+#
+# The application will set which txs to index. In some cases a node operator will be able
 # to decide which txs to index based on configuration set in the application.
-# # Options:
-# 1) "null"
-# 2) "kv" (default) - the simplest possible indexer, backed by key-value storage (defaults to levelDB; see DBBackend).
-# - When "kv" is chosen "tx.height" and "tx.hash" will always be indexed.
-# 3) "psql" - the indexer services backed by PostgreSQL.
+#
+# Options:
+#   1) "null"
+#   2) "kv" (default) - the simplest possible indexer, backed by key-value storage (defaults to levelDB; see DBBackend).
+# 		- When "kv" is chosen "tx.height" and "tx.hash" will always be indexed.
+#   3) "psql" - the indexer services backed by PostgreSQL.
 # When "kv" or "psql" is chosen "tx.height" and "tx.hash" will always be indexed.
 indexer = "kv"
 
 # The PostgreSQL connection configuration, the connection format:
-# postgresql://<user>:<password>@<host>:<port>/<db>?<opts>
+#   postgresql://<user>:<password>@<host>:<port>/<db>?<opts>
 psql-conn = ""
 
 #######################################################
-### Instrumentation Configuration Options     ###
+###       Instrumentation Configuration Options     ###
 #######################################################
 [instrumentation]
 
@@ -511,8 +524,9 @@ See [Networks](./networks.md) for current network targets and versions.
 ```toml
 # This is a TOML config file.
 # For more information, see https://github.com/toml-lang/toml
+
 ###############################################################################
-### Base Configuration                            ###
+###                           Base Configuration                            ###
 ###############################################################################
 
 # The minimum gas prices a validator is willing to accept for processing a
@@ -536,13 +550,15 @@ pruning-interval = "0"
 
 # HaltHeight contains a non-zero block height at which a node will gracefully
 # halt and shutdown that can be used to assist upgrades and testing.
-# # Note: Commitment of state will be attempted on the corresponding block.
+#
+# Note: Commitment of state will be attempted on the corresponding block.
 halt-height = 0
 
 # HaltTime contains a non-zero minimum block time (in Unix seconds) at which
 # a node will gracefully halt and shutdown that can be used to assist upgrades
 # and testing.
-# # Note: Commitment of state will be attempted on the corresponding block.
+#
+# Note: Commitment of state will be attempted on the corresponding block.
 halt-time = 0
 
 # MinRetainBlocks defines the minimum block height offset from the current
@@ -550,10 +566,12 @@ halt-time = 0
 # from CometBFT. It is used as part of the process of determining the
 # ResponseCommit.RetainHeight value during ABCI Commit. A value of 0 indicates
 # that no blocks should be pruned.
-# # This configuration value is only responsible for pruning CometBFT blocks.
+#
+# This configuration value is only responsible for pruning CometBFT blocks.
 # It has no bearing on application state pruning which is determined by the
 # "pruning-*" configurations.
-# # Note: CometBFT block pruning is dependant on this parameter in conjunction
+#
+# Note: CometBFT block pruning is dependant on this parameter in conjunction
 # with the unbonding (safety threshold) period, state pruning and state sync
 # snapshot parameters to determine the correct minimum value of
 # ResponseCommit.RetainHeight.
@@ -564,14 +582,15 @@ inter-block-cache = true
 
 # IndexEvents defines the set of events in the form {eventType}.{attributeKey},
 # which informs CometBFT what to index. If empty, all events will be indexed.
-# # Example:
+#
+# Example:
 # ["message.sender", "message.recipient"]
 index-events = []
 
 # IavlCacheSize set the size of the iavl tree cache (in number of nodes).
 iavl-cache-size = 781250
 
-# IAVLDisableFastNode enables or disables the fast node feature of IAVL.
+# IAVLDisableFastNode enables or disables the fast node feature of IAVL. 
 # Default is false.
 iavl-disable-fastnode = false
 
@@ -581,7 +600,7 @@ iavl-disable-fastnode = false
 app-db-backend = ""
 
 ###############################################################################
-### Telemetry Configuration                         ###
+###                         Telemetry Configuration                         ###
 ###############################################################################
 
 [telemetry]
@@ -608,7 +627,8 @@ prometheus-retention-time = 0
 
 # GlobalLabels defines a global set of name/value label tuples applied to all
 # metrics emitted using the wrapper functions defined in telemetry package.
-# # Example:
+#
+# Example:
 # [["chain_id", "cosmoshub-1"]]
 global-labels = [
 ]
@@ -625,7 +645,7 @@ statsd-addr = ""
 datadog-hostname = ""
 
 ###############################################################################
-### API Configuration                             ###
+###                           API Configuration                             ###
 ###############################################################################
 
 [api]
@@ -655,7 +675,7 @@ rpc-max-body-bytes = 1000000
 enabled-unsafe-cors = false
 
 ###############################################################################
-### gRPC Configuration                            ###
+###                           gRPC Configuration                            ###
 ###############################################################################
 
 [grpc]
@@ -682,7 +702,7 @@ max-send-msg-size = "2147483647"
 historical-grpc-address-block-range = "{}"
 
 ###############################################################################
-### gRPC Web Configuration                           ###
+###                        gRPC Web Configuration                           ###
 ###############################################################################
 
 [grpc-web]
@@ -693,7 +713,7 @@ historical-grpc-address-block-range = "{}"
 enable = true
 
 ###############################################################################
-### State Sync Configuration                         ###
+###                        State Sync Configuration                         ###
 ###############################################################################
 
 # State sync snapshots allow other nodes to rapidly join the network without replaying historical
@@ -708,7 +728,7 @@ snapshot-interval = 0
 snapshot-keep-recent = 2
 
 ###############################################################################
-### State Streaming                            ###
+###                              State Streaming                            ###
 ###############################################################################
 
 # Streaming allows nodes to stream state to external systems.
@@ -719,7 +739,8 @@ snapshot-keep-recent = 2
 
 # List of kv store keys to stream out via gRPC.
 # The store key names MUST match the module's StoreKey name.
-# # Example:
+#
+# Example:
 # ["acc", "bank", "gov", "staking", "mint"[,...]]
 # ["*"] to expose all keys.
 keys = []
@@ -733,19 +754,20 @@ plugin = ""
 stop-node-on-err = true
 
 ###############################################################################
-### Mempool                                         ###
+###                         Mempool                                         ###
 ###############################################################################
 
 [mempool]
 # Setting max-txs to 0 will allow for a unbounded amount of transactions in the mempool.
 # Setting max_txs to negative 1 (-1) will disable transactions from being inserted into the mempool (no-op mempool).
 # Setting max_txs to a positive number (> 0) will limit the number of transactions in the mempool, by the specified amount.
-# # Note, this configuration only applies to SDK built-in app-side mempool
+#
+# Note, this configuration only applies to SDK built-in app-side mempool
 # implementations.
 max-txs = -1
 
 ###############################################################################
-### EVM Configuration                           ###
+###                             EVM Configuration                           ###
 ###############################################################################
 
 [evm]
@@ -795,7 +817,7 @@ global-queue = 1024
 lifetime = "3h0m0s"
 
 ###############################################################################
-### JSON RPC Configuration                        ###
+###                           JSON RPC Configuration                        ###
 ###############################################################################
 
 [json-rpc]
@@ -872,7 +894,7 @@ batch-response-max-size = 25000000
 enable-profiling = false
 
 ###############################################################################
-### TLS Configuration                           ###
+###                             TLS Configuration                           ###
 ###############################################################################
 
 [tls]
@@ -889,8 +911,9 @@ key-path = ""
 ```toml
 # This is a TOML config file.
 # For more information, see https://github.com/toml-lang/toml
+
 ###############################################################################
-### Client Configuration                            ###
+###                           Client Configuration                            ###
 ###############################################################################
 
 # The network chain ID

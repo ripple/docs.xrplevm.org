@@ -321,6 +321,7 @@ Define your RPC endpoints in `foundry.toml` and use a `.env` for secrets.
 
 ```toml
 # foundry.toml
+
 # Default Solidity version
 solc_version = "0.8.24"
 

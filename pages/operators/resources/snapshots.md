@@ -14,7 +14,8 @@ Snapshots provide a quick way to bootstrap your node’s state by downloading a 
 | **Polkachu** | [Download Mainnet](https://polkachu.com/tendermint_snapshots/xrp)                                    |
 | **Cumulo**   | [Download Mainnet](https://cumulo.pro/services/xrplevm_mainnet/snapshot)                             |
 | **ITRocket** | [Download Mainnet](https://itrocket.net/services/mainnet/xrplevm/)                                   |
-| {% /tab %}   |
+
+{% /tab %}
 
 {% tab label="Testnet" %}
 
@@ -24,8 +25,10 @@ Snapshots provide a quick way to bootstrap your node’s state by downloading a 
 | **Polkachu** | [Download Testnet](https://polkachu.com/testnets/xrp/snapshots)                                      |
 | **Cumulo**   | [Download Testnet](https://cumulo.pro/services/xrplevm/)                                             |
 | **ITRocket** | [Download Testnet](https://itrocket.net/services/testnet/xrplevm/)                                   |
-| {% /tab %}   |
-| {% /tabs %}  |
+
+{% /tab %}
+
+{% /tabs %}
 
 **Note:** Always verify the authenticity and integrity of snapshots before using them. Keep in mind that third-party providers may have different update schedules, data policies, and retention periods. Refer to the provider’s documentation for instructions on how to use these snapshots and any associated terms of service.
 

@@ -28,17 +28,17 @@ Before interacting with a smart contract, ensure you have the following set up:
    - **Chain ID**: `1440000`
    - **Currency Symbol**: `XRP`
    - **Block Explorer URL**: [https://explorer.xrplevm.org](https://explorer.xrplevm.org)
-     {% /tab %}
-     {% tab label="Testnet" %}
-     **XRPL EVM Testnet Network Details**
+   {% /tab %}
+   {% tab label="Testnet" %}
+   **XRPL EVM Testnet Network Details**
 
    - **Network Name**: XRPL EVM Testnet
    - **RPC URL**: `https://rpc.testnet.xrplevm.org`
    - **Chain ID**: `1449000`
    - **Currency Symbol**: `XRP`
    - **Block Explorer URL**: [https://explorer.testnet.xrplevm.org](https://explorer.testnet.xrplevm.org)
-     {% /tab %}
-     {% /tabs %}
+   {% /tab %}
+   {% /tabs %}
 
 3. **Smart Contract ABI**
 
@@ -122,7 +122,9 @@ const web3 = new Web3("https://rpc.testnet.xrplevm.org");
 3. **Load the Contract**
 
    ```javascript
-   const contractABI = [/* Your Contract ABI */];
+   const contractABI = [
+     /* Your Contract ABI */
+   ];
    const contractAddress = "0xYourContractAddress";
    const contract = new web3.eth.Contract(contractABI, contractAddress);
    ```
@@ -193,7 +195,9 @@ const wallet = new ethers.Wallet("0xYourPrivateKey", provider);
 3. **Load the Contract**
 
    ```javascript
-   const contractABI = [/* Your Contract ABI */];
+   const contractABI = [
+     /* Your Contract ABI */
+   ];
    const contractAddress = "0xYourContractAddress";
    const contract = new ethers.Contract(contractAddress, contractABI, wallet);
    ```

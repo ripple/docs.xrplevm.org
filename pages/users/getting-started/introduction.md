@@ -2,7 +2,7 @@
 
 Getting started with the **XRPL EVM Sidechain** takes only a few minutes: install a wallet, connect it to the network, and fund it with XRP. This page walks you through each step and points you to the right guide when you need more detail.
 
-### Create a Wallet
+## Create a Wallet
 
 To interact with the XRPL EVM Sidechain, you need a compatible wallet such as **MetaMask** or **Keplr**. Your wallet is your gateway to the network: it manages your accounts, signs your transactions, and connects you to dApps.
 
@@ -13,7 +13,7 @@ To interact with the XRPL EVM Sidechain, you need a compatible wallet such as **
 
 ---
 
-### Obtain XRP for Transaction Fees
+## Obtain XRP for Transaction Fees
 
 {% tabs %}
 {% tab label="Mainnet" %}
@@ -21,7 +21,7 @@ Every action on the XRPL EVM Sidechain, such as deploying smart contracts or tra
 
 ---
 
-### **Option A: Gas Refuel with Gas.zip**
+### Option A: Gas Refuel with Gas.zip
 
 The easiest way to get started is by using **[Gas.zip](https://www.gas.zip)**, a cross-chain **gas refuel service**.
 Gas.zip lets you send small amounts of native tokens (like ETH, BNB, or MATIC) from a supported source chain and receive **XRP directly on the XRPL EVM Sidechain** to cover your transaction fees.
@@ -36,21 +36,21 @@ This is the fastest way to “top up” your wallet with just enough XRP to star
 
 ---
 
-### **Option B: Cross-Chain Swap with SquidRouter**
+### Option B: Cross-Chain Swap with SquidRouter
 
 Use Squid to swap tokens from any connected chain to XRP on the XRPL EVM Sidechain directly.
 → [Try Squid](https://app.squidrouter.com)
 
 ---
 
-### **Option C: Exchange Transfer**
+### Option C: Exchange Transfer
 
 1. **Buy XRP on a centralized exchange** that supports XRPL EVM Sidechain withdrawals
 2. **Withdraw directly** to your XRPL EVM Sidechain wallet address
 
 ---
 
-### **Option D: Bridge / On-Ramp From the XRP Ledger (XRPL)**
+### Option D: Bridge / On-Ramp From the XRP Ledger (XRPL)
 
 If you already hold XRP on the **XRPL mainnet**, you can bring it over to the XRPL EVM Sidechain using supported wallets and Squid Router. Many XRPL wallets also integrate **fiat on-ramps**, so you can purchase XRP directly before bridging.
 
@@ -97,7 +97,7 @@ If you already hold XRP on the **XRPL mainnet**, you can bring it over to the XR
 
 ---
 
-### **Option E: Cosmos Ecosystem Swap with Skip Go**
+### Option E: Cosmos Ecosystem Swap with Skip Go
 
 [Skip Go](https://go.skip.build/) enables swaps from Cosmos-based chains (e.g., Osmosis, Injective, Elys Network, Cosmos Hub, Noble and others.) to XRPL EVM Sidechain using Cosmos IBC
 → [Try Skip](https://go.skip.build/?src_asset=uatom&src_chain=cosmoshub-4&dest_asset=axrp&dest_chain=xrplevm_1440000-1&amount_in=&amount_out=)
@@ -120,13 +120,13 @@ Every action on the XRPL EVM Sidechain, such as deploying smart contracts or tra
 
 ---
 
-### Start Exploring
+## Start Exploring
 
-- **[Install MetaMask](./install-metamask.md)**: Set up an Ethereum compatible wallet extension.
+- **[Install MetaMask](./install-metamask.md)**: Set up an Ethereum-compatible wallet extension.
 - **[Connect MetaMask to the XRPL EVM](./connect-to-the-xrpl-evm.md)**: Add Mainnet or Testnet network details.
-- **[Install Keplr](./install-keplr.md)**: Use a Cosmos native wallet and add the XRPL EVM network.
+- **[Install Keplr](./install-keplr.md)**: Use a Cosmos-native wallet and add the XRPL EVM network.
 - **[Transfer XRP through Axelar](../using-the-bridge/transfer-xrp-with-axelar.md)**: Step by step tutorial for sending XRP using Squid Router.
-- **[Transfer XRP through Cosmos IBC ](../sending-through-ibc.md)**: Learn how to use Advanced IBC Transfer and send XRP and other tokens across Cosmos connected chains.
+- **[Transfer XRP through Cosmos IBC](../sending-through-ibc.md)**: Learn how to use Advanced IBC Transfer and send XRP and other tokens across Cosmos connected chains.
 
 ---
 

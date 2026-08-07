@@ -52,3 +52,6 @@
         - href: https://explorer.testnet.xrplevm.org/apps
           label: dApps Explorer
           external: true
+        - href: https://wormholescan.io/#/?network=Testnet
+          label: WormholeScan
+          external: true

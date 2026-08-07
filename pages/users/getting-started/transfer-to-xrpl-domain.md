@@ -1,6 +1,6 @@
 # Transfer to .xrpl Domain
 
-Sending XRP no longer requires copying long wallet addresses. With **.xrpl domains** you can transfer funds to human readable names like **alice.xrpl**, and the XRPL EVM Transfer tool resolves them to the correct address for you.
+Sending XRP no longer requires copying long wallet addresses. With **.xrpl domains** you can transfer funds to human-readable names like **alice.xrpl**, and the XRPL EVM Transfer tool resolves them to the correct address for you.
 
 ## What are .xrpl Domains?
 
@@ -114,7 +114,7 @@ Yes, .xrpl domains have expiration dates and need to be renewed. If a domain has
 
 ### Is this available on Testnet?
 
-No! This tool is only available for Mainnet.
+No. This tool is only available for Mainnet.
 
 ---
 

@@ -470,4 +470,4 @@ exrpd tx gov vote 1 yes --from $WALLET --chain-id <chain-id> --gas auto --gas-ad
 If you want to learn more about `exrpd`, you can explore the following resources:
 
 - [Upgrading your node](./upgrading-your-node.md): learn how to upgrade your node to the latest version.
-- [Node configuration options](../advanced/node-configuration-options.md): discover configuration options for fine tuning your node.
+- [Node configuration options](../advanced/node-configuration-options.md): discover configuration options for fine-tuning your node.

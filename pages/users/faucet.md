@@ -1,6 +1,6 @@
 # Faucet
 
-Testing on the **XRPL EVM Sidechain** requires test XRP to pay transaction fees and interact with smart contracts. This page lists every faucet available for **Testnet** and **Devnet**, together with how much XRP each one provides.
+Testing on the **XRPL EVM Sidechain** requires test XRP to pay transaction fees and interact with smart contracts. This page lists the faucets available for **Testnet** and **Devnet**.
 
 {% tabs %}
 {% tab label="Testnet" %}

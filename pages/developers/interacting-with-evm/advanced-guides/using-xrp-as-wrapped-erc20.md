@@ -34,7 +34,7 @@ Because XRPL EVM embeds the wrapping logic in the node, you skip the `wrap/unwr
 import { ethers } from "ethers";
 
 // 1) Connect to Testnet or Mainnet
-const provider = new ethers.JsonRpcProvider("https://rpc.testnet.xrpl.org");
+const provider = new ethers.JsonRpcProvider("https://rpc.testnet.xrplevm.org");
 const signer = provider.getSigner();
 
 // 2) Declare the XRP-ERC20 contract

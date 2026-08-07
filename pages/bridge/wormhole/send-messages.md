@@ -22,7 +22,7 @@ On **XRPL EVM Mainnet** the legacy `IWormholeRelayer` is not part of the officia
 forge install wormhole-foundation/wormhole-solidity-sdk@v1.0.0
 ```
 
-Use tagged releases of the SDK; the `main` branch is a nightly build. In SDK `v1.0.0` the Core Contract interface is `ICoreBridge` (defined in `interfaces/ICoreBridge.sol`, together with the file level `CoreBridgeVM` struct). Older Wormhole tutorials that import `IWormhole.sol` will not compile against this release.
+Use tagged releases of the SDK; the `main` branch is a nightly build. In SDK `v1.0.0` the Core Contract interface is `ICoreBridge` (defined in `interfaces/ICoreBridge.sol`, together with the file-level `CoreBridgeVM` struct). Older Wormhole tutorials that import `IWormhole.sol` will not compile against this release.
 
 ## Publish a Message (Source Chain)
 
@@ -56,7 +56,7 @@ contract HelloWormhole {
 }
 ```
 
-Once the transaction finalizes, the Guardian network observes the emitted message and produces a signed VAA. You can fetch it from the [WormholeScan API](https://docs.wormholescan.io) at `https://api.wormholescan.io/v1/signed_vaa/57/<emitterAddress>/<sequence>` (use `api.testnet.wormholescan.io` for Testnet; `emitterAddress` is your contract address left padded to 32 bytes), or track it at `https://wormholescan.io/#/tx/<txHash>` (append `?network=Testnet` for Testnet).
+Once the transaction finalizes, the Guardian network observes the emitted message and produces a signed VAA. You can fetch it from the [WormholeScan API](https://docs.wormholescan.io) at `https://api.wormholescan.io/v1/signed_vaa/57/<emitterAddress>/<sequence>` (use `api.testnet.wormholescan.io` for Testnet; `emitterAddress` is your contract address left-padded to 32 bytes), or track it at `https://wormholescan.io/#/tx/<txHash>` (append `?network=Testnet` for Testnet).
 
 ## Verify and Consume the VAA (Destination Chain)
 

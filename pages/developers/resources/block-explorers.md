@@ -15,7 +15,8 @@ Block explorers are web-based tools that allow you to search, analyze, and view 
 | **Axelar Scan** | [https://axelarscan.io](https://axelarscan.io)                               | Crosschain |
 | **Range**       | [https://explorer.range.org](https://explorer.range.org)                     | Crosschain |
 | **ITRocket**    | [https://mainnet.itrocket.net/xrplevm](https://mainnet.itrocket.net/xrplevm) | Cosmos     |
-| {% /tab %}      |
+
+{% /tab %}
 
 {% tab label="Testnet" %}
 
@@ -27,5 +28,7 @@ Block explorers are web-based tools that allow you to search, analyze, and view 
 | **Peersyst**    | [https://governance.testnet.xrplevm.org](https://governance.testnet.xrplevm.org)             | Cosmos     |
 | **Axelar Scan** | [https://testnet.axelarscan.io](https://testnet.axelarscan.io)                               | Crosschain |
 | **ITRocket**    | [https://testnet.itrocket.net/xrplevm/staking](https://testnet.itrocket.net/xrplevm/staking) | Cosmos     |
-| {% /tab %}      |
-| {% /tabs %}     |
+
+{% /tab %}
+
+{% /tabs %}

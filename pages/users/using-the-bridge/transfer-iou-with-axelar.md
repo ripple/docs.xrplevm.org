@@ -1,5 +1,5 @@
 ---
-html: interchain-transfer-evm-sidechain-xrpl.html
+html: transfer-iou-with-axelar.html
 blurb: Axelar interchain transfer to XRPL.
 labels:
   - Interoperability

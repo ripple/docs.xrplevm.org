@@ -81,10 +81,8 @@ Use this checklist before restarting a validator:
 1. Stop the node process (`systemctl`, `cosmovisor`, or `docker`) and confirm no active validator signer `exrpd` process remains.
 2. Confirm no second host/container is running as an active validator signer with the same validator key.
 3. Back up signer files:
-
-- `~/.exrpd/config/priv_validator_key.json`
-- `~/.exrpd/data/priv_validator_state.json`
-
+  - `~/.exrpd/config/priv_validator_key.json`
+  - `~/.exrpd/data/priv_validator_state.json`
 4. Perform maintenance or upgrade.
 5. Start exactly one signer instance and monitor logs.
 

@@ -40,10 +40,10 @@ To interact with the XRPL EVM Sidechain, you need to manually add it as a custom
    - Select **"XRPL EVM"** from the network dropdown to start interacting with the network.
 
    ![Select XRPL EVM Network](../images/AddedXRPLEVMMainnetToMetaMask.png)
-   {% /tab %}
-   {% tab label="Testnet" %}
+{% /tab %}
+{% tab label="Testnet" %}
 
-6. **Enter Network Details:**
+3. **Enter Network Details:**
 
    - Fill in the following information:
      - **Network Name:** XRPL EVM Testnet
@@ -54,17 +54,17 @@ To interact with the XRPL EVM Sidechain, you need to manually add it as a custom
 
    ![Add Network MetaMask Form](../images/addXRPLEVMTestnetToMetaMask.png)
 
-7. **Save Network:**
+4. **Save Network:**
 
    - Click **"Save."** The XRPL EVM Testnet will now be available in the network dropdown.
 
-8. **Switch Networks:**
+5. **Switch Networks:**
 
    - Select **"XRPL EVM Testnet"** from the network dropdown to start interacting with the network.
 
    ![Select XRPL EVM Network](../images/addedXRPLEVMTestnetToMetaMask.png)
-   {% /tab %}
-   {% /tabs %}
+{% /tab %}
+{% /tabs %}
 
 ## Verify the Connection
 
