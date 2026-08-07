@@ -8,7 +8,7 @@ The XRPL EVM Sidechain is a **Cosmos SDK-based blockchain** that provides full s
 
 - **EVM Compatibility**: Deploy Solidity smart contracts with full Ethereum tooling support
 - **Cosmos SDK Foundation**: Benefit from fast finality, low fees, and modular architecture
-- **Interoperability**: Native support for IBC (Inter-Blockchain Communication) and cross-chain bridges
+- **Interoperability**: Native support for IBC (Inter-Blockchain Communication) plus the [Axelar](../bridge/general-message-passing.md) and [Wormhole](../bridge/wormhole/index.md) interoperability protocols for cross-chain messaging and token transfers
 
 {% partial file="/snippets/_evm-compatibility-notice.md" /%}
 
@@ -84,6 +84,8 @@ Build applications that span multiple blockchains using Axelar and Wormhole cros
 
 7. **[Cross-Chain FAQs](./interacting-with-evm/advanced-guides/cross-chain-transactions/faqs.md)**
    Common questions, troubleshooting tips, and best practices for cross-chain development on XRPL EVM.
+
+Reference material for both protocols lives in the Bridge section: [Wormhole overview](../bridge/wormhole/index.md), [Wormhole deployed contracts](../bridge/wormhole/deployed-contracts.md), [Wormhole supported tokens](../bridge/wormhole/supported-tokens.md), and [Axelar deployed contracts](../bridge/deployed-contracts.md).
 
 ---
 
