@@ -1,6 +1,6 @@
 # Snapshots
 
-Snapshots provide a quick way to bootstrap your node’s state by downloading a pre-synchronized version of the blockchain data. This reduces the time and resources required to sync from the genesis block. Different networks offer mainnet and testnet snapshots for various use cases. Some snapshots are pruned (minimal historical data), others retain default state, and some include full historical archives for comprehensive analysis.
+Snapshots provide a quick way to bootstrap your node’s state by downloading a pre-synchronized version of the blockchain data. This reduces the time and resources required to sync from the genesis block. Providers currently publish Mainnet and Testnet snapshots for various use cases. Some snapshots are pruned (minimal historical data), others retain default state, and some include full historical archives for comprehensive analysis.
 
 ## Snapshots
 
@@ -25,6 +25,17 @@ Snapshots provide a quick way to bootstrap your node’s state by downloading a 
 | **Polkachu** | [Download Testnet](https://polkachu.com/testnets/xrp/snapshots)                                      |
 | **Cumulo**   | [Download Testnet](https://cumulo.pro/services/xrplevm/)                                             |
 | **ITRocket** | [Download Testnet](https://itrocket.net/services/testnet/xrplevm/)                                   |
+
+{% /tab %}
+
+{% tab label="Devnet" %}
+
+No public Devnet snapshots are currently available. The Devnet was reset in January 2026, and the snapshot archives that predate the reset are not compatible with the current chain.
+
+To bootstrap a Devnet node, either:
+
+- [Sync from genesis](../getting-started/sync-from-genesis.md) following the Devnet upgrade path, or
+- Use state sync as described in [Sync Options](../advanced/sync-options.md).
 
 {% /tab %}
 
