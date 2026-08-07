@@ -50,10 +50,10 @@ For developers interested in adding cross-chain functionality to their applicati
 
 - [Axelar ITS](../developers/interacting-with-evm/advanced-guides/cross-chain-transactions/send-tokens.md): Use bridge services to move tokens between XRPL EVM Sidechain and other networks.
 - [Axelar GMP](../developers/interacting-with-evm/advanced-guides/cross-chain-transactions/send-messages.md): Understand message passing between different blockchains.
-- [Wormhole Messaging](./wormhole/send-messages.md): Send cross-chain messages from Solidity with the Wormhole Core Contract.
-- [Wormhole Token Transfers](./wormhole/transfer-tokens.md): Bridge ERC-20 tokens with the Wormhole TypeScript SDK or Portal Bridge.
-- [Wormhole NTT](./wormhole/native-token-transfers.md): Deploy multichain-native tokens with the Native Token Transfers framework.
-- [Wormhole Connect](./wormhole/connect-widget.md): Add a drop-in bridging UI to your dApp.
+- [Wormhole Messaging](../developers/interacting-with-evm/advanced-guides/cross-chain-transactions/wormhole/send-messages.md): Send cross-chain messages from Solidity with the Wormhole Core Contract.
+- [Wormhole Token Transfers](../developers/interacting-with-evm/advanced-guides/cross-chain-transactions/wormhole/transfer-tokens.md): Bridge ERC-20 tokens with the Wormhole TypeScript SDK or Portal Bridge.
+- [Wormhole NTT](../developers/interacting-with-evm/advanced-guides/cross-chain-transactions/wormhole/native-token-transfers.md): Deploy multichain-native tokens with the Native Token Transfers framework.
+- [Wormhole Connect](../developers/interacting-with-evm/advanced-guides/cross-chain-transactions/wormhole/connect-widget.md): Add a drop-in bridging UI to your dApp.
 - [Cosmos IBC](../developers/interacting-with-cosmos/using-ibc.md): Technical reference for IBC implementation and available channels.
 - [Sending XRP Through IBC](../users/sending-through-ibc.md): User guide for IBC transfers using Keplr wallet.
 - [Skip Widget](../developers/interacting-with-cosmos/advanced-guides/cross-chain-transactions/swap-with-skip-widget.md): Add cross-chain swaps from Cosmos chains to your app.

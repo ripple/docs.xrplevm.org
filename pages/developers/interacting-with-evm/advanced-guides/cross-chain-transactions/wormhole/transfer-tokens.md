@@ -1,9 +1,3 @@
----
-blurb: Transfer tokens between XRPL EVM and other chains with Wormhole.
-labels:
-  - Interoperability
----
-
 # Transfer Tokens with Wormhole
 
 Wormhole's **Wrapped Token Transfers (WTT)**, formerly known as the Token Bridge, moves ERC-20 tokens between the XRPL EVM and the 30+ chains where WTT is deployed, using a lock-and-mint model:
@@ -13,7 +7,7 @@ Wormhole's **Wrapped Token Transfers (WTT)**, formerly known as the Token Bridge
 3. **Observe and sign**: The Guardian network emits a signed VAA for the transfer.
 4. **Mint / Release**: The VAA is verified on the destination chain, minting wrapped tokens (or releasing native ones on the way back). Wrapped tokens are backed 1:1.
 
-WTT is available on XRPL EVM **Mainnet and Testnet**. Contract addresses are listed in [Deployed Contracts](./deployed-contracts.md).
+WTT is available on XRPL EVM **Mainnet and Testnet**. Contract addresses are listed in [Deployed Contracts](../../../../../bridge/wormhole/deployed-contracts.md).
 
 ## Option 1: Portal Bridge (UI)
 
@@ -135,49 +129,19 @@ Run it with:
 npx tsx transfer.ts
 ```
 
-This is a **manual** transfer: your script initiates the transfer on XRPL EVM, waits for the Guardian attestation, and completes it on the destination chain with the destination signer. For development, switch `"Mainnet"` to `"Testnet"` and fund your account from the [faucet](../../users/faucet.md).
+This is a **manual** transfer: your script initiates the transfer on XRPL EVM, waits for the Guardian attestation, and completes it on the destination chain with the destination signer. For development, switch `"Mainnet"` to `"Testnet"` and fund your account from the [faucet](../../../../../users/faucet.md).
 
 {% admonition type="warning" name="Do not use the native token ID for XRP" %}
-The WTT contract on XRPL EVM has no native token wrapping configured (its `WETH()` slot is unset), so `Wormhole.tokenId("XRPLEVM", "native")` transfers revert on-chain. Always pass an **ERC20 token address**. XRP itself is bridgeable this way: it is natively exposed as an [ERC20 at the sentinel address](../../developers/interacting-with-evm/advanced-guides/using-xrp-as-wrapped-erc20.md) `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`, which is also how the Connect widget and Portal Bridge route XRP. Mind the sentinel address usage limits documented in that guide when batching transfers.
+The WTT contract on XRPL EVM has no native token wrapping configured (its `WETH()` slot is unset), so `Wormhole.tokenId("XRPLEVM", "native")` transfers revert on-chain. Always pass an **ERC20 token address**. XRP itself is bridgeable this way: it is natively exposed as an [ERC20 at the sentinel address](../../using-xrp-as-wrapped-erc20.md) `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`, which is also how the Connect widget and Portal Bridge route XRP. Mind the sentinel address usage limits documented in that guide when batching transfers.
 {% /admonition %}
 
 {% admonition type="info" name="First transfer of a token" %}
 A token must be **attested** on the destination chain once before it can be transferred there. If your token has never been bridged to the target chain, follow the [attestation guide](https://wormhole.com/docs/products/token-transfers/wrapped-token-transfers/guides/attest-tokens/) first.
 {% /admonition %}
 
-## Tokens Available on XRPL EVM
-
-Wormhole moves tokens through two mechanisms: WTT (wrapped assets, listed in this guide) and [NTT](./native-token-transfers.md) (native multichain deployments). The registries below reflect the on-chain state as of August 2026; any team can attest new WTT tokens or deploy new NTT tokens permissionlessly, so check [WormholeScan](https://wormholescan.io) for the current list.
-
-{% tabs %}
-{% tab label="Mainnet" %}
-
-| Token                          | Address on XRPL EVM                                         | Mechanism                                   | Connected chains                   |
-| ------------------------------ | ----------------------------------------------------------- | ------------------------------------------- | ---------------------------------- |
-| XRP                            | `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` (native ERC20) | WTT                                         | Any WTT chain (attest first)       |
-| RLUSD                          | `0x8d58C0C60B8D6b88Fa98B291a646dB34d0F98258`                | NTT (burn-and-mint)                         | Ethereum, Base, Optimism, Unichain |
-| USDC.e (Wormhole-Bridged USDC) | `0xf75339EfD56B1da680BD4dE0f4086f24499275E7`                | NTT (hub on Ethereum, locks canonical USDC) | Ethereum                           |
-| WETH                           | `0xccD433A96A4DE148596F4E31Ab8ad1348077590B`                | WTT (wrapped from Ethereum)                 | Ethereum                           |
-
-The RLUSD and USDC.e deployments are mutually peered with their Ethereum managers on-chain: the RLUSD peer manages the canonical `RLUSD` contract and the USDC.e hub locks Circle's canonical `USDC`.
-
-{% /tab %}
-{% tab label="Testnet" %}
-
-| Token                    | Address on XRPL EVM Testnet                                                                | Mechanism | Origin       |
-| ------------------------ | ------------------------------------------------------------------------------------------ | --------- | ------------ |
-| XRP                      | `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` (native ERC20)                                | WTT       | Native       |
-| WETH                     | `0xDfC1e7C7D02C282B5C28Ad88Dd5A78dfC214E071`                                               | WTT       | Sepolia      |
-| WETH                     | `0xDC403F8a55A4B6f64A298128888eBA70FcD6B683`                                               | WTT       | Base Sepolia |
-| RLUSD (test deployments) | `0x3EC39dCE6Fd2FF17927FD0e4AF6C7dd9faBe80F7`, `0xA8d886aEe2d690c8D4aaCCa93861b5fe88907FBB` | NTT       | Test         |
-
-Testnet also hosts assorted NTT test tokens. To bridge a token that is not listed, [attest it](https://wormhole.com/docs/products/token-transfers/wrapped-token-transfers/guides/attest-tokens/) first or deploy it with [NTT](./native-token-transfers.md).
-
-{% /tab %}
-{% /tabs %}
-
 ## Next Steps
 
+- [Supported Tokens on XRPL EVM](../../../../../bridge/wormhole/supported-tokens.md): the tokens currently live on each network.
 - [WTT overview](https://wormhole.com/docs/products/token-transfers/wrapped-token-transfers/overview/)
 - [WTT get-started guide](https://wormhole.com/docs/products/token-transfers/wrapped-token-transfers/get-started/)
 - [Native Token Transfers](./native-token-transfers.md): issue a multichain-native token instead of a wrapped one.

@@ -1,9 +1,3 @@
----
-blurb: Deploy a multichain-native token on XRPL EVM with Wormhole NTT.
-labels:
-  - Interoperability
----
-
 # Native Token Transfers (NTT)
 
 Wormhole's **Native Token Transfers (NTT)** framework lets token issuers deploy their token natively on the XRPL EVM and other chains, with no wrapped assets involved. Your project keeps full ownership and upgrade authority of the token contracts on every chain, while NTT handles cross-chain movement of supply.

@@ -20,6 +20,13 @@
             - page: ./interacting-with-evm/advanced-guides/cross-chain-transactions/send-messages.md
             - page: ./interacting-with-evm/advanced-guides/cross-chain-transactions/send-tokens.md
             - page: ./interacting-with-evm/advanced-guides/cross-chain-transactions/swap-with-squid-widget.md
+            - group: Wormhole
+              expanded: false
+              items:
+                - page: ./interacting-with-evm/advanced-guides/cross-chain-transactions/wormhole/send-messages.md
+                - page: ./interacting-with-evm/advanced-guides/cross-chain-transactions/wormhole/transfer-tokens.md
+                - page: ./interacting-with-evm/advanced-guides/cross-chain-transactions/wormhole/native-token-transfers.md
+                - page: ./interacting-with-evm/advanced-guides/cross-chain-transactions/wormhole/connect-widget.md
             - page: ./interacting-with-evm/advanced-guides/cross-chain-transactions/faqs.md
     - group: Use Oracle Data
       expanded: false

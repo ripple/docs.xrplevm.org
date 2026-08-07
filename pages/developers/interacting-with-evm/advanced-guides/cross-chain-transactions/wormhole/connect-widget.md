@@ -1,9 +1,3 @@
----
-blurb: Embed the Wormhole Connect bridging widget in your XRPL EVM dApp.
-labels:
-  - Interoperability
----
-
 # Wormhole Connect Widget
 
 **Wormhole Connect** is a drop-in React widget that gives your dApp a complete bridging UI: chain and token selection, wallet connections, quoting, and transfer tracking. On the XRPL EVM, Connect is available on **Mainnet** (Testnet is not currently supported).

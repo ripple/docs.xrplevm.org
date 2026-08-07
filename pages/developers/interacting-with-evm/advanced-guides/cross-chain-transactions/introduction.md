@@ -28,9 +28,9 @@ Wormhole is a decentralized interoperability platform live on the XRPL EVM, conn
 
 For EVM developers, Wormhole offers several integration paths on XRPL EVM:
 
-- **[Cross-chain messaging](../../../../bridge/wormhole/send-messages.md)**: Publish and verify arbitrary messages from Solidity via the Wormhole Core Contract.
-- **[Wrapped Token Transfers](../../../../bridge/wormhole/transfer-tokens.md)**: Bridge ERC-20 tokens programmatically with the TypeScript SDK or through the Portal Bridge UI.
-- **[Native Token Transfers (NTT)](../../../../bridge/wormhole/native-token-transfers.md)**: Issue multichain-native tokens while retaining full contract ownership.
-- **[Connect widget](../../../../bridge/wormhole/connect-widget.md)**: Drop a complete bridging UI into your React dApp.
+- **[Cross-chain messaging](./wormhole/send-messages.md)**: Publish and verify arbitrary messages from Solidity via the Wormhole Core Contract.
+- **[Wrapped Token Transfers](./wormhole/transfer-tokens.md)**: Bridge ERC-20 tokens programmatically with the TypeScript SDK or through the Portal Bridge UI.
+- **[Native Token Transfers (NTT)](./wormhole/native-token-transfers.md)**: Issue multichain-native tokens while retaining full contract ownership.
+- **[Connect widget](./wormhole/connect-widget.md)**: Drop a complete bridging UI into your React dApp.
 
 Start with the [Wormhole section](../../../../bridge/wormhole/index.md) for contract addresses and chain IDs, or explore the [official Wormhole documentation](https://wormhole.com/docs/).
