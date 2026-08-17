@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@redocly/cli": "2.22.1",
-    "@redocly/realm": "0.131.0",
+    "@redocly/realm": "0.135.2",
     "styled-system": "5.1.5"
   },
   "devDependencies": {

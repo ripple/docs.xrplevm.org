@@ -27,7 +27,7 @@ If you are an **end-user** looking to interact with the ecosystem, start here.
     For **node operators** and validators maintaining the network.
     {% /card %}
 
-    {% card title="Cross-Chain Bridges" to="./pages/bridge" variant="filled" imagePosition="end" image="images/bridge-card.svg" %}
+    {% card title="Bridge" to="./pages/bridge" variant="filled" imagePosition="end" image="images/bridge-card.svg" %}
     Optional cross-chain connectivity when multi-chain functionality is needed.
     {% /card %}
 
