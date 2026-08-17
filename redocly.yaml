@@ -52,8 +52,11 @@ footer:
           href: https://xrpl.org/contribute-code.html
           external: true
 search:
-  ai:
+  engine: typesense
+  filters:
     hide: true
+aiAssistant:
+  hide: false
 analytics:
   ga:
     trackingId: G-S1KBMRJYKS
