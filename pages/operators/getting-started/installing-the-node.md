@@ -152,7 +152,7 @@ Use any provider from [Snapshots](../resources/snapshots.md) and extract into `~
 
 ```bash
 cd ~/.exrpd
-wget -O exrpd.tar.lz4 https://evm-sidechain-snapshots-mainnet.s3.us-east-1.amazonaws.com/exrpd.tar.lz4
+wget -O exrpd.tar.lz4 https://evm-sidechain-snapshots-mainnet.s3.us-east-1.amazonaws.com/exrpd_latest.tar.lz4
 tar -xI lz4 -f exrpd.tar.lz4
 ```
 
@@ -164,7 +164,7 @@ Use any provider from [Snapshots](../resources/snapshots.md) and extract into `~
 
 ```bash
 cd ~/.exrpd
-wget -O exrpd.tar.lz4 https://evm-sidechain-snapshots-testnet.s3.us-east-1.amazonaws.com/exrpd.tar.lz4
+wget -O exrpd.tar.lz4 https://evm-sidechain-snapshots-testnet.s3.us-east-1.amazonaws.com/exrpd_latest.tar.lz4
 tar -xI lz4 -f exrpd.tar.lz4
 ```
 

@@ -19,4 +19,4 @@ exrpd keys show <key_name> --keyring <keying_backend> --bech val
 exrpd tendermint show-validator
 ```
 
-After that, a proposal to accept your validator will be voted on over a period of 7 days. During this time, some members may write to you publicly or privately to ask more questions. You can view the process on the [XRPL EVM Sidechain Explorer](https://governance.xrplevm.org/xrp/proposals).
+After that, a proposal to accept your validator will be voted on over a period of 7 days. During this time, some members may write to you publicly or privately to ask more questions. You can view the process on the [XRPL EVM Sidechain Explorer](https://governance.xrplevm.org/proposals).

@@ -10,7 +10,7 @@ Snapshots provide a quick way to bootstrap your node’s state by downloading a 
 
 | Provider     | URL                                                                                                  |
 | ------------ | ---------------------------------------------------------------------------------------------------- |
-| **Peersyst** | [Download Mainnet](https://evm-sidechain-snapshots-mainnet.s3.us-east-1.amazonaws.com/exrpd.tar.lz4) |
+| **Peersyst** | [Download Mainnet](https://evm-sidechain-snapshots-mainnet.s3.us-east-1.amazonaws.com/exrpd_latest.tar.lz4) |
 | **Polkachu** | [Download Mainnet](https://polkachu.com/tendermint_snapshots/xrp)                                    |
 | **Cumulo**   | [Download Mainnet](https://cumulo.pro/services/xrplevm_mainnet/snapshot)                             |
 | **ITRocket** | [Download Mainnet](https://itrocket.net/services/mainnet/xrplevm/)                                   |
@@ -21,7 +21,7 @@ Snapshots provide a quick way to bootstrap your node’s state by downloading a 
 
 | Provider     | URL                                                                                                  |
 | ------------ | ---------------------------------------------------------------------------------------------------- |
-| **Peersyst** | [Download Testnet](https://evm-sidechain-snapshots-testnet.s3.us-east-1.amazonaws.com/exrpd.tar.lz4) |
+| **Peersyst** | [Download Testnet](https://evm-sidechain-snapshots-testnet.s3.us-east-1.amazonaws.com/exrpd_latest.tar.lz4) |
 | **Polkachu** | [Download Testnet](https://polkachu.com/testnets/xrp/snapshots)                                      |
 | **Cumulo**   | [Download Testnet](https://cumulo.pro/services/xrplevm/)                                             |
 | **ITRocket** | [Download Testnet](https://itrocket.net/services/testnet/xrplevm/)                                   |

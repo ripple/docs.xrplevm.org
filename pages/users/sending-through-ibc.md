@@ -71,13 +71,7 @@ The Peersyst team has established IBC channels that connect the XRPL EVM with ot
 
       ### Channel IDs
 
-      | Destination     | From XRPL EVM (Source → Dest) | To XRPL EVM (Dest → Source) |
-      |-----------------|-------------------------------|-----------------------------|
-      | Cosmos Hub      | `channel-2`                   | `channel-1377`             |
-      | Elys Network    | `channel-1`                   | `channel-27`               |
-      | Injective       | `channel-0`                   | `channel-436`              |
-      | Osmosis         | `channel-3`                   | `channel-104325`           |
-      | Noble           | `channel-4`                   | `channel-152`              |
+      {% partial file="/snippets/_ibc-channels-mainnet.md" /%}
 
       3. **Paste Destination Address**:  
          - Ensure it's a valid **Keplr-compatible address** on the target chain.
@@ -141,12 +135,7 @@ The Peersyst team has established IBC channels that connect the XRPL EVM with ot
 
       ### Channel IDs
 
-      | Destination                | From XRPL EVM (Source → Dest) | To XRPL EVM (Dest → Source) |
-      |----------------------------|-------------------------------|-----------------------------|
-      | CosmosHub Provider Testnet | `channel-1`                   | `channel-374`               |
-      | Osmosis Testnet            | `channel-2`                   | `channel-10361`             |
-      | Elys Network Testnet       | `channel-3`                   | `channel-10`                |
-      | Injective Testnet          | `channel-4`                   | `channel-77038`             |
+      {% partial file="/snippets/_ibc-channels-testnet.md" /%}
 
       3. **Paste Destination Address**:  
          - Ensure it’s a valid **Keplr-compatible address** on the target chain.

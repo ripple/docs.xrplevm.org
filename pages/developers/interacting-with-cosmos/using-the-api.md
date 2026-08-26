@@ -46,7 +46,7 @@ grpcurl cosmos-grpc.xrplevm.org:443 cosmos.gov.v1.Query/Proposals
 
 </details>
 
-For more details on the Cosmos SDK gRPC server, refer to the [Cosmos SDK gRPC Server documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest#grpc-server).  
+For more details on the Cosmos SDK gRPC server, refer to the [Cosmos SDK gRPC Server documentation](https://docs.cosmos.network/sdk/v0.50/learn/advanced/grpc_rest#grpc-server).  
 The full gRPC server specification is available at [buf.build/cosmos/cosmos-sdk](https://buf.build/cosmos/cosmos-sdk).
 
 ---
@@ -86,7 +86,7 @@ curl -X GET "https://cosmos-api.xrplevm.org/cosmos/gov/v1/proposals" -H "accept:
 
 </details>
 
-Learn more about the Cosmos REST server in the [Cosmos SDK REST Server documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest#rest-server).  
+Learn more about the Cosmos REST server in the [Cosmos SDK REST Server documentation](https://docs.cosmos.network/sdk/v0.50/learn/advanced/grpc_rest#rest-server).  
 Access the full REST API specification at [cosmos-api.xrplevm.org](https://cosmos-api.xrplevm.org).
 
 ---
@@ -124,7 +124,7 @@ curl -X GET 'https://cosmos-rpc.xrplevm.org/abci_query?path="/cosmos.gov.v1.Quer
 
 </details>
 
-Explore the [Cosmos CometBFT RPC documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest#cometbft-rpc) for more details.  
+Explore the [Cosmos CometBFT RPC documentation](https://docs.cosmos.network/sdk/v0.50/learn/advanced/grpc_rest#cometbft-rpc) for more details.  
 Access the CometBFT RPC interface at [cosmos-rpc.xrplevm.org](https://cosmos-rpc.xrplevm.org).
 {% /tab %}
 
@@ -164,7 +164,7 @@ grpcurl cosmos-grpc.testnet.xrplevm.org:443 cosmos.gov.v1.Query/Proposals
 
 </details>
 
-For more details on the Cosmos SDK gRPC server, refer to the [Cosmos SDK gRPC Server documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest#grpc-server).  
+For more details on the Cosmos SDK gRPC server, refer to the [Cosmos SDK gRPC Server documentation](https://docs.cosmos.network/sdk/v0.50/learn/advanced/grpc_rest#grpc-server).  
 The full gRPC server specification is available at [buf.build/cosmos/cosmos-sdk](https://buf.build/cosmos/cosmos-sdk).
 
 ---
@@ -204,7 +204,7 @@ curl -X GET "https://cosmos-api.testnet.xrplevm.org/cosmos/gov/v1/proposals" -H 
 
 </details>
 
-Learn more about the Cosmos REST server in the [Cosmos SDK REST Server documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest#rest-server).  
+Learn more about the Cosmos REST server in the [Cosmos SDK REST Server documentation](https://docs.cosmos.network/sdk/v0.50/learn/advanced/grpc_rest#rest-server).  
 Access the full REST API specification at [cosmos-api.testnet.xrplevm.org](https://cosmos-api.testnet.xrplevm.org).
 
 ---
@@ -242,7 +242,7 @@ curl -X GET 'https://cosmos-rpc.testnet.xrplevm.org/abci_query?path="/cosmos.gov
 
 </details>
 
-Explore the [Cosmos CometBFT RPC documentation](https://docs.cosmos.network/v0.50/learn/advanced/grpc_rest#cometbft-rpc) for more details.  
+Explore the [Cosmos CometBFT RPC documentation](https://docs.cosmos.network/sdk/v0.50/learn/advanced/grpc_rest#cometbft-rpc) for more details.  
 Access the CometBFT RPC interface at [cosmos-rpc.testnet.xrplevm.org](https://cosmos-rpc.testnet.xrplevm.org).
 {% /tab %}
 {% /tabs %}

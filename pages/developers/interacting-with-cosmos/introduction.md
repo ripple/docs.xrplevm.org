@@ -13,10 +13,10 @@ To learn more about the Cosmos SDK and its capabilities, visit the [official doc
 
 The modular design of the Cosmos SDK enables seamless integration of the Ethereum Virtual Machine (EVM) as the execution layer. When a transaction is submitted, the execution layer processes it, updates the blockchain state, and ensures that the output is both deterministic and consistent across all nodes.
 
-The Cosmos SDK's [multistore](https://docs.cosmos.network/v0.52/learn/intro/sdk-design#multistore) architecture plays a key role in this process by allowing modules to define and manage their own state. This means that the execution layer, represented by the EVM in this case, triggers state updates across various modules, ensuring a well-structured and modular state management system.
+The Cosmos SDK's [multistore](https://docs.cosmos.network/sdk/v0.50/learn/intro/sdk-design#multistore) architecture plays a key role in this process by allowing modules to define and manage their own state. This means that the execution layer, represented by the EVM in this case, triggers state updates across various modules, ensuring a well-structured and modular state management system.
 
 The XRPL EVM leverages [Evmos](https://github.com/evmos/evmos) as its EVM implementation, providing robust compatibility with Ethereum tools and smart contracts while integrating seamlessly within the Cosmos ecosystem.
 
-The diagram below illustrates the architecture of Cosmos SDK using [Evmos](https://github.com/evmos/evmos) as the EVM execution layer and [CometBFT](https://docs.cometbft.com/v1.0/) as the consensus layer. For a deeper dive into the Cosmos SDK architecture, refer to the [official documentation](https://docs.cosmos.network/v0.52/learn/intro/sdk-app-architecture).
+The diagram below illustrates the architecture of Cosmos SDK using [Evmos](https://github.com/evmos/evmos) as the EVM execution layer and [CometBFT](https://docs.cometbft.com/v1.0/) as the consensus layer. For a deeper dive into the Cosmos SDK architecture, refer to the [official documentation](https://docs.cosmos.network/sdk/v0.50/learn/intro/sdk-app-architecture).
 
 ![Cosmos SDK architecture](https://peersyst-public-production.s3.eu-west-1.amazonaws.com/06826707-492e-4249-9802-43abff464ae2.svg)

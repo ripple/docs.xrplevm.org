@@ -53,10 +53,6 @@ Once your XRPL Testnet account is funded, use [SquidRouter](https://testnet.xrpl
 - **[XRPL EVM Faucet](https://faucet.xrplevm.org)**
   - The same faucet used for Testnet also supports **Devnet**. Select the Devnet network before requesting funds.
 
-- **[XRPL EVM Devnet Faucet @ Chains.tools](https://chains.tools/faucet/xrplevm)**
-  - For **XRPL EVM Devnet**.
-  - Each wallet can request up to **10 XRP** every 60 minutes.
-
 Once funded, you can verify your balance on the [XRPL EVM Devnet Explorer](https://explorer.devnet.xrplevm.org).
 
 {% /tab %}
