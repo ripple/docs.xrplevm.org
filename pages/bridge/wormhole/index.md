@@ -1,7 +1,6 @@
 ---
-blurb: Wormhole interoperability on the XRPL EVM Sidechain.
-labels:
-  - Interoperability
+seo:
+  description: "Wormhole on the XRPL EVM Sidechain: how Guardians, VAAs and the Executor connect XRPL EVM to 40+ chains for cross-chain messaging and transfers."
 ---
 
 # Wormhole

@@ -1,7 +1,6 @@
 ---
-blurb: Wormhole contract addresses on the XRPL EVM Sidechain.
-labels:
-  - Interoperability
+seo:
+  description: "Wormhole contract addresses on the XRPL EVM Sidechain: Core Contract, Wrapped Token Transfers, Executor and Guardian Governance, per network."
 ---
 
 # Wormhole Deployed Contracts

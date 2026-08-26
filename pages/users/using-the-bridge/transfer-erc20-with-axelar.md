@@ -1,9 +1,6 @@
 ---
-html: transfer-erc20-with-axelar.html
-blurb: Transfer ERC-20 tokens between XRPL and the XRPL EVM Sidechain with Axelar.
-labels:
-  - Interoperability
-status: not_enabled
+seo:
+  description: "Transfer ERC20 tokens from any connected EVM chain to the XRPL EVM Sidechain with Squid Router, which routes the transfer through the Axelar Network."
 ---
 
 # Transfer ERC20 with Axelar

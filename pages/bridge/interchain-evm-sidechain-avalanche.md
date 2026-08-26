@@ -1,9 +1,6 @@
 ---
-html: interchain-transfer-evm-sidechain-avalanche.html
-blurb: Axelar interchain transfer to Avalanche Fuji.
-labels:
-  - Interoperability
-status: not_enabled
+seo:
+  description: "Transfer XRP from the XRPL EVM Sidechain to Avalanche Fuji as axlXRP using the Axelar Portal and a MetaMask wallet, step by step with screenshots."
 ---
 
 # Axelar Interchain Transfer to Avalanche Fuji

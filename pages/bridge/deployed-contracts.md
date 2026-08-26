@@ -1,9 +1,6 @@
 ---
-html: deployed-contracts.html
-blurb: List of deployed contracts on the XRPL EVM Sidechain.
-labels:
-  - Interoperability
-status: not_enabled
+seo:
+  description: "The Axelar contracts deployed on the XRPL EVM Sidechain: Gateway, Interchain Governance, Gas Service and Interchain Token Service, per network."
 ---
 
 # Deployed Contracts

@@ -1,9 +1,6 @@
 ---
-html: overview.html
-blurb: Overview of cross-chain bridge connectivity.
-labels:
-  - Interoperability
-status: not_enabled
+seo:
+  description: "Cross-chain bridge options for the XRPL EVM Sidechain: the Axelar Network for XRPL and EVM chains, and native IBC connectivity to the Cosmos ecosystem."
 ---
 
 # Bridge

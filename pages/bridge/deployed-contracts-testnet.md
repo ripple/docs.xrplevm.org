@@ -1,9 +1,6 @@
 ---
-html: deployed-contracts-testnet.html
-blurb: List of deployed contracts on the XRPL EVM Sidechain Testnet.
-labels:
-  - Interoperability
-status: not_enabled
+seo:
+  description: "Verified Axelar contract addresses on the XRPL EVM Sidechain Testnet, including the Gateway, Gas Service, Interchain Token Service and deployers."
 ---
 
 # Testnet

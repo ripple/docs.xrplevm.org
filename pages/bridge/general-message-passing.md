@@ -1,9 +1,6 @@
 ---
-html: general-message-passing.html
-blurb: Learn more about Axelar general message passing.
-labels:
-  - Interoperability
-status: not_enabled
+seo:
+  description: "How Axelar General Message Passing relays cross-chain contract calls from the XRP Ledger to the XRPL EVM Sidechain, and the components involved."
 ---
 
 # Axelar General Message Passing (GMP)

@@ -1,9 +1,6 @@
 ---
-html: transfer-iou-with-axelar.html
-blurb: Axelar interchain transfer to XRPL.
-labels:
-  - Interoperability
-status: not_enabled
+seo:
+  description: "Bridge whitelisted XRP Ledger IOUs to the XRPL EVM Sidechain with Axelar, where they arrive as ERC20 tokens, and send them back to the XRP Ledger."
 ---
 
 # Transfer IOU with Axelar

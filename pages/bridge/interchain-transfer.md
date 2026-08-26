@@ -1,9 +1,6 @@
 ---
-html: interchain-transfer.html
-blurb: Learn more about Axelar interchain transfer.
-labels:
-  - Interoperability
-status: not_enabled
+seo:
+  description: "How the Axelar Interchain Token Service moves tokens from the XRP Ledger to the XRPL EVM Sidechain through the Amplifier Gateway, step by step."
 ---
 
 # Axelar Interchain Transfer

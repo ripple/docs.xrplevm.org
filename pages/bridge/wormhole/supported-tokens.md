@@ -1,7 +1,6 @@
 ---
-blurb: Tokens supported by Wormhole on the XRPL EVM Sidechain.
-labels:
-  - Interoperability
+seo:
+  description: "Tokens Wormhole supports on the XRPL EVM Sidechain, including XRP, RLUSD, USDC.e and WETH, with addresses, transfer mechanism and connected chains."
 ---
 
 # Wormhole Supported Tokens

@@ -1,9 +1,6 @@
 ---
-html: relay-transfer-xrpl-evm-sidechain-to-xrpl.html
-blurb: Relay messages manually from XRPL EVM Sidechain to XRPL.
-labels:
-  - Interoperability
-status: not_enabled
+seo:
+  description: "Relay an Axelar message manually from the XRPL EVM Sidechain to the XRP Ledger with axelard: verify, route, construct the proof and submit it."
 ---
 
 # XRPL EVM Sidechain to XRPL transfer
