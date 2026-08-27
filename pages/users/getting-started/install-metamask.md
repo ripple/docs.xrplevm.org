@@ -1,6 +1,6 @@
 # Install MetaMask
 
-This guide explains how to install MetaMask. For configuring it for XRPL EVM, refer to the [Connect MetaMask to the XRPL EVM Sidechain](../getting-started/connect-to-the-xrpl-evm.md) guide.
+**MetaMask** is the most widely used Ethereum wallet, and it works with the XRPL EVM out of the box. This guide covers installing the extension and creating your first account. Once installed, continue with the [Connect MetaMask to the XRPL EVM Sidechain](../getting-started/connect-to-the-xrpl-evm.md) guide to add the network.
 
 ---
 

@@ -1,17 +1,15 @@
 ---
-html: interchain-transfer-evm-sidechain-xrpl.html
-blurb: Axelar interchain transfer to XRPL.
-labels:
-  - Interoperability
-status: not_enabled
+seo:
+  description: "Bridge whitelisted XRP Ledger IOUs to the XRPL EVM Sidechain with Axelar, where they arrive as ERC20 tokens, and send them back to the XRP Ledger."
 ---
 
 # Transfer IOU with Axelar
 
+Issued assets (IOUs) on the XRP Ledger can travel to the XRPL EVM too. Whitelisted IOUs can be bridged with **Axelar** to the XRPL EVM Sidechain and other connected chains, where they arrive as ERC20 tokens.
+
 ## Bridge IOU from XRPL
 
-You can bridge XRPL whitelisted IOU's to XRPL EVM sidechain, and other Axelar supported chains, using Axelar. In this example, we will transfer 10 FOO to an account in the XRPL EVM Sidechain.
-
+In this example, we will transfer 10 FOO to an account on the XRPL EVM Sidechain.
 
 1. Set XRPL as the `source chain`, XRPL EVM as `destination chain` and select the `IOU` to transfer.
    ![transferIOU](../images/select-foo.png)
@@ -40,16 +38,13 @@ View on [Axelarscan](https://axelarscan.io/) your bridge transction in detail. F
 
 ![transferIOU](../images/transfer-iou-tx-hash.png)
 
-
 ## Bridge IOU from XRPL EVM
 
-You can bridge XRPL whitelisted IOU's from XRPL EVM, and other Axelar supported chains, to XRPL using Axelar. In this example, we will transfer FOO to an account in the XRPL. 
+You can bridge XRPL whitelisted IOU's from XRPL EVM, and other Axelar supported chains, to XRPL using Axelar. In this example, we will transfer FOO to an account in the XRPL.
 
 {% admonition type="info" name="Set Trustline and Approve allowance" %}
 Unlike transfers initiated on XRPL, this direction **does** require you to add the IOU trustline on the XRPL destination (step 5) and approve token spending on EVM (step 6) before executing the swap.
 {% /admonition %}
-
-
 
 1. Set XRPL EVM as the `source chain`, XRPL as `destination chain` and select the `IOU` to transfer.
 
@@ -67,7 +62,7 @@ Unlike transfers initiated on XRPL, this direction **does** require you to add t
 
 ![transferIOU](../images/transfer-iou-xrplevm-amount.png)
 
-5. `Approve FOO on recipient wallet`. Because FOO is an IOU on the XRPL it requires the destination account to add the IOU's [trustline](https://learn.xrpl.org/glossary/trustline/#:~:text=Main%20Description%3A,what%20happens%20to%20their%20account.) if it is not already. 
+5. `Approve FOO on recipient wallet`. Because FOO is an IOU on the XRPL it requires the destination account to add the IOU's [trustline](https://learn.xrpl.org/glossary/trustline/#:~:text=Main%20Description%3A,what%20happens%20to%20their%20account.) if it is not already.
 
 ![transferIOU](../images/transfer-iou-xrplevm-approve.png)
 

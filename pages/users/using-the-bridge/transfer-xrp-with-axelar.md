@@ -1,121 +1,125 @@
 # Transfer XRP with Axelar
 
-The Axelar Bridge connects multiple blockchain networks, enabling secure asset transfers across the XRPL ecosystem and beyond. This guide explains how the bridge works and highlights the key differences between **Mainnet**, and **Testnet** setups.
+Moving XRP between the XRP Ledger and the XRPL EVM is the first step for most users, and the **Axelar** bridge handles it securely on both **Mainnet** and **Testnet**. This guide explains how the bridge works and walks you through a complete transfer.
 
 ## Understanding the Axelar Bridge
 
-- **Cross-Chain Transfers:** Seamlessly move assets (e.g., XRP, IOUs, ERC20 tokens) between XRPL, XRPL EVM, and other connected chains.  
+- **Cross-Chain Transfers:** Seamlessly move assets (e.g., XRP, IOUs, ERC20 tokens) between XRPL, XRPL EVM, and other connected chains.
 - **Interoperability:** Unlock new possibilities for dApps, services, and users by allowing access to assets and functionalities across different blockchains.
 
 ---
 
 {% tabs %}
 
-   {% tab label="Mainnet" %}
+{% tab label="Mainnet" %}
 
-   ## Bridging on Mainnet
+## Bridging on Mainnet
 
-   ### 1. Install MetaMask
-   Download and [install MetaMask](../getting-started/install-metamask.md) for your browser.
+### 1. Install MetaMask
 
-   ### 2. Install an XRPL Wallet
-   Choose one of the following XRPL wallets:
+Download and [install MetaMask](../getting-started/install-metamask.md) for your browser.
 
-   - **XRPL Snap**  
-      - Install the [XRPL Snap](https://snap.xrplevm.org) for seamless integration with MetaMask.  
-      - Follow the [Quick Start Guide](https://snap-docs.xrplevm.org/getting-started/quick-start) for setup instructions.
-   
-   - **Crossmark**  
-      - Use the [Crossmark](https://crossmark.io) wallet for a browser-first, non-custodial XRPL experience.
+### 2. Install an XRPL Wallet
 
-   ### 3. Using the Squid Bridge
+Choose one of the following XRPL wallets:
 
-   1. **Connect Your Source Chain Wallet**  
-      - Click **Connect**.  
-      - Select your XRPL wallet (either the XRPL Snap or Crossmark).  
-      - Approve the connection request to allow **SquidRouter** to interact with your XRPL wallet.  
-      - Once connected, you’ll see your XRPL address (e.g., `rfLm...bYVY`).
+- **XRPL Snap**
+  - Install the [XRPL Snap](https://snap.xrplevm.org) for seamless integration with MetaMask.
+  - Follow the [Quick Start Guide](https://snap-docs.xrplevm.org/getting-started/quick-start) for setup instructions.
 
-      ![UsingTheBridge](../images/ConnectXRPLWallet1.png)
+- **Crossmark**
+  - Use the [Crossmark](https://crossmark.io) wallet for a browser-first, non-custodial XRPL experience.
 
-   2. **Select the Amount to Swap**  
-      - Enter the amount of XRP you want to bridge.  
-      - Ensure you have sufficient XRP to cover transaction fees.
+### 3. Using the Squid Bridge
 
-      ![UsingTheBridge](../images/AmountXRPLWallet2.png)
+1.  **Connect Your Source Chain Wallet**
+    - Click **Connect**.
+    - Select your XRPL wallet (either the XRPL Snap or Crossmark).
+    - Approve the connection request to allow **SquidRouter** to interact with your XRPL wallet.
+    - Once connected, you’ll see your XRPL address (e.g., `rfLm...bYVY`).
 
-   3. **Set the Receiver**  
-      - Click **Add recipient** to specify your XRPL EVM address.  
-      - Connect your XRPL EVM account using any WalletConnect-compatible wallet **or** paste the XRPL EVM receiver address directly.
+    ![UsingTheBridge](../images/ConnectXRPLWallet1.png)
 
-      ![UsingTheBridge](../images/SetRecepientXRPLWallet1.png)
+2.  **Select the Amount to Swap**
+    - Enter the amount of XRP you want to bridge.
+    - Ensure you have sufficient XRP to cover transaction fees.
 
-   4. **Initiate the Swap**  
-      - Click **SWAP** to begin the cross-chain transfer.
+    ![UsingTheBridge](../images/AmountXRPLWallet2.png)
 
-      ![UsingTheBridge](../images/SwapXRPLWallet.png)
-      - Review and **Approve** the transaction in your XRPL wallet.
+3.  **Set the Receiver**
+    - Click **Add recipient** to specify your XRPL EVM address.
+    - Connect your XRPL EVM account using any WalletConnect-compatible wallet **or** paste the XRPL EVM receiver address directly.
 
-      ![UsingTheBridge](../images/SwapApproveXRPLWallet.png)
+    ![UsingTheBridge](../images/SetRecepientXRPLWallet1.png)
 
-   5. **View Your Assets on the XRPL EVM**  
-      - Add the [XRPL EVM](../getting-started/connect-to-the-xrpl-evm.md#adding-xrpl-evm-to-metamask) network to MetaMask if you haven’t already.  
-      - Once the transaction completes, your XRP (or other assets) will be visible in your XRPL EVM wallet.
+4.  **Initiate the Swap**
+    - Click **SWAP** to begin the cross-chain transfer.
 
-   {% /tab %}
+    ![UsingTheBridge](../images/SwapXRPLWallet.png)
+    - Review and **Approve** the transaction in your XRPL wallet.
 
-   {% tab label="Testnet" %}
+    ![UsingTheBridge](../images/SwapApproveXRPLWallet.png)
 
-   ## Bridging on Testnet
+5.  **View Your Assets on the XRPL EVM**
+    - Add the [XRPL EVM](../getting-started/connect-to-the-xrpl-evm.md#adding-xrpl-evm-sidechain-to-metamask) network to MetaMask if you haven’t already.
+    - Once the transaction completes, your XRP (or other assets) will be visible in your XRPL EVM wallet.
 
-   ### 1. Install MetaMask
-   Download and [install MetaMask](../getting-started/install-metamask.md) for your browser.
+{% /tab %}
 
-   ### 2. Install an XRPL Wallet
-   Choose one of the following XRPL wallets:
+{% tab label="Testnet" %}
 
-   - **XRPL Snap**  
-      - Install the [XRPL Snap](https://snap.xrplevm.org) for seamless integration with MetaMask.  
-      - Follow the [Quick Start Guide](https://snap-docs.xrplevm.org/getting-started/quick-start) for setup instructions.
-   
-   - **Crossmark**  
-      - Use the [Crossmark](https://crossmark.io) wallet for a browser-first, non-custodial XRPL experience.
+## Bridging on Testnet
 
-   ### 3. Use the Testnet Bridge
+### 1. Install MetaMask
 
-   1. **Connect Your Source Chain Wallet**  
-      - Click **Connect**.  
-      - Select your XRPL wallet (either the XRPL Snap or Crossmark).  
-      - Approve the connection request to allow **SquidRouter** to interact with your XRPL wallet.  
-      - Once connected, you’ll see your XRPL address (e.g., `rfLm...bYVY`).
+Download and [install MetaMask](../getting-started/install-metamask.md) for your browser.
 
-      ![UsingTheBridge](../images/ConnectXRPLWallet1.png)
+### 2. Install an XRPL Wallet
 
-   2. **Select the Amount to Swap**  
-      - Enter the amount of XRP you want to bridge.  
-      - Ensure you have sufficient testnet XRP to cover transaction fees.
+Choose one of the following XRPL wallets:
 
-      ![UsingTheBridge](../images/AmountXRPLWallet2.png)
+- **XRPL Snap**
+  - Install the [XRPL Snap](https://snap.xrplevm.org) for seamless integration with MetaMask.
+  - Follow the [Quick Start Guide](https://snap-docs.xrplevm.org/getting-started/quick-start) for setup instructions.
 
-   3. **Set the Receiver**  
-      - Click **Add recipient** to specify your XRPL EVM Testnet address.  
-      - Connect your XRPL EVM account using any WalletConnect-compatible wallet **or** paste the XRPL EVM receiver address directly.
+- **Crossmark**
+  - Use the [Crossmark](https://crossmark.io) wallet for a browser-first, non-custodial XRPL experience.
 
-      ![UsingTheBridge](../images/SetRecepientXRPLWallet1.png)
+### 3. Use the Testnet Bridge
 
-   4. **Initiate the Swap**  
-      - Click **SWAP** to begin the cross-chain transfer.
+1.  **Connect Your Source Chain Wallet**
+    - Click **Connect**.
+    - Select your XRPL wallet (either the XRPL Snap or Crossmark).
+    - Approve the connection request to allow **SquidRouter** to interact with your XRPL wallet.
+    - Once connected, you’ll see your XRPL address (e.g., `rfLm...bYVY`).
 
-      ![UsingTheBridge](../images/SwapXRPLWallet.png)
-      - Review and **Approve** the transaction in your XRPL wallet.
+    ![UsingTheBridge](../images/ConnectXRPLWallet1.png)
 
-      ![UsingTheBridge](../images/SwapApproveXRPLWallet.png)
+2.  **Select the Amount to Swap**
+    - Enter the amount of XRP you want to bridge.
+    - Ensure you have sufficient testnet XRP to cover transaction fees.
 
-   5. **View Your Assets on the XRPL EVM Testnet**  
-      - Add the [XRPL EVM Testnet network](../getting-started/connect-to-the-xrpl-evm.md#adding-xrpl-evm-to-metamask) to MetaMask if you haven’t already.  
-      - Once the transaction completes, your XRP (or other assets) will be visible in your XRPL EVM Testnet wallet.
+    ![UsingTheBridge](../images/AmountXRPLWallet2.png)
 
-   {% /tab %}
+3.  **Set the Receiver**
+    - Click **Add recipient** to specify your XRPL EVM Testnet address.
+    - Connect your XRPL EVM account using any WalletConnect-compatible wallet **or** paste the XRPL EVM receiver address directly.
+
+    ![UsingTheBridge](../images/SetRecepientXRPLWallet1.png)
+
+4.  **Initiate the Swap**
+    - Click **SWAP** to begin the cross-chain transfer.
+
+    ![UsingTheBridge](../images/SwapXRPLWallet.png)
+    - Review and **Approve** the transaction in your XRPL wallet.
+
+    ![UsingTheBridge](../images/SwapApproveXRPLWallet.png)
+
+5.  **View Your Assets on the XRPL EVM Testnet**
+    - Add the [XRPL EVM Testnet network](../getting-started/connect-to-the-xrpl-evm.md#adding-xrpl-evm-sidechain-to-metamask) to MetaMask if you haven’t already.
+    - Once the transaction completes, your XRP (or other assets) will be visible in your XRPL EVM Testnet wallet.
+
+{% /tab %}
 {% /tabs %}
 
 ---

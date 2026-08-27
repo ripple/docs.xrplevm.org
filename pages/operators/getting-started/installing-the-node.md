@@ -14,11 +14,11 @@ If you specifically need full historical replay from block 0, use [Sync from Gen
 
 ## Network reference
 
-| Network | Chain ID | Current Version | Genesis |
-| ------- | -------- | --------------- | ------- |
-| Mainnet | `xrplevm_1440000-1` | `v10.0.2` | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/mainnet/genesis.json) |
-| Testnet | `xrplevm_1449000-1` | `v10.0.1` | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json) |
-| Devnet | `xrplevm_1449900-1` | `v9.0.3` | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/devnet/genesis.json) |
+| Network | Chain ID            | Current Version | Genesis                                                                                            |
+| ------- | ------------------- | --------------- | -------------------------------------------------------------------------------------------------- |
+| Mainnet | `xrplevm_1440000-1` | `v10.1.0`       | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/mainnet/genesis.json) |
+| Testnet | `xrplevm_1449000-1` | `v10.1.0`       | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json) |
+| Devnet  | `xrplevm_1449900-1` | `v11.0.0-rc.1`  | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/devnet/genesis.json)  |
 
 ## Recommended flow (snapshot-first)
 
@@ -56,9 +56,9 @@ exrpd version
 
 Set `<target-tag>` from [Networks](../resources/networks.md) for your network:
 
-- Mainnet: `v10.0.2`
-- Testnet: `v10.0.1`
-- Devnet: `v9.0.3`
+- Mainnet: `v10.1.0`
+- Testnet: `v10.1.0`
+- Devnet: `v11.0.0-rc.1`
 
 ### Method B: Build from source
 
@@ -102,6 +102,7 @@ If this node is an active validator signer, do not re-run `exrpd init` on an exi
 {% tabs %}
 
 {% tab label="Mainnet" %}
+
 ```bash
 exrpd config set client chain-id xrplevm_1440000-1
 exrpd init <moniker> --chain-id xrplevm_1440000-1
@@ -109,9 +110,11 @@ wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/n
 PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/mainnet/peers.txt | sort -R | head -n 10 | paste -sd, -)
 sed -i.bak -e "s/^seeds *=.*/seeds = \"${PEERS}\"/" ~/.exrpd/config/config.toml
 ```
+
 {% /tab %}
 
 {% tab label="Testnet" %}
+
 ```bash
 exrpd config set client chain-id xrplevm_1449000-1
 exrpd init <moniker> --chain-id xrplevm_1449000-1
@@ -119,9 +122,11 @@ wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/n
 PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/testnet/peers.txt | sort -R | head -n 10 | paste -sd, -)
 sed -i.bak -e "s/^seeds *=.*/seeds = \"${PEERS}\"/" ~/.exrpd/config/config.toml
 ```
+
 {% /tab %}
 
 {% tab label="Devnet" %}
+
 ```bash
 exrpd config set client chain-id xrplevm_1449900-1
 exrpd init <moniker> --chain-id xrplevm_1449900-1
@@ -129,6 +134,7 @@ wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/n
 PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/devnet/peers.txt | sort -R | head -n 10 | paste -sd, -)
 sed -i.bak -e "s/^seeds *=.*/seeds = \"${PEERS}\"/" ~/.exrpd/config/config.toml
 ```
+
 {% /tab %}
 
 {% /tabs %}
@@ -146,7 +152,7 @@ Use any provider from [Snapshots](../resources/snapshots.md) and extract into `~
 
 ```bash
 cd ~/.exrpd
-wget -O exrpd.tar.lz4 https://evm-sidechain-snapshots-mainnet.s3.us-east-1.amazonaws.com/exrpd.tar.lz4
+wget -O exrpd.tar.lz4 https://xrpl-evm-snapshots.s3.us-east-1.amazonaws.com/mainnet.tar.lz4
 tar -xI lz4 -f exrpd.tar.lz4
 ```
 
@@ -158,7 +164,7 @@ Use any provider from [Snapshots](../resources/snapshots.md) and extract into `~
 
 ```bash
 cd ~/.exrpd
-wget -O exrpd.tar.lz4 https://evm-sidechain-snapshots-testnet.s3.us-east-1.amazonaws.com/exrpd.tar.lz4
+wget -O exrpd.tar.lz4 https://xrpl-evm-snapshots.s3.us-east-1.amazonaws.com/testnet.tar.lz4
 tar -xI lz4 -f exrpd.tar.lz4
 ```
 
@@ -166,7 +172,15 @@ If this URL is temporarily unavailable, use another provider from [Snapshots](..
 {% /tab %}
 
 {% tab label="Devnet" %}
-If no public Devnet snapshot is available, use [State Sync](../advanced/sync-options.md#state-sync) or [Sync from Genesis](./sync-from-genesis.md).
+Use any provider from [Snapshots](../resources/snapshots.md) and extract into `~/.exrpd`:
+
+```bash
+cd ~/.exrpd
+wget -O exrpd.tar.lz4 https://xrpl-evm-snapshots.s3.us-east-1.amazonaws.com/devnet.tar.lz4
+tar -xI lz4 -f exrpd.tar.lz4
+```
+
+If this URL is temporarily unavailable, use [State Sync](../advanced/sync-options.md#state-sync) or [Sync from Genesis](./sync-from-genesis.md).
 {% /tab %}
 
 {% /tabs %}
@@ -326,7 +340,7 @@ docker run -d \
 docker logs -f xrplevm-node
 ```
 
-Use the exact `<target-tag>` from [Networks](../resources/networks.md) (for example, Mainnet `v10.0.2`).
+Use the exact `<target-tag>` from [Networks](../resources/networks.md) (for example, Mainnet `v10.1.0`).
 
 ## Validation
 
@@ -348,4 +362,3 @@ For signer nodes, avoid `exrpd unsafe-reset-all`, snapshot overwrite on active s
 - [Join the XRPL EVM](./join-the-xrplevm.md)
 - [Sync from Genesis](./sync-from-genesis.md)
 - [Sync options](../advanced/sync-options.md)
-

@@ -87,7 +87,7 @@ The EVM component should include any new functionality that doesn't exist on the
 
 ## What is the end-to-end latency of a cross-chain transaction?
 
-The latency depends on the bridge network used. For example, when using Axelar, from our current testing, an end-to-end transaction can take more than a minute. This time could be longer in a mainnet environment with many validators needing to reach consensus across all three chains—XRPL, Axelar, and the EVM sidechain.
+The latency depends on the bridge network used. For example, when using Axelar, from our current testing, an end-to-end transaction can take more than a minute. This time could be longer in a mainnet environment with many validators needing to reach consensus across all three chains: XRPL, Axelar, and the EVM sidechain.
 
 ## What is the best way to start building? What tools are available?
 

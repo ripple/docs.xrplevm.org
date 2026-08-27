@@ -6,7 +6,7 @@ Here’s the fully rewritten `.md` file with real data from the official Goldsky
 
 Goldsky makes it easy to index smart contracts with a powerful no-code subgraph configuration system. Using the interactive CLI wizard, you can deploy a fully working subgraph in minutes.
 
-> 🛠 **Prerequisite**
+> **Prerequisite**
 > Make sure you’re authenticated via:
 >
 > ```bash
@@ -15,7 +15,7 @@ Goldsky makes it easy to index smart contracts with a powerful no-code subgraph 
 
 ---
 
-## 🚀 Step-by-Step Guide to Deploy a Subgraph
+## Step-by-Step Guide to Deploy a Subgraph
 
 ### 1. Launch the Wizard
 
@@ -78,7 +78,7 @@ Set the start block (autodetected or manually entered):
 Start block: 12985438
 ```
 
-> ℹ️ **For XRPL EVM**
+> **For XRPL EVM**
 > See [Supported Networks](https://docs.goldsky.com/chains/supported-networks) for correct network IDs including XRPL Mainnet and Testnet.
 
 ---
@@ -124,15 +124,15 @@ Proceed with subgraph deploy? Yes
 
 You’ll receive links like:
 
-* **Dashboard:**
+- **Dashboard:**
   `https://app.goldsky.com/.../dashboard/subgraphs/nouns-demo-mainnet/1.0.0-demo+docs`
 
-* **GraphiQL API:**
+- **GraphiQL API:**
   `https://api.goldsky.com/api/public/.../subgraphs/nouns-demo-mainnet/1.0.0-demo+docs/gn`
 
 ---
 
-## 🔍 Query Your Subgraph
+## Query Your Subgraph
 
 After deployment, test your subgraph using GraphiQL:
 
@@ -155,7 +155,7 @@ query LatestNouns($count: Int = 5) {
 
 ---
 
-## ⚙️ Non-Interactive Deployment (CI/CD)
+## Non-Interactive Deployment (CI/CD)
 
 To automate deployment (e.g., for CI pipelines):
 
@@ -171,7 +171,7 @@ goldsky subgraph init nouns-demo/1.0.0 \
 
 ---
 
-## 🧩 Useful CLI Flags
+## Useful CLI Flags
 
 | Flag              | Description                               |
 | ----------------- | ----------------------------------------- |
@@ -190,11 +190,9 @@ goldsky subgraph init nouns-demo/1.0.0 \
 
 ---
 
-## 🔗 Resources
+## Resources
 
-* 🧾 [Supported Networks – Goldsky Docs](https://docs.goldsky.com/chains/supported-networks)
-* 📚 [Full Goldsky Documentation](https://docs.goldsky.com)
+- [Supported Networks (Goldsky Docs)](https://docs.goldsky.com/chains/supported-networks)
+- [Full Goldsky Documentation](https://docs.goldsky.com)
 
 ---
-
-Let me know if you want an XRPL EVM–specific version with an example subgraph using one of your contracts!

@@ -1,13 +1,8 @@
 {% admonition type="info" name="EVM Compatibility Notice" %}
-The **XRPL EVM** is currently compatible with:
-
-- **EVM Version:** Paris
-- **Solidity Compiler:** `solc` ≤ **0.8.24**
-
-With the upcoming upgrade from **legacy evmOS** to **Cosmos EVM**, compatibility will shift to:
+Following the upgrade from **legacy evmOS** to **Cosmos EVM**, the **XRPL EVM** is compatible with:
 
 - **EVM Version:** Prague
-- **Solidity Compiler:** `solc` **0.8.30**
+- **Solidity Compiler:** `solc` up to **0.8.30** works out of the box (its default EVM target is `prague`)
 
-Please ensure your contracts are compiled with the correct `solc` version depending on the network upgrade status.
+Contracts compiled for earlier EVM versions (Paris, Shanghai, Cancun) remain fully compatible. If you use a newer compiler release, set `evmVersion` to `prague` (or lower) in your compiler settings.
 {% /admonition %}

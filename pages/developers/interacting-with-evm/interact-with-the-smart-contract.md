@@ -259,7 +259,7 @@ const wallet = new ethers.Wallet("0xYourPrivateKey", provider);
 
    - **Interpretation:**
 
-     - `rate` is a ¹⁸-decimal–scaled integer.
+     - `rate` is an integer scaled to 18 decimals.
      - To get the human-readable price, divide by 10¹⁸:
 
        ```
@@ -268,7 +268,7 @@ const wallet = new ethers.Wallet("0xYourPrivateKey", provider);
 
 ### 5. Using Foundry’s `cast` CLI
 
-Foundry’s `cast` tool lets you interact with your XRPL EVM contracts directly from the terminal—no JavaScript required. Below is a detailed walkthrough for reading state, sending transactions, decoding logs, estimating gas, and more, on **Testnet**, or **Mainnet**.
+Foundry’s `cast` tool lets you interact with your XRPL EVM contracts directly from the terminal, with no JavaScript required. Below is a detailed walkthrough for reading state, sending transactions, decoding logs, estimating gas, and more, on **Testnet**, or **Mainnet**.
 
 #### 5.1 Prerequisites
 

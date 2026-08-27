@@ -1,6 +1,6 @@
 # Sending XRP Through IBC
 
-This guide will show you how to send **XRP** and other tokens from the **XRPL EVM** to other Cosmos chains using IBC via the **Keplr Wallet**.
+The XRPL EVM is part of the Cosmos ecosystem, so **XRP** and other tokens can travel over **IBC** to chains like Osmosis, Cosmos Hub, or Injective directly from your **Keplr Wallet**. This guide shows you the full flow.
 
 ---
 
@@ -8,12 +8,12 @@ This guide will show you how to send **XRP** and other tokens from the **XRPL EV
 
 Before proceeding, ensure you’ve completed the following:
 
-1. ✅ Installed the **Keplr extension**  
-2. ✅ Created a **Keplr wallet account**  
-3. ✅ Added the **XRPL EVM** to Keplr  
-4. ✅ Funded your account with **XRP**
+1. Installed the **Keplr extension**  
+2. Created a **Keplr wallet account**  
+3. Added the **XRPL EVM** to Keplr  
+4. Funded your account with **XRP**
 
-> 📝 All of these steps are covered in the [Install Keplr Guide](./getting-started/install-keplr.md)
+> All of these steps are covered in the [Install Keplr Guide](./getting-started/install-keplr.md)
 
 ---
 
@@ -42,7 +42,7 @@ The Peersyst team has established IBC channels that connect the XRPL EVM with ot
       To access the IBC transfer feature:
 
       1. Open the **Keplr extension** in your browser.
-      2. Click the **menu icon (☰)** and go to **Settings**.
+      2. Click the **menu icon** and go to **Settings**.
       3. Scroll to **Advanced** settings.
       4. Enable **Developer Mode**.
 
@@ -71,13 +71,7 @@ The Peersyst team has established IBC channels that connect the XRPL EVM with ot
 
       ### Channel IDs
 
-      | Destination     | From XRPL EVM (Source → Dest) | To XRPL EVM (Dest → Source) |
-      |-----------------|-------------------------------|-----------------------------|
-      | Cosmos Hub      | `channel-2`                   | `channel-1377`             |
-      | Elys Network    | `channel-1`                   | `channel-27`               |
-      | Injective       | `channel-0`                   | `channel-436`              |
-      | Osmosis         | `channel-3`                   | `channel-104325`           |
-      | Noble           | `channel-4`                   | `channel-152`              |
+      {% partial file="/snippets/_ibc-channels-mainnet.md" /%}
 
       3. **Paste Destination Address**:  
          - Ensure it's a valid **Keplr-compatible address** on the target chain.
@@ -112,7 +106,7 @@ The Peersyst team has established IBC channels that connect the XRPL EVM with ot
       To access the IBC transfer feature:
 
       1. Open the **Keplr extension** in your browser.
-      2. Click the **menu icon (☰)** and go to **Settings**.
+      2. Click the **menu icon** and go to **Settings**.
       3. Scroll to **Advanced** settings.
       4. Enable **Developer Mode**.
 
@@ -141,12 +135,7 @@ The Peersyst team has established IBC channels that connect the XRPL EVM with ot
 
       ### Channel IDs
 
-      | Destination                | From XRPL EVM (Source → Dest) | To XRPL EVM (Dest → Source) |
-      |----------------------------|-------------------------------|-----------------------------|
-      | CosmosHub Provider Testnet | `channel-1`                   | `channel-374`               |
-      | Osmosis Testnet            | `channel-2`                   | `channel-10361`             |
-      | Elys Network Testnet       | `channel-3`                   | `channel-10`                |
-      | Injective Testnet          | `channel-4`                   | `channel-77038`             |
+      {% partial file="/snippets/_ibc-channels-testnet.md" /%}
 
       3. **Paste Destination Address**:  
          - Ensure it’s a valid **Keplr-compatible address** on the target chain.
@@ -175,6 +164,6 @@ The Peersyst team has established IBC channels that connect the XRPL EVM with ot
   - [XRPL EVM Explorers](../developers/resources/block-explorers.md)
   - The destination chain’s respective testnet explorer
 
-> 🔁 Want to transfer back? Simply reverse the process, using the appropriate **reverse channel ID** in your destination chain’s Keplr wallet.
+> Want to transfer back? Simply reverse the process, using the appropriate **reverse channel ID** in your destination chain’s Keplr wallet.
 
 ---

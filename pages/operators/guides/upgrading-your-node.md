@@ -315,5 +315,5 @@ Before starting after upgrade, confirm:
 
 ## Additional Resources
 
-- [Cosmovisor Docs (Cosmos SDK)](https://docs.cosmos.network/main/build/tooling/cosmovisor)
+- [Cosmovisor Docs (Cosmos SDK)](https://docs.cosmos.network/sdk/v0.50/build/tooling/cosmovisor)
 - [XRPL EVM Sidechain Repository](https://github.com/xrplevm/node)

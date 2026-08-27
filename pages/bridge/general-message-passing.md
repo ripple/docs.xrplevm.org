@@ -1,9 +1,6 @@
 ---
-html: general-message-passing.html
-blurb: Learn more about Axelar general message passing.
-labels:
-  - Interoperability
-status: not_enabled
+seo:
+  description: "How Axelar General Message Passing relays cross-chain contract calls from the XRP Ledger to the XRPL EVM Sidechain, and the components involved."
 ---
 
 # Axelar General Message Passing (GMP)
@@ -53,7 +50,6 @@ To send a message from the XRP Ledger (XRPL) to the XRPL EVM, a `Payment` transa
   - The _payload hash_, which contains the data to be sent to the destination contract. This payload must be ABI-encoded. The [ethers AbiCoder](https://docs.ethers.org/v6/api/abi/abi-coder/#AbiCoder-encode) can be used for encoding the payload.
 
 See [Axelar's documentation](https://github.com/axelarnetwork/axelar-contract-deployments/tree/main/xrpl#general-message-passing) for a guide on making GMP contract calls.
-
 
 3. Submit the transaction to the XRPL Ledger. Within a few minutes, the relayer should submit validator signatures of the XRPL Testnet deposit transaction to the XRPL EVM Sidechain `AxelarAmplifierGateway` contract, which records the approval of the payload hash and emits a `ContractCallApproved` event.
 4. Once the transaction is confirmed, call the `execute` function on the XRPL EVM Sidechain `AxelarExecutable` smart contract.
