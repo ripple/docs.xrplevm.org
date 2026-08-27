@@ -152,7 +152,7 @@ Use any provider from [Snapshots](../resources/snapshots.md) and extract into `~
 
 ```bash
 cd ~/.exrpd
-wget -O exrpd.tar.lz4 https://evm-sidechain-snapshots-mainnet.s3.us-east-1.amazonaws.com/exrpd_latest.tar.lz4
+wget -O exrpd.tar.lz4 https://xrpl-evm-snapshots.s3.us-east-1.amazonaws.com/mainnet.tar.lz4
 tar -xI lz4 -f exrpd.tar.lz4
 ```
 
@@ -164,7 +164,7 @@ Use any provider from [Snapshots](../resources/snapshots.md) and extract into `~
 
 ```bash
 cd ~/.exrpd
-wget -O exrpd.tar.lz4 https://evm-sidechain-snapshots-testnet.s3.us-east-1.amazonaws.com/exrpd_latest.tar.lz4
+wget -O exrpd.tar.lz4 https://xrpl-evm-snapshots.s3.us-east-1.amazonaws.com/testnet.tar.lz4
 tar -xI lz4 -f exrpd.tar.lz4
 ```
 
@@ -172,7 +172,15 @@ If this URL is temporarily unavailable, use another provider from [Snapshots](..
 {% /tab %}
 
 {% tab label="Devnet" %}
-If no public Devnet snapshot is available, use [State Sync](../advanced/sync-options.md#state-sync) or [Sync from Genesis](./sync-from-genesis.md).
+Use any provider from [Snapshots](../resources/snapshots.md) and extract into `~/.exrpd`:
+
+```bash
+cd ~/.exrpd
+wget -O exrpd.tar.lz4 https://xrpl-evm-snapshots.s3.us-east-1.amazonaws.com/devnet.tar.lz4
+tar -xI lz4 -f exrpd.tar.lz4
+```
+
+If this URL is temporarily unavailable, use [State Sync](../advanced/sync-options.md#state-sync) or [Sync from Genesis](./sync-from-genesis.md).
 {% /tab %}
 
 {% /tabs %}

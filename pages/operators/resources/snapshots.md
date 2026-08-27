@@ -1,6 +1,6 @@
 # Snapshots
 
-Snapshots provide a quick way to bootstrap your node’s state by downloading a pre-synchronized version of the blockchain data. This reduces the time and resources required to sync from the genesis block. Providers currently publish Mainnet and Testnet snapshots for various use cases. Some snapshots are pruned (minimal historical data), others retain default state, and some include full historical archives for comprehensive analysis.
+Snapshots provide a quick way to bootstrap your node’s state by downloading a pre-synchronized version of the blockchain data. This reduces the time and resources required to sync from the genesis block. Providers currently publish Mainnet, Testnet and Devnet snapshots for various use cases. Some snapshots are pruned (minimal historical data), others retain default state, and some include full historical archives for comprehensive analysis.
 
 ## Snapshots
 
@@ -10,7 +10,7 @@ Snapshots provide a quick way to bootstrap your node’s state by downloading a 
 
 | Provider     | URL                                                                                                  |
 | ------------ | ---------------------------------------------------------------------------------------------------- |
-| **Peersyst** | [Download Mainnet](https://evm-sidechain-snapshots-mainnet.s3.us-east-1.amazonaws.com/exrpd_latest.tar.lz4) |
+| **Peersyst** | [Download Mainnet](https://xrpl-evm-snapshots.s3.us-east-1.amazonaws.com/mainnet.tar.lz4) |
 | **Polkachu** | [Download Mainnet](https://polkachu.com/tendermint_snapshots/xrp)                                    |
 | **Cumulo**   | [Download Mainnet](https://cumulo.pro/services/xrplevm_mainnet/snapshot)                             |
 | **ITRocket** | [Download Mainnet](https://itrocket.net/services/mainnet/xrplevm/)                                   |
@@ -21,7 +21,7 @@ Snapshots provide a quick way to bootstrap your node’s state by downloading a 
 
 | Provider     | URL                                                                                                  |
 | ------------ | ---------------------------------------------------------------------------------------------------- |
-| **Peersyst** | [Download Testnet](https://evm-sidechain-snapshots-testnet.s3.us-east-1.amazonaws.com/exrpd_latest.tar.lz4) |
+| **Peersyst** | [Download Testnet](https://xrpl-evm-snapshots.s3.us-east-1.amazonaws.com/testnet.tar.lz4) |
 | **Polkachu** | [Download Testnet](https://polkachu.com/testnets/xrp/snapshots)                                      |
 | **Cumulo**   | [Download Testnet](https://cumulo.pro/services/xrplevm/)                                             |
 | **ITRocket** | [Download Testnet](https://itrocket.net/services/testnet/xrplevm/)                                   |
@@ -30,12 +30,11 @@ Snapshots provide a quick way to bootstrap your node’s state by downloading a 
 
 {% tab label="Devnet" %}
 
-No public Devnet snapshots are currently available. The Devnet was reset in January 2026, and the snapshot archives that predate the reset are not compatible with the current chain.
+| Provider     | URL                                                            |
+| ------------ | -------------------------------------------------------------- |
+| **Peersyst** | [Download Devnet](https://xrpl-evm-snapshots.s3.us-east-1.amazonaws.com/devnet.tar.lz4) |
 
-To bootstrap a Devnet node, either:
-
-- [Sync from genesis](../getting-started/sync-from-genesis.md) following the Devnet upgrade path, or
-- Use state sync as described in [Sync Options](../advanced/sync-options.md).
+Peersyst is currently the only provider publishing Devnet snapshots. Archives that predate the January 2026 Devnet reset are not compatible with the current chain, so do not reuse older Devnet downloads.
 
 {% /tab %}
 
