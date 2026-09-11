@@ -31,23 +31,23 @@ Before starting, ensure you have:
 
 ### XRPL EVM Mainnet
 
-| Parameter | Value |
-|-----------|-------|
-| **Network Name** | XRPL EVM |
-| **RPC URL** | `https://rpc.xrplevm.org/` |
-| **Chain ID** | `1440000` |
-| **Currency Symbol** | `XRP` |
-| **Block Explorer** | `https://explorer.xrplevm.org` |
+| Parameter           | Value                          |
+| ------------------- | ------------------------------ |
+| **Network Name**    | XRPL EVM                       |
+| **RPC URL**         | `https://rpc.xrplevm.org/`     |
+| **Chain ID**        | `1440000`                      |
+| **Currency Symbol** | `XRP`                          |
+| **Block Explorer**  | `https://explorer.xrplevm.org` |
 
 ### XRPL EVM Testnet
 
-| Parameter | Value |
-|-----------|-------|
-| **Network Name** | XRPL EVM Testnet |
-| **RPC URL** | `https://rpc.testnet.xrplevm.org/` |
-| **Chain ID** | `1449000` |
-| **Currency Symbol** | `XRP` |
-| **Block Explorer** | `https://explorer.testnet.xrplevm.org` |
+| Parameter           | Value                                  |
+| ------------------- | -------------------------------------- |
+| **Network Name**    | XRPL EVM Testnet                       |
+| **RPC URL**         | `https://rpc.testnet.xrplevm.org/`     |
+| **Chain ID**        | `1449000`                              |
+| **Currency Symbol** | `XRP`                                  |
+| **Block Explorer**  | `https://explorer.testnet.xrplevm.org` |
 
 ---
 
@@ -102,6 +102,7 @@ NEXT_PUBLIC_PROJECT_ID=your_reown_project_id_here
 ```
 
 To obtain your Project ID:
+
 1. Visit [cloud.reown.com](https://cloud.reown.com)
 2. Create a new project
 3. Copy your Project ID
@@ -133,20 +134,22 @@ src/
 This file sets up the blockchain networks and Wagmi configuration:
 
 ```typescript
-import { cookieStorage, createStorage } from '@wagmi/core'
-import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
-import { xrplevm, xrplevmTestnet } from '@reown/appkit/networks'
+import { cookieStorage, createStorage } from "@wagmi/core";
+import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
+import { xrplevm, xrplevmTestnet } from "@reown/appkit/networks";
 
 // Get the Project ID from environment variables
-export const projectId = process.env.NEXT_PUBLIC_PROJECT_ID
+export const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
 
 if (!projectId) {
-  throw new Error('Project ID is not defined. Please add NEXT_PUBLIC_PROJECT_ID to your .env.local file')
+  throw new Error(
+    "Project ID is not defined. Please add NEXT_PUBLIC_PROJECT_ID to your .env.local file",
+  );
 }
 
 // Define the XRPL EVM networks
 // Use both mainnet and testnet, or just testnet for development
-export const networks = [xrplevm, xrplevmTestnet]
+export const networks = [xrplevm, xrplevmTestnet];
 
 // Create Wagmi adapter with persistent storage
 export const wagmiAdapter = new WagmiAdapter({
@@ -156,12 +159,13 @@ export const wagmiAdapter = new WagmiAdapter({
   ssr: true,
   projectId,
   networks,
-})
+});
 
-export const config = wagmiAdapter.wagmiConfig
+export const config = wagmiAdapter.wagmiConfig;
 ```
 
 **Key Points:**
+
 - `cookieStorage` enables persistent sessions across page reloads
 - `ssr: true` is required for Next.js App Router
 - Import pre-configured networks from `@reown/appkit/networks`
@@ -220,12 +224,12 @@ const modal = createAppKit({
   ],
 })
 
-export default function ContextProvider({ 
-  children, 
-  cookies 
-}: { 
+export default function ContextProvider({
+  children,
+  cookies
+}: {
   children: ReactNode
-  cookies: string | null 
+  cookies: string | null
 }) {
   const initialState = cookieToInitialState(wagmiAdapter.wagmiConfig as Config, cookies)
 
@@ -242,6 +246,7 @@ export default function ContextProvider({
 **Social Login Configuration:**
 
 The `socials` array enables different social login providers:
+
 - `google` - Google OAuth
 - `x` - X (formerly Twitter)
 - `github` - GitHub
@@ -306,18 +311,18 @@ export default function ConnectWallet() {
   const { address, isConnected } = useAppKitAccount()
   const { disconnect } = useDisconnect()
   const chainId = useChainId()
-  
+
   // Get wallet balance
-  const { data: balance, isLoading: balanceLoading } = useBalance({ 
-    address: address as `0x${string}` 
+  const { data: balance, isLoading: balanceLoading } = useBalance({
+    address: address as `0x${string}`
   })
 
   // Check if connected to correct network
   const isCorrectNetwork = chainId === xrplevmTestnet.id || chainId === xrplevm.id
-  const networkName = chainId === xrplevm.id 
-    ? 'XRPL EVM' 
-    : chainId === xrplevmTestnet.id 
-    ? 'XRPL EVM Testnet' 
+  const networkName = chainId === xrplevm.id
+    ? 'XRPL EVM'
+    : chainId === xrplevmTestnet.id
+    ? 'XRPL EVM Testnet'
     : 'Wrong Network'
 
   if (!isConnected) {
@@ -357,8 +362,8 @@ export default function ConnectWallet() {
 
       {/* Network Status */}
       <div className={`p-4 rounded-lg border ${
-        isCorrectNetwork 
-          ? 'bg-green-500/10 border-green-500/30' 
+        isCorrectNetwork
+          ? 'bg-green-500/10 border-green-500/30'
           : 'bg-red-500/10 border-red-500/30'
       }`}>
         <div className="flex items-center justify-between">
@@ -427,7 +432,7 @@ export default function Home() {
             Connect with social login or your wallet
           </p>
         </div>
-        
+
         <ConnectWallet />
       </div>
     </main>
@@ -509,6 +514,7 @@ Visit `http://localhost:3000`
 ### 4. Test with Different Providers
 
 Test your dApp with multiple social providers to ensure compatibility:
+
 - Google
 - GitHub
 - Discord
@@ -523,6 +529,7 @@ Test your dApp with multiple social providers to ensure compatibility:
 #### 1. "Project ID is not defined" Error
 
 **Solution:** Ensure your `.env.local` file contains:
+
 ```env
 NEXT_PUBLIC_PROJECT_ID=your_project_id
 ```
@@ -531,7 +538,8 @@ Restart your development server after adding environment variables.
 
 #### 2. Social Login Modal Not Opening
 
-**Solution:** 
+**Solution:**
+
 - Verify you're using the correct version: `@reown/appkit@1.7.6`
 - Check browser console for errors
 - Ensure `createAppKit` is called before rendering
@@ -539,6 +547,7 @@ Restart your development server after adding environment variables.
 #### 3. Wrong Network After Connection
 
 **Solution:**
+
 - Set `defaultNetwork` in your AppKit configuration
 - Use the network switcher button to guide users
 - Show clear network status indicators
@@ -546,6 +555,7 @@ Restart your development server after adding environment variables.
 #### 4. Type Errors with Wagmi
 
 **Solution:**
+
 - Ensure you have the overrides in `package.json`
 - Use exact versions specified in this guide
 - Clear `node_modules` and reinstall: `rm -rf node_modules package-lock.json && npm install`
@@ -553,6 +563,7 @@ Restart your development server after adding environment variables.
 #### 5. Hydration Errors
 
 **Solution:**
+
 - Ensure all components using hooks are marked with `'use client'`
 - Use `cookieToInitialState` in your layout
 - Verify SSR is enabled in wagmiAdapter: `ssr: true`
@@ -565,7 +576,7 @@ Enable debug mode for more detailed logs:
 const modal = createAppKit({
   // ... other config
   debug: true, // Add this line
-})
+});
 ```
 
 ### Network Issues
@@ -607,17 +618,20 @@ If users can't connect to XRPL EVM networks:
 ## Additional Resources
 
 ### Documentation
+
 - [Reown AppKit Docs](https://docs.reown.com/appkit/overview)
 - [Wagmi Documentation](https://wagmi.sh/)
 - [XRPL EVM Documentation](https://docs.xrplevm.org/)
 
 ### Tools
+
 - [Reown Cloud](https://cloud.reown.com) - Get your Project ID
 - [XRPL EVM Explorer](https://explorer.xrplevm.org) - Mainnet explorer
 - [XRPL EVM Testnet Explorer](https://explorer.testnet.xrplevm.org) - Testnet explorer
 - [XRPL EVM Testnet Faucet](https://faucet.xrplevm.org) - Get testnet XRP
 
 ### Community
+
 - [XRPL EVM Discord](https://discord.gg/xrplevm)
 - [Reown Discord](https://discord.com/invite/reown)
 
@@ -626,6 +640,7 @@ If users can't connect to XRPL EVM networks:
 ## Example Repository
 
 For a complete working example, check out:
+
 - Repository: [reown-xrplevm-dapp](https://github.com/vriveraPeersyst/reown-xrplevm-dapp)
 - Live Demo: [reown-xrplevm-dapp](https://reown-xrpl-dapp.vercel.app/)
 

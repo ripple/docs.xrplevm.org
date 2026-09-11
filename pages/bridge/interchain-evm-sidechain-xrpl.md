@@ -1,9 +1,6 @@
 ---
-html: interchain-transfer-evm-sidechain-xrpl.html
-blurb: Axelar interchain transfer to XRPL.
-labels:
-  - Interoperability
-status: not_enabled
+seo:
+  description: "Bridge native XRP from the XRP Ledger to the XRPL EVM Sidechain with the Axelar Portal, connecting a MetaMask wallet, step by step with screenshots."
 ---
 
 # Axelar Interchain Transfer from XRPL

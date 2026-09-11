@@ -8,15 +8,16 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
 
 ## Mainnet Official Public APIs
 
-| Type              | URL                                                                       |
-| ----------------- | ------------------------------------------------------------------------- |
-| Ethereum JSON RPC | [https://rpc.xrplevm.org](https://rpc.xrplevm.org)                        |
-| Ethereum JSON WS  | [https://ws.xrplevm.org](https://ws.xrplevm.org)                          |
-| Tendermint RPC    | [https://cosmos-rpc.xrplevm.org](https://cosmos-rpc.xrplevm.org)          |
-| Cosmos gRPC       | [https://cosmos-grpc.xrplevm.org](https://cosmos-grpc.xrplevm.org)        |
-| Cosmos API        | [https://cosmos-api.xrplevm.org](https://cosmos-api.xrplevm.org)          |
+| Type              | URL                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| Ethereum JSON RPC | [https://rpc.xrplevm.org](https://rpc.xrplevm.org)                 |
+| Ethereum JSON WS  | [https://ws.xrplevm.org](https://ws.xrplevm.org)                   |
+| Tendermint RPC    | [https://cosmos-rpc.xrplevm.org](https://cosmos-rpc.xrplevm.org)   |
+| Cosmos gRPC       | `cosmos-grpc.xrplevm.org:443` |
+| Cosmos API        | [https://cosmos-api.xrplevm.org](https://cosmos-api.xrplevm.org)   |
 
 ## Additional Endpoints
+
 {% tabs %}
 
         {% tab label="Ethereum JSON RPC" %}
@@ -66,13 +67,13 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
 
 ## Testnet Official Public APIs
 
-| Type              | URL                                                                                 |
-| ----------------- | ----------------------------------------------------------------------------------- |
-| Ethereum JSON RPC | [https://rpc.testnet.xrplevm.org](https://rpc.testnet.xrplevm.org)                  |
-| Ethereum JSON WS  | [https://ws.testnet.xrplevm.org]( https://ws.testnet.xrplevm.org)                   |
-| Tendermint RPC    | [https://cosmos-rpc.testnet.xrplevm.org](https://cosmos-rpc.testnet.xrplevm.org)    |
-| Cosmos gRPC       | cosmos-grpc.testnet.xrplevm.org:443                                                 |
-| Cosmos API        | [http://cosmos-api.testnet.xrplevm.org](http://cosmos-api.testnet.xrplevm.org)      |
+| Type              | URL                                                                              |
+| ----------------- | -------------------------------------------------------------------------------- |
+| Ethereum JSON RPC | [https://rpc.testnet.xrplevm.org](https://rpc.testnet.xrplevm.org)               |
+| Ethereum JSON WS  | [https://ws.testnet.xrplevm.org](https://ws.testnet.xrplevm.org)                 |
+| Tendermint RPC    | [https://cosmos-rpc.testnet.xrplevm.org](https://cosmos-rpc.testnet.xrplevm.org) |
+| Cosmos gRPC       | `cosmos-grpc.testnet.xrplevm.org:443`                                            |
+| Cosmos API        | [https://cosmos-api.testnet.xrplevm.org](https://cosmos-api.testnet.xrplevm.org) |
 
 ## Additional Endpoints
 
@@ -115,6 +116,20 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         | **ITRocket**        | [https://xrplevm-testnet-api.itrocket.net](https://xrplevm-testnet-api.itrocket.net)     |
         {% /tab %}
     {% /tabs %}
+
+{% /tab %}
+
+{% tab label="Devnet" %}
+
+## Devnet Official Public APIs
+
+| Type              | URL                                                                            |
+| ----------------- | ------------------------------------------------------------------------------ |
+| Ethereum JSON RPC | [https://rpc.devnet.xrplevm.org](https://rpc.devnet.xrplevm.org)               |
+| Ethereum JSON WS  | [https://ws.devnet.xrplevm.org](https://ws.devnet.xrplevm.org)                 |
+| Tendermint RPC    | [https://cosmos-rpc.devnet.xrplevm.org](https://cosmos-rpc.devnet.xrplevm.org) |
+| Cosmos gRPC       | `cosmos-grpc.devnet.xrplevm.org:443`                                           |
+| Cosmos API        | [https://cosmos-api.devnet.xrplevm.org](https://cosmos-api.devnet.xrplevm.org) |
 
 {% /tab %}
 {% /tabs %}

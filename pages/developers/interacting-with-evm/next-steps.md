@@ -31,7 +31,7 @@ Through the previous pages, you’ve learned to:
 
 ## Build a Frontend dApp with XRPL EVM
 
-Here’s a quick-start guide for building a **Next.js (App Router) dApp** with the [**new Reown AppKit**](https://docs.reown.com/appkit/next/core/installation), fully configured for both **XRPL EVM Mainnet** and **Testnet** (plus social/email login, analytics, and more). You’ll be up and running in minutes—no manual chain definitions required, just grab the XRPL EVM networks straight from AppKit’s built-in list.
+Here’s a quick-start guide for building a **Next.js (App Router) dApp** with the [**new Reown AppKit**](https://docs.reown.com/appkit/next/core/installation), fully configured for both **XRPL EVM Mainnet** and **Testnet** (plus social/email login, analytics, and more). You’ll be up and running in minutes: no manual chain definitions required, just grab the XRPL EVM networks straight from AppKit’s built-in list.
 
 ---
 
@@ -75,20 +75,20 @@ Create `src/config/index.tsx`:
 
 ```ts
 import { cookieStorage, createStorage } from "@wagmi/core";
-import { WagmiAdapter }              from "@reown/appkit-adapter-wagmi";
+import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import { xrplEvmTestnet, xrplEvm } from "@reown/appkit/networks";
 
 export const projectId = process.env.NEXT_PUBLIC_REOWN_PROJECT_ID!;
-export const networks  = {
-  testnet:  [xrplEvmTestnet],
-  mainnet:  [xrplEvm],
+export const networks = {
+  testnet: [xrplEvmTestnet],
+  mainnet: [xrplEvm],
 };
 
 export const wagmiAdapter = new WagmiAdapter({
-  storage:  createStorage({ storage: cookieStorage }),
-  ssr:      true,
+  storage: createStorage({ storage: cookieStorage }),
+  ssr: true,
   projectId,
-  networks: networks.testnet,   // swap to networks.mainnet for Mainnet
+  networks: networks.testnet, // swap to networks.mainnet for Mainnet
 });
 
 export const wagmiConfig = wagmiAdapter.wagmiConfig;
@@ -101,38 +101,44 @@ export const wagmiConfig = wagmiAdapter.wagmiConfig;
 Create `src/context/AppKitProvider.tsx`:
 
 ```tsx
-'use client';
+"use client";
 
-import React, { ReactNode }               from "react";
+import React, { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { createAppKit }                     from "@reown/appkit/react";
+import { createAppKit } from "@reown/appkit/react";
 import { cookieToInitialState, WagmiProvider, type Config } from "wagmi";
 import { wagmiAdapter, projectId, networks } from "@/config";
 
 const queryClient = new QueryClient();
 
 const metadata = {
-  name:        "my-xrpl-app",
+  name: "my-xrpl-app",
   description: "An XRPL EVM dApp",
-  url:         "https://myxrplapp.com",
-  icons:       ["https://myxrplapp.com/favicon.ico"],
+  url: "https://myxrplapp.com",
+  icons: ["https://myxrplapp.com/favicon.ico"],
 };
 
 export const appKitModal = createAppKit({
-  adapters:       [wagmiAdapter],
+  adapters: [wagmiAdapter],
   projectId,
-  networks:       networks.testnet,       // or networks.mainnet
+  networks: networks.testnet, // or networks.mainnet
   defaultNetwork: networks.testnet[0],
   metadata,
   features: {
-    analytics:       true,
-    email:           true,
-    socials:         ["google", "github", "discord", "apple"],
-    emailShowWallets:true,
+    analytics: true,
+    email: true,
+    socials: ["google", "github", "discord", "apple"],
+    emailShowWallets: true,
   },
 });
 
-export function AppKitProvider({ children, cookies }: { children: ReactNode; cookies: string | null }) {
+export function AppKitProvider({
+  children,
+  cookies,
+}: {
+  children: ReactNode;
+  cookies: string | null;
+}) {
   const initialState = cookieToInitialState(wagmiConfig as Config, cookies);
   return (
     <WagmiProvider config={wagmiConfig as Config} initialState={initialState}>
@@ -149,18 +155,20 @@ export function AppKitProvider({ children, cookies }: { children: ReactNode; coo
 In `app/layout.tsx`:
 
 ```tsx
-import './globals.css';
-import { headers }                 from "next/headers";
-import { AppKitProvider }          from "@/context/AppKitProvider";
+import "./globals.css";
+import { headers } from "next/headers";
+import { AppKitProvider } from "@/context/AppKitProvider";
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const cookieHeader = await headers().get("cookie");
   return (
     <html lang="en">
       <body>
-        <AppKitProvider cookies={cookieHeader}>
-          {children}
-        </AppKitProvider>
+        <AppKitProvider cookies={cookieHeader}>{children}</AppKitProvider>
       </body>
     </html>
   );
@@ -190,19 +198,21 @@ import { useAccount, useSignMessage, useSendTransaction } from "wagmi";
 
 export function Demo() {
   const { address } = useAccount();
-  const signMessage    = useSignMessage();
+  const signMessage = useSignMessage();
   const sendTransaction = useSendTransaction();
 
   return (
     <div>
       <p>Connected: {address}</p>
-      <button onClick={() => signMessage.signMessage({ message: "Hello, XRPL EVM!" })}>
+      <button
+        onClick={() => signMessage.signMessage({ message: "Hello, XRPL EVM!" })}
+      >
         Sign Message
       </button>
       <button
         onClick={() =>
           sendTransaction.sendTransaction({
-            to:    "0x1234…",
+            to: "0x1234…",
             value: BigInt(1e18),
           })
         }
@@ -226,6 +236,7 @@ To switch between Testnet & Mainnet:
    networks: networks.mainnet,
    defaultNetwork: networks.mainnet[0],
    ```
+
 2. Restart your server (`npm run dev`).
 
 ---
@@ -241,5 +252,4 @@ Deploy on **Vercel**, **Netlify**, or any platform that supports Next.js.
 
 ---
 
-You’re all set—Reown AppKit’s unified API plus XRPL EVM out of the box! Enjoy building your dApp.
-
+You’re all set: Reown AppKit’s unified API plus XRPL EVM out of the box! Enjoy building your dApp.

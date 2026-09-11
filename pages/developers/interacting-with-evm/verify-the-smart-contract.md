@@ -61,7 +61,7 @@ The **XRPL EVM Explorer** supports multiple methods. For the most reliable resul
 
 ## Step 4: Verification with Hardhat
 
-Two approaches—**Standard JSON Input** and the **Hardhat Verify Plugin**—each work on Mainnet, and Testnet.
+Two approaches work on both Mainnet and Testnet: **Standard JSON Input** and the **Hardhat Verify Plugin**.
 
 ### A) Standard JSON Input
 
@@ -224,7 +224,7 @@ forge verify-contract \
 
 * **Compiler Settings**: Match version & optimizer exactly.
 * **License**: Choose MIT, GPL, or Unlicense.
-* **Explorer Indexing**: Wait \~10–15 s or retry on “no bytecode” errors.
+* **Explorer Indexing**: Wait about 10 to 15 seconds or retry on “no bytecode” errors.
 * **Cross-chain Ready**: Plan for Cosmos IBC or Axelar GMP if you need interoperability.
 
 ---
@@ -235,4 +235,4 @@ forge verify-contract \
 2. **Trust:** Builds community confidence.
 3. **Interaction:** Enables Read/Write directly in the explorer UI.
 
-By following these steps—across **Mainnet** and **Testnet**, and with **Remix**, **Hardhat**, or **Foundry**—you’ll have a fully verified contract visible and interactable on the XRPL EVM Explorer.
+By following these steps across **Mainnet** and **Testnet**, with **Remix**, **Hardhat**, or **Foundry**, you’ll have a fully verified contract visible and interactable on the XRPL EVM Explorer.

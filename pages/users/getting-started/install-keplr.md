@@ -1,12 +1,6 @@
 # Install Keplr
 
-This guide explains how to install the Keplr wallet extension for your browser.
-
----
-
-## Introduction
-
-The XRPL EVM Sidechain is a high-performance, Ethereum-compatible blockchain built using the Cosmos SDK. It integrates seamlessly with the Cosmos ecosystem via the Inter-Blockchain Communication (IBC) protocol, enabling interoperability with over 90 interconnected chains. Keplr, a leading wallet in the Cosmos ecosystem, supports XRPL EVM, allowing users to manage assets and interact with dApps across both Ethereum and Cosmos networks.
+**Keplr** is the leading wallet of the Cosmos ecosystem, and it fully supports the XRPL EVM. Because the XRPL EVM is built on the Cosmos SDK, Keplr lets you manage your assets on the Cosmos side of the network and move tokens over IBC to more than 90 connected chains. This guide covers installing the extension and creating your account.
 
 ---
 
@@ -86,7 +80,7 @@ To convert between these addresses:
 
 ![XRPL EVM Faucet](../images/faucet.png)
 
-*Note: You may need to complete certain prerequisites, such as joining the Peersyst Discord server, before requesting tokens.*
+_Note: You may need to complete certain prerequisites, such as joining the Peersyst Discord server, before requesting tokens._
 
 #### Option 2: Discord Faucet
 
@@ -99,7 +93,7 @@ Example: `!faucet ethm10e82dmed8mudr8ey09c0lhx6uh682ugyh44czc`
 
 ![Discord Faucet Command](../images/discord-faucet.png)
 
-*Note: The Discord faucet supports both address formats and is maintained by the Enigma validator.*
+_Note: The Discord faucet supports both address formats and is maintained by the Enigma validator._
 
 ---
 
@@ -119,8 +113,7 @@ This process will demonstrate how to leverage IBC for cross-chain transactions, 
 
 - **[Sending XRP Through IBC](../sending-through-ibc.md)**: Learn how to transfer XRP from the XRPL EVM Sidechain to other Cosmos-based testnets using Keplr.
 
---- 
-
+---
 
 ### Additional Resources:
 
@@ -128,4 +121,3 @@ This process will demonstrate how to leverage IBC for cross-chain transactions, 
   - Always back up your mnemonic phrase in a secure location.
   - Be cautious when interacting with unknown websites or dApps.
   - Regularly check your connected sites in Keplr and revoke access when not in use.
-

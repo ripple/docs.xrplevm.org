@@ -1,6 +1,6 @@
 # Faucet
 
-To explore and interact with the **XRPL EVM sidechain**, you need test XRP (`XRP`) to cover transaction fees and execute smart contracts. This guide explains how to obtain test XRP for both the **Testnet** and **Devnet** environments.
+Testing on the **XRPL EVM Sidechain** requires test XRP to pay transaction fees and interact with smart contracts. This page lists the faucets available for **Testnet** and **Devnet**.
 
 {% tabs %}
 {% tab label="Testnet" %}
@@ -24,7 +24,7 @@ To explore and interact with the **XRPL EVM sidechain**, you need test XRP (`XRP
 3. **Bridging via [SquidRouter](https://testnet.xrpl.squidrouter.com/)**
    - If you already have some **XRPL Testnet** [funds](https://xrpl.org/resources/dev-tools/xrp-faucets), you can bridge assets from XRPL Testnet to **XRPL EVM Testnet** using the SquidRouter interface.
    - [Transfer XRP with Axelar](./using-the-bridge/transfer-xrp-with-axelar.md)
-   - [Transfer IOU with Axelar](./using-the-bridge/transfer-iou-with-axelar.md)  
+   - [Transfer IOU with Axelar](./using-the-bridge/transfer-iou-with-axelar.md)
    - [Transfer ERC20 with Axelar](./using-the-bridge/transfer-erc20-with-axelar.md)
 
 4. **[Telegram Bot Faucet](https://t.me/XrplEvmFaucetBot)**
@@ -36,10 +36,11 @@ To explore and interact with the **XRPL EVM sidechain**, you need test XRP (`XRP
    - This faucet supports **0x... (EVM)** addresses, providing up to **89 XRP** per request.
 
 ### Fund Your XRPL Testnet Account
+
 Before bridging from XRPL Testnet to XRPL EVM Testnet, you **must** fund an XRPL Testnet account with test XRP. One convenient option is:
 
-- **[XRPL MetaMask Snap](https://snap.xrplevm.org)**  
-  - Install the Snap in MetaMask.  
+- **[XRPL MetaMask Snap](https://snap.xrplevm.org)**
+  - Install the Snap in MetaMask.
   - Use its built-in faucet or XRPL faucets it supports to fund your XRPL Testnet account.
 
 Once your XRPL Testnet account is funded, use [SquidRouter](https://testnet.xrpl.squidrouter.com/) to move assets to XRPL EVM Testnet.
@@ -49,37 +50,10 @@ Once your XRPL Testnet account is funded, use [SquidRouter](https://testnet.xrpl
 
 ## Devnet Faucet
 
-- **[XRPL EVM Devnet Faucet @ Chains.tools](https://chains.tools/faucet/xrplevm)**  
-  - For **XRPL EVM Devnet**.  
-  - Each wallet can request up to **10 XRP** every 60 minutes.  
-  - Alternatively, bridge from the XRPL Devnet using the [devnet bridge faucet](https://bridge.xrplevm.org) or by manual interchain transactions.
+- **[XRPL EVM Faucet](https://faucet.xrplevm.org)**
+  - The same faucet used for Testnet also supports **Devnet**. Select the Devnet network before requesting funds.
 
-## Bridging on Devnet (Axelar Bridge Overview)
-
-1. **Open the Axelar Bridge**  
-   - [https://bridge.devnet.xrplevm.org/](https://bridge.devnet.xrplevm.org)
-
-2. **Set Source & Destination**  
-   - **Source:** XRPL Devnet  
-   - **Destination:** XRPL EVM Devnet
-
-3. **Fund an XRPL Devnet Account**  
-   - You can automatically generate and fund a Devnet account with 100 XRP through the Axelar faucet option.
-
-4. **Connect Your Wallets**  
-   - **XRPL Devnet:** No manual signature needed for outgoing transactions.  
-   - **XRPL EVM Devnet:** Connect via MetaMask (ensure the XRPL EVM Devnet network is configured).
-
-5. **Select Token & Amount**  
-   - Choose **XRP** or another supported Devnet token.
-
-6. **Confirm & Transfer**  
-   - **XRPL → EVM:** No signature required on XRPL side.  
-   - **EVM → XRPL:** You’ll sign in MetaMask.  
-   - Track status on the [Axelar Devnet Amplifier Explorer](https://devnet-amplifier.axelarscan.io/gmp/search).
-
-7. **Verify Balance**  
-   - Check the [XRPL EVM Devnet Explorer](https://explorer.devnet.xrplevm.org) once the transfer completes.
+Once funded, you can verify your balance on the [XRPL EVM Devnet Explorer](https://explorer.devnet.xrplevm.org).
 
 {% /tab %}
 {% /tabs %}

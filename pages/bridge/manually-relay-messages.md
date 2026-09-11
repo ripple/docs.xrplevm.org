@@ -1,9 +1,6 @@
 ---
-html: manually-relay-messages.html
-blurb: Relay messages manually.
-labels:
-  - Interoperability
-status: not_enabled
+seo:
+  description: "When Axelar transfers between the XRP Ledger and the XRPL EVM Sidechain need manual relaying, and where to find the guide for each direction."
 ---
 
 # Relay messages manually

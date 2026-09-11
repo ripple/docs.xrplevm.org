@@ -17,7 +17,7 @@ Sending assets from the XRP Ledger to the XRPL EVM or other chains is straightfo
 - `Amount`: Specifies the quantity of the asset to be transferred. The format and value depend on the type of asset being sent (e.g., XRP or IOUs).
 - `Destination`: The address of the Gateway on the XRP Ledger.
   - [**Mainnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/mainnet.json)
-  - [**Testnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/testnet.json#L2603)
+  - [**Testnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/testnet.json)
 - `Memos`: Hex-encoded data required for the transfer, including:
   - The _type_ of call to initiate.
   - The _destination chain_ on the Axelar network (`xrpl-evm` for both Testnet and Mainnet).
@@ -68,18 +68,23 @@ To transfer **XRP** back to the XRPL, call `interchainTransfer` on the ITS contr
 ```ts
 import { ethers } from "ethers";
 
+const recipient = "rYourXrplRecipientAddress"; // classic r-address on the XRP Ledger
+const gasValue = ethers.parseEther("6"); // cross-chain gas, paid in XRP
+
 await its.interchainTransfer(
   "0xba5a21ca88ef6bba2bfff5088994f90e1077e2a1cc3dcc38bd261f00fce2824f", // XRP token ID (Testnet)
   "xrpl", // Destination chain ID
-  "0xcdaa5ba0215e9359fa62cb5a5650a17b362817ac", // Recipient address on XRP Ledger (r9bSdiUYuAHqqoSuvczxQt5fLoEuNMDZLQ) converted to EVM address.
-  "100000000000000000000", // 100 XRP in wei
+  ethers.toUtf8Bytes(recipient), // Recipient r-address, encoded as ASCII bytes
+  ethers.parseEther("100"), // 100 XRP (18 decimals on XRPL EVM)
   "0x", // Metadata (unused)
-  {
-    gasLimit: 8000000,
-    value: ethers.utils.parseEther("6"),
-  }, // Gas
+  gasValue, // Gas value forwarded to Axelar
+  { value: gasValue },
 );
 ```
+
+{% admonition type="warning" name="Destination address encoding" %}
+The `destinationAddress` must be the **ASCII bytes of the classic r-address** (for example via `ethers.toUtf8Bytes`). Passing the base58-decoded 20-byte account ID makes the transfer fail at the Axelar hub with `invalid destination address`, and the funds do not reach the recipient. Note also that the deployed ITS requires the six-argument `interchainTransfer` overload with an explicit `gasValue` parameter; the five-argument variant from older ITS releases is not available and reverts.
+{% /admonition %}
 
 {% /tab %}
 {% /tabs %}
@@ -153,33 +158,23 @@ await erc20.approve(
 
 {% tab label="Testnet" %}
 
-When specifying the destination XRPL account you must convert it to its EVM 0x equivalent:
-
-**Example using `xrpl.js`:**
-
-```js
-import { decodeAccountID } from "xrpl";
-
-// Suppose rAddress = "rLZ1...your address..."
-const accountIDBytes = decodeAccountID(rAddress); // returns a 20-byte Buffer
-// Convert to hex, e.g. "cdaa5ba0215e9359fa62cb5a5650a17b362817ac"
-const evmAddress = `0x${accountIDBytes.toString("hex")}`;
-```
+Encode the destination XRPL account as the ASCII bytes of its classic r-address, exactly as in the XRP example above:
 
 ```ts
 import { ethers } from "ethers";
+
+const recipient = "rYourXrplRecipientAddress"; // classic r-address on the XRP Ledger
+const gasValue = ethers.parseEther("6"); // cross-chain gas, paid in XRP
 
 // Call the interchainTransfer method
 await its.interchainTransfer(
   "0x85f75bb7fd0753565c1d2cb59bd881970b52c6f06f3472769ba7b48621cd9d23", // RLUSD token ID (example)
   "xrpl", // Destination chain ID
-  "0xcdaa5ba0215e9359fa62cb5a5650a17b362817ac", // Recipient address on XRP Ledger (r9bSdiUYuAHqqoSuvczxQt5fLoEuNMDZLQ) converted to EVM address
+  ethers.toUtf8Bytes(recipient), // Recipient r-address, encoded as ASCII bytes
   "100000000000000000000", // 100 RLUSD in integer form
   "0x", // Metadata (unused)
-  {
-    gasLimit: 8000000,
-    value: ethers.utils.parseEther("6"),
-  }, // Gas
+  gasValue, // Gas value forwarded to Axelar
+  { value: gasValue },
 );
 ```
 
@@ -188,21 +183,21 @@ await its.interchainTransfer(
 
 ---
 
-Below is a high-level overview of how to convert an **XRPL classic address** (e.g., `r...`) to an **EVM‐style hex address** (`0x...`) and vice versa. These transformations are **mathematically reversible**, so you can go back and forth safely as long as you do not lose or alter the 20‐byte hash.
+For reference, below is a high-level overview of how to convert an **XRPL classic address** (e.g., `r...`) to its underlying **20-byte account ID** (`0x...`) and vice versa. These transformations are **mathematically reversible**. Note that this conversion is **not** used for ITS transfers (those take the ASCII r-address, as shown above); it is background material for tooling that needs to inspect XRPL account IDs.
 
 ---
 
 ### Converting rAddress → EVM (20-byte) Hex
 
 1. **Base58 Decode**  
-   The classic XRP Ledger address (an "rAddress") is a Base58Check‐style encoding. To decode:
+   The classic XRP Ledger address (an "rAddress") is a Base58Check-style encoding. To decode:
 
    - Remove and check the **type prefix** (typically `0x00` for a normal address).
-   - Remove and verify the **4‐byte checksum** (from the end).
+   - Remove and verify the **4-byte checksum** (from the end).
    - The remaining 20 bytes are the **AccountID**.
 
 2. **Hex Encode**  
-   Once you have the 20‐byte `AccountID`, convert those bytes to a 40‐character hexadecimal string.
+   Once you have the 20-byte `AccountID`, convert those bytes to a 40-character hexadecimal string.
 
 3. **Prepend `0x`** (optional)  
    In EVM contexts, an address typically includes a `0x` prefix to indicate it’s a hex string.
@@ -218,7 +213,7 @@ const accountIDBytes = decodeAccountID(rAddress); // returns a 20-byte Buffer
 const evmAddress = `0x${accountIDBytes.toString("hex")}`;
 ```
 
-At this point, `evmAddress` is the EVM‐style address derived from the original XRPL classic address.
+At this point, `evmAddress` is the EVM-style address derived from the original XRPL classic address.
 
 ---
 
@@ -227,22 +222,22 @@ At this point, `evmAddress` is the EVM‐style address derived from the original
 1. **Strip `0x`** (if present)  
    If the address starts with `0x`, remove it, leaving just the hex string.
 
-2. **Convert Hex → 20‐Byte Buffer**  
+2. **Convert Hex → 20-Byte Buffer**  
    This is your **AccountID** on XRPL.
 
 3. **Add XRPL Address **Prefix** (`0x00`)**  
-   Classic XRP Ledger addresses use a **1‐byte** prefix `0x00`.
+   Classic XRP Ledger addresses use a **1-byte** prefix `0x00`.
 
-4. **Compute a 4‐Byte Checksum**
+4. **Compute a 4-Byte Checksum**
 
-   - Perform SHA‐256 on the **prefix + 20-byte AccountID**.
-   - Perform SHA‐256 again on the result.
-   - Take the first 4 bytes of that second SHA‐256 as the checksum.
+   - Perform SHA-256 on the **prefix + 20-byte AccountID**.
+   - Perform SHA-256 again on the result.
+   - Take the first 4 bytes of that second SHA-256 as the checksum.
 
 5. **Concatenate**  
-   `(Prefix + 20 bytes of AccountID + 4‐byte checksum)`
+   `(Prefix + 20 bytes of AccountID + 4-byte checksum)`
 
-6. **Base58‐Encode** using the XRPL alphabet  
+6. **Base58-Encode** using the XRPL alphabet  
    The specific alphabet is:
 
    ```
@@ -250,7 +245,7 @@ At this point, `evmAddress` is the EVM‐style address derived from the original
    ```
 
 7. **Result**  
-   The result is a valid **`rAddress`** that starts with `r` and is typically 25–35 characters long (including its internal checksum).
+   The result is a valid **`rAddress`** that starts with `r` and is typically 25 to 35 characters long (including its internal checksum).
 
 **Example using `xrpl.js`:**
 

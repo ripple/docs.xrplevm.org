@@ -1,6 +1,6 @@
 # Connect MetaMask to the XRPL EVM Sidechain
 
-This guide will walk you through configuring MetaMask to connect to the XRPL EVM Sidechain.
+With MetaMask installed, connecting to the XRPL EVM takes less than a minute: add the network details, switch to it, and you are ready to send transactions. This guide shows you how, for both Mainnet and Testnet.
 
 ## Adding XRPL EVM Sidechain to MetaMask
 

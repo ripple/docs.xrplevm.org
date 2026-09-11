@@ -22,28 +22,36 @@
 - group: Tools
   expanded: false
   items:
-   - group: Mainnet
-     expanded: false
-     items:
-      - href: https://explorer.xrplevm.org
-        label: Explorer
-        external: true
-      - href: https://governance.xrplevm.org
-        label: Governance Explorer
-        external: true
-      - href: https://explorer.xrplevm.org/apps
-        label: dApps Explorer
-        external: true
-   - group: Testnet
-     expanded: false
-     items:
-      - href: https://explorer.testnet.xrplevm.org
-        label: Explorer
-        external: true
-      - href: https://governance.testnet.xrplevm.org
-        label: Governance Explorer
-        external: true
-      - href: https://explorer.testnet.xrplevm.org/apps
-        label: dApps Explorer
-        external: true
-   
+    - group: Mainnet
+      expanded: false
+      items:
+        - href: https://explorer.xrplevm.org
+          label: Explorer
+          external: true
+        - href: https://governance.xrplevm.org
+          label: Governance Explorer
+          external: true
+        - href: https://explorer.xrplevm.org/apps
+          label: dApps Explorer
+          external: true
+        - href: https://portalbridge.com
+          label: Portal Bridge (Wormhole)
+          external: true
+        - href: https://wormholescan.io
+          label: WormholeScan
+          external: true
+    - group: Testnet
+      expanded: false
+      items:
+        - href: https://explorer.testnet.xrplevm.org
+          label: Explorer
+          external: true
+        - href: https://governance.testnet.xrplevm.org
+          label: Governance Explorer
+          external: true
+        - href: https://explorer.testnet.xrplevm.org/apps
+          label: dApps Explorer
+          external: true
+        - href: https://wormholescan.io/#/?network=Testnet
+          label: WormholeScan
+          external: true

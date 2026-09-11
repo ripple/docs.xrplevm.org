@@ -6,13 +6,13 @@ This documentation outlines the various configuration options for nodes in the X
 
 Use this quick map before editing settings:
 
-| Setting | File |
-| ------- | ---- |
+| Setting                                               | File          |
+| ----------------------------------------------------- | ------------- |
 | Tendermint/CometBFT RPC (`[rpc].laddr`, port `26657`) | `config.toml` |
-| P2P peer exchange (`[p2p]`) | `config.toml` |
-| Pruning (`pruning`) | `app.toml` |
-| Cosmos API / gRPC (`[api]`, `[grpc]`) | `app.toml` |
-| Ethereum JSON-RPC / WS (`[json-rpc]`) | `app.toml` |
+| P2P peer exchange (`[p2p]`)                           | `config.toml` |
+| Pruning (`pruning`)                                   | `app.toml`    |
+| Cosmos API / gRPC (`[api]`, `[grpc]`)                 | `app.toml`    |
+| Ethereum JSON-RPC / WS (`[json-rpc]`)                 | `app.toml`    |
 
 ---
 
@@ -30,7 +30,7 @@ Configuration in `app.toml`:
 pruning = "nothing"
 ```
 
-### Pruned 
+### Pruned
 
 Stores only the most recent state and minimal historical data to save disk space.
 

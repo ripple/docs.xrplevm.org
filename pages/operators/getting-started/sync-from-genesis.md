@@ -11,16 +11,19 @@ When syncing from genesis, you must start from the network genesis binary and up
 {% tabs %}
 
 {% tab label="Mainnet" %}
+
 | Upgrade Name | Height    | Binary Version |
 | ------------ | --------- | -------------- |
 | Genesis      | `0`       | `v7.0.0`       |
 | v8           | `497000`  | `v8.0.2`       |
 | v9           | `4688681` | `v9.0.3`       |
 | v10          | `4749000` | `v10.0.2`      |
+| v10.1        | `6856000` | `v10.1.0`      |
 
 {% /tab %}
 
 {% tab label="Testnet" %}
+
 | Upgrade Name | Height    | Binary Version |
 | ------------ | --------- | -------------- |
 | Genesis      | `0`       | `v6.0.0`       |
@@ -28,12 +31,18 @@ When syncing from genesis, you must start from the network genesis binary and up
 | v8           | `1485600` | `v8.0.0`       |
 | v9           | `3827000` | `v9.0.3`       |
 | v10          | `5601606` | `v10.0.1`      |
+| v10.1        | `7725000` | `v10.1.0`      |
+
 {% /tab %}
 
 {% tab label="Devnet" %}
-| Upgrade Name | Height | Binary Version |
-| ------------ | ------ | -------------- |
-| Genesis      | `0`    | `v9.0.3`       |
+
+| Upgrade Name | Height    | Binary Version |
+| ------------ | --------- | -------------- |
+| Genesis      | `0`       | `v9.0.3`       |
+| v10          | `1198644` | `v10.0.3`      |
+| v11          | `2089191` | `v11.0.0-rc.1` |
+
 {% /tab %}
 
 {% /tabs %}

@@ -1,16 +1,11 @@
 ---
-html: interchain-transfer-evm-sidechain-avalanche.html
-blurb: Axelar interchain transfer to Avalanche Fuji.
-labels:
-  - Interoperability
-status: not_enabled
+seo:
+  description: "Transfer ERC20 tokens from any connected EVM chain to the XRPL EVM Sidechain with Squid Router, which routes the transfer through the Axelar Network."
 ---
 
 # Transfer ERC20 with Axelar
 
-You can transfer tokens from other EVMs to the XRPL and XRPL EVM using [Squidrouter](https://app.squidrouter.com/) as well as the other way round.
-
-In this example, we will transfer WBTC from Ethereum to XRPL EVM!
+Any ERC20 token on a connected EVM chain can move to the XRPL EVM and back using [Squid Router](https://app.squidrouter.com/), which routes transfers through Axelar. In this example, we will transfer WBTC from Ethereum to the XRPL EVM.
 
 1. **Set** Ethereum as the **source chain**, XRPL EVM as the **destination chain** and WBTC as the **asset** to transfer.
    ![portal set chains](../images/transfererc20-1.png)
@@ -33,5 +28,5 @@ In this example, we will transfer WBTC from Ethereum to XRPL EVM!
 
 Once the transaction is executed, you can see the transaction details in the following modal.
 
-   ![portal transaction list](../images/transfererc20-6.png)
-   ![portal transaction list](../images/transfererc20-7.png)
+![portal transaction list](../images/transfererc20-6.png)
+![portal transaction list](../images/transfererc20-7.png)
