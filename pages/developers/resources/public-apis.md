@@ -133,3 +133,9 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
 
 {% /tab %}
 {% /tabs %}
+
+## Comparing endpoint latency
+
+The Additional Endpoints above are operated independently, and their response times differ by region. [OpenChainBench](https://openchainbench.com/benchmarks/xrplevm-rpc) probes the public XRPL EVM Tendermint RPC endpoints every 60 seconds from three regions (us-east, eu-west and ap-southeast) and publishes p50, p90, p99, success rate and sample count over a rolling 24 hours, per endpoint and per region.
+
+It is a third-party measurement site rather than an endpoint provider, and it is not affiliated with XRPL EVM or with any of the operators it measures.
