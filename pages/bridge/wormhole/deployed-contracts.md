@@ -5,7 +5,7 @@ seo:
 
 # Wormhole Deployed Contracts
 
-The following Wormhole contracts are deployed on the **XRPL EVM Sidechain**. Always cross-check addresses against the official [Wormhole contract address reference](https://wormhole.com/docs/reference/contract-addresses/) before sending funds or wiring them into a contract.
+The following Wormhole contracts are deployed on the XRPL EVM Sidechain. Cross-check addresses against the official [Wormhole contract address reference](https://wormhole.com/docs/reference/contract-addresses/) before sending funds or wiring them into a contract.
 
 {% tabs %}
 {% tab label="Mainnet" %}
@@ -19,7 +19,7 @@ The following Wormhole contracts are deployed on the **XRPL EVM Sidechain**. Alw
 | Executor Token Bridge Relayer (with referrer) | `0xee05C2e6075E2C86D1F5db4716Ff2A6c18889B20` |
 | Guardian Governance           | `0x574B7864119C9223A9870Ea614dC91A8EE09E512` |
 
-The **Executor Token Bridge Relayer** delivers WTT transfers automatically through the Executor framework. Front ends such as Wormhole Connect can use it for automatic WTT delivery.
+The Executor Token Bridge Relayer delivers WTT transfers automatically through the Executor framework. Front ends such as Wormhole Connect can use it for automatic WTT delivery.
 
 {% admonition type="warning" name="No legacy Wormhole Relayer on Mainnet" %}
 The legacy `IWormholeRelayer` ("Standard Relayer") is **not part of the official Wormhole deployment on XRPL EVM Mainnet**: it is absent from the Wormhole SDK and contract registry, and no delivery provider prices routes from XRPL EVM. Integrations that follow older Wormhole tutorials built on `sendPayloadToEvm` will not be relayed on Mainnet. Use the Core Contract together with the **Executor** framework instead. See [Send Cross-Chain Messages](../../developers/interacting-with-evm/advanced-guides/cross-chain-transactions/wormhole/send-messages.md).

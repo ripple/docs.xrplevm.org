@@ -1,6 +1,6 @@
 # Integrate the Skip Widget
 
-The **Skip Widget** (Skip Go) enables token swaps from Cosmos chains into **XRP on XRPL EVM**, using IBC and Skip's routing. Routes into XRPL EVM arrive over the active Osmosis IBC channel, so assets from other Cosmos chains are routed through Osmosis.
+The Skip Widget (Skip Go) swaps tokens from Cosmos chains into XRP on XRPL EVM, using IBC and Skip's routing. Routes into XRPL EVM arrive over the active Osmosis IBC channel, so assets from other Cosmos chains are routed through Osmosis.
 
 ## Why Use the Skip Widget?
 

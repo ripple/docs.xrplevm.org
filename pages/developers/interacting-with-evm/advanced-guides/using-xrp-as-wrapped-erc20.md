@@ -2,9 +2,9 @@
 
 > **Audience:** First-time XRPL EVM builders who need an ERC-20 representation of XRP for AMMs, vaults, and DeFi flows.
 >
-> **Key fact:** Native XRP is automatically exposed **as an ERC-20** at the sentinel address `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`. For most integrations, no wrapped XRP contract is required.
+> **Key fact:** Native XRP is exposed as an ERC-20 at the sentinel address `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`. For most integrations, no wrapped XRP contract is required.
 >
-> **Limitation:** `0xEee..` is a precompile, and a single transaction can make at most **20 precompile calls** (the node returns `max calls to precompiles (20) reached` beyond that). Long or complex aggregator routes can hit this limit. For those routes, ecosystem DEXs use a third-party WETH9-style wrapper, `WXRP` (contract `WXRP9`), deployed and verified on Mainnet at [`0x7C21a90E3eCD3215d16c3BBe76a491f8f792d4Bf`](https://explorer.xrplevm.org/address/0x7C21a90E3eCD3215d16c3BBe76a491f8f792d4Bf). Reusing that existing wrapper instead of deploying another one avoids fragmenting liquidity.
+> **Limitation:** `0xEee..` is a precompile, and a single transaction can make at most 20 precompile calls (the node returns `max calls to precompiles (20) reached` beyond that). Long or complex aggregator routes can hit this limit. For those routes, ecosystem DEXs use a third-party WETH9-style wrapper, `WXRP` (contract `WXRP9`), deployed and verified on Mainnet at [`0x7C21a90E3eCD3215d16c3BBe76a491f8f792d4Bf`](https://explorer.xrplevm.org/address/0x7C21a90E3eCD3215d16c3BBe76a491f8f792d4Bf). Reusing that existing wrapper instead of deploying another one avoids fragmenting liquidity.
 
 ---
 
@@ -81,7 +81,7 @@ await amm.addLiquidity(
 ## 5 / FAQ
 
 **Q:** _Can I deploy my own wXRP contract?_
-**A:** You can, but you'll split liquidity and confuse wallets. Use the built-in ERC-20 by default, and the existing `WXRP` wrapper only where a route exceeds the precompile call limit.
+**A:** You can, but it splits liquidity, and wallets then show two different XRP tokens. Use the built-in ERC-20 by default, and the existing `WXRP` wrapper only where a route exceeds the precompile call limit.
 
 **Q:** _Is **`decimals()`** 18?_
 **A:** Yes. XRPL EVM represents XRP with 18 decimals, so math libraries and UIs built for Ethereum tokens work seamlessly.

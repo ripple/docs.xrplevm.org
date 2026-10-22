@@ -157,7 +157,7 @@ console.log(address); // 0x1234...
 ```
 
 {% admonition type="warning" name="Expired domains" %}
-For an expired domain, `domainLookup` still returns its token ID, but `registryLookupById` **reverts** with the custom error `DomainExpired()` (selector `0x2db06463`). The example above catches the revert and returns `null`; treat that case as "domain not resolvable" and never fall back to a previously cached owner when sending funds.
+For an expired domain, `domainLookup` still returns its token ID, but `registryLookupById` reverts with the custom error `DomainExpired()` (selector `0x2db06463`). The example above catches the revert and returns `null`; treat that case as "domain not resolvable" and never fall back to a previously cached owner when sending funds.
 {% /admonition %}
 
 ### Reverse resolution: address → domain

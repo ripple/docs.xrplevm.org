@@ -112,7 +112,7 @@ Hardhat is a development framework for Ethereum-compatible smart contracts, idea
   ```
 
   {% admonition type="info" name="Hardhat version" %}
-  This guide uses **Hardhat 2** (installed with the `hh2` tag). `npm install hardhat` now installs Hardhat 3, which uses a different, ESM-based project layout and configuration format. If you prefer Hardhat 3, follow the [Hardhat 3 documentation](https://hardhat.org/docs) and use the same network values (RPC URL and chain ID) shown below.
+  This guide uses Hardhat 2 (installed with the `hh2` tag). `npm install hardhat` now installs Hardhat 3, which uses a different, ESM-based project layout and configuration format. If you prefer Hardhat 3, follow the [Hardhat 3 documentation](https://hardhat.org/docs) and use the same network values (RPC URL and chain ID) shown below.
   {% /admonition %}
 
 - **Create a Hardhat Project**

@@ -12,13 +12,13 @@ curl -s https://cosmos-api.xrplevm.org/cosmos/evm/vm/v1/params | jq .params.acti
 
 ## Ethereum precompiles
 
-The XRPL EVM runs the **Prague** fork, so the standard Ethereum precompiles are available at their usual addresses, including the BLS12-381 precompiles (`0x0b`–`0x11`) introduced in Prague and the KZG point evaluation precompile (`0x0a`).
+The XRPL EVM runs the Prague fork, so the standard Ethereum precompiles are available at their usual addresses, including the BLS12-381 precompiles (`0x0b`–`0x11`) introduced in Prague and the KZG point evaluation precompile (`0x0a`).
 
 ---
 
 ## Static precompiles
 
-The following static precompiles are **active on Mainnet, Testnet and Devnet**:
+The following static precompiles are active on Mainnet, Testnet and Devnet:
 
 | Precompile | Address                                      | Purpose                                                                 |
 | ---------- | -------------------------------------------- | ----------------------------------------------------------------------- |
@@ -27,7 +27,7 @@ The following static precompiles are **active on Mainnet, Testnet and Devnet**:
 | Bank       | `0x0000000000000000000000000000000000000804` | Read Cosmos bank balances and supply                                    |
 | Gov        | `0x0000000000000000000000000000000000000805` | Query governance proposals and parameters                               |
 
-The other Cosmos EVM static precompiles are **not active** on any XRPL EVM network: Staking (`0x…0800`), Distribution (`0x…0801`), ICS20 (`0x…0802`) and Slashing (`0x…0806`). The Vesting address (`0x…0803`) is reserved but has no implementation in the current node release. Calls to any of them return empty data. The XRPL EVM uses a Proof-of-Authority validator set, so there is no delegation or staking flow to expose to contracts.
+The other Cosmos EVM static precompiles are not active on any XRPL EVM network: Staking (`0x…0800`), Distribution (`0x…0801`), ICS20 (`0x…0802`) and Slashing (`0x…0806`). The Vesting address (`0x…0803`) is reserved but has no implementation in the current node release. Calls to any of them return empty data. The XRPL EVM uses a Proof-of-Authority validator set, so there is no delegation or staking flow to expose to contracts.
 
 {% admonition type="info" name="Proposed change" %}
 An open, unreleased proposal for the next major node version ([xrplevm/node#165](https://github.com/xrplevm/node/pull/165)) would remove the Gov precompile from the active list, leaving P256, Bech32 and Bank. If you are building new contracts on the Gov precompile, follow that proposal before relying on it.
@@ -37,7 +37,7 @@ An open, unreleased proposal for the next major node version ([xrplevm/node#165]
 
 ## ERC-20 precompiles
 
-Every registered token pair gets an ERC-20 precompile, so a Cosmos coin can be used from Solidity like any ERC-20 token. The most important one is native XRP:
+Every registered token pair gets an ERC-20 precompile, so a Cosmos coin can be used from Solidity like any ERC-20 token. The ERC-20 precompile for native XRP is:
 
 | Token | ERC-20 address                               | Cosmos denom |
 | ----- | -------------------------------------------- | ------------ |
@@ -57,4 +57,4 @@ Registering new token pairs is restricted to governance on Mainnet and Testnet (
 
 ## Limits
 
-A single transaction can make at most **20 calls to precompiles** (static and ERC-20 precompiles combined). The 21st call fails with `max calls to precompiles (20) reached`. Keep this in mind for aggregators and multi-hop routes that touch `0xEeee…EeEe` many times.
+A single transaction can make at most 20 calls to precompiles (static and ERC-20 precompiles combined). The 21st call fails with `max calls to precompiles (20) reached`. Aggregators and multi-hop routes that call `0xEeee…EeEe` many times can reach this limit.

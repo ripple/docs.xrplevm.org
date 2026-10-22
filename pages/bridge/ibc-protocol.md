@@ -46,7 +46,7 @@ This is a helpful tool for debugging stuck transfers, validating channel IDs lis
 
 ## Available IBC Channels
 
-The XRPL EVM Sidechain currently maintains **active IBC connections** with Osmosis and Injective on Mainnet. Below are the mainnet and testnet channels and their status:
+On Mainnet, the XRPL EVM Sidechain has active IBC channels to Osmosis and Injective. The tables below list the Mainnet and Testnet channels and their status:
 
 ### Mainnet Channels
 

@@ -1,6 +1,6 @@
-# Utility Contracts
+# Utility contracts
 
-Several widely used Ethereum infrastructure contracts are deployed on the XRPL EVM at their canonical addresses, so tooling that expects them (for example, Foundry, viem, Safe and ERC-4337 bundlers) works without extra configuration.
+The following Ethereum infrastructure contracts are deployed on the XRPL EVM at their canonical addresses. Tools that expect them, such as Foundry, viem, Safe and ERC-4337 bundlers, work without extra configuration.
 
 | Contract                                   | Address                                      | Mainnet | Testnet | Devnet |
 | ------------------------------------------ | -------------------------------------------- | :-----: | :-----: | :----: |
@@ -16,7 +16,7 @@ Several widely used Ethereum infrastructure contracts are deployed on the XRPL E
 | ERC-4337 EntryPoint v0.7                   | `0x0000000071727De22E5E9d8BAf0edAc6f37da032` |   Yes   |   No    |   No   |
 | WXRP (WETH9 fork, third party)             | `0x7C21a90E3eCD3215d16c3BBe76a491f8f792d4Bf` |   Yes   |   No¹   |   No   |
 
-ERC-4337 EntryPoint v0.6, ERC-1820 and Safe 1.3.0 are **not** deployed.
+ERC-4337 EntryPoint v0.6, ERC-1820 and Safe 1.3.0 are not deployed.
 
 ¹ On Testnet, the same address holds an unrelated contract (symbol `ETH`), not WXRP. Do not use it as wrapped XRP on Testnet.
 

@@ -1,6 +1,6 @@
 # Install Keplr
 
-**Keplr** is the leading wallet of the Cosmos ecosystem, and it fully supports the XRPL EVM. Because the XRPL EVM is built on the Cosmos SDK, Keplr lets you manage your assets on the Cosmos side of the network and move tokens over IBC to other Cosmos chains. This guide covers installing the extension and creating your account.
+Keplr is a Cosmos ecosystem wallet that supports the XRPL EVM. Because the XRPL EVM is built on the Cosmos SDK, Keplr lets you manage your assets on the Cosmos side of the network and move tokens over IBC to other Cosmos chains. This guide covers installing the extension and creating your account.
 
 ---
 
@@ -101,7 +101,7 @@ _Note: The Discord faucet supports both address formats and is maintained by the
 
 With your XRPL EVM account funded, you're now ready to explore cross-chain transactions. The XRPL EVM's integration with the Inter-Blockchain Communication (IBC) protocol enables seamless interoperability with other Cosmos-based networks.
 
-In the next guide, we'll walk you through sending XRP from the XRPL EVM Sidechain to other Cosmos chains over IBC. On Mainnet, the active channels are:
+The next guide shows how to send XRP from the XRPL EVM Sidechain to other Cosmos chains over IBC. On Mainnet, the active channels are:
 
 - **Osmosis**
 - **Injective**

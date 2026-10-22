@@ -1,6 +1,6 @@
 # Sending XRP Through IBC
 
-The XRPL EVM is part of the Cosmos ecosystem, so **XRP** and other tokens can travel over **IBC** to Osmosis and Injective directly from your **Keplr Wallet**. This guide shows you the full flow.
+The XRPL EVM is part of the Cosmos ecosystem, so XRP and other tokens can move over IBC to Osmosis and Injective from your Keplr wallet. This guide covers each step of a transfer.
 
 ---
 

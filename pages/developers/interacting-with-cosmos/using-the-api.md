@@ -247,4 +247,4 @@ Access the CometBFT RPC interface at [cosmos-rpc.testnet.xrplevm.org](https://co
 {% /tab %}
 {% /tabs %}
 
-With these endpoints, you can query governance proposals (and more) on **Mainnet** and **Testnet**. The same commands can be adapted for other Cosmos SDK features, providing a versatile approach to interacting with the XRPL EVM’s Cosmos-based layer.
+With these endpoints, you can query governance proposals and other data on Mainnet and Testnet. The same commands work for other Cosmos SDK modules.

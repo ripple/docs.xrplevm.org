@@ -1,6 +1,6 @@
-# Network Parameters and Status
+# Network parameters and status
 
-This page summarizes the on-chain parameters that matter when building on the XRPL EVM, the places where its EVM behaves differently from Ethereum, and recent network changes.
+This page lists the on-chain parameters for building on the XRPL EVM, the EVM behavior that differs from Ethereum, and recent network changes.
 
 ---
 
@@ -33,7 +33,7 @@ The XRPL EVM runs Cosmos EVM on CometBFT, which has no blobs and no beacon chain
 | ------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `block.blobbasefee` (`BLOBBASEFEE`, `0x4a`) | Not supported. Any call that executes this opcode fails, including `eth_call` and `eth_estimateGas`. Do not use it. |
 | `blobhash(i)` (`BLOBHASH`)            | Always returns `0`.                                                                                      |
-| `block.prevrandao` (`PREVRANDAO`)     | Returns a constant (`0xff…ff`). It is **not** a source of randomness. Use an oracle or commit-reveal scheme instead. |
+| `block.prevrandao` (`PREVRANDAO`)     | Returns a constant (`0xff…ff`). It is not a source of randomness. Use an oracle or commit-reveal scheme instead. |
 | EIP-2935 history contract (`0x0000F90827F1C53a10cb7A02335B175320002935`) | Can return the hash of a different block. Use the `BLOCKHASH` opcode (`blockhash(n)`), which returns correct hashes for recent blocks. |
 | `CLZ` opcode (Osaka)                  | Not available: the chain runs Prague, not Osaka. Compile with `evmVersion` set to `prague` or lower. |
 
@@ -47,18 +47,18 @@ See also [Precompiles](./precompiles.md) for the native modules available to con
 
 | Date (UTC)  | Change |
 | ----------- | ------ |
-| 2026-09-23  | Upgrade to **v11.2.0** at block `7823200` (proposal #38): Interchain Accounts host lockdown in the upgrade handler, unbonding time set to 7 days, XRP stranded in the Elys channel escrow returned to its withdrawal address. |
+| 2026-09-23  | Upgrade to v11.2.0 at block `7823200` (proposal #38): Interchain Accounts host lockdown in the upgrade handler, unbonding time set to 7 days, XRP stranded in the Elys channel escrow returned to its withdrawal address. |
 | 2026-09-17  | Interchain Accounts host module disabled (proposal #36). Injective IBC light client recovered (proposal #37). |
-| 2026-09-15  | Node **v10.2.1** released with a further cosmos/evm security fix (binary replacement, no governance upgrade). |
-| 2026-08-23  | Preventive halt from 05:02 to 19:19 UTC (blocks `7360028` → `7360029`) after a Cosmos EVM security advisory. Block production resumed with patched node **v10.2.0**. No funds were lost. See [the incident report](https://www.xrplevm.org/blog/xrpl-evm-preventive-response-to-cosmos-evm-incident). |
+| 2026-09-15  | Node v10.2.1 released with a further cosmos/evm security fix (binary replacement, no governance upgrade). |
+| 2026-08-23  | Preventive halt from 05:02 to 19:19 UTC (blocks `7360028` → `7360029`) after a Cosmos EVM security advisory. Block production resumed with patched node v10.2.0. No funds were lost. See [the incident report](https://www.xrplevm.org/blog/xrpl-evm-preventive-response-to-cosmos-evm-incident). |
 | 2026-08-15  | Permissionless ERC-20 token pair registration disabled (proposal #35). |
-| 2026-07-20  | Upgrade to **v10.1.0** at block `6856000` (proposal #33): cosmos/evm fix. |
+| 2026-07-20  | Upgrade to v10.1.0 at block `6856000` (proposal #33): cosmos/evm fix. |
 
 ### Testnet
 
 | Date (UTC)  | Change |
 | ----------- | ------ |
-| 2026-09-08  | Node **v11.1.1** released (binary replacement, no governance upgrade). |
-| 2026-08-14  | Upgrade to **v11.1.0** at block `8158200` (proposal #49): Interchain Accounts host lockdown in the upgrade handler, unbonding time set to 7 days. |
+| 2026-09-08  | Node v11.1.1 released (binary replacement, no governance upgrade). |
+| 2026-08-14  | Upgrade to v11.1.0 at block `8158200` (proposal #49): Interchain Accounts host lockdown in the upgrade handler, unbonding time set to 7 days. |
 
 For node versions, upgrade heights and binaries, see the operator [Networks](../../operators/resources/networks.md) page. You can follow governance proposals on the [governance dashboards](https://governance.xrplevm.org) or with `GET /cosmos/gov/v1/proposals` on the Cosmos REST API.

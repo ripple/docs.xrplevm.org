@@ -59,7 +59,11 @@ The same symbol can exist on XRPL EVM as different tokens depending on the bridg
 | WETH | Wormhole WTT | `0xccD433A96A4DE148596F4E31Ab8ad1348077590B` | Ethereum |
 | OSMO, INJ and other Cosmos assets | IBC | ERC-20 precompile per token pair | Osmosis (`channel-3`) and Injective (`channel-0`) |
 
-The full and current list of Axelar ITS tokens on XRPL EVM is on [Axelarscan](https://axelarscan.io/assets); Wormhole tokens are listed in [Wormhole supported tokens](./wormhole/supported-tokens.md); IBC assets and their ERC-20 addresses are listed by `GET /cosmos/evm/erc20/v1/token_pairs` (see [Precompiles](../developers/resources/precompiles.md)).
+For complete lists:
+
+- Axelar ITS tokens on XRPL EVM: [Axelarscan](https://axelarscan.io/assets).
+- Wormhole tokens: [Wormhole supported tokens](./wormhole/supported-tokens.md).
+- IBC assets and their ERC-20 addresses: `GET /cosmos/evm/erc20/v1/token_pairs` (see [Precompiles](../developers/resources/precompiles.md)).
 
 ## Implementation Options
 

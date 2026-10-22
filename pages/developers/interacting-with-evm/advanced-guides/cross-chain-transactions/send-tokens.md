@@ -80,7 +80,7 @@ If the amount is too low, the transfer waits on Axelarscan until more gas is add
 {% tabs %}
 {% tab label="Mainnet and Testnet" %}
 
-To transfer **XRP** back to the XRPL, call `interchainTransfer` on the ITS contract. The **XRP token ID** is the same on Mainnet and Testnet:
+To transfer XRP back to the XRPL, call `interchainTransfer` on the ITS contract. The XRP token ID is the same on Mainnet and Testnet:
 
 ```ts
 import { ethers } from "ethers";
@@ -108,7 +108,13 @@ The `destinationAddress` must be the **ASCII bytes of the classic r-address** (f
 
 ### Sending ERC20 tokens from XRPL EVM to XRP Ledger
 
-The example below uses **FOO**, an XRPL Testnet IOU registered with ITS (token ID `0xc8895f8ceb0cae9da15bb9d2bc5859a184ca0f61c88560488355c8a7364deef8`, ERC20 `0xE26D509C661c4F16FaFfBB1eAce1Fa1CdA8cc146` with 15 decimals on XRPL EVM Testnet, issued on the XRPL Testnet by `rHN7vR4P1qDPGpnLgoXemuZhrm6AchBHvj`). For another token, look up its token ID and addresses on [Axelarscan](https://axelarscan.io/assets) and read the ERC20 address with `its.registeredTokenAddress(tokenId)`.
+The example below uses FOO, an XRPL Testnet IOU registered with ITS:
+
+- Token ID: `0xc8895f8ceb0cae9da15bb9d2bc5859a184ca0f61c88560488355c8a7364deef8`
+- ERC20 on XRPL EVM Testnet: `0xE26D509C661c4F16FaFfBB1eAce1Fa1CdA8cc146` (15 decimals)
+- Issuer on the XRPL Testnet: `rHN7vR4P1qDPGpnLgoXemuZhrm6AchBHvj`
+
+For another token, look up its token ID and addresses on [Axelarscan](https://axelarscan.io/assets) and read the ERC20 address with `its.registeredTokenAddress(tokenId)`.
 
 {% admonition type="info" name="RLUSD" %}
 RLUSD reaches the XRPL EVM through Wormhole Native Token Transfers, not Axelar ITS. See [Wormhole supported tokens](../../../../bridge/wormhole/supported-tokens.md).

@@ -80,7 +80,7 @@ Remix provides a simple way to interact with deployed contracts.
 
 ### 2. Using web3.js
 
-The **web3.js** library provides a programmatic way to interact with smart contracts in JavaScript. The examples below use web3.js v4.
+The web3.js library lets you call smart contracts from JavaScript. The examples below use web3.js v4.
 
 #### Steps:
 
@@ -149,7 +149,7 @@ const web3 = new Web3("https://rpc.testnet.xrplevm.org");
 
 ### 3. Using ethers.js
 
-The **ethers.js** library is another popular option for interacting with smart contracts. The examples below use ethers v6.
+The ethers.js library is another JavaScript option for calling smart contracts. The examples below use ethers v6.
 
 #### Steps:
 
@@ -266,7 +266,7 @@ const wallet = new ethers.Wallet("0xYourPrivateKey", provider);
 
 ### 5. Using Foundry’s `cast` CLI
 
-Foundry’s `cast` tool lets you interact with your XRPL EVM contracts directly from the terminal, with no JavaScript required. Below is a walkthrough for reading state, sending transactions, decoding logs, estimating gas, and more, on **Testnet** or **Mainnet**.
+Foundry’s `cast` tool calls your XRPL EVM contracts from the terminal, with no JavaScript required. The examples below read state, send transactions, decode logs and estimate gas on Testnet or Mainnet.
 
 #### 5.1 Prerequisites
 
