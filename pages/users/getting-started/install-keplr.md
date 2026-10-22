@@ -1,6 +1,6 @@
 # Install Keplr
 
-**Keplr** is the leading wallet of the Cosmos ecosystem, and it fully supports the XRPL EVM. Because the XRPL EVM is built on the Cosmos SDK, Keplr lets you manage your assets on the Cosmos side of the network and move tokens over IBC to more than 90 connected chains. This guide covers installing the extension and creating your account.
+**Keplr** is the leading wallet of the Cosmos ecosystem, and it fully supports the XRPL EVM. Because the XRPL EVM is built on the Cosmos SDK, Keplr lets you manage your assets on the Cosmos side of the network and move tokens over IBC to other Cosmos chains. This guide covers installing the extension and creating your account.
 
 ---
 
@@ -65,7 +65,7 @@ Both addresses correspond to the same account and share the same balance.
 To convert between these addresses:
 
 - Use the [Address Translation Tool](../../developers/interacting-with-cosmos/advanced-guides/address-translation.md).
-- Alternatively, visit the [Exploreme explorer](https://testnet.xrpl.exploreme.pro/account/0x1234567890abcdef1234567890abcdef12345678) (replace the address with your own).
+- Alternatively, visit the [Exploreme explorer](https://testnet.xrpl.exploreme.pro/) and search for your address.
 
 ![Exploreme explorer](../images/exploreme-explorer.png)
 
@@ -101,17 +101,18 @@ _Note: The Discord faucet supports both address formats and is maintained by the
 
 With your XRPL EVM account funded, you're now ready to explore cross-chain transactions. The XRPL EVM's integration with the Inter-Blockchain Communication (IBC) protocol enables seamless interoperability with other Cosmos-based networks.
 
-In the next guide, we'll walk you through sending XRP from the XRPL EVM Sidechain to the following testnets:
+In the next guide, we'll walk you through sending XRP from the XRPL EVM Sidechain to other Cosmos chains over IBC. On Mainnet, the active channels are:
 
-- **Elys Network Testnet**
-- **Cosmos Hub Testnet**
-- **Osmosis Testnet**
+- **Osmosis**
+- **Injective**
+
+There is currently no active IBC channel between XRPL EVM Testnet and an external Cosmos testnet.
 
 This process will demonstrate how to leverage IBC for cross-chain transactions, expanding your ability to interact with decentralized applications across the Cosmos ecosystem.
 
 ### Continue to the Next Guide:
 
-- **[Sending XRP Through IBC](../sending-through-ibc.md)**: Learn how to transfer XRP from the XRPL EVM Sidechain to other Cosmos-based testnets using Keplr.
+- **[Sending XRP Through IBC](../sending-through-ibc.md)**: Learn how to transfer XRP from the XRPL EVM Sidechain to other Cosmos-based chains using Keplr.
 
 ---
 

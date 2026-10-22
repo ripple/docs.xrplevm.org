@@ -46,7 +46,7 @@ This is a helpful tool for debugging stuck transfers, validating channel IDs lis
 
 ## Available IBC Channels
 
-The XRPL EVM Sidechain currently maintains **active IBC connections** with several Cosmos Hub networks and leading Cosmos chains. Below are the available mainnet and testnet channels:
+The XRPL EVM Sidechain currently maintains **active IBC connections** with Osmosis and Injective on Mainnet. Below are the mainnet and testnet channels and their status:
 
 ### Mainnet Channels
 

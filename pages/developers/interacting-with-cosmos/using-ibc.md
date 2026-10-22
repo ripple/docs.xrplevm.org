@@ -8,7 +8,7 @@ For more detailed information on IBC, refer to the [IBC documentation](https://i
 
 ## Available IBC Channels
 
-The XRPL EVM has established IBC channels with various Cosmos-based chains, enabling cross-chain token transfers and communication.
+The XRPL EVM has established IBC channels with Cosmos-based chains, enabling cross-chain token transfers. Only channels whose light client is active can carry transfers.
 
 ### Mainnet Channels
 

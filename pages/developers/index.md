@@ -112,7 +112,7 @@ Leverage the Cosmos SDK foundation for enhanced blockchain functionality:
 #### Cross-Chain Transactions
 
 - **[Swap with Skip Widget](./interacting-with-cosmos/advanced-guides/cross-chain-transactions/swap-with-skip-widget.md)**
-  Integrate Skip Protocol's widget to enable users to swap tokens from Cosmos chains like Osmosis, Injective, or Cosmos Hub directly into XRP on XRPL EVM. Perfect for accessing liquidity from the broader Cosmos ecosystem.
+  Integrate Skip Protocol's widget to enable users to swap tokens from Cosmos chains (routed through Osmosis) directly into XRP on XRPL EVM. Perfect for accessing liquidity from the broader Cosmos ecosystem.
 
 ---
 

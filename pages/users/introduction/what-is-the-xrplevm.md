@@ -67,7 +67,7 @@ This alignment ensures the XRPL ecosystem gains programmability **without fragme
 
 ### IBC (Inter-Blockchain Communication)
 
-The XRPL EVM supports [IBC](https://ibc.cosmos.network/), unlocking interoperability with the **Cosmos Hub, Osmosis, Elys, Noble, Injective and potentially hundreds of IBC-enabled chains**. This extends XRPL liquidity into the entire Cosmos multichain environment.
+The XRPL EVM supports [IBC](https://ibc.cosmos.network/), with active channels to **Osmosis** and **Injective**. Assets from other IBC-enabled chains can reach XRPL EVM through routers such as Skip Go, which route through Osmosis. See [Available IBC Channels](../../developers/interacting-with-cosmos/using-ibc.md) for the current channel list.
 
 ### Wormhole
 
