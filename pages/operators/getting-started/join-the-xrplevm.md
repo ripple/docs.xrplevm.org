@@ -44,7 +44,7 @@ Adjust other recommended settings:
 - **Peer Exchange**: Keep default unless specific network config is required
 
 {% admonition type="warning" name="Mandatory EVM chain-id setting (v10+)" %}
-Before starting the Mainnet node, set `evm-chain-id = "1440000"` under `[evm]` in `app.toml`.
+Before starting the Mainnet node, check that `evm-chain-id = 1440000` is set under `[evm]` in `app.toml`. Since v11, `exrpd init --chain-id` (step 5) writes it for you.
 
 File path (depending on your node home): `~/.exrpd/config/app.toml` or `/var/lib/exrpd/.exrpd/config/app.toml`.
 {% /admonition %}
@@ -84,14 +84,22 @@ Fetch the **Mainnet** genesis file:
 wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/mainnet/genesis.json
 ```
 
-### 7. Add Seeds to the Node Configuration
+### 7. Add Seeds and Peers to the Node Configuration
 
-Add seeds to the node configuration that will allow connecting to the rest of the node. Modify the file `~/.exrpd/config/config.toml` to include the following seed node:
+Add seeds to the node configuration that will allow connecting to the rest of the network. Modify the file `~/.exrpd/config/config.toml` to include the following seed nodes:
 
 ```sh
 PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/mainnet/peers.txt | sort -R | head -n 10 | awk '{print $1}' | paste -s -d, -)
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$PEERS\"/" ~/.exrpd/config/config.toml
 cat ~/.exrpd/config/config.toml | grep seeds
+```
+
+Then add persistent peers taken from a public RPC node, so your node can connect even if the seeds are not reachable:
+
+```sh
+PERSISTENT_PEERS=$(curl -s https://cosmos-rpc.xrplevm.org/net_info | jq -r '.result.peers[] | select(.remote_ip | test("^(10\\.|192\\.168\\.|172\\.(1[6-9]|2[0-9]|3[01])\\.)") | not) | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr | split(":") | last)"' | sort -R | head -n 10 | paste -sd, -)
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" ~/.exrpd/config/config.toml
+cat ~/.exrpd/config/config.toml | grep persistent_peers
 ```
 
 {% /tab %}
@@ -132,7 +140,7 @@ Adjust other recommended settings:
 - **Peer Exchange**: Keep default unless specific network config is required
 
 {% admonition type="warning" name="Mandatory EVM chain-id setting (v10+)" %}
-Before starting the Testnet node, set `evm-chain-id = "1449000"` under `[evm]` in `app.toml`.
+Before starting the Testnet node, check that `evm-chain-id = 1449000` is set under `[evm]` in `app.toml`. Since v11, `exrpd init --chain-id` (step 5) writes it for you.
 
 File path (depending on your node home): `~/.exrpd/config/app.toml` or `/var/lib/exrpd/.exrpd/config/app.toml`.
 {% /admonition %}
@@ -172,14 +180,22 @@ Fetch the **Testnet** genesis file:
 wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json
 ```
 
-### 7. Add Seeds to the Node Configuration
+### 7. Add Seeds and Peers to the Node Configuration
 
-Add seeds to the node configuration that will allow connecting to the rest of the node. Modify the file `~/.exrpd/config/config.toml` to include the following seed node:
+Add seeds to the node configuration that will allow connecting to the rest of the network. Modify the file `~/.exrpd/config/config.toml` to include the following seed nodes:
 
 ```sh
 PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/testnet/peers.txt | sort -R | head -n 10 | awk '{print $1}' | paste -s -d, -)
 sed -i.bak -e "s/^seeds *=.*/seeds = \"$PEERS\"/" ~/.exrpd/config/config.toml
 cat ~/.exrpd/config/config.toml | grep seeds
+```
+
+Then add persistent peers taken from a public RPC node, so your node can connect even if the seeds are not reachable:
+
+```sh
+PERSISTENT_PEERS=$(curl -s https://cosmos-rpc.testnet.xrplevm.org/net_info | jq -r '.result.peers[] | select(.remote_ip | test("^(10\\.|192\\.168\\.|172\\.(1[6-9]|2[0-9]|3[01])\\.)") | not) | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr | split(":") | last)"' | sort -R | head -n 10 | paste -sd, -)
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PERSISTENT_PEERS\"/" ~/.exrpd/config/config.toml
+cat ~/.exrpd/config/config.toml | grep persistent_peers
 ```
 
 {% /tab %}
@@ -219,6 +235,12 @@ Adjust other recommended settings:
 - **API Access**: Disable all except Tendermint RPC (restrict to localhost)
 - **Peer Exchange**: Keep default unless specific network config is required
 
+{% admonition type="warning" name="Mandatory EVM chain-id setting (v10+)" %}
+Before starting the Devnet node, check that `evm-chain-id = 1449900` is set under `[evm]` in `app.toml`. Since v11, `exrpd init --chain-id` (step 5) writes it for you.
+
+File path (depending on your node home): `~/.exrpd/config/app.toml` or `/var/lib/exrpd/.exrpd/config/app.toml`.
+{% /admonition %}
+
 For more details, refer to the [node configuration documentation](https://docs.xrplevm.org/pages/operators/advanced/node-configuration-options) as well as the [node configuration reference](https://docs.xrplevm.org/pages/operators/resources/configuration-reference).
 
 ### 4. Create a New Key
@@ -256,7 +278,7 @@ wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/n
 
 ### 7. Add Seeds to the Node Configuration
 
-Add seeds to the node configuration that will allow connecting to the rest of the node. Modify the file `~/.exrpd/config/config.toml` to include the following seed node:
+Add seeds to the node configuration that will allow connecting to the rest of the network. Modify the file `~/.exrpd/config/config.toml` to include the following seed nodes:
 
 ```sh
 PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/devnet/peers.txt | sort -R | head -n 10 | awk '{print $1}' | paste -s -d, -)
