@@ -12,13 +12,14 @@ When syncing from genesis, you must start from the network genesis binary and up
 
 {% tab label="Mainnet" %}
 
-| Upgrade Name | Height    | Binary Version |
-| ------------ | --------- | -------------- |
-| Genesis      | `0`       | `v7.0.0`       |
-| v8           | `497000`  | `v8.0.2`       |
-| v9           | `4688681` | `v9.0.3`       |
-| v10          | `4749000` | `v10.0.2`      |
-| v10.1        | `6856000` | `v10.1.0`      |
+| Upgrade Name | Height    | Binary Version                           |
+| ------------ | --------- | ---------------------------------------- |
+| Genesis      | `0`       | `v7.0.0`                                 |
+| `v8.0.0`     | `497000`  | `v8.0.2`                                 |
+| `v9.0.0`     | `4688681` | `v9.0.3`                                 |
+| `v10.0.0`    | `4749000` | `v10.0.2`                                |
+| `v10.1.0`    | `6856000` | `v10.1.0`, then `v10.2.1` from `7360029` |
+| `v11.2.0`    | `7823200` | `v11.2.0`                                |
 
 {% /tab %}
 
@@ -27,11 +28,12 @@ When syncing from genesis, you must start from the network genesis binary and up
 | Upgrade Name | Height    | Binary Version |
 | ------------ | --------- | -------------- |
 | Genesis      | `0`       | `v6.0.0`       |
-| v7           | `547100`  | `v7.0.0`       |
-| v8           | `1485600` | `v8.0.0`       |
-| v9           | `3827000` | `v9.0.3`       |
-| v10          | `5601606` | `v10.0.1`      |
-| v10.1        | `7725000` | `v10.1.0`      |
+| `v7.0.0`     | `547100`  | `v7.0.0`       |
+| `v8.0.0`     | `1485600` | `v8.0.0`       |
+| `v9.0.0`     | `3827000` | `v9.0.3`       |
+| `v10.0.0`    | `5601606` | `v10.0.1`      |
+| `v10.1.0`    | `7725000` | `v10.1.0`      |
+| `v11.1.0`    | `8158200` | `v11.1.1`      |
 
 {% /tab %}
 
@@ -40,12 +42,21 @@ When syncing from genesis, you must start from the network genesis binary and up
 | Upgrade Name | Height    | Binary Version |
 | ------------ | --------- | -------------- |
 | Genesis      | `0`       | `v9.0.3`       |
-| v10          | `1198644` | `v10.0.3`      |
-| v11          | `2089191` | `v11.0.0-rc.1` |
+| `v10.0.0`    | `1198644` | `v10.0.3`      |
+| `v11.0.0`    | `2089191` | `v11.0.0-rc.1` |
 
 {% /tab %}
 
 {% /tabs %}
+
+**Upgrade Name** is the on-chain upgrade plan name, which is also the Cosmovisor folder name (`cosmovisor/upgrades/<upgrade-name>/bin/exrpd`). It does not always match the release tag you install in that folder.
+
+{% admonition type="warning" name="Pick the binary for each range" %}
+
+- A binary only contains the upgrade handlers registered for its release line. `v11.2.0` includes the Mainnet `v11.2.0` handler but not the Testnet `v11.1.0` handler, so Testnet must use `v11.1.x` from height `8158200`. Do not use the Docker `latest` tag (it follows the newest Mainnet release) or `main` (development build).
+- Mainnet halted at block `7360028` on 2026-08-23 and resumed at `7360029` on the patched `v10.2.0` release, without an on-chain upgrade. `v10.2.x` shares the `v10.1.0` upgrade handler. To replay this range as it was produced, run `v10.1.0` with `--halt-height 7360028`, then continue with `v10.2.1`.
+- `v10.1.0`, `v10.2.0` and `v10.2.1` cannot be built from source because they depend on non-public security fixes. Use the release binaries or the Docker images for that range.
+  {% /admonition %}
 
 {% admonition type="info" name="Source of truth" %}
 Upgrade schedule and versions are maintained in [Networks](../resources/networks.md).
@@ -98,10 +109,11 @@ docker logs -f xrplevm-node
 At each upgrade height, old binaries halt with an upgrade-needed message. Replace the binary with the target version and restart.
 
 {% admonition type="warning" name="Mandatory EVM chain-id setting (v10+)" %}
-Before starting with a v10+ binary, set `evm-chain-id` under `[evm]` in `app.toml`:
+Before starting with a v10+ binary, make sure `evm-chain-id` under `[evm]` in `app.toml` matches your network. Homes initialized with an older binary do not have the right value:
 
-- Mainnet: `evm-chain-id = "1440000"`
-- Testnet: `evm-chain-id = "1449000"`
+- Mainnet: `evm-chain-id = 1440000`
+- Testnet: `evm-chain-id = 1449000`
+- Devnet: `evm-chain-id = 1449900`
 
 File path (depending on your node home): `~/.exrpd/config/app.toml` or `/var/lib/exrpd/.exrpd/config/app.toml`.
 {% /admonition %}
@@ -120,11 +132,13 @@ sudo systemctl start exrpd
 
 ### `cosmovisor`
 
-Place the new binary at:
+Place the new binary at the folder named after the on-chain upgrade (the **Upgrade Name** column above):
 
 ```text
 ~/.exrpd/cosmovisor/upgrades/<upgrade-name>/bin/exrpd
 ```
+
+For a full replay you can stage every folder before starting. For example, on Mainnet: `genesis` (`v7.0.0`), `v8.0.0` (`v8.0.2`), `v9.0.0` (`v9.0.3`), `v10.0.0` (`v10.0.2`), `v10.1.0` (`v10.1.0`, swapped for `v10.2.1` after block `7360028`) and `v11.2.0` (`v11.2.0`).
 
 Ensure executable permissions and restart if needed:
 
