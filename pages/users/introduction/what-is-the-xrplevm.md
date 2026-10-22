@@ -32,7 +32,7 @@ This migration improved **EVM equivalence, performance, and developer tooling co
 Consensus and networking are powered by [CometBFT](https://cometbft.com/) (Tendermint BFT). This provides:
 
 - **Byzantine Fault Tolerance (BFT):** Security even if up to 1/3 of validators act maliciously.
-- **Deterministic Finality:** Blocks are finalized in ~5 seconds with no probabilistic rollbacks.
+- **Deterministic Finality:** Blocks are finalized in ~5–6 seconds with no probabilistic rollbacks.
 - **Networking Layer:** Optimized p2p stack decoupled from application logic.
 
 ---
@@ -83,7 +83,7 @@ The XRPL EVM is designed to be **Ethereum-equivalent**, meaning Solidity develop
 
 - **Languages:** Solidity (up to 0.8.30 out of the box).
 - **EVM Compatibility:** Prague fork.
-- **Tools:** Works with [Remix](https://remix.ethereum.org/), Truffle, Hardhat, Foundry, [MetaMask](https://metamask.io/), and [Keplr](https://www.keplr.app/).
+- **Tools:** Works with [Remix](https://remix.ethereum.org/), Hardhat, Foundry, [MetaMask](https://metamask.io/), and [Keplr](https://www.keplr.app/).
 - **RPC & APIs:** Standard Ethereum JSON-RPC endpoints are exposed by nodes ([xrplevm/node](https://github.com/xrplevm/node)).
 
 ---

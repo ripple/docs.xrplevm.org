@@ -60,3 +60,6 @@
   items:
     - page: ./resources/block-explorers.md
     - page: ./resources/public-apis.md
+    - page: ./resources/network-status.md
+    - page: ./resources/precompiles.md
+    - page: ./resources/utility-contracts.md
