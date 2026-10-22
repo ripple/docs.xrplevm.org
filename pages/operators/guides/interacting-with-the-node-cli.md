@@ -169,7 +169,7 @@ Below is a list of subcommands within `tx`:
 | `bank`                | Send tokens and manage bank-related transactions.                          |
 | `broadcast`           | Broadcast offline-generated transactions to the network.                   |
 | `consensus`           | Manage consensus-related transactions.                                     |
-| `crisis`              | Commands for crisis management (halt the chain, etc.).                     |
+| `crisis`              | Submit proof that an invariant is broken.                                  |
 | `decode`              | Decode a binary-encoded transaction string.                                |
 | `distribution`        | Manage distribution transactions (withdraw rewards, set commission, etc.). |
 | `encode`              | Encode offline-generated transactions.                                     |
@@ -206,7 +206,7 @@ Below is a list of subcommands within `tx`:
   ```
 - **Simulate gas usage for a transaction:**
   ```
-  exrpd tx simulate --file <unsigned_tx_file>
+  exrpd tx simulate /path/to/unsigned-tx.json --from <key_name>
   ```
 
 ## Version Information
@@ -236,6 +236,7 @@ In addition to `config`, `keys`, `query`, and `tx`, the current `exrpd` binary a
 - `snapshots`
 - `start`
 - `status`
+- `unsafe-start-local-validator`
 
 ## Quick Reference: Common Node CLI Tasks
 
@@ -249,6 +250,8 @@ Many commands in this section are state-changing transactions and require:
 - and a reachable RPC endpoint.
 
 Use `--help` first if you are unsure about required flags.
+
+Since v11, the default keyring backend is `os` (earlier binaries defaulted to `test`). If your keys live in another backend, set it with `exrpd config set client keyring-backend <backend>` or pass `--keyring-backend` on each command; otherwise commands fail with `key not found`.
 {% /admonition %}
 
 {% admonition type="info" name="Amounts and fees" %}

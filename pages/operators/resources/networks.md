@@ -57,5 +57,5 @@ From block `7360029` (2026-08-23) until the `v11.2.0` upgrade, Mainnet ran the `
 {% /tabs %}
 
 {% admonition type="warning" name="Docker tags" %}
-Always pin an explicit release tag. The `latest` tag follows the newest release (currently the Mainnet `v11.2.0` binary, which cannot run Testnet), and `main` is built from the development branch.
+Always pin an explicit release tag. The `latest` tag follows the newest release, which may not support your network (a Mainnet release can lack the upgrade handler a Testnet height needs), and `main` is built from the development branch.
 {% /admonition %}

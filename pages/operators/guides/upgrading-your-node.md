@@ -213,7 +213,9 @@ docker rm xrplevm-node
 docker run -d \
   --name xrplevm-node \
   --restart unless-stopped \
-  -v /root/.exrpd:/root/.exrpd \
+  -p 26656:26656 \
+  -p 127.0.0.1:26657:26657 \
+  -v "$HOME/.exrpd:/root/.exrpd" \
   --entrypoint exrpd \
   peersyst/exrp:<target-tag> \
   start

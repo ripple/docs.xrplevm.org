@@ -154,13 +154,13 @@ sudo systemctl restart cosmovisor-exrpd
 docker pull peersyst/exrp:<new-version>
 docker stop xrplevm-node && docker rm xrplevm-node
 
-# Make RPC reachable through -p 26657:26657
+# Make RPC reachable from the host through -p 127.0.0.1:26657:26657 (localhost only)
 # Note: this RPC listener is in config.toml ([rpc].laddr), not app.toml.
 sed -i.bak -E 's#^laddr = "tcp://127.0.0.1:26657"#laddr = "tcp://0.0.0.0:26657"#' ~/.exrpd/config/config.toml
 
 docker run -d --name xrplevm-node --restart unless-stopped \
-  -p 26657:26657 \
-  -v /root/.exrpd:/root/.exrpd --entrypoint exrpd peersyst/exrp:<new-version> start
+  -p 26656:26656 -p 127.0.0.1:26657:26657 \
+  -v "$HOME/.exrpd:/root/.exrpd" --entrypoint exrpd peersyst/exrp:<new-version> start
 ```
 
 Repeat until you reach the latest network version.

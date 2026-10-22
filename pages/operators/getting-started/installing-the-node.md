@@ -346,15 +346,16 @@ sudo systemctl enable --now docker
 ```bash
 TARGET_TAG=<target-tag>
 
-# Make RPC reachable through -p 26657:26657
+# Make RPC reachable from the host through -p 127.0.0.1:26657:26657 (localhost only)
 # Note: this RPC listener is in config.toml ([rpc].laddr), not app.toml.
 sed -i.bak -E 's#^laddr = "tcp://127.0.0.1:26657"#laddr = "tcp://0.0.0.0:26657"#' ~/.exrpd/config/config.toml
 
 docker run -d \
   --name xrplevm-node \
   --restart unless-stopped \
-  -p 26657:26657 \
-  -v /root/.exrpd:/root/.exrpd \
+  -p 26656:26656 \
+  -p 127.0.0.1:26657:26657 \
+  -v "$HOME/.exrpd:/root/.exrpd" \
   --entrypoint exrpd \
   peersyst/exrp:${TARGET_TAG} \
   start
@@ -362,7 +363,9 @@ docker run -d \
 docker logs -f xrplevm-node
 ```
 
-Use the exact `<target-tag>` from [Networks](../resources/networks.md) (for example, Mainnet `v11.2.0`). Do not use `latest` or `main`.
+Use the exact `<target-tag>` for your network from [Networks](../resources/networks.md). Do not use `latest` (it follows the newest release, which may not support your network) or `main` (development build).
+
+The image runs as `root`, so the container reads the node home from `/root/.exrpd`; the volume maps your host `~/.exrpd` there. Port `26656` accepts inbound P2P connections, and the RPC is published on `127.0.0.1` only, because Docker port publishing bypasses host firewalls such as `ufw`.
 
 ## Validation
 
