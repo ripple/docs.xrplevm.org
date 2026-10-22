@@ -77,15 +77,25 @@ State sync needs two things: RPC servers to verify the snapshot with a light cli
 
    ```bash
    LATEST_HEIGHT=$(curl -s "$SNAP_RPC/block" | jq -r .result.block.header.height)
-   TRUST_HEIGHT=$((LATEST_HEIGHT - 1000))
-   TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$TRUST_HEIGHT" | jq -r .result.block_id.hash)
+   if [ -z "$LATEST_HEIGHT" ] || [ "$LATEST_HEIGHT" = "null" ]; then
+     echo "Could not read the latest height from $SNAP_RPC. Do not continue."
+   else
+     TRUST_HEIGHT=$((LATEST_HEIGHT - 1000))
+     TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$TRUST_HEIGHT" | jq -r .result.block_id.hash)
+   fi
 
    echo "trust_height = $TRUST_HEIGHT"
    echo "trust_hash   = $TRUST_HASH"
    ```
 
    {% admonition type="warning" name="Use block_id.hash" %}
-   The trust hash must be the block's **`block_id.hash`** (the `jq` path above), not the header, app, or data hash. The `/block` response contains several `"hash"` fields. A greedy regex over the single-line JSON picks the **last** one, and the node then fails at startup with `expected header's hash X, but got Y`. Without `jq`, take the first match explicitly: `grep -oE '"hash":"[A-F0-9]{64}"' | head -1`.
+   The trust hash must be the block's **`block_id.hash`** (the `jq` path above). The `/block` response contains several fields named exactly `"hash"`. A greedy regex over the single-line JSON picks the **last** one, which is `last_commit.block_id.parts.hash` (a part-set hash of the previous block), and the node then fails at startup with `expected header's hash X, but got Y`.
+
+   Without `jq`, take the first match and strip the key: `block_id` is always serialized before `block`, so the first `"hash"` is always `block_id.hash`.
+
+   ```bash
+   TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$TRUST_HEIGHT" | grep -oE '"hash":"[A-F0-9]{64}"' | head -1 | grep -oE '[A-F0-9]{64}')
+   ```
    {% /admonition %}
 
    You can also read a recent height and its block hash from a block explorer.
