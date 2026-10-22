@@ -2,7 +2,7 @@
 
 Upgrades are coordinated at a specific block height. Nodes running old binaries halt at that height and must be upgraded before they can continue.
 
-For validators, the primary risk during upgrades is **double-signing**. This happens when more than one active validator signer uses the same validator key at the same time (or with inconsistent signer state), which can lead to slashing/jailing.
+For validators, the primary risk during upgrades is **double-signing**. This happens when more than one active validator signer uses the same validator key at the same time (or with inconsistent signer state), which gets the validator jailed and tombstoned.
 
 This guide is a security-first runbook for all run stacks:
 
@@ -43,7 +43,7 @@ Use your actual node home path in commands below:
 
 - Read target height/version from [Networks](../resources/networks.md).
 - Download the target release artifact from [XRPL EVM node releases](https://github.com/xrplevm/node/releases).
-- Use the **on-chain upgrade name** from `upgrade-info.json` for Cosmovisor folder naming. Do not assume upgrade proposal name equals release tag (for example, proposal name `v10.0.0` may require binary `v10.0.1` or `v10.0.2`).
+- Use the **on-chain upgrade name** from `upgrade-info.json` (also listed in [Networks](../resources/networks.md)) for Cosmovisor folder naming. Do not assume the upgrade name equals the release tag: for example, upgrade `v10.0.0` requires binary `v10.0.1` or `v10.0.2`, and Testnet upgrade `v11.1.0` uses binary `v11.1.1`.
 
 ### 2) Pre-upgrade checks
 
@@ -82,8 +82,12 @@ Do not edit these files manually.
 ```bash
 cd /tmp
 TARGET_TAG=<target-tag>
-wget "https://github.com/xrplevm/node/releases/download/${TARGET_TAG}/node_${TARGET_TAG#v}_Linux_amd64.tar.gz"
-tar -xzf "node_${TARGET_TAG#v}_Linux_amd64.tar.gz"
+ARCH=amd64 # or arm64
+ASSET="node_${TARGET_TAG#v}_Linux_${ARCH}.tar.gz"
+wget "https://github.com/xrplevm/node/releases/download/${TARGET_TAG}/${ASSET}"
+wget -O checksums.txt "https://github.com/xrplevm/node/releases/download/${TARGET_TAG}/checksums.txt"
+sha256sum -c checksums.txt --ignore-missing
+tar -xzf "${ASSET}"
 sudo mv bin/exrpd /usr/local/bin/exrpd
 sudo chmod +x /usr/local/bin/exrpd
 exrpd version
@@ -91,32 +95,38 @@ exrpd version
 
 #### Upgrade from source
 
+Check the Go version required by the target tag first, and install it from [go.dev/dl](https://go.dev/dl/) if needed:
+
+```bash
+TARGET_TAG=<target-tag>
+REQUIRED_GO=$(curl -fsSL "https://raw.githubusercontent.com/xrplevm/node/${TARGET_TAG}/go.mod" | awk '/^go /{print $2; exit}')
+echo "Required Go: ${REQUIRED_GO}"
+go version
+```
+
+Then build the tag:
+
 ```bash
 cd /tmp
 rm -rf node
 git clone https://github.com/xrplevm/node.git
 cd node
-git checkout <target-tag>
+git checkout "${TARGET_TAG}"
 make build
-sudo mv build/exrpd /usr/local/bin/exrpd
+sudo mv bin/exrpd /usr/local/bin/exrpd
 sudo chmod +x /usr/local/bin/exrpd
 exrpd version
 ```
 
-If you build from source, check required Go version first:
-
-```bash
-REQUIRED_GO=$(curl -fsSL https://raw.githubusercontent.com/xrplevm/node/main/go.mod | awk '/^go /{print $2; exit}')
-echo "Required Go: ${REQUIRED_GO}"
-go version
-```
+`v10.1.0`, `v10.2.0` and `v10.2.1` cannot be built from source (they depend on non-public security fixes). Use the release binary or Docker image for them.
 
 ### 5.1) Apply mandatory EVM chain-id config (v10+)
 
 After installing the target binary and **before starting the node**, ensure `evm-chain-id` is present under `[evm]` in `app.toml`:
 
-- Mainnet (`xrplevm_1440000-1`): `evm-chain-id = "1440000"`
-- Testnet (`xrplevm_1449000-1`): `evm-chain-id = "1449000"`
+- Mainnet (`xrplevm_1440000-1`): `evm-chain-id = 1440000`
+- Testnet (`xrplevm_1449000-1`): `evm-chain-id = 1449000`
+- Devnet (`xrplevm_1449900-1`): `evm-chain-id = 1449900`
 
 File location depends on your home path:
 
@@ -246,7 +256,7 @@ If governance requires an EVM chain-id update, set it in `app.toml` under `[evm]
 
 ```toml
 [evm]
-evm-chain-id = "<network-evm-chain-id>"
+evm-chain-id = <network-evm-chain-id>
 ```
 
 6. Restore signer state file and permissions:
@@ -265,11 +275,12 @@ exrpd start
 ```
 
 {% admonition type="warning" name="Critical double-sign protection" %}
-Never run two active instances with the same `priv_validator_key.json` at the same time (primary + backup, old + new binary, systemd + docker, etc.). During hotfixes, this is the highest-risk mistake and can lead to slashing/jailing and tombstoning (permanent validator removal for that key).
+Never run two active instances with the same `priv_validator_key.json` at the same time (primary + backup, old + new binary, systemd + docker, etc.). During hotfixes, this is the highest-risk mistake and gets the validator jailed and tombstoned (permanent removal for that key).
 {% /admonition %}
 
-{% admonition type="info" name="Current known example" %}
-During the Testnet v10 incident, affected nodes moved from `v10.0.0` to `v10.0.1` and required `evm-chain-id = "1449000"`.
+{% admonition type="info" name="Known examples" %}
+- During the Testnet v10 incident, affected nodes moved from `v10.0.0` to `v10.0.1` and required `evm-chain-id = 1449000`.
+- During the August 2026 Mainnet security halt, the chain stopped at block `7360028` and validators replaced `v10.1.0` with the patched `v10.2.0` release in place (same upgrade handler, no on-chain upgrade). Block production resumed at `7360029`.
 {% /admonition %}
 
 {% admonition type="info" name="Snapshot restore during incident" %}
@@ -280,11 +291,9 @@ If restoring from a pre-upgrade snapshot with Cosmovisor, stage the required bin
 
 Cosmovisor can reduce manual intervention during upgrades. It can also increase operational risk if misconfigured, so validator operators should test in non-production first.
 
-Install:
+Install it with `go install`, using a recent Go release from [go.dev/dl](https://go.dev/dl/) (current Cosmovisor releases need Go 1.23 or newer):
 
 ```bash
-sudo apt-get update
-sudo apt-get install -y golang-go
 sudo env GOBIN=/usr/local/bin go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest
 /usr/local/bin/cosmovisor --help >/dev/null
 ```
@@ -315,5 +324,5 @@ Before starting after upgrade, confirm:
 
 ## Additional Resources
 
-- [Cosmovisor Docs (Cosmos SDK)](https://docs.cosmos.network/sdk/v0.50/build/tooling/cosmovisor)
+- [Cosmovisor Docs (Cosmos SDK)](https://docs.cosmos.network/sdk/v0.53/build/tooling/cosmovisor)
 - [XRPL EVM Sidechain Repository](https://github.com/xrplevm/node)
