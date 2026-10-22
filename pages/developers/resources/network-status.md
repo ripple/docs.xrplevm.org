@@ -17,11 +17,11 @@ This page summarizes the on-chain parameters that matter when building on the XR
 | Base fee / minimum gas price  | 571,000,000 wei (0.571 gwei) | 571,000,000 wei (0.571 gwei) | 571,000,000 wei (0.571 gwei) |
 | Native denom                  | `axrp` (18 decimals) | `axrp` (18 decimals) | `axrp` (18 decimals)  |
 | Unbonding time                | 7 days               | 7 days               | 7 days                |
-| Governance voting period      | 14 days (1 day expedited) | 14 days (1 day expedited) | 5 minutes      |
+| Governance voting period      | 14 days (1 day expedited) | 14 days (1 day expedited) | 5 minutes (1 minute expedited) |
 | Permissionless ERC-20 registration | Disabled        | Disabled             | Enabled               |
 | Interchain Accounts (ICS-27)  | Disabled             | Disabled             | Disabled              |
 
-`eth_gasPrice` returns the base fee plus a suggested priority fee (about 0.785 gwei at the time of writing). Read live values with `cast gas-price --rpc-url <rpc>` or from `GET /cosmos/evm/feemarket/v1/params` on the Cosmos REST API.
+`eth_gasPrice` returns the base fee plus a suggested priority fee, so it is higher than the minimum gas price. Read live values with `cast gas-price --rpc-url <rpc>` or from `GET /cosmos/evm/feemarket/v1/params` on the Cosmos REST API.
 
 ---
 
@@ -47,7 +47,7 @@ See also [Precompiles](./precompiles.md) for the native modules available to con
 
 | Date (UTC)  | Change |
 | ----------- | ------ |
-| 2026-09-23  | Upgrade to **v11.2.0** at block `7823200` (proposal #38): Interchain Accounts host disabled, unbonding time set to 7 days, XRP stranded in the Elys channel escrow returned to its withdrawal address. |
+| 2026-09-23  | Upgrade to **v11.2.0** at block `7823200` (proposal #38): Interchain Accounts host lockdown in the upgrade handler, unbonding time set to 7 days, XRP stranded in the Elys channel escrow returned to its withdrawal address. |
 | 2026-09-17  | Interchain Accounts host module disabled (proposal #36). Injective IBC light client recovered (proposal #37). |
 | 2026-09-15  | Node **v10.2.1** released with a further cosmos/evm security fix (binary replacement, no governance upgrade). |
 | 2026-08-23  | Preventive halt from 05:02 to 19:19 UTC (blocks `7360028` → `7360029`) after a Cosmos EVM security advisory. Block production resumed with patched node **v10.2.0**. No funds were lost. See [the incident report](https://www.xrplevm.org/blog/xrpl-evm-preventive-response-to-cosmos-evm-incident). |
@@ -59,6 +59,6 @@ See also [Precompiles](./precompiles.md) for the native modules available to con
 | Date (UTC)  | Change |
 | ----------- | ------ |
 | 2026-09-08  | Node **v11.1.1** released (binary replacement, no governance upgrade). |
-| 2026-08-14  | Upgrade to **v11.1.0** at block `8158200` (proposal #49): Interchain Accounts host disabled, unbonding time set to 7 days. |
+| 2026-08-14  | Upgrade to **v11.1.0** at block `8158200` (proposal #49): Interchain Accounts host lockdown in the upgrade handler, unbonding time set to 7 days. |
 
 For node versions, upgrade heights and binaries, see the operator [Networks](../../operators/resources/networks.md) page. You can follow governance proposals on the [governance dashboards](https://governance.xrplevm.org) or with `GET /cosmos/gov/v1/proposals` on the Cosmos REST API.

@@ -37,9 +37,7 @@ To send assets from the XRPL EVM back to the XRPL, you’ll call the [`interchai
 
 ### ITS Contract Instantiation
 
-Below is an example of instantiating the ITS contract in the **XRPL EVM**:
-
-The ITS contract has the same address on Mainnet and Testnet:
+Below is an example of instantiating the ITS contract in the **XRPL EVM**. The ITS contract has the same address on Mainnet and Testnet:
 
 ```ts
 import { Contract } from "ethers";
@@ -72,7 +70,7 @@ const res = await fetch("https://api.axelarscan.io/gmp/estimateITSFee", {
     event: "InterchainTransfer",
   }),
 });
-const gasValue = BigInt(await res.text()); // in wei (18 decimals), e.g. ~0.22 XRP
+const gasValue = BigInt(await res.text()); // in wei (18 decimals), estimated at request time
 ```
 
 If the amount is too low, the transfer waits on Axelarscan until more gas is added.
