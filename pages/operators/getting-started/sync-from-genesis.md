@@ -18,7 +18,7 @@ When syncing from genesis, you must start from the network genesis binary and up
 | `v8.0.0`     | `497000`  | `v8.0.2`                                 |
 | `v9.0.0`     | `4688681` | `v9.0.3`                                 |
 | `v10.0.0`    | `4749000` | `v10.0.2`                                |
-| `v10.1.0`    | `6856000` | `v10.1.0`, then `v10.2.1` from `7360029` |
+| `v10.1.0`    | `6856000` | `v10.1.0` (see the note below)           |
 | `v11.2.0`    | `7823200` | `v11.2.0`                                |
 
 {% /tab %}
@@ -139,7 +139,7 @@ Place the new binary at the folder named after the on-chain upgrade (the **Upgra
 ~/.exrpd/cosmovisor/upgrades/<upgrade-name>/bin/exrpd
 ```
 
-For a full replay you can stage every folder before starting. For example, on Mainnet: `genesis` (`v7.0.0`), `v8.0.0` (`v8.0.2`), `v9.0.0` (`v9.0.3`), `v10.0.0` (`v10.0.2`), `v10.1.0` (`v10.1.0`, swapped for `v10.2.1` after block `7360028`) and `v11.2.0` (`v11.2.0`).
+For a full replay you can stage every folder before starting. For example, on Mainnet: `genesis` (`v7.0.0`), `v8.0.0` (`v8.0.2`), `v9.0.0` (`v9.0.3`), `v10.0.0` (`v10.0.2`), `v10.1.0` (`v10.1.0`, see the note about block `7360028` above) and `v11.2.0` (`v11.2.0`).
 
 Ensure executable permissions and restart if needed:
 

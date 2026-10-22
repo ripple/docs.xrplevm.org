@@ -25,7 +25,7 @@ Below is a table indicating all the hard fork upgrades for each network. **Upgra
 | `v10.1.0`    | 6856000      | 2026-07-20   | [v10.1.0](https://github.com/xrplevm/node/releases/tag/v10.1.0) / [v10.2.1](https://github.com/xrplevm/node/releases/tag/v10.2.1) | [peersyst/exrp:v10.1.0](https://hub.docker.com/layers/peersyst/exrp/v10.1.0/images/sha256-cc7123107b7bc2815644b49a24f9951fa1edd7634c9d88c516e0ff5069874666) / [peersyst/exrp:v10.2.1](https://hub.docker.com/layers/peersyst/exrp/v10.2.1/images/sha256-9625b14ff7ca6b0f72ec1ff70b935127550778c4447e69c7060e9fd7f7130e06) |
 | `v11.2.0`    | 7823200      | 2026-09-23   | [v11.2.0](https://github.com/xrplevm/node/releases/tag/v11.2.0)                                                                   | [peersyst/exrp:v11.2.0](https://hub.docker.com/layers/peersyst/exrp/v11.2.0/images/sha256-115e6e20a3bc7c659b93996ff44e55cf670fff5e87444cb98c0063e041f43e7a)                                                                                                                                                               |
 
-From block `7360029` (2026-08-23), Mainnet runs the `v10.2.x` security releases in place of `v10.1.0`. They share the `v10.1.0` upgrade handler (there was no on-chain upgrade), and `v10.2.1` is the recommended patched binary for the `v10.1.0` range. See [Sync from Genesis](../getting-started/sync-from-genesis.md).
+From block `7360029` (2026-08-23) until the `v11.2.0` upgrade, Mainnet ran the `v10.2.x` security releases in place of `v10.1.0`. They share the `v10.1.0` upgrade handler (there was no on-chain upgrade); `v10.2.1` was the recommended binary for nodes running in that range. See [Sync from Genesis](../getting-started/sync-from-genesis.md) before replaying it.
 
 {% /tab %}
 
