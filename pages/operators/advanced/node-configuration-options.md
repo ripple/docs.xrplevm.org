@@ -22,12 +22,13 @@ Nodes can be configured to store historical data in different ways based on thei
 
 ### Archive or Historical
 
-Stores all historical data from the genesis block. Useful for querying historical state and chain analysis.
+Stores all historical data from the genesis block. Useful for querying historical state and chain analysis. An archive node has to [sync from genesis](../getting-started/sync-from-genesis.md): snapshots and state sync only provide recent state.
 
 Configuration in `app.toml`:
 
 ```toml
 pruning = "nothing"
+min-retain-blocks = 0
 ```
 
 ### Pruned
@@ -42,7 +43,7 @@ pruning = "default"
 
 ### Full Pruned
 
-Prunes historical data but retains enough for the complete validation of all blocks.
+Keeps only the 2 latest application states (pruning every 10 blocks). This is the smallest footprint, but the node cannot serve queries for past heights.
 
 Configuration in `app.toml`:
 
@@ -148,8 +149,10 @@ Configuration in `config.toml`:
 [p2p]
 persistent_peers = "sentry_node_ids"
 private_peer_ids = ""
-double_sign_check_height = 10
 pex = false
+
+[consensus]
+double_sign_check_height = 10
 ```
 
 ---

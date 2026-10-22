@@ -98,7 +98,7 @@ exrpd version
 ## 2) Initialize and configure for your network
 
 {% admonition type="warning" name="Mandatory EVM chain-id setting (v10+)" %}
-`evm-chain-id` under `[evm]` in `app.toml` must match your network. Since v11, `exrpd init --chain-id <chain-id>` writes it for you. Check it before starting, especially on homes initialized with an older binary:
+`evm-chain-id` under `[evm]` in `app.toml` must match your network. `exrpd init --chain-id <chain-id>` (v10 or later) writes it for you. Check it before starting, especially on homes initialized with an older binary:
 
 - Mainnet: `evm-chain-id = 1440000`
 - Testnet: `evm-chain-id = 1449000`

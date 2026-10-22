@@ -44,7 +44,7 @@ Adjust other recommended settings:
 - **Peer Exchange**: Keep default unless specific network config is required
 
 {% admonition type="warning" name="Mandatory EVM chain-id setting (v10+)" %}
-Before starting the Mainnet node, check that `evm-chain-id = 1440000` is set under `[evm]` in `app.toml`. Since v11, `exrpd init --chain-id` (step 5) writes it for you.
+Before starting the Mainnet node, check that `evm-chain-id = 1440000` is set under `[evm]` in `app.toml`. `exrpd init --chain-id` (step 5) writes it for you with v10 or later binaries.
 
 File path (depending on your node home): `~/.exrpd/config/app.toml` or `/var/lib/exrpd/.exrpd/config/app.toml`.
 {% /admonition %}
@@ -140,7 +140,7 @@ Adjust other recommended settings:
 - **Peer Exchange**: Keep default unless specific network config is required
 
 {% admonition type="warning" name="Mandatory EVM chain-id setting (v10+)" %}
-Before starting the Testnet node, check that `evm-chain-id = 1449000` is set under `[evm]` in `app.toml`. Since v11, `exrpd init --chain-id` (step 5) writes it for you.
+Before starting the Testnet node, check that `evm-chain-id = 1449000` is set under `[evm]` in `app.toml`. `exrpd init --chain-id` (step 5) writes it for you with v10 or later binaries.
 
 File path (depending on your node home): `~/.exrpd/config/app.toml` or `/var/lib/exrpd/.exrpd/config/app.toml`.
 {% /admonition %}
@@ -236,7 +236,7 @@ Adjust other recommended settings:
 - **Peer Exchange**: Keep default unless specific network config is required
 
 {% admonition type="warning" name="Mandatory EVM chain-id setting (v10+)" %}
-Before starting the Devnet node, check that `evm-chain-id = 1449900` is set under `[evm]` in `app.toml`. Since v11, `exrpd init --chain-id` (step 5) writes it for you.
+Before starting the Devnet node, check that `evm-chain-id = 1449900` is set under `[evm]` in `app.toml`. `exrpd init --chain-id` (step 5) writes it for you with v10 or later binaries.
 
 File path (depending on your node home): `~/.exrpd/config/app.toml` or `/var/lib/exrpd/.exrpd/config/app.toml`.
 {% /admonition %}

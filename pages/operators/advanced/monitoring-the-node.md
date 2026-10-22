@@ -11,11 +11,11 @@ This guide explains how to enable monitoring for the XRPL EVM sidechain node usi
 - [How to Install Prometheus and Grafana on Ubuntu 22.04 LTS](https://ibrahims.medium.com/how-to-install-prometheus-and-grafana-on-ubuntu-22-04-lts-configure-grafana-dashboard-5d11e3cb3cfd)
 - [How to setup Monitoring using Prometheus and Grafana](https://medium.com/backstagewitharchitects/how-to-setup-monitoring-using-prometheus-and-grafana-9ba7bf8cbda9)
 
-## Enabling Monitoring in `config.yaml`
+## Enabling Monitoring in `config.toml`
 
-To enable Prometheus metrics collection for your XRPL EVM sidechain node, you need to update the `config.yaml` file with the following values:
+To enable Prometheus metrics collection for your XRPL EVM sidechain node, you need to update the `[instrumentation]` section of `~/.exrpd/config/config.toml` with the following values:
 
-```yaml
+```toml
 #######################################################
 ###       Instrumentation Configuration Options     ###
 #######################################################
