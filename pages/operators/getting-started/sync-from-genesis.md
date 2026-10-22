@@ -54,7 +54,7 @@ When syncing from genesis, you must start from the network genesis binary and up
 {% admonition type="warning" name="Pick the binary for each range" %}
 
 - A binary only contains the upgrade handlers registered for its release line. `v11.2.0` includes the Mainnet `v11.2.0` handler but not the Testnet `v11.1.0` handler, so Testnet must use `v11.1.x` from height `8158200`. Do not use the Docker `latest` tag (it follows the newest Mainnet release) or `main` (development build).
-- Mainnet halted after block `7360028` on 2026-08-23 and resumed at `7360029` on the patched `v10.2.0` release, without an on-chain upgrade. `v10.2.x` shares the `v10.1.0` upgrade handler. A full replay across this range has not been validated with these docs; if you need to sync through it, prefer [state sync or a snapshot](../advanced/sync-options.md), or confirm the binary switch point with the core team.
+- Mainnet halted after block `7360028` on 2026-08-23 and resumed at `7360029` on the patched `v10.2.0` release, without an on-chain upgrade. `v10.2.x` shares the `v10.1.0` upgrade handler. A full replay across this range has not been validated. To sync through it, use [state sync or a snapshot](../advanced/sync-options.md), or confirm the binary switch point with the core team.
 - `v10.1.0`, `v10.2.0` and `v10.2.1` cannot be built from source because they depend on non-public security fixes. Use the release binaries or the Docker images for that range.
 
 {% /admonition %}

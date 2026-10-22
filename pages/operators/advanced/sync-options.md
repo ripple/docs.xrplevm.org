@@ -25,7 +25,7 @@ If this node is a validator signer, keep a **single active validator signer** on
 
 ## Sync from Snapshot
 
-Syncing from a snapshot significantly reduces setup time by initializing your node using a pre-generated state file. The snapshot is downloaded and extracted into `~/.exrpd`, where it populates the `data/` directory, preparing the node for quick synchronization with the network.
+A snapshot starts your node from a recent state file instead of replaying the chain, which takes much less time. You download the archive and extract it into `~/.exrpd`, which creates the `data/` directory.
 
 1. **Select a Snapshot**: Choose a snapshot file from a trusted provider listed on the [Snapshots](../resources/snapshots.md) page.
 
@@ -43,7 +43,7 @@ wget -O exrpd.tar.lz4 <snapshot_url>
 tar -xI lz4 -f exrpd.tar.lz4 --exclude='data/priv_validator_state.json'
 ```
 
-The Peersyst archives include a `priv_validator_state.json` reset to height `0`; excluding it keeps your node's own signer state. Remove `data.old` once the node is syncing. See [Snapshots](../resources/snapshots.md) for other providers and archive formats.
+The Peersyst archives include a `priv_validator_state.json` reset to height `0`. Excluding it keeps your node's own signer state. Remove `data.old` once the node is syncing. See [Snapshots](../resources/snapshots.md) for other providers and archive formats.
 
 {% admonition type="warning" name="Validator signer safety" %}
 Do not restore snapshots over an active validator signer home. Snapshot restore is for non-signing nodes or fresh replacement nodes only.
@@ -57,7 +57,7 @@ exrpd start
 
 ## State Sync
 
-State Sync is an efficient and fast way to bootstrap a new node. It works by replaying larger chunks of application state directly rather than replaying individual blocks or consensus rounds. The node starts with a truncated block history, from the height of the restored snapshot. For more information, see the [CometBFT state sync documentation](https://docs.cosmos.network/cometbft/latest/docs/core/state-sync).
+State sync starts a new node from a snapshot of the application state served by its peers, instead of replaying every block. The node starts with a truncated block history, from the height of the restored snapshot. For more information, see the [CometBFT state sync documentation](https://docs.cosmos.network/cometbft/latest/docs/core/state-sync).
 
 State sync needs two things: RPC servers to verify the snapshot with a light client, and peers that serve state sync snapshots. Several Mainnet and Testnet nodes publish snapshots every few hundred to few thousand blocks.
 
@@ -66,7 +66,7 @@ State sync needs two things: RPC servers to verify the snapshot with a light cli
 | Mainnet | `https://cosmos-rpc.xrplevm.org:443`         |
 | Testnet | `https://cosmos-rpc.testnet.xrplevm.org:443` |
 
-This procedure covers Mainnet and Testnet. It is not validated on Devnet, whose public RPC node only lists private peers; on Devnet, use the [snapshot](../resources/snapshots.md) or [Sync from Genesis](../getting-started/sync-from-genesis.md) instead.
+This procedure covers Mainnet and Testnet. It is not validated on Devnet, whose public RPC node only lists private peers. On Devnet, use the [snapshot](../resources/snapshots.md) or [Sync from Genesis](../getting-started/sync-from-genesis.md) instead.
 
 1. **Set the RPC server and peers**:
 
@@ -81,7 +81,7 @@ This procedure covers Mainnet and Testnet. It is not validated on Devnet, whose 
 
 2. **Retrieve a trusted block height and hash**:
 
-   Choose a height within the trust period. A height close to `current height - 1000` works well:
+   Choose a height within the trust period, close to `current height - 1000`:
 
    ```bash
    LATEST_HEIGHT=$(curl -s "$SNAP_RPC/block" | jq -r .result.block.header.height)
@@ -134,7 +134,7 @@ This procedure covers Mainnet and Testnet. It is not validated on Devnet, whose 
    ```
 
    - `rpc_servers` needs at least two entries. Listing the same trusted server twice is allowed.
-   - `trust_period` must be shorter than the unbonding time, which is 7 days (`168h`) on Mainnet and Testnet. About two thirds of it (`112h`) is a safe value. The generated `config.toml` default (`168h0m0s`) is too long.
+   - `trust_period` must be shorter than the unbonding time, which is 7 days (`168h`) on Mainnet and Testnet. Use about two thirds of it (`112h`). The generated `config.toml` default (`168h0m0s`) is too long.
    - A longer `discovery_time` gives the node time to find a recent snapshot among its peers.
 
 4. **Start the Node**:

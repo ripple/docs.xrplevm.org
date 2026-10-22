@@ -13,7 +13,7 @@ This guide explains how to enable monitoring for the XRPL EVM sidechain node usi
 
 ## Enabling Monitoring in `config.toml`
 
-To enable Prometheus metrics collection for your XRPL EVM sidechain node, you need to update the `[instrumentation]` section of `~/.exrpd/config/config.toml` with the following values:
+To enable Prometheus metrics, set these values in the `[instrumentation]` section of `~/.exrpd/config/config.toml`:
 
 ```toml
 #######################################################

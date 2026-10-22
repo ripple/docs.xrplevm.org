@@ -22,7 +22,7 @@ Nodes can be configured to store historical data in different ways based on thei
 
 ### Archive or Historical
 
-Stores all historical data from the genesis block. Useful for querying historical state and chain analysis. An archive node has to [sync from genesis](../getting-started/sync-from-genesis.md): snapshots and state sync only provide recent state.
+Stores all data from the genesis block. Use it to query historical state or to analyze the chain. An archive node has to [sync from genesis](../getting-started/sync-from-genesis.md): snapshots and state sync only provide recent state.
 
 Configuration in `app.toml`:
 

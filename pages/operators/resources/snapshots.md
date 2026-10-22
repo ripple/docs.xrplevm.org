@@ -42,7 +42,7 @@ Peersyst is currently the only provider publishing Devnet snapshots. Archives th
 
 Peersyst snapshots are pruned nodes bootstrapped with [state sync](../advanced/sync-options.md#state-sync) and regenerated daily. They contain recent state only, without historical blocks or state, so they are not suitable for archive or historical nodes.
 
-**Note:** Always verify the authenticity and integrity of snapshots before using them. Keep in mind that third-party providers may have different update schedules, data policies, and retention periods, and an archive can be older than the latest network upgrade. Check its date and block height before restoring, and run the binary that matches that height (see [Networks](./networks.md)). Refer to the provider’s documentation for instructions on how to use these snapshots and any associated terms of service.
+**Note:** Always verify the authenticity and integrity of snapshots before using them. Third-party providers have their own update schedules, data policies and retention periods, and an archive can be older than the latest network upgrade. Check its date and block height before restoring, and run the binary that matches that height (see [Networks](./networks.md)). Refer to the provider’s documentation for instructions on how to use these snapshots and any associated terms of service.
 
 ## Restore examples
 

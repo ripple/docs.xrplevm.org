@@ -251,14 +251,14 @@ Many commands in this section are state-changing transactions and require:
 
 Use `--help` first if you are unsure about required flags.
 
-Since v11, the default keyring backend is `os` (earlier binaries defaulted to `test`). If your keys live in another backend, set it with `exrpd config set client keyring-backend <backend>` or pass `--keyring-backend` on each command; otherwise commands fail with `key not found`.
+Since v11, the default keyring backend is `os` (earlier binaries defaulted to `test`). If your keys live in another backend, set it with `exrpd config set client keyring-backend <backend>` or pass `--keyring-backend` on each command. Otherwise, commands fail with `key not found`.
 {% /admonition %}
 
 {% admonition type="info" name="Amounts and fees" %}
 The native token denom is `axrp`, with 18 decimals: `1 XRP = 1000000000000000000axrp`. Transactions must pay at least the network minimum gas price of `571000000axrp` (0.571 gwei) per unit of gas, so the examples below pass `--gas-prices 571000000axrp`. Check the current value with `exrpd query feemarket params`.
 {% /admonition %}
 
-This section provides a practical cheat sheet for everyday tasks when working with the `exrpd` CLI. Whether you're managing wallets, operating a validator, or participating in governance, these ready-to-use commands help you move fast and confidently.
+This section lists `exrpd` commands for common tasks: managing wallets, operating a validator and taking part in governance.
 
 ---
 

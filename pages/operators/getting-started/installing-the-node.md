@@ -98,7 +98,7 @@ exrpd version
 ## 2) Initialize and configure for your network
 
 {% admonition type="warning" name="Mandatory EVM chain-id setting (v10+)" %}
-`evm-chain-id` under `[evm]` in `app.toml` must match your network. `exrpd init --chain-id <chain-id>` (v10 or later) writes it for you, but only when `app.toml` does not exist yet: run `exrpd init` before any `exrpd config set` command, which creates `app.toml` with `evm-chain-id = 0`. Check it before starting, especially on homes initialized with an older binary:
+`evm-chain-id` under `[evm]` in `app.toml` must match your network. `exrpd init --chain-id <chain-id>` (v10 or later) writes it, but only if `app.toml` does not exist yet. Run `exrpd init` before any `exrpd config set` command, because `config set` creates `app.toml` with `evm-chain-id = 0`. Check the value before starting, especially on homes initialized with an older binary:
 
 - Mainnet: `evm-chain-id = 1440000`
 - Testnet: `evm-chain-id = 1449000`
@@ -365,7 +365,7 @@ docker logs -f xrplevm-node
 
 Use the exact `<target-tag>` for your network from [Networks](../resources/networks.md). Do not use `latest` (it follows the newest release, which may not support your network) or `main` (development build).
 
-The image runs as `root`, so the container reads the node home from `/root/.exrpd`; the volume maps your host `~/.exrpd` there. Port `26656` accepts inbound P2P connections, and the RPC is published on `127.0.0.1` only, because Docker port publishing bypasses host firewalls such as `ufw`.
+The image runs as `root`, so the container reads the node home from `/root/.exrpd`. The volume maps your host `~/.exrpd` there. Port `26656` accepts inbound P2P connections, and the RPC is published on `127.0.0.1` only, because Docker port publishing bypasses host firewalls such as `ufw`.
 
 ## Validation
 
