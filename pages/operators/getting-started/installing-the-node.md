@@ -98,13 +98,17 @@ exrpd version
 ## 2) Initialize and configure for your network
 
 {% admonition type="warning" name="Mandatory EVM chain-id setting (v10+)" %}
-`evm-chain-id` under `[evm]` in `app.toml` must match your network. `exrpd init --chain-id <chain-id>` (v10 or later) writes it for you. Check it before starting, especially on homes initialized with an older binary:
+`evm-chain-id` under `[evm]` in `app.toml` must match your network. `exrpd init --chain-id <chain-id>` (v10 or later) writes it for you, but only when `app.toml` does not exist yet: run `exrpd init` before any `exrpd config set` command, which creates `app.toml` with `evm-chain-id = 0`. Check it before starting, especially on homes initialized with an older binary:
 
 - Mainnet: `evm-chain-id = 1440000`
 - Testnet: `evm-chain-id = 1449000`
 - Devnet: `evm-chain-id = 1449900`
 
-File path (depending on your node home): `~/.exrpd/config/app.toml` or `/var/lib/exrpd/.exrpd/config/app.toml`.
+File path (depending on your node home): `~/.exrpd/config/app.toml` or `/var/lib/exrpd/.exrpd/config/app.toml`. To check it:
+
+```bash
+awk '/^\[evm\]/{f=1;next} /^\[/{f=0} f && /^evm-chain-id/' ~/.exrpd/config/app.toml
+```
 {% /admonition %}
 
 {% admonition type="warning" name="Validator signer safety" %}
@@ -116,8 +120,8 @@ If this node is an active validator signer, do not re-run `exrpd init` on an exi
 {% tab label="Mainnet" %}
 
 ```bash
-exrpd config set client chain-id xrplevm_1440000-1
 exrpd init <moniker> --chain-id xrplevm_1440000-1
+exrpd config set client chain-id xrplevm_1440000-1
 wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/mainnet/genesis.json
 PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/mainnet/peers.txt | sort -R | head -n 10 | paste -sd, -)
 sed -i.bak -e "s/^seeds *=.*/seeds = \"${PEERS}\"/" ~/.exrpd/config/config.toml
@@ -131,8 +135,8 @@ sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"${PERSISTENT_PEERS}
 {% tab label="Testnet" %}
 
 ```bash
-exrpd config set client chain-id xrplevm_1449000-1
 exrpd init <moniker> --chain-id xrplevm_1449000-1
+exrpd config set client chain-id xrplevm_1449000-1
 wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json
 PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/testnet/peers.txt | sort -R | head -n 10 | paste -sd, -)
 sed -i.bak -e "s/^seeds *=.*/seeds = \"${PEERS}\"/" ~/.exrpd/config/config.toml
@@ -146,8 +150,8 @@ sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"${PERSISTENT_PEERS}
 {% tab label="Devnet" %}
 
 ```bash
-exrpd config set client chain-id xrplevm_1449900-1
 exrpd init <moniker> --chain-id xrplevm_1449900-1
+exrpd config set client chain-id xrplevm_1449900-1
 wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/devnet/genesis.json
 PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/devnet/peers.txt | sort -R | head -n 10 | paste -sd, -)
 sed -i.bak -e "s/^seeds *=.*/seeds = \"${PEERS}\"/" ~/.exrpd/config/config.toml
@@ -266,7 +270,8 @@ Install a recent Go release from [go.dev/dl](https://go.dev/dl/) first (required
 Install and prepare layout:
 
 ```bash
-sudo env GOBIN=/usr/local/bin go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest
+go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest
+sudo install -m755 "$(go env GOPATH)/bin/cosmovisor" /usr/local/bin/
 sudo mkdir -p /var/lib/exrpd/.exrpd/cosmovisor/genesis/bin
 sudo cp /usr/local/bin/exrpd /var/lib/exrpd/.exrpd/cosmovisor/genesis/bin/exrpd
 sudo chmod +x /var/lib/exrpd/.exrpd/cosmovisor/genesis/bin/exrpd

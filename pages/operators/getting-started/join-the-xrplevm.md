@@ -23,7 +23,22 @@ Provision a new machine with stable connectivity and enough resources to run the
 Download and install the XRPL EVM node binary using the official instructions:  
 [Installing the Node](./installing-the-node.md)
 
-### 3. Configure the Node
+### 3. Initialize the Node
+
+Initialize your node with a moniker (a unique name for your node/validator) and the **Mainnet** chain ID:
+
+```bash
+exrpd init <moniker> --chain-id xrplevm_1440000-1
+```
+
+**Ensure that you back up the node keys securely**. [Read more](https://docs.xrplevm.org/pages/operators/validators/managing-keys).
+
+```sh
+~/.exrpd/config/node_key.json
+~/.exrpd/config/priv_validator_key.json
+```
+
+### 4. Configure the Node
 
 Set up the node configuration with the **Mainnet** chain ID:
 
@@ -44,14 +59,14 @@ Adjust other recommended settings:
 - **Peer Exchange**: Keep default unless specific network config is required
 
 {% admonition type="warning" name="Mandatory EVM chain-id setting (v10+)" %}
-Before starting the Mainnet node, check that `evm-chain-id = 1440000` is set under `[evm]` in `app.toml`. `exrpd init --chain-id` (step 5) writes it for you with v10 or later binaries.
+Before starting the Mainnet node, check that `evm-chain-id = 1440000` is set under `[evm]` in `app.toml`. `exrpd init --chain-id` (step 3) writes it for you with v10 or later binaries, as long as it runs before any `exrpd config set` command.
 
 File path (depending on your node home): `~/.exrpd/config/app.toml` or `/var/lib/exrpd/.exrpd/config/app.toml`.
 {% /admonition %}
 
 For more details, refer to the [node configuration documentation](https://docs.xrplevm.org/pages/operators/advanced/node-configuration-options) as well as the [node configuration reference](https://docs.xrplevm.org/pages/operators/resources/configuration-reference).
 
-### 4. Create a New Key
+### 5. Create a New Key
 
 Generate a new validator key:
 
@@ -60,21 +75,6 @@ exrpd keys add <key_name> --key-type eth_secp256k1
 ```
 
 **Ensure that you back up the mnemonic securely**. Effective [key management](../validators/managing-keys.md) is critical for the security and operation of validators in the XRPL EVM sidechain.
-
-### 5. Initialize the Node
-
-Initialize your node with a moniker (a unique name for your node/validator) and the **Mainnet** chain ID:
-
-```bash
-exrpd init <moniker> --chain-id xrplevm_1440000-1
-```
-
-**Ensure that you back up the node keys securely**. [Read more](https://docs.xrplevm.org/pages/operators/validators/managing-keys).
-
-```sh
-~/.exrpd/config/node_key.json
-~/.exrpd/config/priv_validator_key.json
-```
 
 ### 6. Download the Genesis File
 
@@ -119,7 +119,22 @@ Provision a new machine with stable connectivity and enough resources to run the
 Download and install the XRPL EVM node binary using the official instructions:  
 [Installing the Node](./installing-the-node.md)
 
-### 3. Configure the Node
+### 3. Initialize the Node
+
+Initialize your node with a moniker (a unique name for your node/validator) and the **Testnet** chain ID:
+
+```bash
+exrpd init <moniker> --chain-id xrplevm_1449000-1
+```
+
+**Ensure that you back up the node keys securely**. [Read more](https://docs.xrplevm.org/pages/operators/validators/managing-keys).
+
+```sh
+~/.exrpd/config/node_key.json
+~/.exrpd/config/priv_validator_key.json
+```
+
+### 4. Configure the Node
 
 Set up the node configuration with the **Testnet** chain ID:
 
@@ -140,14 +155,14 @@ Adjust other recommended settings:
 - **Peer Exchange**: Keep default unless specific network config is required
 
 {% admonition type="warning" name="Mandatory EVM chain-id setting (v10+)" %}
-Before starting the Testnet node, check that `evm-chain-id = 1449000` is set under `[evm]` in `app.toml`. `exrpd init --chain-id` (step 5) writes it for you with v10 or later binaries.
+Before starting the Testnet node, check that `evm-chain-id = 1449000` is set under `[evm]` in `app.toml`. `exrpd init --chain-id` (step 3) writes it for you with v10 or later binaries, as long as it runs before any `exrpd config set` command.
 
 File path (depending on your node home): `~/.exrpd/config/app.toml` or `/var/lib/exrpd/.exrpd/config/app.toml`.
 {% /admonition %}
 
 For more details, refer to the [node configuration documentation](https://docs.xrplevm.org/pages/operators/advanced/node-configuration-options) as well as the [node configuration reference](https://docs.xrplevm.org/pages/operators/resources/configuration-reference).
 
-### 4. Create a New Key
+### 5. Create a New Key
 
 Generate a new validator key:
 
@@ -156,21 +171,6 @@ exrpd keys add <key_name> --key-type eth_secp256k1
 ```
 
 **Ensure that you back up the mnemonic securely**. Effective [key management](../validators/managing-keys.md) is critical for the security and operation of validators in the XRPL EVM sidechain.
-
-### 5. Initialize the Node
-
-Initialize your node with a moniker (a unique name for your node/validator) and the **Testnet** chain ID:
-
-```bash
-exrpd init <moniker> --chain-id xrplevm_1449000-1
-```
-
-**Ensure that you back up the node keys securely**. [Read more](https://docs.xrplevm.org/pages/operators/validators/managing-keys).
-
-```sh
-~/.exrpd/config/node_key.json
-~/.exrpd/config/priv_validator_key.json
-```
 
 ### 6. Download the Genesis File
 
@@ -215,7 +215,22 @@ Provision a new machine with stable connectivity and enough resources to run the
 Download and install the XRPL EVM node binary using the official instructions:  
 [Installing the Node](./installing-the-node.md)
 
-### 3. Configure the Node
+### 3. Initialize the Node
+
+Initialize your node with a moniker (a unique name for your node/validator) and the **Devnet** chain ID:
+
+```bash
+exrpd init <moniker> --chain-id xrplevm_1449900-1
+```
+
+**Ensure that you back up the node keys securely**. [Read more](https://docs.xrplevm.org/pages/operators/validators/managing-keys).
+
+```sh
+~/.exrpd/config/node_key.json
+~/.exrpd/config/priv_validator_key.json
+```
+
+### 4. Configure the Node
 
 Set up the node configuration with the **Devnet** chain ID:
 
@@ -236,14 +251,14 @@ Adjust other recommended settings:
 - **Peer Exchange**: Keep default unless specific network config is required
 
 {% admonition type="warning" name="Mandatory EVM chain-id setting (v10+)" %}
-Before starting the Devnet node, check that `evm-chain-id = 1449900` is set under `[evm]` in `app.toml`. `exrpd init --chain-id` (step 5) writes it for you with v10 or later binaries.
+Before starting the Devnet node, check that `evm-chain-id = 1449900` is set under `[evm]` in `app.toml`. `exrpd init --chain-id` (step 3) writes it for you with v10 or later binaries, as long as it runs before any `exrpd config set` command.
 
 File path (depending on your node home): `~/.exrpd/config/app.toml` or `/var/lib/exrpd/.exrpd/config/app.toml`.
 {% /admonition %}
 
 For more details, refer to the [node configuration documentation](https://docs.xrplevm.org/pages/operators/advanced/node-configuration-options) as well as the [node configuration reference](https://docs.xrplevm.org/pages/operators/resources/configuration-reference).
 
-### 4. Create a New Key
+### 5. Create a New Key
 
 Generate a new validator key:
 
@@ -252,21 +267,6 @@ exrpd keys add <key_name> --key-type eth_secp256k1
 ```
 
 **Ensure that you back up the mnemonic securely**. Effective [key management](../validators/managing-keys.md) is critical for the security and operation of validators in the XRPL EVM sidechain.
-
-### 5. Initialize the Node
-
-Initialize your node with a moniker (a unique name for your node/validator) and the **Devnet** chain ID:
-
-```bash
-exrpd init <moniker> --chain-id xrplevm_1449900-1
-```
-
-**Ensure that you back up the node keys securely**. [Read more](https://docs.xrplevm.org/pages/operators/validators/managing-keys).
-
-```sh
-~/.exrpd/config/node_key.json
-~/.exrpd/config/priv_validator_key.json
-```
 
 ### 6. Download the Genesis File
 

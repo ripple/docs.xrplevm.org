@@ -294,7 +294,8 @@ Cosmovisor can reduce manual intervention during upgrades. It can also increase 
 Install it with `go install`, using a recent Go release from [go.dev/dl](https://go.dev/dl/) (current Cosmovisor releases need Go 1.23 or newer):
 
 ```bash
-sudo env GOBIN=/usr/local/bin go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest
+go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest
+sudo install -m755 "$(go env GOPATH)/bin/cosmovisor" /usr/local/bin/
 /usr/local/bin/cosmovisor --help >/dev/null
 ```
 
