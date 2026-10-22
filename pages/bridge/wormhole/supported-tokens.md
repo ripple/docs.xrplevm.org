@@ -17,6 +17,8 @@ Wormhole moves tokens through two mechanisms: WTT (wrapped assets, covered in th
 | USDC.e (Wormhole-Bridged USDC) | `0xf75339EfD56B1da680BD4dE0f4086f24499275E7`                | NTT (hub on Ethereum, locks canonical USDC) | Ethereum                           |
 | WETH                           | `0xccD433A96A4DE148596F4E31Ab8ad1348077590B`                | WTT (wrapped from Ethereum)                 | Ethereum                           |
 
+This WETH is the Wormhole-wrapped asset. Axelar ITS bridges a **different** WETH to XRPL EVM at `0x50498dC52bCd3dAeB54B7225A7d2FA8D536F313E`; the two tokens are not interchangeable. See [Bridges by asset](../index.md#bridges-by-asset).
+
 The RLUSD and USDC.e deployments are mutually peered with their Ethereum managers on-chain: the RLUSD peer manages the canonical `RLUSD` contract and the USDC.e hub locks Circle's canonical `USDC`.
 
 {% /tab %}

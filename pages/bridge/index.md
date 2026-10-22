@@ -1,6 +1,6 @@
 ---
 seo:
-  description: "Cross-chain bridge options for the XRPL EVM Sidechain: the Axelar Network for XRPL and EVM chains, and native IBC connectivity to the Cosmos ecosystem."
+  description: "Cross-chain bridge options for the XRPL EVM Sidechain: Axelar for XRPL and EVM chains, Wormhole, and native IBC connectivity to the Cosmos ecosystem, with the bridge to use for each asset."
 ---
 
 # Bridge
@@ -36,6 +36,26 @@ As a Cosmos SDK-based blockchain, the XRPL EVM Sidechain natively supports Inter
 [Wormhole on XRPL EVM](./wormhole/index.md): overview, deployed contracts, and developer guides.
 
 [Ripple Expands Multichain Interoperability Infrastructure with Wormhole Integration](https://wormhole.com/blog/ripple-expands-multichain-interoperability-infrastructure-with-wormhole)
+
+## Bridges by asset
+
+The same symbol can exist on XRPL EVM as different tokens depending on the bridge that brought it. Use the bridge that issued the token you hold, and check the contract address before integrating it.
+
+| Asset | Bridge | Address on XRPL EVM Mainnet | Origin |
+| ----- | ------ | --------------------------- | ------ |
+| XRP (native) | Axelar ITS | `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` | XRP Ledger |
+| USDC.xrpl | Axelar ITS | `0xDaF4556169c4F3f2231d8ab7BC8772Ddb7D4c84C` | USDC issued on the XRP Ledger |
+| USDC (axlUSDC) | Axelar ITS | `0xa16148c6Ac9EDe0D82f0c52899e22a575284f131` | Axelar-wrapped USDC |
+| USDT | Axelar ITS | `0x9F8CF9c00fac501b3965872f4ed3271f6f4d06fF` | EVM chains via Axelar |
+| WETH | Axelar ITS | `0x50498dC52bCd3dAeB54B7225A7d2FA8D536F313E` | EVM chains via Axelar |
+| WBTC | Axelar ITS | `0xF8Eb4Ed0d4CF2bb707c0272F8C6827dEB6e4C0A9` | EVM chains via Axelar |
+| DAI | Axelar ITS | `0xDc556F7209C48fC53a8cDf1339c033743A7e3e75` | EVM chains via Axelar |
+| RLUSD | Wormhole NTT | `0x8d58C0C60B8D6b88Fa98B291a646dB34d0F98258` | Ethereum and other NTT chains |
+| USDC.e | Wormhole NTT | `0xf75339EfD56B1da680BD4dE0f4086f24499275E7` | Ethereum (locks canonical USDC) |
+| WETH | Wormhole WTT | `0xccD433A96A4DE148596F4E31Ab8ad1348077590B` | Ethereum |
+| OSMO, INJ and other Cosmos assets | IBC | ERC-20 precompile per token pair | Osmosis (`channel-3`) and Injective (`channel-0`) |
+
+The full and current list of Axelar ITS tokens on XRPL EVM is on [Axelarscan](https://axelarscan.io/assets); Wormhole tokens are listed in [Wormhole supported tokens](./wormhole/supported-tokens.md); IBC assets and their ERC-20 addresses are listed by `GET /cosmos/evm/erc20/v1/token_pairs` (see [Precompiles](../developers/resources/precompiles.md)).
 
 ### Other Bridge Options
 

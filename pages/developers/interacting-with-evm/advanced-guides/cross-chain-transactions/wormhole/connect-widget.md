@@ -39,7 +39,7 @@ export default App;
 ```
 
 {% admonition type="info" name="Verify chain support in your installed version" %}
-Chain availability in Connect follows the [Wormhole SDK chain names](https://wormhole.com/docs/products/reference/chain-ids/) and the routes enabled for each network. If the widget rejects the `XRPLEVM` chain string, upgrade `@wormhole-foundation/wormhole-connect` to the latest release and check the [Connect supported networks](https://wormhole.com/docs/products/connect/reference/supported-networks/) table.
+Chain availability in Connect follows the [Wormhole SDK chain names](https://wormhole.com/docs/reference/supported-networks/) and the routes enabled for each network. If the widget rejects the `XRPLEVM` chain string, upgrade `@wormhole-foundation/wormhole-connect` to the latest release and check the [Connect supported networks](https://wormhole.com/docs/products/connect/reference/supported-networks/) table.
 {% /admonition %}
 
 ## Customize
