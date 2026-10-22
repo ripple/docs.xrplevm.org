@@ -128,7 +128,7 @@ Below is a list of subcommands within `query`:
 | `gov`                 | Query governance proposals, votes, deposits, and more.                             |
 | `ibc`                 | Query Inter-Blockchain Communication (IBC) data.                                   |
 | `ibc-transfer`        | Query for IBC token transfer details.                                              |
-| `interchain-accounts` | Query IBC interchain accounts.                                                     |
+| `interchain-accounts` | Query IBC interchain accounts (the host module is disabled on the network).        |
 | `params`              | Query for on-chain parameters.                                                     |
 | `poa`                 | Query for Proof-of-Authority module data.                                          |
 | `ratelimit`           | Query the rate-limit module data.                                                  |
@@ -181,7 +181,7 @@ Below is a list of subcommands within `tx`:
 | `gov`                 | Governance transactions (submit proposals, vote, deposit, etc.).           |
 | `ibc`                 | IBC transaction subcommands.                                               |
 | `ibc-transfer`        | IBC fungible token transfer transactions.                                  |
-| `interchain-accounts` | IBC interchain accounts transaction subcommands.                           |
+| `interchain-accounts` | IBC interchain accounts subcommands (the host module is disabled).         |
 | `multi-sign`          | Generate multisig signatures for offline-generated transactions.           |
 | `multisign-batch`     | Assemble multisig transactions in batch from batch signatures.             |
 | `poa`                 | Proof-of-Authority module transaction commands.                            |
@@ -190,7 +190,7 @@ Below is a list of subcommands within `tx`:
 | `sign-batch`          | Sign multiple transactions in batch.                                       |
 | `simulate`            | Simulate a transaction to estimate gas usage.                              |
 | `slashing`            | Submit slashing-related transactions.                                      |
-| `staking`             | Manage staking transactions (delegate, unbond, redelegate, etc.).          |
+| `staking`             | Staking transactions. Only `edit-validator` applies under PoA.             |
 | `upgrade`             | Submit upgrade plan transactions.                                          |
 | `validate-signatures` | Validate the signatures of a transaction.                                  |
 
@@ -198,11 +198,11 @@ Below is a list of subcommands within `tx`:
 
 - **Send tokens from one account to another:**
   ```
-  exrpd tx bank send <from_address> <to_address> <amounttoken> --gas auto --gas-adjustment 1.2
+  exrpd tx bank send <from_address> <to_address> <amount>axrp --gas auto --gas-adjustment 1.2 --gas-prices 571000000axrp
   ```
 - **Propose a governance change:**
   ```
-  exrpd tx gov submit-proposal <proposal_type> --title "<Title>" --description "<Description>" ...
+  exrpd tx gov submit-proposal <proposal.json> --from <key_name> --gas auto --gas-adjustment 1.5 --gas-prices 571000000axrp
   ```
 - **Simulate gas usage for a transaction:**
   ```
@@ -251,7 +251,11 @@ Many commands in this section are state-changing transactions and require:
 Use `--help` first if you are unsure about required flags.
 {% /admonition %}
 
-This section provides a practical cheat sheet for everyday tasks when working with the `exrpd` CLI. Whether you're managing wallets, staking tokens, operating a validator, or participating in governance, these ready-to-use commands help you move fast and confidently.
+{% admonition type="info" name="Amounts and fees" %}
+The native token denom is `axrp`, with 18 decimals: `1 XRP = 1000000000000000000axrp`. Transactions must pay at least the network minimum gas price of `571000000axrp` (0.571 gwei) per unit of gas, so the examples below pass `--gas-prices 571000000axrp`. Check the current value with `exrpd query feemarket params`.
+{% /admonition %}
+
+This section provides a practical cheat sheet for everyday tasks when working with the `exrpd` CLI. Whether you're managing wallets, operating a validator, or participating in governance, these ready-to-use commands help you move fast and confidently.
 
 ---
 
@@ -307,71 +311,42 @@ exrpd keys import $WALLET wallet.backup
 
 ---
 
-### Tokens and Staking
+### Tokens and Rewards
 
 **Withdraw All Rewards**
 
 ```bash
-exrpd tx distribution withdraw-all-rewards --from $WALLET --chain-id <chain-id> --gas auto --gas-adjustment 1.5
+exrpd tx distribution withdraw-all-rewards --from $WALLET --chain-id <chain-id> --gas auto --gas-adjustment 1.5 --gas-prices 571000000axrp
 ```
 
 **Withdraw Rewards + Commission**
 
 ```bash
-exrpd tx distribution withdraw-rewards $VALOPER_ADDRESS --from $WALLET --commission --chain-id <chain-id> --gas auto --gas-adjustment 1.5 -y
+exrpd tx distribution withdraw-rewards $VALOPER_ADDRESS --from $WALLET --commission --chain-id <chain-id> --gas auto --gas-adjustment 1.5 --gas-prices 571000000axrp -y
 ```
 
-**Delegate to Yourself**
+**Transfer Funds (1 XRP)**
 
 ```bash
-exrpd tx staking delegate $(exrpd keys show $WALLET --bech val -a) 1000000uxrp --from $WALLET --chain-id <chain-id> --gas auto --gas-adjustment 1.5 -y
+exrpd tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 1000000000000000000axrp --chain-id <chain-id> --gas auto --gas-adjustment 1.5 --gas-prices 571000000axrp -y
 ```
 
-**Delegate to Another Validator**
-
-```bash
-exrpd tx staking delegate <TO_VALOPER_ADDRESS> 1000000uxrp --from $WALLET --chain-id <chain-id> --gas auto --gas-adjustment 1.5 -y
-```
-
-**Redelegate Stake**
-
-```bash
-exrpd tx staking redelegate $VALOPER_ADDRESS <TO_VALOPER_ADDRESS> 1000000uxrp --from $WALLET --chain-id <chain-id> --gas auto --gas-adjustment 1.5 -y
-```
-
-**Unbond Tokens**
-
-```bash
-exrpd tx staking unbond $(exrpd keys show $WALLET --bech val -a) 1000000uxrp --from $WALLET --chain-id <chain-id> --gas auto --gas-adjustment 1.5 -y
-```
-
-**Transfer Funds**
-
-```bash
-exrpd tx bank send $WALLET_ADDRESS <TO_WALLET_ADDRESS> 1000000uxrp --gas auto --gas-adjustment 1.5 -y
-```
+{% admonition type="warning" name="No delegations under Proof of Authority" %}
+The XRPL EVM uses Proof of Authority: the validator set and voting power are managed by the `poa` module through governance. `delegate`, `redelegate`, `unbond`, `cancel-unbond` and `create-validator` transactions are rejected by the network.
+{% /admonition %}
 
 ---
 
 ### Validator Operations
 
-**Create a New Validator**
+**Join the Validator Set**
+
+Validators are added by governance with a `MsgAddValidator` proposal. See [Join the Proof of Authority](../validators/join-the-proof-of-authority.md).
+
+**Leave the Validator Set**
 
 ```bash
-exrpd tx staking create-validator \
---amount 1000000uxrp \
---from $WALLET \
---commission-rate 0.1 \
---commission-max-rate 0.2 \
---commission-max-change-rate 0.01 \
---min-self-delegation 1 \
---pubkey $(exrpd tendermint show-validator) \
---moniker "$MONIKER" \
---identity "" \
---details "I love blockchain" \
---chain-id <chain-id> \
---gas auto --gas-adjustment 1.5 \
--y
+exrpd tx poa self-remove-validator --from $WALLET --chain-id <chain-id> --gas auto --gas-adjustment 1.5 --gas-prices 571000000axrp -y
 ```
 
 **Edit Existing Validator Info**
@@ -385,6 +360,7 @@ exrpd tx staking edit-validator \
 --from $WALLET \
 --chain-id <chain-id> \
 --gas auto --gas-adjustment 1.5 \
+--gas-prices 571000000axrp \
 -y
 ```
 
@@ -403,7 +379,7 @@ exrpd query staking validator $(exrpd keys show $WALLET --bech val -a)
 **Check Jailing Info**
 
 ```bash
-exrpd query slashing signing-info $(exrpd tendermint show-validator)
+exrpd query slashing signing-info $(exrpd comet show-validator)
 ```
 
 **Check Slashing Parameters**
@@ -415,37 +391,50 @@ exrpd query slashing params
 **Unjail Validator**
 
 ```bash
-exrpd tx slashing unjail --from $WALLET --chain-id <chain-id> --gas auto --gas-adjustment 1.5 -y
+exrpd tx slashing unjail --from $WALLET --chain-id <chain-id> --gas auto --gas-adjustment 1.5 --gas-prices 571000000axrp -y
 ```
 
 **List Active Validators**
 
 ```bash
-exrpd query staking validators -oj --limit=2000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl
+exrpd query staking validators -o json --page-limit 2000 | jq -r '.validators[] | select(.status=="BOND_STATUS_BONDED") | .description.moniker' | sort | nl
 ```
 
 **Check Validator Key Consistency**
 
 ```bash
-[[ $(exrpd query staking validator $VALOPER_ADDRESS -oj | jq -r .consensus_pubkey.key) = $(exrpd status | jq -r .ValidatorInfo.PubKey.value) ]] && echo -e "Your key status is ok" || echo -e "Your key status is error"
+[[ $(exrpd query staking validator $VALOPER_ADDRESS -o json | jq -r .validator.consensus_pubkey.value) = $(exrpd status | jq -r .validator_info.pub_key.value) ]] && echo -e "Your key status is ok" || echo -e "Your key status is error"
 ```
 
 ---
 
 ### Governance
 
-**Submit a Text Proposal**
+**Submit a Proposal**
+
+Proposals are submitted as a JSON file. `exrpd tx gov draft-proposal` generates one interactively. A text proposal has no messages:
+
+```json
+{
+  "messages": [],
+  "metadata": "",
+  "deposit": "500000000000000000000axrp",
+  "title": "<title>",
+  "summary": "<summary>",
+  "expedited": false
+}
+```
 
 ```bash
-exrpd tx gov submit-proposal \
---title "" \
---description "" \
---deposit 1000000uxrp \
---type Text \
+exrpd tx gov submit-proposal proposal.json \
 --from $WALLET \
+--chain-id <chain-id> \
 --gas auto --gas-adjustment 1.5 \
+--gas-prices 571000000axrp \
 -y
 ```
+
+The minimum deposit is 500 XRP (`500000000000000000000axrp`), or 1,000 XRP for an expedited proposal. Check the current governance parameters with `exrpd query gov params`.
 
 **List Proposals**
 
@@ -462,7 +451,7 @@ exrpd query gov proposal 1
 **Vote on a Proposal**
 
 ```bash
-exrpd tx gov vote 1 yes --from $WALLET --chain-id <chain-id> --gas auto --gas-adjustment 1.5
+exrpd tx gov vote 1 yes --from $WALLET --chain-id <chain-id> --gas auto --gas-adjustment 1.5 --gas-prices 571000000axrp
 ```
 
 ## Learn more

@@ -8,7 +8,7 @@ Keep a **single active validator signer** only. Never run two active instances w
 
 ## Edit Validator Description
 
-You can edit your validator's public description. This info identifies your validator, and _delegators_ use it when they decide to stake XRP tokens to a particular validator. Make sure to provide input for every flag below. If a flag is not included in the command, the field defaults to empty (`--moniker` defaults to the machine name), if the field has never been set, or remains the same, if it has been set in the past. <!-- SPELLING_IGNORE: delegators --><!-- STYLE_OVERRIDE: defaults to -->
+You can edit your validator's public description. This info identifies your validator in explorers and governance tools. Voting power on the XRPL EVM is assigned by Proof of Authority, not by delegations, so every validator has the same voting power. Flags you leave out keep their current value. <!-- SPELLING_IGNORE: delegators --><!-- STYLE_OVERRIDE: defaults to -->
 
 The <key_name> specifies which validator you are editing. If you choose to not include certain flags, remember that the --from flag must be included to identify the validator to update.
 
@@ -22,7 +22,7 @@ exrpd tx staking edit-validator \
   --details="<your_validator_description>" \
   --chain-id=<chain_id> \
   --gas="auto" \
-  --gas-prices="0.025axrp" \
+  --gas-prices="571000000axrp" \
   --from=<key_name> \
   --commission-rate="0.10"
 ```
@@ -52,10 +52,10 @@ exrpd query slashing signing-info <validator-pubkey> --chain-id=<chain_id>
 
 <!-- SPELLING_IGNORE: unjail -->
 
-When a validator is "jailed" for downtime, you must submit an `Unjail` transaction from the operator account to restore block proposer awards (depending on the zone fee distribution).
+A validator is jailed for 30 minutes (`downtime_jail_duration`) when it signs fewer than 50% of the blocks in a window of 88,888 blocks (`signed_blocks_window`). No tokens are slashed (`slash_fraction_downtime` is `0`), but the validator stays out of the active set until you submit an `Unjail` transaction from the operator account. Check the current values with `exrpd query slashing params`.
 
 ```bash
-exrpd tx slashing unjail --from=<key_name> --chain-id=<chain_id>
+exrpd tx slashing unjail --from=<key_name> --chain-id=<chain_id> --gas=auto --gas-adjustment=1.5 --gas-prices=571000000axrp
 ```
 
 ## Confirm Your Validator is Running
@@ -63,12 +63,12 @@ exrpd tx slashing unjail --from=<key_name> --chain-id=<chain_id>
 Your validator is active if the following command returns anything:
 
 ```bash
-exrpd query tendermint-validator-set | grep "$(exrpd tendermint show-address)"
+exrpd query comet-validator-set | grep "$(exrpd comet show-address)"
 ```
 
 You should now see your validator in one of the Exrp explorers. You are looking for the `bech32` encoded `address` in the `~/.exrpd/config/priv_validator_key.json` file. <!-- SPELLING_IGNORE: exrp -->
 
-**Note** To be in the validator set, you must have more total voting power than the 100th validator.
+**Note** Validators join the set through governance (see [Join the Proof of Authority](./join-the-proof-of-authority.md)). The set is capped at 64 validators (`max_validators`).
 
 ## Halting Your Validator
 
