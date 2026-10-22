@@ -50,7 +50,7 @@ TARGET_TAG=<target-tag>
 ARCH=amd64 # or arm64
 ASSET="node_${TARGET_TAG#v}_Linux_${ARCH}.tar.gz"
 wget "https://github.com/xrplevm/node/releases/download/${TARGET_TAG}/${ASSET}"
-wget "https://github.com/xrplevm/node/releases/download/${TARGET_TAG}/checksums.txt"
+wget -O checksums.txt "https://github.com/xrplevm/node/releases/download/${TARGET_TAG}/checksums.txt"
 sha256sum -c checksums.txt --ignore-missing
 tar -xzf "${ASSET}"
 sudo mv bin/exrpd /usr/local/bin/exrpd
@@ -79,7 +79,7 @@ echo "Required Go: ${REQUIRED_GO}"
 go version
 ```
 
-Distribution packages (`apt install golang-go`) are usually too old. Install Go `${REQUIRED_GO}` or newer from [go.dev/dl](https://go.dev/dl/), then build:
+Distribution packages (`apt install golang-go`) are usually too old. Install the `REQUIRED_GO` version or newer from [go.dev/dl](https://go.dev/dl/), then build:
 
 ```bash
 git clone https://github.com/xrplevm/node.git
