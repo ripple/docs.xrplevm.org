@@ -25,7 +25,7 @@ If this node is a validator signer, keep a **single active validator signer** on
 
 ## Sync from Snapshot
 
-Syncing from a snapshot significantly reduces setup time by initializing your node using a pre-generated state file. The snapshot is downloaded and then decompressed to the ~/.exrpd/data directory, preparing the node for quick synchronization with the network.
+Syncing from a snapshot significantly reduces setup time by initializing your node using a pre-generated state file. The snapshot is downloaded and extracted into `~/.exrpd`, where it populates the `data/` directory, preparing the node for quick synchronization with the network.
 
 1. **Select a Snapshot**: Choose a snapshot file from a trusted provider listed on the [Snapshots](../resources/snapshots.md) page.
 
@@ -33,11 +33,17 @@ Syncing from a snapshot significantly reduces setup time by initializing your no
 
 ```bash
 cd ~/.exrpd
+# On a node that already has data: move it aside and keep the signer state file
+if [ -d data ]; then
+  mv data data.old
+  mkdir data
+  cp data.old/priv_validator_state.json data/
+fi
 wget -O exrpd.tar.lz4 <snapshot_url>
 tar -xI lz4 -f exrpd.tar.lz4 --exclude='data/priv_validator_state.json'
 ```
 
-The Peersyst archives include a `priv_validator_state.json` reset to height `0`; excluding it keeps your node's own signer state. See [Snapshots](../resources/snapshots.md) for other providers and archive formats.
+The Peersyst archives include a `priv_validator_state.json` reset to height `0`; excluding it keeps your node's own signer state. Remove `data.old` once the node is syncing. See [Snapshots](../resources/snapshots.md) for other providers and archive formats.
 
 {% admonition type="warning" name="Validator signer safety" %}
 Do not restore snapshots over an active validator signer home. Snapshot restore is for non-signing nodes or fresh replacement nodes only.
