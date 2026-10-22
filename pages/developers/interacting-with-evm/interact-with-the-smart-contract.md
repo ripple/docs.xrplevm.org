@@ -60,7 +60,7 @@ Remix provides a simple way to interact with deployed contracts.
 1. **Connect to XRPL EVM**
 
    - Open [Remix IDE](https://remix.ethereum.org/).
-   - Under the environment settings, select **Injected Web3** to connect MetaMask.
+   - Under the environment settings, select **Injected Provider - MetaMask** to connect MetaMask.
    - Make sure MetaMask is configured for either **XRPL EVM Mainnet** or **Testnet**, depending on which network you’re using.
 
 2. **Load the Contract**
@@ -80,7 +80,7 @@ Remix provides a simple way to interact with deployed contracts.
 
 ### 2. Using web3.js
 
-The **web3.js** library provides a programmatic way to interact with smart contracts in JavaScript.
+The **web3.js** library provides a programmatic way to interact with smart contracts in JavaScript. The examples below use web3.js v4.
 
 #### Steps:
 
@@ -96,7 +96,7 @@ The **web3.js** library provides a programmatic way to interact with smart contr
 {% tab label="Mainnet" %}
 
 ```javascript
-const Web3 = require("web3");
+const { Web3 } = require("web3");
 
 // XRPL EVM RPC
 const web3 = new Web3("https://rpc.xrplevm.org");
@@ -108,7 +108,7 @@ const web3 = new Web3("https://rpc.xrplevm.org");
 {% tab label="Testnet" %}
 
 ```javascript
-const Web3 = require("web3");
+const { Web3 } = require("web3");
 
 // XRPL EVM Testnet RPC
 const web3 = new Web3("https://rpc.testnet.xrplevm.org");
@@ -147,7 +147,7 @@ const web3 = new Web3("https://rpc.testnet.xrplevm.org");
 
 ### 3. Using ethers.js
 
-The **ethers.js** library is another popular option for interacting with smart contracts.
+The **ethers.js** library is another popular option for interacting with smart contracts. The examples below use ethers v6.
 
 #### Steps:
 
@@ -166,9 +166,7 @@ The **ethers.js** library is another popular option for interacting with smart c
 const { ethers } = require("ethers");
 
 // XRPL EVM RPC
-const provider = new ethers.providers.JsonRpcProvider(
-  "https://rpc.xrplevm.org",
-);
+const provider = new ethers.JsonRpcProvider("https://rpc.xrplevm.org");
 const wallet = new ethers.Wallet("0xYourPrivateKey", provider);
 
 // Chain ID = 1440000 (if needed in transaction config)
@@ -181,9 +179,7 @@ const wallet = new ethers.Wallet("0xYourPrivateKey", provider);
 const { ethers } = require("ethers");
 
 // XRPL EVM Testnet RPC
-const provider = new ethers.providers.JsonRpcProvider(
-  "https://rpc.testnet.xrplevm.org",
-);
+const provider = new ethers.JsonRpcProvider("https://rpc.testnet.xrplevm.org");
 const wallet = new ethers.Wallet("0xYourPrivateKey", provider);
 
 // Chain ID = 1449000 (if needed in transaction config)
@@ -221,7 +217,7 @@ const wallet = new ethers.Wallet("0xYourPrivateKey", provider);
 
 #### Querying XRP/USD Price via the Explorer UI
 
-> **Contract (Testnet-only)** > **StdReferenceProxy**
+> **Contract (Testnet)** > **StdReferenceProxy** (for the Mainnet address, see [Band Protocol](./use-oracle-data/band-protocol.md))
 > Address: `0x8c064bCf7C0DA3B3b090BAbFE8f3323534D84d68`
 
 1. **Open & Connect**
@@ -268,7 +264,7 @@ const wallet = new ethers.Wallet("0xYourPrivateKey", provider);
 
 ### 5. Using Foundry’s `cast` CLI
 
-Foundry’s `cast` tool lets you interact with your XRPL EVM contracts directly from the terminal, with no JavaScript required. Below is a detailed walkthrough for reading state, sending transactions, decoding logs, estimating gas, and more, on **Testnet**, or **Mainnet**.
+Foundry’s `cast` tool lets you interact with your XRPL EVM contracts directly from the terminal, with no JavaScript required. Below is a walkthrough for reading state, sending transactions, decoding logs, estimating gas, and more, on **Testnet** or **Mainnet**.
 
 #### 5.1 Prerequisites
 
@@ -283,7 +279,7 @@ Foundry’s `cast` tool lets you interact with your XRPL EVM contracts directly 
 
    ```bash
    CONTRACT_ADDRESS=0xYourContractAddress
-   ABI_PATH=out/HelloWorld.json
+   ABI_PATH=out/HelloWorld.sol/HelloWorld.json
    ```
 
 3. **Environment Variables** (in `.env`, add to `.gitignore`):
@@ -293,11 +289,9 @@ Foundry’s `cast` tool lets you interact with your XRPL EVM contracts directly 
 
    # Testnet
    RPC_URL_TESTNET=https://rpc.testnet.xrplevm.org
-   CHAIN_ID_TESTNET=1449000
 
    # Mainnet
    RPC_URL_MAINNET=https://rpc.xrplevm.org
-   CHAIN_ID_MAINNET=1440000
    ```
 
    Load them:
@@ -306,19 +300,28 @@ Foundry’s `cast` tool lets you interact with your XRPL EVM contracts directly 
    source .env
    ```
 
+`cast` takes the contract address, the function signature and its arguments as positional arguments, and reads the chain ID from the RPC endpoint.
+
 ---
 
 #### 5.2 Inspect Available Functions
 
-```bash
-cast sigs $ABI_PATH
+From a Foundry project, list the function selectors:
 
-# Example output:
-# message()(string)
-# setMessage(string)
+```bash
+forge inspect HelloWorld methodIdentifiers
+
+# | message()          | e21f37ce |
+# | setMessage(string) | 368b8772 |
 ```
 
-To get a function’s selector:
+Or generate a Solidity interface from the ABI:
+
+```bash
+cast interface $ABI_PATH
+```
+
+To get a single function’s selector:
 
 ```bash
 cast sig "setMessage(string)"
@@ -332,47 +335,28 @@ cast sig "setMessage(string)"
 **Single return**:
 
 ```bash
-cast call \
-  --rpc-url $RPC_URL_TESTNET \
-  --to      $CONTRACT_ADDRESS \
-  "message()(string)"
+cast call $CONTRACT_ADDRESS "message()(string)" --rpc-url $RPC_URL_TESTNET
 ```
 
 **Multiple returns**:
 
 ```bash
-cast call \
-  --rpc-url $RPC_URL_MAINNET \
-  --to      $CONTRACT_ADDRESS \
-  "getStats()(uint256,address)"
+cast call $CONTRACT_ADDRESS "getStats()(uint256,address)" --rpc-url $RPC_URL_MAINNET
 ```
 
 ---
 
 #### 5.4 Sending Transactions
 
-**Simple state change**:
+`cast send` waits for the transaction receipt by default:
 
 ```bash
-cast send \
+cast send $CONTRACT_ADDRESS "setMessage(string)" "Foundry rocks!" \
   --rpc-url     $RPC_URL_TESTNET \
-  --private-key $PRIVATE_KEY \
-  --chain-id    $CHAIN_ID_TESTNET \
-  --to          $CONTRACT_ADDRESS \
-  "setMessage(string)" "Foundry rocks!"
+  --private-key $PRIVATE_KEY
 ```
 
-**Wait for mining**:
-
-```bash
-cast send \
-  --rpc-url     $RPC_URL_TESTNET \
-  --private-key $PRIVATE_KEY \
-  --chain-id    $CHAIN_ID_TESTNET \
-  --to          $CONTRACT_ADDRESS \
-  --wait        \
-  "setMessage(string)" "Waiting…"
-```
+To return immediately with the transaction hash instead, add `--async`.
 
 ---
 
@@ -381,17 +365,22 @@ cast send \
 **Fetch receipt**:
 
 ```bash
-cast receipt \
-  --rpc-url $RPC_URL_TESTNET \
-  0xYourTxHash
+cast receipt 0xYourTxHash --rpc-url $RPC_URL_TESTNET
 ```
 
-**Decode a logged event** (given `out/HelloWorld.json` contains your ABI):
+**Query and decode events** emitted by a contract (for example, an `event MessageChanged(string newMessage)`):
 
 ```bash
-cast parse-logs \
-  --abi $ABI_PATH \
-  receipts.json
+cast logs "MessageChanged(string)" \
+  --address    $CONTRACT_ADDRESS \
+  --from-block <START_BLOCK> \
+  --rpc-url    $RPC_URL_TESTNET
+```
+
+**Decode a single log's data**:
+
+```bash
+cast decode-event --sig "MessageChanged(string)" 0xLogData
 ```
 
 ---
@@ -401,10 +390,7 @@ cast parse-logs \
 **Estimate gas**:
 
 ```bash
-cast estimate-gas \
-  --rpc-url $RPC_URL_MAINNET \
-  --to      $CONTRACT_ADDRESS \
-  "setMessage(string)" "Gas?"
+cast estimate $CONTRACT_ADDRESS "setMessage(string)" "Gas?" --rpc-url $RPC_URL_MAINNET
 ```
 
 **Fetch gas price**:
@@ -416,7 +402,7 @@ cast gas-price --rpc-url $RPC_URL_MAINNET
 **Calculate max fee**:
 
 ```bash
-EST=$(cast estimate-gas --rpc-url $RPC_URL_MAINNET --to $CONTRACT_ADDRESS "setMessage(string)" "x")
+EST=$(cast estimate $CONTRACT_ADDRESS "setMessage(string)" "x" --rpc-url $RPC_URL_MAINNET)
 GP=$(cast gas-price --rpc-url $RPC_URL_MAINNET)
 echo "Max fee (wei):" $((EST * GP))
 ```
@@ -434,7 +420,7 @@ echo "Max fee (wei):" $((EST * GP))
 - **Decode return data**:
 
   ```bash
-  cast decode "message()(string)" 0xYourHexData
+  cast decode-abi "message()(string)" 0xYourHexData
   ```
 
 ---
@@ -456,7 +442,7 @@ echo "Max fee (wei):" $((EST * GP))
 - **Balance**:
 
   ```bash
-  cast balance --rpc-url $RPC_URL_TESTNET 0xYourWalletAddress
+  cast balance 0xYourWalletAddress --rpc-url $RPC_URL_TESTNET
   ```
 
 ---
@@ -467,27 +453,19 @@ echo "Max fee (wei):" $((EST * GP))
 source .env
 
 # 1) Read initial message on Mainnet
-cast call --rpc-url $RPC_URL_MAINNET \
-  --to $CONTRACT_ADDRESS "message()(string)"
+cast call $CONTRACT_ADDRESS "message()(string)" --rpc-url $RPC_URL_MAINNET
 
-# 2) Update message on Mainnet
-cast send --rpc-url $RPC_URL_MAINNET \
+# 2) Update message on Mainnet (waits for the receipt)
+cast send $CONTRACT_ADDRESS "setMessage(string)" "Deployed via Foundry" \
+  --rpc-url     $RPC_URL_MAINNET \
+  --private-key $PRIVATE_KEY
+
+# 3) Send without waiting, then fetch the receipt
+TX=$(cast send $CONTRACT_ADDRESS "setMessage(string)" "Confirmed!" \
+  --rpc-url     $RPC_URL_MAINNET \
   --private-key $PRIVATE_KEY \
-  --chain-id $CHAIN_ID_MAINNET \
-  --to $CONTRACT_ADDRESS \
-  "setMessage(string)" "Deployed via Foundry"
-
-# 3) Wait & fetch receipt
-TX=$(cast send --rpc-url $RPC_URL_MAINNET \
-  --private-key $PRIVATE_KEY \
-  --chain-id $CHAIN_ID_MAINNET \
-  --to $CONTRACT_ADDRESS \
-  --wait \
-  "setMessage(string)" "Confirmed!")
-cast receipt --rpc-url $RPC_URL_MAINNET $TX
-
-# 4) Decode any logs (if emitted)
-cast parse-logs --abi $ABI_PATH receipts.json
+  --async)
+cast receipt $TX --rpc-url $RPC_URL_MAINNET
 ```
 
 ---

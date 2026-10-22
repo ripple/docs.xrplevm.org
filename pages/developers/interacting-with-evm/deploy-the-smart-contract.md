@@ -80,7 +80,7 @@ contract HelloWorld {
 ### 5. Deploy the Contract
 
 - Go to the **Deploy & Run Transactions** tab.
-- Select **Injected Web3** as the environment (this will connect Remix to MetaMask).
+- Select **Injected Provider - MetaMask** as the environment (this will connect Remix to MetaMask).
 - Ensure MetaMask is connected to the correct network, whichever you chose above.
 - Click **Deploy**, approve the transaction in MetaMask, and wait for the contract to be deployed.
 
@@ -108,14 +108,18 @@ Hardhat is a development framework for Ethereum-compatible smart contracts, idea
   mkdir my-hardhat-project
   cd my-hardhat-project
   npm init -y
-  npm install --save-dev hardhat
+  npm install --save-dev hardhat@hh2 @nomicfoundation/hardhat-toolbox@hh2
   ```
+
+  {% admonition type="info" name="Hardhat version" %}
+  This guide uses **Hardhat 2** (installed with the `hh2` tag). `npm install hardhat` now installs Hardhat 3, which uses a different, ESM-based project layout and configuration format. If you prefer Hardhat 3, follow the [Hardhat 3 documentation](https://hardhat.org/docs) and use the same network values (RPC URL and chain ID) shown below.
+  {% /admonition %}
 
 - **Create a Hardhat Project**
   ```bash
-  npx hardhat
+  npx hardhat init
   ```
-  Select "Create a basic sample project" and follow the prompts.
+  Select **Create a JavaScript project** and follow the prompts.
 
 ### 2. Configure the Network
 
@@ -136,7 +140,7 @@ Create a file named `.env` with the **XRPL EVM** details:
 
 ```env
 XRPL_EVM_URL=https://rpc.xrplevm.org
-PRIVATE_KEY=your_testnet_private_key_here
+PRIVATE_KEY=your_mainnet_private_key_here
 ```
 
 Then in `hardhat.config.js`:
@@ -321,13 +325,18 @@ Define your RPC endpoints in `foundry.toml` and use a `.env` for secrets.
 
 ```toml
 # foundry.toml
-
-# Default Solidity version
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
 solc_version = "0.8.24"
 
 [rpc_endpoints]
-xrplevm      = "https://rpc.xrplevm.org"
+xrplevm         = "https://rpc.xrplevm.org"
+xrplevm_testnet = "https://rpc.testnet.xrplevm.org"
 ```
+
+Settings such as `solc_version` must live under `[profile.default]`; placing them at the top level of `foundry.toml` makes `forge` fail to load the configuration.
 
 Create a `.env` in your project root:
 
@@ -427,11 +436,11 @@ source .env
 forge create src/HelloWorld.sol:HelloWorld \
   --rpc-url     $RPC_URL \
   --private-key $PRIVATE_KEY \
-  --chain-id    $CHAIN_ID \
+  --broadcast \
   --constructor-args "Hello, XRPL EVM!"
 ```
 
-On success, `forge` prints the new contract address.
+On success, `forge` prints the new contract address. Without `--broadcast`, `forge create` only simulates the deployment. Keep `--constructor-args` last, since it consumes every argument that follows it.
 
 #### 7.2 Scripted Deploy with `forge script`
 
@@ -459,8 +468,7 @@ On success, `forge` prints the new contract address.
 
    forge script script/Deploy.s.sol:DeployScript \
      --rpc-url   $RPC_URL \
-     --broadcast \
-     --chain-id   $CHAIN_ID
+     --broadcast
    ```
 
 You’ll see broadcast logs and the deployed address in the console.
@@ -470,7 +478,7 @@ You’ll see broadcast logs and the deployed address in the console.
 ### 8. Verify on Explorer
 
 1. Copy the deployed address from `forge`.
-2. Paste into the appropriate XRPL EVM Explorer:
+2. Paste it into the XRPL EVM Explorer for your network ([Mainnet](https://explorer.xrplevm.org), [Testnet](https://explorer.testnet.xrplevm.org) or [Devnet](https://explorer.devnet.xrplevm.org)).
 3. Use the Read/Write tabs to call `message()` or `setMessage()`.
 
 ## Conclusion
