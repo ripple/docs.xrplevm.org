@@ -66,6 +66,8 @@ State sync needs two things: RPC servers to verify the snapshot with a light cli
 | Mainnet | `https://cosmos-rpc.xrplevm.org:443`         |
 | Testnet | `https://cosmos-rpc.testnet.xrplevm.org:443` |
 
+This procedure covers Mainnet and Testnet. It is not validated on Devnet, whose public RPC node only lists private peers; on Devnet, use the [snapshot](../resources/snapshots.md) or [Sync from Genesis](../getting-started/sync-from-genesis.md) instead.
+
 1. **Set the RPC server and peers**:
 
    ```bash

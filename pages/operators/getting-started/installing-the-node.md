@@ -28,7 +28,7 @@ If you specifically need full historical replay from block 0, use [Sync from Gen
 4. Run the node with `systemctl`, `cosmovisor`, or `docker`.
 
 {% admonition type="info" name="Snapshot availability" %}
-Public snapshot providers are listed for Mainnet, Testnet and Devnet in [Snapshots](../resources/snapshots.md). Snapshots are pruned and do not contain full history. If you need history, or a snapshot is not available, use [State Sync](../advanced/sync-options.md#state-sync) or [Sync from Genesis](./sync-from-genesis.md).
+Public snapshot providers are listed for Mainnet, Testnet and Devnet in [Snapshots](../resources/snapshots.md). Snapshots are pruned and do not contain full history. If you need full history, use [Sync from Genesis](./sync-from-genesis.md). If a snapshot is not available on Mainnet or Testnet, use [State Sync](../advanced/sync-options.md#state-sync), which also starts from a recent height.
 {% /admonition %}
 
 ## 1) Install `exrpd`
@@ -206,7 +206,7 @@ wget -O exrpd.tar.lz4 https://xrpl-evm-snapshots.s3.us-east-1.amazonaws.com/devn
 tar -xI lz4 -f exrpd.tar.lz4 --exclude='data/priv_validator_state.json'
 ```
 
-If this URL is temporarily unavailable, use [State Sync](../advanced/sync-options.md#state-sync) or [Sync from Genesis](./sync-from-genesis.md).
+If this URL is temporarily unavailable, use [Sync from Genesis](./sync-from-genesis.md). The [State Sync](../advanced/sync-options.md#state-sync) procedure covers Mainnet and Testnet only.
 {% /tab %}
 
 {% /tabs %}
