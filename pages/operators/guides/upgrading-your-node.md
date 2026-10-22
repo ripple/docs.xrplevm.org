@@ -43,7 +43,7 @@ Use your actual node home path in commands below:
 
 - Read target height/version from [Networks](../resources/networks.md).
 - Download the target release artifact from [XRPL EVM node releases](https://github.com/xrplevm/node/releases).
-- Use the **on-chain upgrade name** from `upgrade-info.json` (also listed in [Networks](../resources/networks.md)) for Cosmovisor folder naming. Do not assume the upgrade name equals the release tag: for example, upgrade `v10.0.0` requires binary `v10.0.1` or `v10.0.2`, and Testnet upgrade `v11.1.0` uses binary `v11.1.1`.
+- Use the **on-chain upgrade name** from `upgrade-info.json` (also listed in [Networks](../resources/networks.md)) for Cosmovisor folder naming. Do not assume the upgrade name equals the release tag: for example, upgrade `v10.0.0` uses binary `v10.0.1` to `v10.0.3` depending on the network, and Testnet upgrade `v11.1.0` uses binary `v11.1.1`.
 
 ### 2) Pre-upgrade checks
 
@@ -84,7 +84,7 @@ cd /tmp
 TARGET_TAG=<target-tag>
 ARCH=amd64 # or arm64
 ASSET="node_${TARGET_TAG#v}_Linux_${ARCH}.tar.gz"
-wget "https://github.com/xrplevm/node/releases/download/${TARGET_TAG}/${ASSET}"
+wget -O "${ASSET}" "https://github.com/xrplevm/node/releases/download/${TARGET_TAG}/${ASSET}"
 wget -O checksums.txt "https://github.com/xrplevm/node/releases/download/${TARGET_TAG}/checksums.txt"
 sha256sum -c checksums.txt --ignore-missing
 tar -xzf "${ASSET}"
@@ -249,9 +249,9 @@ Expected: no active validator signer process.
 cp ~/.exrpd/data/priv_validator_state.json ~/.exrpd/priv_validator_state.json
 ```
 
-4. Restore state:
-  - Recommended: restore from a compatible snapshot provider (for example PolkaChu, Cumulo, or XRPL EVM snapshot S3).
-  - Alternative (resource-heavy): `exrpd rollback`
+4. Restore state, only if the hotfix announcement requires it:
+   - `exrpd rollback` rolls the application and CometBFT state back by one height on this home.
+   - To restore from a compatible snapshot ([Snapshots](../resources/snapshots.md)), move the existing `data/` directory aside and extract the archive excluding `data/priv_validator_state.json`. Never overwrite the signer state file; step 6 restores it from the backup taken in step 3.
 5. Apply required config changes announced with the hotfix.
 
 If governance requires an EVM chain-id update, set it in `app.toml` under `[evm]`:
@@ -270,10 +270,12 @@ chmod 600 ~/.exrpd/data/priv_validator_state.json
 
 7. Before start, confirm only one host/container will be allowed to sign with this validator key.
 
-8. Start exactly one runtime stack:
+8. Start exactly one runtime stack, the one this node normally uses:
 
 ```bash
-exrpd start
+sudo systemctl start exrpd            # systemctl setup
+# or: sudo systemctl start cosmovisor-exrpd
+# or: docker start xrplevm-node
 ```
 
 {% admonition type="warning" name="Critical double-sign protection" %}
@@ -282,6 +284,7 @@ Never run two active instances with the same `priv_validator_key.json` at the sa
 
 {% admonition type="info" name="Known examples" %}
 - During the Testnet v10 incident, affected nodes moved from `v10.0.0` to `v10.0.1` and required `evm-chain-id = 1449000`.
+- Since v11, the default keyring backend is `os` instead of `test`. Scripts that relied on the implicit `test` backend must pass `--keyring-backend` or set it with `exrpd config set client keyring-backend <backend>`.
 - During the August 2026 Mainnet security halt, the chain stopped at block `7360028` and validators replaced `v10.1.0` with the patched `v10.2.0` release in place (same upgrade handler, no on-chain upgrade). Block production resumed at `7360029`.
 {% /admonition %}
 

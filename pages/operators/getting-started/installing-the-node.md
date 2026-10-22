@@ -49,7 +49,7 @@ cd /tmp
 TARGET_TAG=<target-tag>
 ARCH=amd64 # or arm64
 ASSET="node_${TARGET_TAG#v}_Linux_${ARCH}.tar.gz"
-wget "https://github.com/xrplevm/node/releases/download/${TARGET_TAG}/${ASSET}"
+wget -O "${ASSET}" "https://github.com/xrplevm/node/releases/download/${TARGET_TAG}/${ASSET}"
 wget -O checksums.txt "https://github.com/xrplevm/node/releases/download/${TARGET_TAG}/checksums.txt"
 sha256sum -c checksums.txt --ignore-missing
 tar -xzf "${ASSET}"
@@ -329,7 +329,7 @@ sudo systemctl start cosmovisor-exrpd
 sudo journalctl -u cosmovisor-exrpd -f
 ```
 
-With `UNSAFE_SKIP_BACKUP=false`, first start may take several minutes while Cosmovisor creates a full data backup before restart.
+With `UNSAFE_SKIP_BACKUP=false`, Cosmovisor backs up the full `data/` directory before applying each upgrade, so every upgrade can take several minutes and needs free disk space for that copy.
 
 For upgrade operations and safer backup settings, follow [Upgrading your node](../guides/upgrading-your-node.md).
 

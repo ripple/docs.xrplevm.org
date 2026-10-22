@@ -78,8 +78,13 @@ Install the binary for the **first** version in your network’s upgrade path ta
 
 ```bash
 cd /tmp
-wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Linux_amd64.tar.gz
-tar -xzf node_7.0.0_Linux_amd64.tar.gz
+TARGET_TAG=v7.0.0 # Mainnet genesis binary
+ARCH=amd64 # or arm64
+ASSET="node_${TARGET_TAG#v}_Linux_${ARCH}.tar.gz"
+wget -O "${ASSET}" "https://github.com/xrplevm/node/releases/download/${TARGET_TAG}/${ASSET}"
+wget -O checksums.txt "https://github.com/xrplevm/node/releases/download/${TARGET_TAG}/checksums.txt"
+sha256sum -c checksums.txt --ignore-missing
+tar -xzf "${ASSET}"
 sudo mv bin/exrpd /usr/local/bin/exrpd
 sudo chmod +x /usr/local/bin/exrpd
 exrpd version
