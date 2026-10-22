@@ -87,70 +87,72 @@ Two approaches work on both Mainnet and Testnet: **Standard JSON Input** and the
 
 ### B) Hardhat Verify Plugin
 
-Automate via CLI. The examples below use Hardhat 2 (`hardhat@hh2`), where `@nomicfoundation/hardhat-toolbox@hh2` already includes the verify plugin. The explorer runs Blockscout, which accepts any non-empty API key. Configuration varies per network:
+Automate via CLI. The examples below use Hardhat 2 (`hardhat@hh2`), where `@nomicfoundation/hardhat-toolbox@hh2` already includes the verify plugin. They extend the `hardhat.config.js` and `.env` (`XRPL_EVM_URL`, `PRIVATE_KEY`) from [Deploy the Smart Contract](./deploy-the-smart-contract.md), keeping the same `xrplEVM` network name. The explorer runs Blockscout, which accepts any non-empty API key.
 
 {% tabs %}
 {% tab label="Mainnet" %}
 
-```ts
-// hardhat.config.ts
-import "@nomicfoundation/hardhat-toolbox";
-import * as dotenv from "dotenv";
-dotenv.config();
+```js
+// hardhat.config.js
+require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config();
 
-export default {
+module.exports = {
   solidity: "0.8.24",
   networks: {
     xrplEVM: {
-      url: process.env.XRPL_EVM_URL,    // https://rpc.xrplevm.org
+      url: process.env.XRPL_EVM_URL, // set in .env, see Deploy the Smart Contract
       chainId: 1440000,
-      accounts: [process.env.PRIVATE_KEY!],
+      accounts: [process.env.PRIVATE_KEY],
     },
   },
   etherscan: {
-    apiKey: { xrplEVM: "mainnet-key" },
-    customChains: [{
-      network: "xrplEVM",
-      chainId: 1440000,
-      urls: {
-        apiURL:    "https://explorer.xrplevm.org/api",
-        browserURL:"https://explorer.xrplevm.org"
-      }
-    }]
-  }
-}
+    apiKey: { xrplEVM: "blockscout" },
+    customChains: [
+      {
+        network: "xrplEVM",
+        chainId: 1440000,
+        urls: {
+          apiURL: "https://explorer.xrplevm.org/api",
+          browserURL: "https://explorer.xrplevm.org",
+        },
+      },
+    ],
+  },
+};
 ```
 
 {% /tab %}
 {% tab label="Testnet" %}
 
-```ts
-// hardhat.config.ts (Testnet)
-import "@nomicfoundation/hardhat-toolbox";
-import * as dotenv from "dotenv";
-dotenv.config();
+```js
+// hardhat.config.js
+require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config();
 
-export default {
+module.exports = {
   solidity: "0.8.24",
   networks: {
-    xrplEVMTestnet: {
-      url: process.env.XRPL_EVM_TESTNET_URL, // https://rpc.testnet.xrplevm.org
+    xrplEVM: {
+      url: process.env.XRPL_EVM_URL, // set in .env, see Deploy the Smart Contract
       chainId: 1449000,
-      accounts: [process.env.PRIVATE_KEY!],
+      accounts: [process.env.PRIVATE_KEY],
     },
   },
   etherscan: {
-    apiKey: { xrplEVMTestnet: "testnet-key" },
-    customChains: [{
-      network: "xrplEVMTestnet",
-      chainId: 1449000,
-      urls: {
-        apiURL:    "https://explorer.testnet.xrplevm.org/api",
-        browserURL:"https://explorer.testnet.xrplevm.org"
-      }
-    }]
-  }
-}
+    apiKey: { xrplEVM: "blockscout" },
+    customChains: [
+      {
+        network: "xrplEVM",
+        chainId: 1449000,
+        urls: {
+          apiURL: "https://explorer.testnet.xrplevm.org/api",
+          browserURL: "https://explorer.testnet.xrplevm.org",
+        },
+      },
+    ],
+  },
+};
 ```
 
 {% /tab %}
@@ -158,14 +160,10 @@ export default {
 
 #### Verify via CLI
 
-Replace `<ADDRESS>` and `[args]`:
+Replace `<ADDRESS>` and the constructor arguments. The command is the same on both networks; the target is set by `XRPL_EVM_URL` and the config above:
 
 ```bash
-# Mainnet
 npx hardhat verify --network xrplEVM <ADDRESS> [constructorArg1] …
-
-# Testnet
-npx hardhat verify --network xrplEVMTestnet <ADDRESS> …
 ```
 
 > If no constructor parameters, omit the args. Use `--force` to reverify.
