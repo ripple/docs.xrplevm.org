@@ -64,6 +64,25 @@ To interact with the XRPL EVM Sidechain, you need to manually add it as a custom
 
    ![Select XRPL EVM Network](../images/addedXRPLEVMTestnetToMetaMask.png)
 {% /tab %}
+{% tab label="Devnet" %}
+
+3. **Enter Network Details:**
+
+   - Fill in the following information:
+     - **Network Name:** XRPL EVM Devnet
+     - **New RPC URL:** [https://rpc.devnet.xrplevm.org/](https://rpc.devnet.xrplevm.org/)
+     - **Chain ID:** 1449900
+     - **Currency Symbol:** XRP
+     - **Block Explorer URL:** [https://explorer.devnet.xrplevm.org](https://explorer.devnet.xrplevm.org)
+
+4. **Save Network:**
+
+   - Click **"Save."** The XRPL EVM Devnet will now be available in the network dropdown.
+
+5. **Switch Networks:**
+
+   - Select **"XRPL EVM Devnet"** from the network dropdown to start interacting with the network.
+{% /tab %}
 {% /tabs %}
 
 ## Verify the Connection

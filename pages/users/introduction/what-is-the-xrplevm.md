@@ -85,6 +85,7 @@ The XRPL EVM is designed to be **Ethereum-equivalent**, meaning Solidity develop
 - **EVM Compatibility:** Prague fork.
 - **Tools:** Works with [Remix](https://remix.ethereum.org/), Hardhat, Foundry, [MetaMask](https://metamask.io/), and [Keplr](https://www.keplr.app/).
 - **RPC & APIs:** Standard Ethereum JSON-RPC endpoints are exposed by nodes ([xrplevm/node](https://github.com/xrplevm/node)).
+- **Network parameters:** Chain IDs, fees, block gas limit and EVM differences from Ethereum are listed in [Network Parameters and Status](../../developers/resources/network-status.md).
 
 ---
 
