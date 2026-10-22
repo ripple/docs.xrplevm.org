@@ -27,10 +27,10 @@ The following static precompiles are **active on Mainnet, Testnet and Devnet**:
 | Bank       | `0x0000000000000000000000000000000000000804` | Read Cosmos bank balances and supply                                    |
 | Gov        | `0x0000000000000000000000000000000000000805` | Query governance proposals and parameters                               |
 
-The other Cosmos EVM static precompiles are **not active** on any XRPL EVM network: Staking (`0x…0800`), Distribution (`0x…0801`), ICS20 (`0x…0802`), Vesting (`0x…0803`), Slashing (`0x…0806`) and Evidence (`0x…0807`). Calls to them return empty data. The XRPL EVM uses a Proof-of-Authority validator set, so there is no delegation or staking flow to expose to contracts.
+The other Cosmos EVM static precompiles are **not active** on any XRPL EVM network: Staking (`0x…0800`), Distribution (`0x…0801`), ICS20 (`0x…0802`) and Slashing (`0x…0806`). The Vesting address (`0x…0803`) is reserved but has no implementation in the current node release. Calls to any of them return empty data. The XRPL EVM uses a Proof-of-Authority validator set, so there is no delegation or staking flow to expose to contracts.
 
-{% admonition type="info" name="Upcoming change" %}
-The next major node release (v12, in development in [xrplevm/node#165](https://github.com/xrplevm/node/pull/165)) removes the Gov precompile from the active list, leaving P256, Bech32 and Bank. Avoid building new contracts that depend on the Gov precompile.
+{% admonition type="info" name="Proposed change" %}
+An open, unreleased proposal for the next major node version ([xrplevm/node#165](https://github.com/xrplevm/node/pull/165)) would remove the Gov precompile from the active list, leaving P256, Bech32 and Bank. If you are building new contracts on the Gov precompile, follow that proposal before relying on it.
 {% /admonition %}
 
 ---

@@ -137,9 +137,11 @@ const web3 = new Web3("https://rpc.testnet.xrplevm.org");
    console.log("Result:", result);
 
    // Example: Sending a transaction
+   // Public RPC endpoints hold no accounts, so add a local signer first
+   const account = web3.eth.accounts.wallet.add("0xYourPrivateKey")[0];
    const receipt = await contract.methods
      .setVariable("New Value")
-     .send({ from: "0xYourWalletAddress" });
+     .send({ from: account.address });
    console.log("Transaction Receipt:", receipt);
    ```
 
