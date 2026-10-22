@@ -23,78 +23,76 @@ The Peersyst team has established IBC channels that connect the XRPL EVM with ot
 
 {% tabs %}
 
-      {% tab label="Mainnet" %}
+{% tab label="Mainnet" %}
 
-      ### Supported Channels:
+### Supported Channels:
 
-      - **XRPL EVM ↔ Osmosis**
-      - **XRPL EVM ↔ Injective**
+- **XRPL EVM ↔ Osmosis**
+- **XRPL EVM ↔ Injective**
 
-      The older channels to Elys Network, Cosmos Hub and Noble are inactive (expired light clients). Do not send funds over them.
+The older channels to Elys Network, Cosmos Hub and Noble are inactive (expired light clients). Do not send funds over them.
 
-      You can use **Keplr's Advanced IBC Transfer** tool to send tokens across these networks.
+You can use **Keplr's Advanced IBC Transfer** tool to send tokens across these networks.
 
-      ---
+---
 
-      ## Enable Developer Mode in Keplr
+## Enable Developer Mode in Keplr
 
-      To access the IBC transfer feature:
+To access the IBC transfer feature:
 
-      1. Open the **Keplr extension** in your browser.
-      2. Click the **menu icon** and go to **Settings**.
-      3. Scroll to **Advanced** settings.
-      4. Enable **Developer Mode**.
+1. Open the **Keplr extension** in your browser.
+2. Click the **menu icon** and go to **Settings**.
+3. Scroll to **Advanced** settings.
+4. Enable **Developer Mode**.
 
-      ![Enable Developer Mode](./images/keplr-developer-mode.png)
+![Enable Developer Mode](./images/keplr-developer-mode.png)
 
-      ---
+---
 
-      ## Access the IBC Transfer Menu
+## Access the IBC Transfer Menu
 
-      1. Return to the **Keplr main screen** (Home).
-      2. Scroll down to the bottom of the chain list.
-      3. On **Advanced IBC Transfer** click on **Transfer** to begin the process.
+1. Return to the **Keplr main screen** (Home).
+2. Scroll down to the bottom of the chain list.
+3. On **Advanced IBC Transfer** click on **Transfer** to begin the process.
 
-      ![IBC Transfer Button](./images/keplr-ibc-transfer-button.png)
+![IBC Transfer Button](./images/keplr-ibc-transfer-button.png)
 
-      ---
+---
 
-      ## Fill Transfer Details
+## Fill Transfer Details
 
-      1. **Select Asset**:  
-         Choose **XRP** or another supported token from XRPL EVM.
+1. **Select Asset**:  
+   Choose **XRP** or another supported token from XRPL EVM.
 
-      2. **Select Destination Chain**:  
-         - If it's not already listed, click **Add New IBC Transfer Channel**.
-         - Choose the destination chain and input the **channel ID**.
+2. **Select Destination Chain**:  
+   - If it's not already listed, click **Add New IBC Transfer Channel**.
+   - Choose the destination chain and input the **channel ID**.
 
-      ### Channel IDs
+### Channel IDs
 
-      {% partial file="/snippets/_ibc-channels-mainnet.md" /%}
+{% partial file="/snippets/_ibc-channels-mainnet.md" /%}
 
-      3. **Paste Destination Address**:  
-         - Ensure it's a valid **Keplr-compatible address** on the target chain.
+3. **Paste Destination Address**:  
+   - Ensure it's a valid **Keplr-compatible address** on the target chain.
 
-      4. **Review & Confirm Transfer**:  
-         - Check that the **token**, **amount**, **destination address**, and **channel** are correct.
-         - Click **Next** to continue.
+4. **Review & Confirm Transfer**:  
+   - Check that the **token**, **amount**, **destination address**, and **channel** are correct.
+   - Click **Next** to continue.
 
-      5. **Sign the Transaction**:  
-         - Keplr will prompt you to sign the transaction.
-         - Confirm and approve the transaction to complete the IBC transfer.
+5. **Sign the Transaction**:  
+   - Keplr will prompt you to sign the transaction.
+   - Confirm and approve the transaction to complete the IBC transfer.
 
-      ![Sign IBC Transaction](./images/keplr-sign-ibc.png)
+![Sign IBC Transaction](./images/keplr-sign-ibc.png)
 
-   {% /tab %}
+{% /tab %}
 
-   {% tab label="Testnet" %}
+{% tab label="Testnet" %}
 
-   {% partial file="/snippets/_ibc-channels-testnet.md" /%}
+{% partial file="/snippets/_ibc-channels-testnet.md" /%}
 
-   {% /tab %}
+{% /tab %}
 {% /tabs %}
-
-
 
 ## Final Tips
 
