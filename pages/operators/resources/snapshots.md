@@ -40,7 +40,9 @@ Peersyst is currently the only provider publishing Devnet snapshots. Archives th
 
 {% /tabs %}
 
-**Note:** Always verify the authenticity and integrity of snapshots before using them. Keep in mind that third-party providers may have different update schedules, data policies, and retention periods. Refer to the provider’s documentation for instructions on how to use these snapshots and any associated terms of service.
+Peersyst snapshots are pruned nodes bootstrapped with [state sync](../advanced/sync-options.md#state-sync) and regenerated daily. They contain recent state only, without historical blocks or state, so they are not suitable for archive or historical nodes.
+
+**Note:** Always verify the authenticity and integrity of snapshots before using them. Keep in mind that third-party providers may have different update schedules, data policies, and retention periods, and an archive can be older than the latest network upgrade. Check its date and block height before restoring, and run the binary that matches that height (see [Networks](./networks.md)). Refer to the provider’s documentation for instructions on how to use these snapshots and any associated terms of service.
 
 ## Restore examples
 
@@ -48,10 +50,12 @@ Use the command set that matches the provider archive format.
 
 ### Peersyst (`.tar.lz4`)
 
+The archive contains a `data/` folder that includes a `priv_validator_state.json` reset to height `0`. Exclude it so your node keeps its own signer state:
+
 ```bash
 cd ~/.exrpd
 wget -O snapshot.tar.lz4 <snapshot_url>
-tar -xI lz4 -f snapshot.tar.lz4
+tar -xI lz4 -f snapshot.tar.lz4 --exclude='data/priv_validator_state.json'
 ```
 
 ### Cumulo (`.tar.zst`)

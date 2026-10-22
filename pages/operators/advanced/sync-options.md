@@ -27,15 +27,17 @@ If this node is a validator signer, keep a **single active validator signer** on
 
 Syncing from a snapshot significantly reduces setup time by initializing your node using a pre-generated state file. The snapshot is downloaded and then decompressed to the ~/.exrpd/data directory, preparing the node for quick synchronization with the network.
 
-1. **Select a Snapshot**: Choose a snapshot file from a trusted provider listed on the Snapshots page.
+1. **Select a Snapshot**: Choose a snapshot file from a trusted provider listed on the [Snapshots](../resources/snapshots.md) page.
 
 2. **Download and decompress the snapshot**:
 
 ```bash
 cd ~/.exrpd
 wget -O exrpd.tar.lz4 <snapshot_url>
-tar -xI lz4 -f exrpd.tar.lz4
+tar -xI lz4 -f exrpd.tar.lz4 --exclude='data/priv_validator_state.json'
 ```
+
+The Peersyst archives include a `priv_validator_state.json` reset to height `0`; excluding it keeps your node's own signer state. See [Snapshots](../resources/snapshots.md) for other providers and archive formats.
 
 {% admonition type="warning" name="Validator signer safety" %}
 Do not restore snapshots over an active validator signer home. Snapshot restore is for non-signing nodes or fresh replacement nodes only.
@@ -49,39 +51,89 @@ exrpd start
 
 ## State Sync
 
-State Sync is an efficient and fast way to bootstrap a new node. It works by replaying larger chunks of application state directly rather than replaying individual blocks or consensus rounds. For more information, see [CometBFT's State Sync docs](https://docs.cometbft.com/).
+State Sync is an efficient and fast way to bootstrap a new node. It works by replaying larger chunks of application state directly rather than replaying individual blocks or consensus rounds. The node starts with a truncated block history, from the height of the restored snapshot. For more information, see the [CometBFT state sync documentation](https://docs.cosmos.network/cometbft/latest/docs/core/state-sync).
 
-1. **Retrieve a Recent Block Height and Hash**:
+State sync needs two things: RPC servers to verify the snapshot with a light client, and peers that serve state sync snapshots. Several Mainnet and Testnet nodes publish snapshots every few hundred to few thousand blocks.
 
-   - Visit a blockchain explorer to get a recent block height and corresponding hash.
-   - Choose any height/hash in the current bonding period. It is recommended to select a height close to `current height - 1000` to align with the snapshot period.
+| Network | RPC server                                   |
+| ------- | -------------------------------------------- |
+| Mainnet | `https://cosmos-rpc.xrplevm.org:443`         |
+| Testnet | `https://cosmos-rpc.testnet.xrplevm.org:443` |
 
-2. **Update Configuration**:
+1. **Set the RPC server and peers**:
 
-   - Edit the `~/.exrpd/config/config.toml` file:
-     ```
-     [statesync]
-     enable = true
-     rpc_servers = "<rpc_servers>"
-     trust_height = <trust_height>
-     trust_hash = "<trust_hash>"
-     trust_period = "168h0m0s"
-     ```
-   - Ensure you set `rpc_servers` to trusted providers. There must be at least two servers listed, though duplicates are technically allowed.
+   ```bash
+   SNAP_RPC="https://cosmos-rpc.xrplevm.org:443" # Testnet: https://cosmos-rpc.testnet.xrplevm.org:443
+   CONFIG="$HOME/.exrpd/config/config.toml"
 
-3. **Start the Node**:
+   # Peers currently connected to the RPC node. More peers make it more likely to find a recent snapshot.
+   PERSISTENT_PEERS=$(curl -s "$SNAP_RPC/net_info" | jq -r '.result.peers[] | select(.remote_ip | test("^(10\\.|192\\.168\\.|172\\.(1[6-9]|2[0-9]|3[01])\\.)") | not) | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr | split(":") | last)"' | paste -sd, -)
+   sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"${PERSISTENT_PEERS}\"/" "$CONFIG"
+   ```
+
+2. **Retrieve a trusted block height and hash**:
+
+   Choose a height within the trust period. A height close to `current height - 1000` works well:
+
+   ```bash
+   LATEST_HEIGHT=$(curl -s "$SNAP_RPC/block" | jq -r .result.block.header.height)
+   TRUST_HEIGHT=$((LATEST_HEIGHT - 1000))
+   TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$TRUST_HEIGHT" | jq -r .result.block_id.hash)
+
+   echo "trust_height = $TRUST_HEIGHT"
+   echo "trust_hash   = $TRUST_HASH"
+   ```
+
+   {% admonition type="warning" name="Use block_id.hash" %}
+   The trust hash must be the block's **`block_id.hash`** (the `jq` path above), not the header, app, or data hash. The `/block` response contains several `"hash"` fields. A greedy regex over the single-line JSON picks the **last** one, and the node then fails at startup with `expected header's hash X, but got Y`. Without `jq`, take the first match explicitly: `grep -oE '"hash":"[A-F0-9]{64}"' | head -1`.
+   {% /admonition %}
+
+   You can also read a recent height and its block hash from a block explorer.
+
+3. **Update the `[statesync]` section**:
+
+   ```bash
+   sed -i.bak \
+     -e "/^\[statesync\]/,/^\[/ s|^enable = .*|enable = true|" \
+     -e "/^\[statesync\]/,/^\[/ s|^rpc_servers = .*|rpc_servers = \"$SNAP_RPC,$SNAP_RPC\"|" \
+     -e "/^\[statesync\]/,/^\[/ s|^trust_height = .*|trust_height = $TRUST_HEIGHT|" \
+     -e "/^\[statesync\]/,/^\[/ s|^trust_hash = .*|trust_hash = \"$TRUST_HASH\"|" \
+     -e "/^\[statesync\]/,/^\[/ s|^trust_period = .*|trust_period = \"112h0m0s\"|" \
+     -e "/^\[statesync\]/,/^\[/ s|^discovery_time = .*|discovery_time = \"60s\"|" \
+     "$CONFIG"
+   ```
+
+   The result looks like this:
+
+   ```toml
+   [statesync]
+   enable = true
+   rpc_servers = "https://cosmos-rpc.xrplevm.org:443,https://cosmos-rpc.xrplevm.org:443"
+   trust_height = <trust_height>
+   trust_hash = "<trust_hash>"
+   trust_period = "112h0m0s"
+   discovery_time = "60s"
+   ```
+
+   - `rpc_servers` needs at least two entries. Listing the same trusted server twice is allowed.
+   - `trust_period` must be shorter than the unbonding time, which is 7 days (`168h`) on Mainnet and Testnet. About two thirds of it (`112h`) is a safe value. The generated `config.toml` default (`168h0m0s`) is too long.
+   - A longer `discovery_time` gives the node time to find a recent snapshot among its peers.
+
+4. **Start the Node**:
 
    - Run the following command to begin state sync:
      ```bash
      exrpd start
      ```
-   - The process may take some time while the node acquires and restores a snapshot. Logs should look similar to:
+   - The node discovers snapshots, restores the most recent one it can verify, then starts executing blocks. Logs should look similar to:
      ```
-     > INF Discovered new snapshot format=1 hash="0x000..." height=8967000 module=statesync
-     > INF Fetching snapshot chunk chunk=4 format=1 height=8967000 module=statesync total=45
-     > INF Applied snapshot chunk to ABCI app chunk=0 format=1 height=8967000 module=statesync total=45
+     INF Discovered new snapshot format=3 hash=C740... height=8261500 module=statesync
+     INF Snapshot accepted, restoring format=3 hash=C740... height=8261500 module=statesync
+     INF Applied snapshot chunk to ABCI app chunk=0 format=3 height=8261500 module=statesync total=3
+     INF Snapshot restored format=3 hash=C740... height=8261500 module=statesync
      ```
+   - Older snapshots that cannot be verified are rejected (`Snapshot rejected`) and the node moves on to the next one.
 
-4. **Verify Synchronization**:
+5. **Verify Synchronization**:
    - Once state sync completes, the node will begin processing blocks normally. If state sync fails with an error such as `state sync aborted`, first restart `exrpd` and verify your `statesync` settings and trusted RPC endpoints.
    - For non-signing nodes only, you may reset data and retry state sync. Do not run reset commands on active validator signer nodes that hold production `priv_validator_key.json`.
