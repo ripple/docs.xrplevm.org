@@ -39,7 +39,6 @@
         - page: ./interacting-with-evm/use-goldsky-indexer/setup-indexer.md
         - page: ./interacting-with-evm/use-goldsky-indexer/query-events.md
         - page: ./interacting-with-evm/use-goldsky-indexer/best-practices.md
-        - page: ./interacting-with-evm/use-goldsky-indexer/goldsky-mirrors.md
         - page: ./interacting-with-evm/use-goldsky-indexer/indexer.md
 - group: Interacting with Cosmos
   expanded: false

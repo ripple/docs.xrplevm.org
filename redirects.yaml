@@ -35,3 +35,6 @@
 /pages/bridge/interchain-evm-sidechain-avalanche:
   to: /pages/users/using-the-bridge/transfer-erc20-with-axelar
   type: 301
+/pages/developers/interacting-with-evm/use-goldsky-indexer/goldsky-mirrors:
+  to: /pages/developers/interacting-with-evm/use-goldsky-indexer/goldsky-overview
+  type: 301

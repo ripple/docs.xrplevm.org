@@ -4,10 +4,13 @@ Goldsky provides high-performance subgraphs for querying onchain data from XRPL 
 
 ## Supported Networks
 
-| Network | Status      | Subgraph Slug     |
-| ------- | ----------- | ----------------- |
-| Testnet | Yes         | `xrplevm-testnet` |
-| Mainnet | In progress | _coming soon_     |
+| Product   | Mainnet       | Testnet       |
+| --------- | ------------- | ------------- |
+| Subgraphs | Supported     | Supported     |
+| Turbo (streaming pipelines) | Not available | Not available |
+| Compose   | Not available | Not available |
+
+When you create a subgraph, select the XRPL EVM network in the Goldsky CLI wizard. See Goldsky's [XRPL EVM Sidechain page](https://docs.goldsky.com/chains/xrpl-evm) for the current support status.
 
 ## What is a Subgraph?
 

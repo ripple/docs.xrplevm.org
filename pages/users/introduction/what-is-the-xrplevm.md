@@ -2,13 +2,13 @@
 
 The **XRPL Ethereum Virtual Machine (EVM) Sidechain** is a **sovereign Layer-1 blockchain** developed by [Peersyst](https://peersyst.com/) in partnership with [Ripple](https://ripple.com/). It extends the XRP Ledger ecosystem with **full EVM compatibility** for XRP, enabling developers to deploy Ethereum smart contracts, DeFi protocols, and NFTs on a separate chain while keeping **XRP as the native gas currency**.
 
-Built on the [Cosmos SDK](https://cosmos.network/) and secured by [CometBFT](https://cometbft.com/) (formerly Tendermint Core), the XRPL EVM inherits **deterministic finality, modularity, and high throughput**, while remaining **independent of XRPL consensus**. Interoperability is enabled via the **Axelar Network**, **Wormhole**, and **IBC (Inter-Blockchain Communication)**, ensuring fluid connections across XRPL, Ethereum, and the Cosmos ecosystem.
+Built on the [Cosmos SDK](https://cosmos.network/) and secured by [CometBFT](https://docs.cosmos.network/cometbft) (formerly Tendermint Core), the XRPL EVM inherits **deterministic finality, modularity, and high throughput**, while remaining **independent of XRPL consensus**. Interoperability is enabled via the **Axelar Network**, **Wormhole**, and **IBC (Inter-Blockchain Communication)**, ensuring fluid connections across XRPL, Ethereum, and the Cosmos ecosystem.
 
 Repositories:
 
 - [XRPL EVM GitHub](https://github.com/xrplevm)
 - [XRPL EVM Node](https://github.com/xrplevm/node)
-- [Tendermint / CometBFT](https://github.com/tendermint/tendermint)
+- [CometBFT](https://github.com/cometbft/cometbft)
 
 ---
 
@@ -29,7 +29,7 @@ This migration improved **EVM equivalence, performance, and developer tooling co
 
 ### Consensus Layer: CometBFT
 
-Consensus and networking are powered by [CometBFT](https://cometbft.com/) (Tendermint BFT). This provides:
+Consensus and networking are powered by [CometBFT](https://docs.cosmos.network/cometbft) (Tendermint BFT). This provides:
 
 - **Byzantine Fault Tolerance (BFT):** Security even if up to 1/3 of validators act maliciously.
 - **Deterministic Finality:** Blocks are finalized in ~5–6 seconds with no probabilistic rollbacks.
