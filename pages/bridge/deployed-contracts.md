@@ -1,6 +1,6 @@
 ---
 seo:
-  description: "The Axelar contracts deployed on the XRPL EVM Sidechain: Gateway, Interchain Governance, Gas Service and Interchain Token Service, per network."
+  description: "The Axelar contracts deployed on the XRPL EVM Sidechain: Gateway, Gas Service, Interchain Token Service and deployers, per network."
 ---
 
 # Deployed Contracts
@@ -12,11 +12,11 @@ Here's the list of the Axelar contracts deployed on the XRPL EVM Sidechain. You 
 - ConstAddressDeployer
 - Create3Deployer
 - AxelarGateway
-- InterchainGovernance
 - Operators
 - AxelarGasService
 - InterchainTokenService
 - InterchainTokenFactory
+- AxelarServiceGovernance (Testnet only)
 
 ## Networks
 

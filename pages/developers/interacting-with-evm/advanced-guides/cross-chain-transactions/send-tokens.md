@@ -16,8 +16,8 @@ Sending assets from the XRP Ledger to the XRPL EVM or other chains is straightfo
 
 - `Amount`: Specifies the quantity of the asset to be transferred. The format and value depend on the type of asset being sent (e.g., XRP or IOUs).
 - `Destination`: The address of the Gateway on the XRP Ledger.
-  - [**Mainnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/mainnet.json)
-  - [**Testnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/testnet.json)
+  - **Mainnet**: `rfmS3zqrQrka8wVyhXifEeyTwe8AMz2Yhw`
+  - **Testnet**: `rNrjh1KGZk2jBR3wPfAQnoidtFFYQKbQn2`
 - `Memos`: Hex-encoded data required for the transfer, including:
   - The _type_ of call to initiate.
   - The _destination chain_ on the Axelar network (`xrpl-evm` for both Testnet and Mainnet).
@@ -39,8 +39,7 @@ To send assets from the XRPL EVM back to the XRPL, you’ll call the [`interchai
 
 Below is an example of instantiating the ITS contract in the **XRPL EVM**:
 
-{% tabs %}
-{% tab label="Testnet" %}
+The ITS contract has the same address on Mainnet and Testnet:
 
 ```ts
 import { Contract } from "ethers";
@@ -49,30 +48,50 @@ import { Contract } from "ethers";
 
 // Instantiate the ITS contract
 const its = new Contract(
-  "0xB5FB4BE02232B1bBA4dC8f81dc24C26980dE9e3C", // ITS address in XRPL EVM Testnet
+  "0xB5FB4BE02232B1bBA4dC8f81dc24C26980dE9e3C", // ITS address in XRPL EVM Mainnet and Testnet
   ITS_ABI, // ABI for the ITS contract
   signer,
 );
 ```
 
-{% /tab %}
-{% /tabs %}
+### Estimating the cross-chain gas
+
+Every `interchainTransfer` must pay Axelar for the cross-chain execution through `gasValue`, in XRP. The required amount changes with network conditions, so estimate it before each transfer instead of hardcoding it:
+
+```ts
+import { ethers } from "ethers";
+
+// Use https://testnet.api.axelarscan.io for Testnet
+const res = await fetch("https://api.axelarscan.io/gmp/estimateITSFee", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    sourceChain: "xrpl-evm",
+    destinationChain: "xrpl",
+    sourceTokenSymbol: "XRP",
+    event: "InterchainTransfer",
+  }),
+});
+const gasValue = BigInt(await res.text()); // in wei (18 decimals), e.g. ~0.22 XRP
+```
+
+If the amount is too low, the transfer waits on Axelarscan until more gas is added.
 
 ### Sending XRP from XRPL EVM to XRP Ledger
 
 {% tabs %}
-{% tab label="Testnet" %}
+{% tab label="Mainnet and Testnet" %}
 
-To transfer **XRP** back to the XRPL, call `interchainTransfer` on the ITS contract. Use the **XRP token ID** for Testnet:
+To transfer **XRP** back to the XRPL, call `interchainTransfer` on the ITS contract. The **XRP token ID** is the same on Mainnet and Testnet:
 
 ```ts
 import { ethers } from "ethers";
 
 const recipient = "rYourXrplRecipientAddress"; // classic r-address on the XRP Ledger
-const gasValue = ethers.parseEther("6"); // cross-chain gas, paid in XRP
+// gasValue: estimated as shown above
 
 await its.interchainTransfer(
-  "0xba5a21ca88ef6bba2bfff5088994f90e1077e2a1cc3dcc38bd261f00fce2824f", // XRP token ID (Testnet)
+  "0xba5a21ca88ef6bba2bfff5088994f90e1077e2a1cc3dcc38bd261f00fce2824f", // XRP token ID (Mainnet and Testnet)
   "xrpl", // Destination chain ID
   ethers.toUtf8Bytes(recipient), // Recipient r-address, encoded as ASCII bytes
   ethers.parseEther("100"), // 100 XRP (18 decimals on XRPL EVM)
@@ -90,6 +109,12 @@ The `destinationAddress` must be the **ASCII bytes of the classic r-address** (f
 {% /tabs %}
 
 ### Sending ERC20 tokens from XRPL EVM to XRP Ledger
+
+The example below uses **FOO**, an XRPL Testnet IOU registered with ITS (token ID `0xc8895f8ceb0cae9da15bb9d2bc5859a184ca0f61c88560488355c8a7364deef8`, ERC20 `0xE26D509C661c4F16FaFfBB1eAce1Fa1CdA8cc146` with 15 decimals on XRPL EVM Testnet, issued on the XRPL Testnet by `rHN7vR4P1qDPGpnLgoXemuZhrm6AchBHvj`). For another token, look up its token ID and addresses on [Axelarscan](https://axelarscan.io/assets) and read the ERC20 address with `its.registeredTokenAddress(tokenId)`.
+
+{% admonition type="info" name="RLUSD" %}
+RLUSD reaches the XRPL EVM through Wormhole Native Token Transfers, not Axelar ITS. See [Wormhole supported tokens](../../../../bridge/wormhole/supported-tokens.md).
+{% /admonition %}
 
 When sending ERC20 tokens:
 
@@ -109,8 +134,8 @@ const trustSet: TrustSet = {
   TransactionType: "TrustSet",
   Account: wallet.address,
   LimitAmount: {
-    currency: "524C555344000000000000000000000000000000", // RLUSD
-    issuer: "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De", // RLUSD issuer
+    currency: "FOO",
+    issuer: "rHN7vR4P1qDPGpnLgoXemuZhrm6AchBHvj", // FOO issuer (XRPL Testnet)
     value: "100", // >= the amount to be transferred
   },
 };
@@ -137,7 +162,7 @@ import { Contract } from "ethers";
 
 // Instantiate the ERC20 contract
 const erc20 = new Contract(
-  "0x20937978F265DC0C947AA8e136472CFA994FE1eD", // RLUSD ERC20 token address (example)
+  "0xE26D509C661c4F16FaFfBB1eAce1Fa1CdA8cc146", // FOO ERC20 token address (XRPL EVM Testnet)
   ERC20_ABI,
   signer,
 );
@@ -145,7 +170,7 @@ const erc20 = new Contract(
 // Call the approve method
 await erc20.approve(
   "0xB5FB4BE02232B1bBA4dC8f81dc24C26980dE9e3C", // ITS address in XRPL EVM Testnet
-  "100000000000000000000", // >= the amount to be transferred
+  "100000000000000000", // >= the amount to be transferred (100 FOO, 15 decimals)
 );
 ```
 
@@ -164,14 +189,14 @@ Encode the destination XRPL account as the ASCII bytes of its classic r-address,
 import { ethers } from "ethers";
 
 const recipient = "rYourXrplRecipientAddress"; // classic r-address on the XRP Ledger
-const gasValue = ethers.parseEther("6"); // cross-chain gas, paid in XRP
+// gasValue: estimated as shown above
 
 // Call the interchainTransfer method
 await its.interchainTransfer(
-  "0x85f75bb7fd0753565c1d2cb59bd881970b52c6f06f3472769ba7b48621cd9d23", // RLUSD token ID (example)
+  "0xc8895f8ceb0cae9da15bb9d2bc5859a184ca0f61c88560488355c8a7364deef8", // FOO token ID (Testnet)
   "xrpl", // Destination chain ID
   ethers.toUtf8Bytes(recipient), // Recipient r-address, encoded as ASCII bytes
-  "100000000000000000000", // 100 RLUSD in integer form
+  "100000000000000000", // 100 FOO in integer form (15 decimals)
   "0x", // Metadata (unused)
   gasValue, // Gas value forwarded to Axelar
   { value: gasValue },

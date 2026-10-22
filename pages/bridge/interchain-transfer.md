@@ -39,9 +39,10 @@ Sending assets from the XRP Ledger to the XRPL EVM or other chains is straightfo
 - `Amount`: Specifies the quantity of the asset to be transferred. The format and value depend on the type of asset being sent (e.g., XRP or IOUs).
 - `Destination`: The address of the Gateway on the XRP Ledger.
 
-  - [**Mainnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/mainnet.json)
-  - [**Testnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/testnet.json#L2603)
-  - [**Devnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/devnet-amplifier.json#L985)
+  - **Mainnet**: `rfmS3zqrQrka8wVyhXifEeyTwe8AMz2Yhw`
+  - **Testnet**: `rNrjh1KGZk2jBR3wPfAQnoidtFFYQKbQn2`
+
+  These are the `xrpl` chain entries in Axelar's [mainnet](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/mainnet.json) and [testnet](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/testnet.json) configuration files.
 
 - `Memos`: Hex-encoded data required for the transfer, including:
   - The _type_ of call to initiate.

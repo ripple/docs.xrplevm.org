@@ -23,3 +23,15 @@
 /docs/axelar/call-a-smart-contract-function:
   to: /pages/bridge/manually-relay-messages
   type: 301
+/pages/bridge/relay-transfer-xrpl-to-xrpl-evm-sidechain:
+  to: /pages/bridge/manually-relay-messages
+  type: 301
+/pages/bridge/relay-transfer-xrpl-evm-sidechain-to-xrpl:
+  to: /pages/bridge/manually-relay-messages
+  type: 301
+/pages/bridge/interchain-evm-sidechain-xrpl:
+  to: /pages/users/using-the-bridge/transfer-xrp-with-axelar
+  type: 301
+/pages/bridge/interchain-evm-sidechain-avalanche:
+  to: /pages/users/using-the-bridge/transfer-erc20-with-axelar
+  type: 301
