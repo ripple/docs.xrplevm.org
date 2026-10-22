@@ -37,6 +37,10 @@ As a Cosmos SDK-based blockchain, the XRPL EVM Sidechain natively supports Inter
 
 [Ripple Expands Multichain Interoperability Infrastructure with Wormhole Integration](https://wormhole.com/blog/ripple-expands-multichain-interoperability-infrastructure-with-wormhole)
 
+### Other Bridge Options
+
+The XRPL EVM Sidechain's architecture allows for integration with various bridge protocols, giving developers flexibility in choosing the cross-chain solution that best fits their needs.
+
 ## Bridges by asset
 
 The same symbol can exist on XRPL EVM as different tokens depending on the bridge that brought it. Use the bridge that issued the token you hold, and check the contract address before integrating it.
@@ -45,7 +49,7 @@ The same symbol can exist on XRPL EVM as different tokens depending on the bridg
 | ----- | ------ | --------------------------- | ------ |
 | XRP (native) | Axelar ITS | `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` | XRP Ledger |
 | USDC.xrpl | Axelar ITS | `0xDaF4556169c4F3f2231d8ab7BC8772Ddb7D4c84C` | USDC issued on the XRP Ledger |
-| USDC (axlUSDC) | Axelar ITS | `0xa16148c6Ac9EDe0D82f0c52899e22a575284f131` | Axelar-wrapped USDC |
+| USDC.axl | Axelar ITS | `0xa16148c6Ac9EDe0D82f0c52899e22a575284f131` | Axelar-wrapped USDC |
 | USDT | Axelar ITS | `0x9F8CF9c00fac501b3965872f4ed3271f6f4d06fF` | EVM chains via Axelar |
 | WETH | Axelar ITS | `0x50498dC52bCd3dAeB54B7225A7d2FA8D536F313E` | EVM chains via Axelar |
 | WBTC | Axelar ITS | `0xF8Eb4Ed0d4CF2bb707c0272F8C6827dEB6e4C0A9` | EVM chains via Axelar |
@@ -56,10 +60,6 @@ The same symbol can exist on XRPL EVM as different tokens depending on the bridg
 | OSMO, INJ and other Cosmos assets | IBC | ERC-20 precompile per token pair | Osmosis (`channel-3`) and Injective (`channel-0`) |
 
 The full and current list of Axelar ITS tokens on XRPL EVM is on [Axelarscan](https://axelarscan.io/assets); Wormhole tokens are listed in [Wormhole supported tokens](./wormhole/supported-tokens.md); IBC assets and their ERC-20 addresses are listed by `GET /cosmos/evm/erc20/v1/token_pairs` (see [Precompiles](../developers/resources/precompiles.md)).
-
-### Other Bridge Options
-
-The XRPL EVM Sidechain's architecture allows for integration with various bridge protocols, giving developers flexibility in choosing the cross-chain solution that best fits their needs.
 
 ## Implementation Options
 
