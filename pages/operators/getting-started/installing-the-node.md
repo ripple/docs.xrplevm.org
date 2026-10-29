@@ -16,8 +16,8 @@ If you specifically need full historical replay from block 0, use [Sync from Gen
 
 | Network | Chain ID            | Current Version | Genesis                                                                                            |
 | ------- | ------------------- | --------------- | -------------------------------------------------------------------------------------------------- |
-| Mainnet | `xrplevm_1440000-1` | `v11.2.0`       | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/mainnet/genesis.json) |
-| Testnet | `xrplevm_1449000-1` | `v11.1.1`       | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json) |
+| Mainnet | `xrplevm_1440000-1` | `v11.3.0`       | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/mainnet/genesis.json) |
+| Testnet | `xrplevm_1449000-1` | `v11.3.0`       | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json) |
 | Devnet  | `xrplevm_1449900-1` | `v11.0.0-rc.1`  | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/devnet/genesis.json)  |
 
 ## Recommended flow (snapshot-first)
@@ -60,8 +60,8 @@ exrpd version
 
 Set `<target-tag>` from [Networks](../resources/networks.md) for your network:
 
-- Mainnet: `v11.2.0`
-- Testnet: `v11.1.1`
+- Mainnet: `v11.3.0`
+- Testnet: `v11.3.0`
 - Devnet: `v11.0.0-rc.1`
 
 Release binaries are published for Linux (`amd64` and `arm64`) and macOS. Docker images are `amd64` only.
@@ -92,7 +92,7 @@ exrpd version
 ```
 
 {% admonition type="info" name="Releases without public sources" %}
-`v10.1.0`, `v10.2.0` and `v10.2.1` depend on non-public security fixes and cannot be built from source. Use the release binaries or Docker images for those versions.
+`v10.1.0`, `v10.2.0`, `v10.2.1` and `v11.3.0` depend on non-public security fixes and cannot be built from source. Use the release binaries or Docker images for those versions.
 {% /admonition %}
 
 ## 2) Initialize and configure for your network

@@ -118,7 +118,7 @@ sudo chmod +x /usr/local/bin/exrpd
 exrpd version
 ```
 
-`v10.1.0`, `v10.2.0` and `v10.2.1` cannot be built from source (they depend on non-public security fixes). Use the release binary or Docker image for them.
+`v10.1.0`, `v10.2.0`, `v10.2.1` and `v11.3.0` cannot be built from source (they depend on non-public security fixes). Use the release binary or Docker image for them.
 
 ### 5.1) Apply mandatory EVM chain-id config (v10+)
 

@@ -20,6 +20,7 @@ When syncing from genesis, you must start from the network genesis binary and up
 | `v10.0.0`    | `4749000` | `v10.0.2`                                |
 | `v10.1.0`    | `6856000` | `v10.1.0` (see the note below)           |
 | `v11.2.0`    | `7823200` | `v11.2.0`                                |
+| `v11.3.0`    | `8367050` | `v11.3.0`                                |
 
 {% /tab %}
 
@@ -34,6 +35,7 @@ When syncing from genesis, you must start from the network genesis binary and up
 | `v10.0.0`    | `5601606` | `v10.0.1`      |
 | `v10.1.0`    | `7725000` | `v10.1.0`      |
 | `v11.1.0`    | `8158200` | `v11.1.1`      |
+| `v11.3.0`    | `9280100` | `v11.3.0`      |
 
 {% /tab %}
 
@@ -53,9 +55,9 @@ When syncing from genesis, you must start from the network genesis binary and up
 
 {% admonition type="warning" name="Pick the binary for each range" %}
 
-- A binary only contains the upgrade handlers registered for its release line. `v11.2.0` includes the Mainnet `v11.2.0` handler but not the Testnet `v11.1.0` handler, so Testnet must use `v11.1.x` from height `8158200`. Do not use the Docker `latest` tag (it follows the newest Mainnet release) or `main` (development build).
+- A binary only contains the upgrade handlers registered for its release line. `v11.3.0` includes the `v11.2.0` and `v11.3.0` handlers but not the Testnet `v11.1.0` handler, so Testnet must use `v11.1.1` from height `8158200` until `9280100`. Do not use the Docker `latest` tag (it follows the newest Mainnet release) or `main` (development build).
 - Mainnet halted after block `7360028` on 2026-08-23 and resumed at `7360029` on the patched `v10.2.0` release, without an on-chain upgrade. `v10.2.x` shares the `v10.1.0` upgrade handler. A full replay across this range has not been validated. To sync through it, use [state sync or a snapshot](../advanced/sync-options.md), or confirm the binary switch point with the core team.
-- `v10.1.0`, `v10.2.0` and `v10.2.1` cannot be built from source because they depend on non-public security fixes. Use the release binaries or the Docker images for that range.
+- `v10.1.0`, `v10.2.0`, `v10.2.1` and `v11.3.0` cannot be built from source because they depend on non-public security fixes. Use the release binaries or the Docker images for those versions.
 
 {% /admonition %}
 
@@ -144,7 +146,7 @@ Place the new binary at the folder named after the on-chain upgrade (the **Upgra
 ~/.exrpd/cosmovisor/upgrades/<upgrade-name>/bin/exrpd
 ```
 
-For a full replay you can stage every folder before starting. For example, on Mainnet: `genesis` (`v7.0.0`), `v8.0.0` (`v8.0.2`), `v9.0.0` (`v9.0.3`), `v10.0.0` (`v10.0.2`), `v10.1.0` (`v10.1.0`, see the note about block `7360028` above) and `v11.2.0` (`v11.2.0`).
+For a full replay you can stage every folder before starting. For example, on Mainnet: `genesis` (`v7.0.0`), `v8.0.0` (`v8.0.2`), `v9.0.0` (`v9.0.3`), `v10.0.0` (`v10.0.2`), `v10.1.0` (`v10.1.0`, see the note about block `7360028` above) `v11.2.0` (`v11.2.0`) and `v11.3.0` (`v11.3.0`).
 
 Ensure executable permissions and restart if needed:
 
