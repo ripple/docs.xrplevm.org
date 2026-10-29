@@ -10,7 +10,7 @@ This page lists the on-chain parameters for building on the XRPL EVM, the EVM be
 | ----------------------------- | -------------------- | -------------------- | --------------------- |
 | EVM chain ID                  | `1440000`            | `1449000`            | `1449900`             |
 | Cosmos chain ID               | `xrplevm_1440000-1`  | `xrplevm_1449000-1`  | `xrplevm_1449900-1`   |
-| Node version                  | `v11.2.0`            | `v11.1.1`            | `v11.0.0-rc.1`        |
+| Node version                  | `v11.3.0`            | `v11.3.0`            | `v11.0.0-rc.1`        |
 | EVM fork                      | Prague               | Prague               | Prague                |
 | Average block time            | ~5.7 s               | ~5.9 s               | ~5.3 s                |
 | Block gas limit               | 21,000,000           | 21,000,000           | Unlimited             |
@@ -47,6 +47,7 @@ See also [Precompiles](./precompiles.md) for the native modules available to con
 
 | Date (UTC)  | Change |
 | ----------- | ------ |
+| 2026-10-29  | Upgrade to v11.3.0 at block `8367050` (proposal #39): Cosmos EVM update. Transactions signed with `SIGN_MODE_DIRECT_AUX` are no longer accepted. |
 | 2026-09-23  | Upgrade to v11.2.0 at block `7823200` (proposal #38): Interchain Accounts host lockdown in the upgrade handler, unbonding time set to 7 days, XRP stranded in the Elys channel escrow returned to its withdrawal address. |
 | 2026-09-17  | Interchain Accounts host module disabled (proposal #36). Injective IBC light client recovered (proposal #37). |
 | 2026-09-15  | Node v10.2.1 released with a further cosmos/evm security fix (binary replacement, no governance upgrade). |
@@ -58,6 +59,7 @@ See also [Precompiles](./precompiles.md) for the native modules available to con
 
 | Date (UTC)  | Change |
 | ----------- | ------ |
+| 2026-10-28  | Upgrade to v11.3.0 at block `9280100` (proposal #52): Cosmos EVM update. Transactions signed with `SIGN_MODE_DIRECT_AUX` are no longer accepted. |
 | 2026-09-08  | Node v11.1.1 released (binary replacement, no governance upgrade). |
 | 2026-08-14  | Upgrade to v11.1.0 at block `8158200` (proposal #49): Interchain Accounts host lockdown in the upgrade handler, unbonding time set to 7 days. |
 
