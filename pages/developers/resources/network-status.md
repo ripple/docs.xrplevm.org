@@ -12,7 +12,7 @@ This page lists the on-chain parameters for building on the XRPL EVM, the EVM be
 | Cosmos chain ID               | `xrplevm_1440000-1`  | `xrplevm_1449000-1`  | `xrplevm_1449900-1`   |
 | Node version                  | `v11.3.0`            | `v11.3.0`            | `v11.0.0-rc.1`        |
 | EVM fork                      | Prague               | Prague               | Prague                |
-| Average block time            | ~5.7 s               | ~5.9 s               | ~5.3 s                |
+| Average block time            | ~5.9 s               | ~5.8 s               | ~5.3 s                |
 | Block gas limit               | 21,000,000           | 21,000,000           | Unlimited             |
 | Base fee / minimum gas price  | 571,000,000 wei (0.571 gwei) | 571,000,000 wei (0.571 gwei) | 571,000,000 wei (0.571 gwei) |
 | Native denom                  | `axrp` (18 decimals) | `axrp` (18 decimals) | `axrp` (18 decimals)  |
