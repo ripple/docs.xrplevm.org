@@ -12,13 +12,15 @@ When syncing from genesis, you must start from the network genesis binary and up
 
 {% tab label="Mainnet" %}
 
-| Upgrade Name | Height    | Binary Version |
-| ------------ | --------- | -------------- |
-| Genesis      | `0`       | `v7.0.0`       |
-| v8           | `497000`  | `v8.0.2`       |
-| v9           | `4688681` | `v9.0.3`       |
-| v10          | `4749000` | `v10.0.2`      |
-| v10.1        | `6856000` | `v10.1.0`      |
+| Upgrade Name | Height    | Binary Version                           |
+| ------------ | --------- | ---------------------------------------- |
+| Genesis      | `0`       | `v7.0.0`                                 |
+| `v8.0.0`     | `497000`  | `v8.0.2`                                 |
+| `v9.0.0`     | `4688681` | `v9.0.3`                                 |
+| `v10.0.0`    | `4749000` | `v10.0.2`                                |
+| `v10.1.0`    | `6856000` | `v10.1.0` (see the note below)           |
+| `v11.2.0`    | `7823200` | `v11.2.0`                                |
+| `v11.3.0`    | `8367050` | `v11.3.0`                                |
 
 {% /tab %}
 
@@ -27,11 +29,13 @@ When syncing from genesis, you must start from the network genesis binary and up
 | Upgrade Name | Height    | Binary Version |
 | ------------ | --------- | -------------- |
 | Genesis      | `0`       | `v6.0.0`       |
-| v7           | `547100`  | `v7.0.0`       |
-| v8           | `1485600` | `v8.0.0`       |
-| v9           | `3827000` | `v9.0.3`       |
-| v10          | `5601606` | `v10.0.1`      |
-| v10.1        | `7725000` | `v10.1.0`      |
+| `v7.0.0`     | `547100`  | `v7.0.0`       |
+| `v8.0.0`     | `1485600` | `v8.0.0`       |
+| `v9.0.0`     | `3827000` | `v9.0.3`       |
+| `v10.0.0`    | `5601606` | `v10.0.1`      |
+| `v10.1.0`    | `7725000` | `v10.1.0`      |
+| `v11.1.0`    | `8158200` | `v11.1.1`      |
+| `v11.3.0`    | `9280100` | `v11.3.0`      |
 
 {% /tab %}
 
@@ -40,12 +44,22 @@ When syncing from genesis, you must start from the network genesis binary and up
 | Upgrade Name | Height    | Binary Version |
 | ------------ | --------- | -------------- |
 | Genesis      | `0`       | `v9.0.3`       |
-| v10          | `1198644` | `v10.0.3`      |
-| v11          | `2089191` | `v11.0.0-rc.1` |
+| `v10.0.0`    | `1198644` | `v10.0.3`      |
+| `v11.0.0`    | `2089191` | `v11.0.0-rc.1` |
 
 {% /tab %}
 
 {% /tabs %}
+
+**Upgrade Name** is the on-chain upgrade plan name, which is also the Cosmovisor folder name (`cosmovisor/upgrades/<upgrade-name>/bin/exrpd`). It does not always match the release tag you install in that folder.
+
+{% admonition type="warning" name="Pick the binary for each range" %}
+
+- A binary only contains the upgrade handlers registered for its release line. `v11.3.0` includes the `v11.2.0` and `v11.3.0` handlers but not the Testnet `v11.1.0` handler, so Testnet must use `v11.1.1` from height `8158200` until `9280100`. Do not use the Docker `latest` tag (it follows the newest Mainnet release) or `main` (development build).
+- Mainnet halted after block `7360028` on 2026-08-23 and resumed at `7360029` on the patched `v10.2.0` release, without an on-chain upgrade. `v10.2.x` shares the `v10.1.0` upgrade handler. A full replay across this range has not been validated. To sync through it, use [state sync or a snapshot](../advanced/sync-options.md), or confirm the binary switch point with the core team.
+- `v10.1.0`, `v10.2.0`, `v10.2.1` and `v11.3.0` cannot be built from source because they depend on non-public security fixes. Use the release binaries or the Docker images for those versions.
+
+{% /admonition %}
 
 {% admonition type="info" name="Source of truth" %}
 Upgrade schedule and versions are maintained in [Networks](../resources/networks.md).
@@ -66,8 +80,13 @@ Install the binary for the **first** version in your network’s upgrade path ta
 
 ```bash
 cd /tmp
-wget https://github.com/xrplevm/node/releases/download/v7.0.0/node_7.0.0_Linux_amd64.tar.gz
-tar -xzf node_7.0.0_Linux_amd64.tar.gz
+TARGET_TAG=v7.0.0 # Mainnet genesis binary
+ARCH=amd64 # or arm64
+ASSET="node_${TARGET_TAG#v}_Linux_${ARCH}.tar.gz"
+wget -O "${ASSET}" "https://github.com/xrplevm/node/releases/download/${TARGET_TAG}/${ASSET}"
+wget -O checksums.txt "https://github.com/xrplevm/node/releases/download/${TARGET_TAG}/checksums.txt"
+sha256sum -c checksums.txt --ignore-missing
+tar -xzf "${ASSET}"
 sudo mv bin/exrpd /usr/local/bin/exrpd
 sudo chmod +x /usr/local/bin/exrpd
 exrpd version
@@ -98,10 +117,11 @@ docker logs -f xrplevm-node
 At each upgrade height, old binaries halt with an upgrade-needed message. Replace the binary with the target version and restart.
 
 {% admonition type="warning" name="Mandatory EVM chain-id setting (v10+)" %}
-Before starting with a v10+ binary, set `evm-chain-id` under `[evm]` in `app.toml`:
+Before starting with a v10+ binary, make sure `evm-chain-id` under `[evm]` in `app.toml` matches your network. Homes initialized with an older binary do not have the right value:
 
-- Mainnet: `evm-chain-id = "1440000"`
-- Testnet: `evm-chain-id = "1449000"`
+- Mainnet: `evm-chain-id = 1440000`
+- Testnet: `evm-chain-id = 1449000`
+- Devnet: `evm-chain-id = 1449900`
 
 File path (depending on your node home): `~/.exrpd/config/app.toml` or `/var/lib/exrpd/.exrpd/config/app.toml`.
 {% /admonition %}
@@ -120,11 +140,13 @@ sudo systemctl start exrpd
 
 ### `cosmovisor`
 
-Place the new binary at:
+Place the new binary at the folder named after the on-chain upgrade (the **Upgrade Name** column above):
 
 ```text
 ~/.exrpd/cosmovisor/upgrades/<upgrade-name>/bin/exrpd
 ```
+
+For a full replay you can stage every folder before starting. For example, on Mainnet: `genesis` (`v7.0.0`), `v8.0.0` (`v8.0.2`), `v9.0.0` (`v9.0.3`), `v10.0.0` (`v10.0.2`), `v10.1.0` (`v10.1.0`, see the note about block `7360028` above) `v11.2.0` (`v11.2.0`) and `v11.3.0` (`v11.3.0`).
 
 Ensure executable permissions and restart if needed:
 
@@ -139,13 +161,13 @@ sudo systemctl restart cosmovisor-exrpd
 docker pull peersyst/exrp:<new-version>
 docker stop xrplevm-node && docker rm xrplevm-node
 
-# Make RPC reachable through -p 26657:26657
+# Make RPC reachable from the host through -p 127.0.0.1:26657:26657 (localhost only)
 # Note: this RPC listener is in config.toml ([rpc].laddr), not app.toml.
 sed -i.bak -E 's#^laddr = "tcp://127.0.0.1:26657"#laddr = "tcp://0.0.0.0:26657"#' ~/.exrpd/config/config.toml
 
 docker run -d --name xrplevm-node --restart unless-stopped \
-  -p 26657:26657 \
-  -v /root/.exrpd:/root/.exrpd --entrypoint exrpd peersyst/exrp:<new-version> start
+  -p 26656:26656 -p 127.0.0.1:26657:26657 \
+  -v "$HOME/.exrpd:/root/.exrpd" --entrypoint exrpd peersyst/exrp:<new-version> start
 ```
 
 Repeat until you reach the latest network version.

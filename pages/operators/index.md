@@ -63,7 +63,7 @@
 3. **[Monitoring the Node](./advanced/monitoring-the-node.md)**
    - **Purpose:** Shows how to enable Prometheus and Grafana for observability.
    - **Key Topics:**
-     - Editing `config.yaml` for Prometheus metrics
+     - Editing `config.toml` for Prometheus metrics
      - Integrating with Grafana (scrape configs, dashboards)
      - Recommended dashboards
 
