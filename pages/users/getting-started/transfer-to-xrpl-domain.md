@@ -37,7 +37,7 @@ The easiest way to send XRP to a .xrpl domain is using the official transfer too
 ### Step 2: Enter the Recipient
 
 1. **Type the .xrpl Domain**  
-   In the **Recipient** field, enter the .xrpl domain name (e.g., `alice.xrpl` or `589.xrpl`)
+   In the **Recipient** field, enter the .xrpl domain name (e.g., `alice.xrpl`)
 
    ![Resolve XRPL Domain](../../users/images/resolve-xrpl-domain.png)
 
@@ -110,7 +110,7 @@ If you enter a domain that doesn't exist or hasn't been registered, the tool wil
 
 ### Can domains expire?
 
-Yes, .xrpl domains have expiration dates and need to be renewed. If a domain has expired, transfers may not work until the owner renews it.
+Yes, .xrpl domains have expiration dates and need to be renewed. If a domain has expired, it no longer resolves to an address, so transfers to it are not possible until the owner renews it.
 
 ### Is this available on Testnet?
 

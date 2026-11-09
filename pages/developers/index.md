@@ -112,7 +112,7 @@ Leverage the Cosmos SDK foundation for enhanced blockchain functionality:
 #### Cross-Chain Transactions
 
 - **[Swap with Skip Widget](./interacting-with-cosmos/advanced-guides/cross-chain-transactions/swap-with-skip-widget.md)**
-  Integrate Skip Protocol's widget to enable users to swap tokens from Cosmos chains like Osmosis, Injective, or Cosmos Hub directly into XRP on XRPL EVM. Perfect for accessing liquidity from the broader Cosmos ecosystem.
+  Integrate Skip Protocol's widget so users can swap tokens from Cosmos chains (routed through Osmosis) into XRP on XRPL EVM.
 
 ---
 
@@ -125,3 +125,12 @@ Essential tools and references for XRPL EVM development:
 
 - **[Public APIs](./resources/public-apis.md)**
   Access XRPL EVM via public RPC, REST, and WebSocket endpoints.
+
+- **[Network Parameters and Status](./resources/network-status.md)**
+  Chain IDs, gas and block parameters, EVM behavior differences from Ethereum, and recent network upgrades.
+
+- **[Precompiles](./resources/precompiles.md)**
+  Native modules exposed to Solidity, and the per-transaction precompile call limit.
+
+- **[Utility Contracts](./resources/utility-contracts.md)**
+  Canonical infrastructure contracts already deployed (Multicall3, Permit2, CREATE2 deployers, Safe, ERC-4337 EntryPoint).

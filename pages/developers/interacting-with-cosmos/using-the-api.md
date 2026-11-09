@@ -6,7 +6,7 @@ Cosmos SDK exposes three primary interfaces for interacting with a node. Each in
 - **REST**: Port `1317`
 - **CometBFT RPC**: Port `26657`
 
-Nodes also expose other endpoints, such as the CometBFT P2P endpoint, or the [Prometheus endpoint](https://docs.cometbft.com/v1.0/explanation/core/metrics), which are not directly related to the Cosmos SDK. For detailed instructions on configuring these additional CometBFT endpoints, refer to the [CometBFT Configuration Manual](https://docs.cometbft.com/v1.0/references/config/).
+Nodes also expose other endpoints, such as the CometBFT P2P endpoint, or the [Prometheus endpoint](https://docs.cosmos.network/cometbft/latest/docs/core/metrics), which are not directly related to the Cosmos SDK. For detailed instructions on configuring these additional CometBFT endpoints, refer to the [CometBFT Configuration Manual](https://docs.cosmos.network/cometbft/latest/docs/core/configuration).
 
 {% tabs %}
 
@@ -14,10 +14,10 @@ Nodes also expose other endpoints, such as the CometBFT P2P endpoint, or the [Pr
 
 ## gRPC (Mainnet)
 
-Below is an example of querying the gRPC server for governance proposals on **Mainnet**:
+Below is an example of querying the gRPC server for the latest governance proposal on **Mainnet**:
 
 ```bash
-grpcurl cosmos-grpc.xrplevm.org:443 cosmos.gov.v1.Query/Proposals
+grpcurl -d '{"pagination": {"reverse": true, "limit": 1}}' cosmos-grpc.xrplevm.org:443 cosmos.gov.v1.Query/Proposals
 ```
 
 <details>
@@ -27,10 +27,10 @@ grpcurl cosmos-grpc.xrplevm.org:443 cosmos.gov.v1.Query/Proposals
 {
   "proposals": [
     {
-      "id": "49",
+      "id": "38",
       "messages": [
         {
-          "@type": "/ethermint.evm.v1.MsgUpdateParams",
+          "@type": "/ibc.core.client.v1.MsgIBCSoftwareUpgrade",
           ...
         }
       ],
@@ -39,24 +39,24 @@ grpcurl cosmos-grpc.xrplevm.org:443 cosmos.gov.v1.Query/Proposals
     }
   ],
   "pagination": {
-    "total": "49"
+    "next_key": "AAAAAAAAACU="
   }
 }
 ```
 
 </details>
 
-For more details on the Cosmos SDK gRPC server, refer to the [Cosmos SDK gRPC Server documentation](https://docs.cosmos.network/sdk/v0.50/learn/advanced/grpc_rest#grpc-server).  
+For more details on the Cosmos SDK gRPC server, refer to the [Cosmos SDK gRPC Server documentation](https://docs.cosmos.network/sdk/v0.53/learn/advanced/grpc_rest#grpc-server).  
 The full gRPC server specification is available at [buf.build/cosmos/cosmos-sdk](https://buf.build/cosmos/cosmos-sdk).
 
 ---
 
 ## REST API (Mainnet)
 
-Example REST API query for governance proposals on **Mainnet**:
+Example REST API query for the latest governance proposal on **Mainnet**:
 
 ```bash
-curl -X GET "https://cosmos-api.xrplevm.org/cosmos/gov/v1/proposals" -H "accept: application/json"
+curl -X GET "https://cosmos-api.xrplevm.org/cosmos/gov/v1/proposals?pagination.reverse=true&pagination.limit=1" -H "accept: application/json"
 ```
 
 <details>
@@ -66,10 +66,10 @@ curl -X GET "https://cosmos-api.xrplevm.org/cosmos/gov/v1/proposals" -H "accept:
 {
   "proposals": [
     {
-      "id": "49",
+      "id": "38",
       "messages": [
         {
-          "@type": "/ethermint.evm.v1.MsgUpdateParams",
+          "@type": "/ibc.core.client.v1.MsgIBCSoftwareUpgrade",
           ...
         }
       ],
@@ -78,15 +78,15 @@ curl -X GET "https://cosmos-api.xrplevm.org/cosmos/gov/v1/proposals" -H "accept:
     }
   ],
   "pagination": {
-    "next_key": null,
-    "total": "49"
+    "next_key": "AAAAAAAAACU=",
+    "total": "0"
   }
 }
 ```
 
 </details>
 
-Learn more about the Cosmos REST server in the [Cosmos SDK REST Server documentation](https://docs.cosmos.network/sdk/v0.50/learn/advanced/grpc_rest#rest-server).  
+Learn more about the Cosmos REST server in the [Cosmos SDK REST Server documentation](https://docs.cosmos.network/sdk/v0.53/learn/advanced/grpc_rest#rest-server).  
 Access the full REST API specification at [cosmos-api.xrplevm.org](https://cosmos-api.xrplevm.org).
 
 ---
@@ -115,7 +115,7 @@ curl -X GET 'https://cosmos-rpc.xrplevm.org/abci_query?path="/cosmos.gov.v1.Quer
       "key": null,
       "value": "CqwCCAEShgEKKC9...dsZXR5am12cAESAhAx",
       "proofOps": null,
-      "height": "13713161",
+      "height": "8262000",
       "codespace": ""
     }
   }
@@ -124,7 +124,7 @@ curl -X GET 'https://cosmos-rpc.xrplevm.org/abci_query?path="/cosmos.gov.v1.Quer
 
 </details>
 
-Explore the [Cosmos CometBFT RPC documentation](https://docs.cosmos.network/sdk/v0.50/learn/advanced/grpc_rest#cometbft-rpc) for more details.  
+Explore the [Cosmos CometBFT RPC documentation](https://docs.cosmos.network/sdk/v0.53/learn/advanced/grpc_rest#cometbft-rpc) for more details.  
 Access the CometBFT RPC interface at [cosmos-rpc.xrplevm.org](https://cosmos-rpc.xrplevm.org).
 {% /tab %}
 
@@ -132,10 +132,10 @@ Access the CometBFT RPC interface at [cosmos-rpc.xrplevm.org](https://cosmos-rpc
 
 ## gRPC (Testnet)
 
-Below is an example of querying the gRPC server for governance proposals on **Testnet**:
+Below is an example of querying the gRPC server for the latest governance proposal on **Testnet**:
 
 ```bash
-grpcurl cosmos-grpc.testnet.xrplevm.org:443 cosmos.gov.v1.Query/Proposals
+grpcurl -d '{"pagination": {"reverse": true, "limit": 1}}' cosmos-grpc.testnet.xrplevm.org:443 cosmos.gov.v1.Query/Proposals
 ```
 
 <details>
@@ -145,36 +145,36 @@ grpcurl cosmos-grpc.testnet.xrplevm.org:443 cosmos.gov.v1.Query/Proposals
 {
   "proposals": [
     {
-      "id": "49",
+      "id": "51",
       "messages": [
         {
-          "@type": "/ethermint.evm.v1.MsgUpdateParams",
+          "@type": "/poa.MsgAddValidator",
           ...
         }
       ],
-      "status": "PROPOSAL_STATUS_PASSED",
+      "status": "PROPOSAL_STATUS_VOTING_PERIOD",
       ...
     }
   ],
   "pagination": {
-    "total": "49"
+    "next_key": "AAAAAAAAADI="
   }
 }
 ```
 
 </details>
 
-For more details on the Cosmos SDK gRPC server, refer to the [Cosmos SDK gRPC Server documentation](https://docs.cosmos.network/sdk/v0.50/learn/advanced/grpc_rest#grpc-server).  
+For more details on the Cosmos SDK gRPC server, refer to the [Cosmos SDK gRPC Server documentation](https://docs.cosmos.network/sdk/v0.53/learn/advanced/grpc_rest#grpc-server).  
 The full gRPC server specification is available at [buf.build/cosmos/cosmos-sdk](https://buf.build/cosmos/cosmos-sdk).
 
 ---
 
 ## REST API (Testnet)
 
-Example REST API query for governance proposals on **Testnet**:
+Example REST API query for the latest governance proposal on **Testnet**:
 
 ```bash
-curl -X GET "https://cosmos-api.testnet.xrplevm.org/cosmos/gov/v1/proposals" -H "accept: application/json"
+curl -X GET "https://cosmos-api.testnet.xrplevm.org/cosmos/gov/v1/proposals?pagination.reverse=true&pagination.limit=1" -H "accept: application/json"
 ```
 
 <details>
@@ -184,27 +184,27 @@ curl -X GET "https://cosmos-api.testnet.xrplevm.org/cosmos/gov/v1/proposals" -H 
 {
   "proposals": [
     {
-      "id": "49",
+      "id": "51",
       "messages": [
         {
-          "@type": "/ethermint.evm.v1.MsgUpdateParams",
+          "@type": "/poa.MsgAddValidator",
           ...
         }
       ],
-      "status": "PROPOSAL_STATUS_PASSED",
+      "status": "PROPOSAL_STATUS_VOTING_PERIOD",
       ...
     }
   ],
   "pagination": {
-    "next_key": null,
-    "total": "49"
+    "next_key": "AAAAAAAAADI=",
+    "total": "0"
   }
 }
 ```
 
 </details>
 
-Learn more about the Cosmos REST server in the [Cosmos SDK REST Server documentation](https://docs.cosmos.network/sdk/v0.50/learn/advanced/grpc_rest#rest-server).  
+Learn more about the Cosmos REST server in the [Cosmos SDK REST Server documentation](https://docs.cosmos.network/sdk/v0.53/learn/advanced/grpc_rest#rest-server).  
 Access the full REST API specification at [cosmos-api.testnet.xrplevm.org](https://cosmos-api.testnet.xrplevm.org).
 
 ---
@@ -233,7 +233,7 @@ curl -X GET 'https://cosmos-rpc.testnet.xrplevm.org/abci_query?path="/cosmos.gov
       "key": null,
       "value": "CqwCCAEShgEKKC9...dsZXR5am12cAESAhAx",
       "proofOps": null,
-      "height": "13713161",
+      "height": "9190000",
       "codespace": ""
     }
   }
@@ -242,9 +242,9 @@ curl -X GET 'https://cosmos-rpc.testnet.xrplevm.org/abci_query?path="/cosmos.gov
 
 </details>
 
-Explore the [Cosmos CometBFT RPC documentation](https://docs.cosmos.network/sdk/v0.50/learn/advanced/grpc_rest#cometbft-rpc) for more details.  
+Explore the [Cosmos CometBFT RPC documentation](https://docs.cosmos.network/sdk/v0.53/learn/advanced/grpc_rest#cometbft-rpc) for more details.  
 Access the CometBFT RPC interface at [cosmos-rpc.testnet.xrplevm.org](https://cosmos-rpc.testnet.xrplevm.org).
 {% /tab %}
 {% /tabs %}
 
-With these endpoints, you can query governance proposals (and more) on the **Mainnet**, **Testnet** and **Devent** environments. The same commands can be adapted for other Cosmos SDK features, providing a versatile approach to interacting with the XRPL EVM’s Cosmos-based layer.
+With these endpoints, you can query governance proposals and other data on Mainnet and Testnet. The same commands work for other Cosmos SDK modules.

@@ -30,7 +30,7 @@ function App() {
     <SquidWidget
       config={{
         integratorId: "<your-integrator-id>",
-        apiUrl: "https://apiplus.squidrouter.com",
+        apiUrl: "https://v2.api.squidrouter.com",
         initialAssets: {
           from: {
             address: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
@@ -48,6 +48,10 @@ function App() {
 ```
 
 `0xEeee...EEeE` is Squid's sentinel address for a chain's native token, so the example above starts on **ETH on Ethereum** (chain `1`) and lands on **XRP on XRPL EVM** (chain `1440000`).
+
+{% admonition type="warning" name="React version" %}
+`@0xsquid/widget` (v6 and v7) declares React 16–18 as its peer dependency. It does not support React 19 yet, so use React 18 in the app that embeds the widget.
+{% /admonition %}
 
 {% admonition type="info" name="Framework setup" %}
 Next.js and Vite need extra transpile/optimize configuration for the widget package. Follow the [Next.js](https://docs.squidrouter.com/widget-integration/add-a-widget/widget/nextjs-installation) or [Vite](https://docs.squidrouter.com/widget-integration/add-a-widget/widget/vite-installation) installation guides.

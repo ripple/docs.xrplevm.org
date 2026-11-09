@@ -2,13 +2,13 @@
 
 The **XRPL Ethereum Virtual Machine (EVM) Sidechain** is a **sovereign Layer-1 blockchain** developed by [Peersyst](https://peersyst.com/) in partnership with [Ripple](https://ripple.com/). It extends the XRP Ledger ecosystem with **full EVM compatibility** for XRP, enabling developers to deploy Ethereum smart contracts, DeFi protocols, and NFTs on a separate chain while keeping **XRP as the native gas currency**.
 
-Built on the [Cosmos SDK](https://cosmos.network/) and secured by [CometBFT](https://cometbft.com/) (formerly Tendermint Core), the XRPL EVM inherits **deterministic finality, modularity, and high throughput**, while remaining **independent of XRPL consensus**. Interoperability is enabled via the **Axelar Network**, **Wormhole**, and **IBC (Inter-Blockchain Communication)**, ensuring fluid connections across XRPL, Ethereum, and the Cosmos ecosystem.
+Built on the [Cosmos SDK](https://cosmos.network/) and secured by [CometBFT](https://docs.cosmos.network/cometbft) (formerly Tendermint Core), the XRPL EVM has deterministic finality and a modular architecture, and its consensus is independent of XRPL consensus. The Axelar Network, Wormhole and IBC (Inter-Blockchain Communication) connect it to the XRP Ledger, Ethereum and the Cosmos ecosystem.
 
 Repositories:
 
 - [XRPL EVM GitHub](https://github.com/xrplevm)
 - [XRPL EVM Node](https://github.com/xrplevm/node)
-- [Tendermint / CometBFT](https://github.com/tendermint/tendermint)
+- [CometBFT](https://github.com/cometbft/cometbft)
 
 ---
 
@@ -29,10 +29,10 @@ This migration improved **EVM equivalence, performance, and developer tooling co
 
 ### Consensus Layer: CometBFT
 
-Consensus and networking are powered by [CometBFT](https://cometbft.com/) (Tendermint BFT). This provides:
+Consensus and networking are powered by [CometBFT](https://docs.cosmos.network/cometbft) (Tendermint BFT). This provides:
 
 - **Byzantine Fault Tolerance (BFT):** Security even if up to 1/3 of validators act maliciously.
-- **Deterministic Finality:** Blocks are finalized in ~5 seconds with no probabilistic rollbacks.
+- **Deterministic Finality:** Blocks are finalized in ~5–6 seconds with no probabilistic rollbacks.
 - **Networking Layer:** Optimized p2p stack decoupled from application logic.
 
 ---
@@ -67,7 +67,7 @@ This alignment ensures the XRPL ecosystem gains programmability **without fragme
 
 ### IBC (Inter-Blockchain Communication)
 
-The XRPL EVM supports [IBC](https://ibc.cosmos.network/), unlocking interoperability with the **Cosmos Hub, Osmosis, Elys, Noble, Injective and potentially hundreds of IBC-enabled chains**. This extends XRPL liquidity into the entire Cosmos multichain environment.
+The XRPL EVM supports [IBC](https://ibc.cosmos.network/), with active channels to Osmosis and Injective. Assets from other IBC-enabled chains can reach XRPL EVM through routers such as Skip Go, which route through Osmosis. See [Available IBC Channels](../../developers/interacting-with-cosmos/using-ibc.md) for the current channel list.
 
 ### Wormhole
 
@@ -83,8 +83,9 @@ The XRPL EVM is designed to be **Ethereum-equivalent**, meaning Solidity develop
 
 - **Languages:** Solidity (up to 0.8.30 out of the box).
 - **EVM Compatibility:** Prague fork.
-- **Tools:** Works with [Remix](https://remix.ethereum.org/), Truffle, Hardhat, Foundry, [MetaMask](https://metamask.io/), and [Keplr](https://www.keplr.app/).
+- **Tools:** Works with [Remix](https://remix.ethereum.org/), Hardhat, Foundry, [MetaMask](https://metamask.io/), and [Keplr](https://www.keplr.app/).
 - **RPC & APIs:** Standard Ethereum JSON-RPC endpoints are exposed by nodes ([xrplevm/node](https://github.com/xrplevm/node)).
+- **Network parameters:** Chain IDs, fees, block gas limit and EVM differences from Ethereum are listed in [Network parameters and status](../../developers/resources/network-status.md).
 
 ---
 

@@ -27,7 +27,7 @@ On the **XRPL EVM Sidechain**, developers can write, deploy, verify, and interac
 
 Smart contracts are programs stored on the blockchain that execute automatically when predefined conditions are met. These contracts eliminate the need for intermediaries, making processes transparent, efficient, and secure. With the XRPL EVM Sidechain, you can deploy Ethereum-compatible smart contracts while benefiting from:
 
-- **Fast Transactions:** Block times under 4 seconds with reliable finality.
+- **Fast Transactions:** Blocks every ~5–6 seconds with deterministic finality.
 - **Low Fees:** Significantly lower costs compared to Ethereum mainnet.
 - **Native Performance:** Run as a standalone Layer 1 blockchain without external dependencies.
 - **Optional Interoperability:** Add cross-chain functionality when needed via multiple bridge options and Cosmos IBC.

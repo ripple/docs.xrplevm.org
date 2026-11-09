@@ -99,7 +99,7 @@ If you already hold XRP on the **XRPL mainnet**, you can bring it over to the XR
 
 ### Option E: Cosmos Ecosystem Swap with Skip Go
 
-[Skip Go](https://go.skip.build/) enables swaps from Cosmos-based chains (e.g., Osmosis, Injective, Elys Network, Cosmos Hub, Noble and others.) to XRPL EVM Sidechain using Cosmos IBC
+[Skip Go](https://go.skip.build/) enables swaps from Cosmos-based chains to XRPL EVM Sidechain using Cosmos IBC. Routes arrive over the active Osmosis channel, so assets from other Cosmos chains (for example Cosmos Hub or Noble) are routed through Osmosis
 → [Try Skip](https://go.skip.build/?src_asset=uatom&src_chain=cosmoshub-4&dest_asset=axrp&dest_chain=xrplevm_1440000-1&amount_in=&amount_out=)
 
 {% /tab %}

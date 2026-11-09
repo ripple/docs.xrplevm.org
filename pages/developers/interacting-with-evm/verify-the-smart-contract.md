@@ -70,83 +70,89 @@ Two approaches work on both Mainnet and Testnet: **Standard JSON Input** and the
    ```bash
    npx hardhat compile
    ```
-2. Locate your JSON at:
+2. Hardhat writes the compiler input to a build-info file:
 
    ```
-   artifacts/solc-input/standard-input.json
+   artifacts/build-info/<hash>.json
    ```
-3. On the **Verify & Publish** page, choose **Standard JSON Input**, upload, pick license, and click **Verify**.
+
+   The Standard JSON Input is the `input` field of that file. Extract it with:
+
+   ```bash
+   jq .input artifacts/build-info/<hash>.json > standard-input.json
+   ```
+3. On the **Verify & Publish** page, choose **Standard JSON Input**, upload `standard-input.json`, pick license, and click **Verify**.
 
 ---
 
 ### B) Hardhat Verify Plugin
 
-Automate via CLI. Configuration varies per network:
+Automate via CLI. The examples below use Hardhat 2 (`hardhat@hh2`), where `@nomicfoundation/hardhat-toolbox@hh2` already includes the verify plugin. They extend the `hardhat.config.js` and `.env` (`XRPL_EVM_URL`, `PRIVATE_KEY`) from [Deploy the Smart Contract](./deploy-the-smart-contract.md), keeping the same `xrplEVM` network name. The explorer runs Blockscout, which accepts any non-empty API key.
 
 {% tabs %}
 {% tab label="Mainnet" %}
 
-```ts
-// hardhat.config.ts
-import "@nomicfoundation/hardhat-toolbox";
-import "@nomicfoundation/hardhat-verify";
-import * as dotenv from "dotenv";
-dotenv.config();
+```js
+// hardhat.config.js
+require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config();
 
-export default {
+module.exports = {
   solidity: "0.8.24",
   networks: {
     xrplEVM: {
-      url: process.env.XRPL_EVM_URL,    // https://rpc.xrplevm.org
+      url: process.env.XRPL_EVM_URL, // set in .env, see Deploy the Smart Contract
       chainId: 1440000,
-      accounts: [process.env.PRIVATE_KEY!],
+      accounts: [process.env.PRIVATE_KEY],
     },
   },
   etherscan: {
-    apiKey: { xrplEVM: "mainnet-key" },
-    customChains: [{
-      network: "xrplEVM",
-      chainId: 1440000,
-      urls: {
-        apiURL:    "https://explorer.xrplevm.org/api",
-        browserURL:"https://explorer.xrplevm.org"
-      }
-    }]
-  }
-}
+    apiKey: { xrplEVM: "blockscout" },
+    customChains: [
+      {
+        network: "xrplEVM",
+        chainId: 1440000,
+        urls: {
+          apiURL: "https://explorer.xrplevm.org/api",
+          browserURL: "https://explorer.xrplevm.org",
+        },
+      },
+    ],
+  },
+};
 ```
 
 {% /tab %}
 {% tab label="Testnet" %}
 
-```ts
-// hardhat.config.ts (Testnet)
-import "@nomicfoundation/hardhat-toolbox";
-import "@nomicfoundation/hardhat-verify";
-import * as dotenv from "dotenv";
-dotenv.config();
+```js
+// hardhat.config.js
+require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config();
 
-export default {
+module.exports = {
   solidity: "0.8.24",
   networks: {
-    xrplEVMTestnet: {
-      url: process.env.XRPL_EVM_TESTNET_URL, // https://rpc.testnet.xrplevm.org
+    xrplEVM: {
+      url: process.env.XRPL_EVM_URL, // set in .env, see Deploy the Smart Contract
       chainId: 1449000,
-      accounts: [process.env.PRIVATE_KEY!],
+      accounts: [process.env.PRIVATE_KEY],
     },
   },
   etherscan: {
-    apiKey: { xrplEVMTestnet: "testnet-key" },
-    customChains: [{
-      network: "xrplEVMTestnet",
-      chainId: 1449000,
-      urls: {
-        apiURL:    "https://explorer.testnet.xrplevm.org/api",
-        browserURL:"https://explorer.testnet.xrplevm.org"
-      }
-    }]
-  }
-}
+    apiKey: { xrplEVM: "blockscout" },
+    customChains: [
+      {
+        network: "xrplEVM",
+        chainId: 1449000,
+        urls: {
+          apiURL: "https://explorer.testnet.xrplevm.org/api",
+          browserURL: "https://explorer.testnet.xrplevm.org",
+        },
+      },
+    ],
+  },
+};
 ```
 
 {% /tab %}
@@ -154,14 +160,10 @@ export default {
 
 #### Verify via CLI
 
-Replace `<ADDRESS>` and `[args]`:
+Replace `<ADDRESS>` and the constructor arguments. The command is the same on both networks; the target is set by `XRPL_EVM_URL` and the config above:
 
 ```bash
-# Mainnet
 npx hardhat verify --network xrplEVM <ADDRESS> [constructorArg1] …
-
-# Testnet
-npx hardhat verify --network xrplEVMTestnet <ADDRESS> …
 ```
 
 > If no constructor parameters, omit the args. Use `--force` to reverify.
@@ -170,7 +172,7 @@ npx hardhat verify --network xrplEVMTestnet <ADDRESS> …
 
 ## Step 5: Verification with Foundry
 
-Foundry’s `forge` can both generate Standard JSON and invoke on-chain verification via Etherscan-compatible API.
+Foundry’s `forge` can both generate Standard JSON and verify directly against the explorer, which runs Blockscout.
 
 ### A) Export Standard JSON Input
 
@@ -182,7 +184,7 @@ Foundry’s `forge` can both generate Standard JSON and invoke on-chain verifica
 2. Generate JSON input:
 
    ```bash
-   forge inspect src/HelloWorld.sol:HelloWorld --pretty-json > input.json
+   forge inspect src/HelloWorld.sol:HelloWorld standardJson > input.json
    ```
 3. On the Explorer’s **Verify & Publish**, choose **Standard JSON Input**, upload `input.json`, pick license, and click **Verify**.
 
@@ -190,33 +192,23 @@ Foundry’s `forge` can both generate Standard JSON and invoke on-chain verifica
 
 ### B) CLI Verification with `forge verify-contract`
 
-Use your `.env` for RPC, key, and chain ID:
-
-```dotenv
-# .env
-PRIVATE_KEY=0xYOUR_KEY
-CHAIN_ID=1440000           # 1440000=Mainnet, 1449000=Testnet
-RPC_URL=https://rpc.xrplevm.org  # switch URL per network
-```
-
-Run:
+No plugin is needed. Constructor arguments must be ABI-encoded, so pass them through `cast abi-encode`:
 
 ```bash
-# Install etherscan support if needed:
-forge install foundry-rs/forge-etherscan
-
-# Then verify:
+# Mainnet
 forge verify-contract \
-  --chain-id $CHAIN_ID \
-  --constructor-args "Hello, XRPL EVM!" \
-  --etherscan-api-key any-string \
+  --rpc-url https://rpc.xrplevm.org \
+  --verifier blockscout \
+  --verifier-url https://explorer.xrplevm.org/api/ \
+  --constructor-args $(cast abi-encode "constructor(string)" "Hello, XRPL EVM!") \
   <DEPLOYED_ADDRESS> \
-  HelloWorld \
-  $RPC_URL
+  src/HelloWorld.sol:HelloWorld
 ```
 
-* Replace `<DEPLOYED_ADDRESS>` and `HelloWorld` with your contract’s name.
-* For Testnet, set `CHAIN_ID` and `RPC_URL` accordingly.
+* Replace `<DEPLOYED_ADDRESS>` with your contract address and `src/HelloWorld.sol:HelloWorld` with your contract path and name.
+* For Testnet, use `--rpc-url https://rpc.testnet.xrplevm.org` and `--verifier-url https://explorer.testnet.xrplevm.org/api/`.
+* For Devnet, use `--rpc-url https://rpc.devnet.xrplevm.org` and `--verifier-url https://explorer.devnet.xrplevm.org/api/`.
+* If the contract has no constructor arguments, drop `--constructor-args`.
 
 ---
 
@@ -225,7 +217,7 @@ forge verify-contract \
 * **Compiler Settings**: Match version & optimizer exactly.
 * **License**: Choose MIT, GPL, or Unlicense.
 * **Explorer Indexing**: Wait about 10 to 15 seconds or retry on “no bytecode” errors.
-* **Cross-chain Ready**: Plan for Cosmos IBC or Axelar GMP if you need interoperability.
+* **Cross-chain Ready**: Plan for Axelar GMP, Wormhole or Cosmos IBC if you need interoperability.
 
 ---
 
