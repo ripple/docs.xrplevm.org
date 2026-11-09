@@ -18,6 +18,8 @@ The following Ethereum infrastructure contracts are deployed on the XRPL EVM at 
 
 ERC-4337 EntryPoint v0.6, ERC-1820 and Safe 1.3.0 are not deployed.
 
+To create and manage multisig wallets on top of these Safe contracts, use [XRPL EVM Multisig](https://multisig.xrplevm.org/).
+
 ¹ On Testnet, the same address holds an unrelated contract (symbol `ETH`), not WXRP. Do not use it as wrapped XRP on Testnet.
 
 To confirm a deployment yourself, check that the address has code:
