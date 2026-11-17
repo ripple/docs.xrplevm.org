@@ -59,7 +59,7 @@ Answer prompts for project name, framework (Next.js), and library (Wagmi/EVM). T
 
 ## 3. Cloud Setup
 
-1. Visit [https://cloud.reown.com](https://cloud.reown.com)
+1. Visit [https://dashboard.reown.com](https://dashboard.reown.com)
 2. Create a project → copy its **Project ID**.
 3. In your repo root, add `.env.local`:
 

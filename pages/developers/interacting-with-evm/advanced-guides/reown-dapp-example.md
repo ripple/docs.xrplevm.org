@@ -20,8 +20,8 @@ This guide walks you through integrating Reown AppKit (formerly WalletConnect) s
 
 Before starting, ensure you have:
 
-- Node.js 18+ installed
-- A Reown Cloud Project ID (obtain from [cloud.reown.com](https://cloud.reown.com))
+- Node.js 20+ installed (Node.js 18 is end-of-life)
+- A Reown Project ID (obtain from [dashboard.reown.com](https://dashboard.reown.com))
 - Basic knowledge of React and Next.js
 - Understanding of Web3 concepts
 
@@ -103,7 +103,7 @@ NEXT_PUBLIC_PROJECT_ID=your_reown_project_id_here
 
 To obtain your Project ID:
 
-1. Visit [cloud.reown.com](https://cloud.reown.com)
+1. Visit [dashboard.reown.com](https://dashboard.reown.com)
 2. Create a new project
 3. Copy your Project ID
 
@@ -625,7 +625,7 @@ If users can't connect to XRPL EVM networks:
 
 ### Tools
 
-- [Reown Cloud](https://cloud.reown.com) - Get your Project ID
+- [Reown Dashboard](https://dashboard.reown.com) - Get your Project ID
 - [XRPL EVM Explorer](https://explorer.xrplevm.org) - Mainnet explorer
 - [XRPL EVM Testnet Explorer](https://explorer.testnet.xrplevm.org) - Testnet explorer
 - [XRPL EVM Testnet Faucet](https://faucet.xrplevm.org) - Get testnet XRP

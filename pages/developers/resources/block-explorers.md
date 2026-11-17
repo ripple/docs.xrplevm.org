@@ -31,4 +31,15 @@ Block explorers are web-based tools that allow you to search, analyze, and view 
 
 {% /tab %}
 
+{% tab label="Devnet" %}
+
+## Devnet Explorers
+
+| Name         | URL                                                                            | Type   |
+| ------------ | ------------------------------------------------------------------------------ | ------ |
+| **Peersyst** | [https://explorer.devnet.xrplevm.org](https://explorer.devnet.xrplevm.org)     | EVM    |
+| **Peersyst** | [https://governance.devnet.xrplevm.org](https://governance.devnet.xrplevm.org) | Cosmos |
+
+{% /tab %}
+
 {% /tabs %}

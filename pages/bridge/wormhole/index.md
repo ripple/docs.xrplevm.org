@@ -27,7 +27,7 @@ Read more in the [Wormhole architecture documentation](https://wormhole.com/docs
 | EVM chain ID      | `1440000` (Mainnet) / `1449000` (Testnet) |
 
 {% admonition type="info" name="Wormhole chain IDs are not EVM chain IDs" %}
-Wormhole assigns its own chain IDs to every connected network. When calling Wormhole contracts or the SDK, use the Wormhole chain ID `57` for XRPL EVM, not the EVM chain ID (`1440000`/`1449000`) you use in MetaMask or JSON-RPC calls. See the full [Wormhole chain ID reference](https://wormhole.com/docs/products/reference/chain-ids/).
+Wormhole assigns its own chain IDs to every connected network. When calling Wormhole contracts or the SDK, use the Wormhole chain ID `57` for XRPL EVM, not the EVM chain ID (`1440000`/`1449000`) you use in MetaMask or JSON-RPC calls. See the full [Wormhole chain ID reference](https://wormhole.com/docs/reference/supported-networks/).
 {% /admonition %}
 
 ### Supported Products

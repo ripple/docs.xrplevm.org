@@ -39,9 +39,10 @@ To send a message from the XRP Ledger (XRPL) to the XRPL EVM, a `Payment` transa
 
 - `Amount`: Represents the value of the asset to be sent. If the message does not include an asset transfer, this can be set to 1 drop (the smallest XRP unit).
 - `Destination`: The address of the Gateway on the XRP Ledger.
-  - [**Mainnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/mainnet.json)
-  - [**Testnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/testnet.json#L2603)
-  - [**Devnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/devnet-amplifier.json#L985)
+  - **Mainnet**: `rfmS3zqrQrka8wVyhXifEeyTwe8AMz2Yhw`
+  - **Testnet**: `rNrjh1KGZk2jBR3wPfAQnoidtFFYQKbQn2`
+
+  These are the `xrpl` chain entries in Axelar's [mainnet](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/mainnet.json) and [testnet](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/testnet.json) configuration files.
 
 - `Memos`: Hex-encoded data required for the function call, including:
   - The _type_ of call to initiate.
@@ -51,13 +52,14 @@ To send a message from the XRP Ledger (XRPL) to the XRPL EVM, a `Payment` transa
 
 See [Axelar's documentation](https://github.com/axelarnetwork/axelar-contract-deployments/tree/main/xrpl#general-message-passing) for a guide on making GMP contract calls.
 
-3. Submit the transaction to the XRPL Ledger. Within a few minutes, the relayer should submit validator signatures of the XRPL Testnet deposit transaction to the XRPL EVM Sidechain `AxelarAmplifierGateway` contract, which records the approval of the payload hash and emits a `ContractCallApproved` event.
-4. Once the transaction is confirmed, call the `execute` function on the XRPL EVM Sidechain `AxelarExecutable` smart contract.
+3. Submit the transaction to the XRPL Ledger. Within a few minutes, the relayer should submit validator signatures of the XRPL deposit transaction to the XRPL EVM Sidechain `AxelarAmplifierGateway` contract, which records the approval of the payload hash and emits a `ContractCallApproved` event.
+4. Once the message is approved, the Axelar relayer normally calls `execute` on your `AxelarExecutable` contract automatically (you can follow the message on [Axelarscan](https://axelarscan.io/gmp/search)). If it is not executed, call the `execute` function on the XRPL EVM Sidechain `AxelarExecutable` smart contract yourself:
 
 ```
+XRPL_EVM_RPC_URL=https://rpc.xrplevm.org # or https://rpc.testnet.xrplevm.org
 AXELAR_EXECUTABLE= # your `AxelarExecutable` contract
 COMMAND_ID= # the `commandId` that was emitted in the `ContractCallApproved` event
 SOURCE_ADDRESS= # the XRPL address that performed the `Payment` deposit transaction
 PAYLOAD= # abi.encode(['string', 'uint256', 'bytes'], [symbol, amount, gmpPayload])
-cast send $AXELAR_EXECUTABLE 'function execute(bytes32 commandId, string calldata sourceChain, string calldata sourceAddress, bytes calldata payload)' $COMMAND_ID xrpl $SOURCE_ADDRESS $PAYLOAD --private-key $PRIVATE_KEY --rpc-url $SEPOLIA_RPC_URL
+cast send $AXELAR_EXECUTABLE 'function execute(bytes32 commandId, string calldata sourceChain, string calldata sourceAddress, bytes calldata payload)' $COMMAND_ID xrpl $SOURCE_ADDRESS $PAYLOAD --private-key $PRIVATE_KEY --rpc-url $XRPL_EVM_RPC_URL
 ```

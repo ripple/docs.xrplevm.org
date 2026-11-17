@@ -2,9 +2,9 @@
 
 > **Audience:** First-time XRPL EVM builders who need an ERC-20 representation of XRP for AMMs, vaults, and DeFi flows.
 >
-> **Key fact:** Native XRP is automatically exposed **as an ERC-20** at the sentinel address `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`. No custom wXRP contract is required.
+> **Key fact:** Native XRP is exposed as an ERC-20 at the sentinel address `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`. For most integrations, no wrapped XRP contract is required.
 >
-> **Limitation:** There is a hard limit of 7 for calling `0xEee..` contract on the same block. This causes long/complex routes to fail on the aggregator. In this case we recommend using a WXRP forked from ethereum WETH9 contract, deployed and verified by [MOAI Finance](https://xrplevm.moai-finance.xyz/swap) `0x7C21a90E3eCD3215d16c3BBe76a491f8f792d4Bf` as the standard to avoid liquidity fragmentation.
+> **Limitation:** `0xEee..` is a precompile, and a single transaction can make at most 20 precompile calls (the node returns `max calls to precompiles (20) reached` beyond that). Long or complex aggregator routes can hit this limit. For those routes, ecosystem DEXs use a third-party WETH9-style wrapper, `WXRP` (contract `WXRP9`), deployed and verified on Mainnet at [`0x7C21a90E3eCD3215d16c3BBe76a491f8f792d4Bf`](https://explorer.xrplevm.org/address/0x7C21a90E3eCD3215d16c3BBe76a491f8f792d4Bf). Reusing that existing wrapper instead of deploying another one avoids fragmenting liquidity.
 
 ---
 
@@ -22,9 +22,10 @@ Because XRPL EVM embeds the wrapping logic in the node, you skip the `wrap/unwr
 
 - **ERC-20 address (hard-coded):** `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE`
 - **Decimals:** `18` (mirrors the common ERC-20 standard)
-- **Total supply:** Mirrors the XRPL ledger in real-time.
+- **Name / symbol:** `XRP` / `XRP`
+- **Total supply:** The total XRP held on the XRPL EVM (the bank supply of the native `axrp` denom), not the XRP supply of the XRP Ledger.
 
-> **Tip:** Hard-code the address; there’s no bytecode to query and no proxy to upgrade.
+> **Tip:** Hard-code the address. It is a precompile backed by the node, so there is no proxy to upgrade.
 
 ---
 
@@ -35,19 +36,18 @@ import { ethers } from "ethers";
 
 // 1) Connect to Testnet or Mainnet
 const provider = new ethers.JsonRpcProvider("https://rpc.testnet.xrplevm.org");
-const signer = provider.getSigner();
+const signer = new ethers.Wallet(process.env.PRIVATE_KEY!, provider);
 
 // 2) Declare the XRP-ERC20 contract
 export const XRP_ERC20 = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
 export const erc20Abi = [
-  "function transfer(address to, uint256 amount) external",
-  "function mint(address to, uint256 amount) external",
-  "function burn(uint256 amount) external",
-  "function burnFrom(address account, uint256 amount) external",
+  "function transfer(address to, uint256 amount) external returns (bool)",
+  "function transferFrom(address from, address to, uint256 amount) external returns (bool)",
   "function approve(address spender, uint256 amount) external returns (bool)",
-  "function balanceOf(address account) external view returns (uint256)",
-  "function increaseAllowance(address spender, uint256 addedValue) external returns (bool)",
   "function allowance(address owner, address spender) external view returns (uint256)",
+  "function balanceOf(address account) external view returns (uint256)",
+  "function totalSupply() external view returns (uint256)",
+  "function decimals() external view returns (uint8)",
 ];
 const xrp = new ethers.Contract(XRP_ERC20, erc20Abi, signer);
 
@@ -70,18 +70,18 @@ await amm.addLiquidity(
 
 ## 4 / Integration checklist
 
-- [ ] Replace any custom **wXRP** addresses with `XRP_ERC20`.
+- [ ] Use `XRP_ERC20` by default; keep a wrapper (`WXRP` above) only for routes that exceed the precompile call limit.
 - [ ] Delete `wrap()` / `unwrap()` helper functions.
 - [ ] Update subgraphs & indexers to track the sentinel address.
 - [ ] Re-deploy pools or vaults that expected 6-decimal tokens.
-- [ ] Smoke-test on **Devnet** → then ship to **Mainnet**.
+- [ ] Smoke-test on **Testnet** (or Devnet) → then ship to **Mainnet**.
 
 ---
 
 ## 5 / FAQ
 
 **Q:** _Can I deploy my own wXRP contract?_
-**A:** You can, but you’ll split liquidity and confuse wallets. Stick to the built-in ERC-20.
+**A:** You can, but it splits liquidity, and wallets then show two different XRP tokens. Use the built-in ERC-20 by default, and the existing `WXRP` wrapper only where a route exceeds the precompile call limit.
 
 **Q:** _Is **`decimals()`** 18?_
 **A:** Yes. XRPL EVM represents XRP with 18 decimals, so math libraries and UIs built for Ethereum tokens work seamlessly.

@@ -21,8 +21,10 @@ To send a message from the XRP Ledger (XRPL) to the XRPL EVM, a `Payment` transa
 
 - `Amount`: Represents the value of the asset to be sent. If the message does not include an asset transfer, this can be set to 1 drop (the smallest XRP unit).
 - `Destination`: The address of the Gateway on the XRP Ledger.
-  - [**Mainnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/mainnet.json)
-  - [**Testnet Address**](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/testnet.json#L2603)
+  - **Mainnet**: `rfmS3zqrQrka8wVyhXifEeyTwe8AMz2Yhw`
+  - **Testnet**: `rNrjh1KGZk2jBR3wPfAQnoidtFFYQKbQn2`
+
+  These are the `xrpl` chain entries in Axelar's [mainnet](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/mainnet.json) and [testnet](https://github.com/axelarnetwork/axelar-contract-deployments/blob/main/axelar-chains-config/info/testnet.json) configuration files.
 - `Memos`: Hex-encoded data required for the function call, including:
   - The _type_ of call to initiate.
   - The _destination chain_ on the Axelar network (`xrpl-evm` for both Testnet and Mainnet).

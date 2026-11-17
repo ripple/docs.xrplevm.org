@@ -20,6 +20,7 @@ Here's the list of deployed and verified contracts on the XRPL EVM Sidechain Tes
 | AxelarGasService       | [0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6](https://explorer.testnet.xrplevm.org/address/0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6) |
 | InterchainTokenService | [0xB5FB4BE02232B1bBA4dC8f81dc24C26980dE9e3C](https://explorer.testnet.xrplevm.org/address/0xB5FB4BE02232B1bBA4dC8f81dc24C26980dE9e3C) |
 | InterchainTokenFactory | [0x83a93500d23Fbc3e82B410aD07A6a9F7A0670D66](https://explorer.testnet.xrplevm.org/address/0x83a93500d23Fbc3e82B410aD07A6a9F7A0670D66) |
+| AxelarServiceGovernance | [0xb55A09E9fde39755c39EF9A7911431Ba0c96332A](https://explorer.testnet.xrplevm.org/address/0xb55A09E9fde39755c39EF9A7911431Ba0c96332A) |
 
 ---
 

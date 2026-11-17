@@ -50,7 +50,7 @@ contract HelloWormhole {
 }
 ```
 
-Once the transaction finalizes, the Guardian network observes the emitted message and produces a signed VAA. You can fetch it from the [WormholeScan API](https://docs.wormholescan.io) at `https://api.wormholescan.io/v1/signed_vaa/57/<emitterAddress>/<sequence>` (use `api.testnet.wormholescan.io` for Testnet; `emitterAddress` is your contract address left-padded to 32 bytes), or track it at `https://wormholescan.io/#/tx/<txHash>` (append `?network=Testnet` for Testnet).
+Once the transaction finalizes, the Guardian network observes the emitted message and produces a signed VAA. You can fetch it from the WormholeScan API ([OpenAPI spec](https://api.wormholescan.io/swagger.json)) at `https://api.wormholescan.io/v1/signed_vaa/57/<emitterAddress>/<sequence>` (use `api.testnet.wormholescan.io` for Testnet; `emitterAddress` is your contract address left-padded to 32 bytes), or track it at `https://wormholescan.io/#/tx/<txHash>` (append `?network=Testnet` for Testnet).
 
 ## Verify and Consume the VAA (Destination Chain)
 

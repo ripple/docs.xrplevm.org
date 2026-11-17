@@ -11,9 +11,9 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
 | Type              | URL                                                                |
 | ----------------- | ------------------------------------------------------------------ |
 | Ethereum JSON RPC | [https://rpc.xrplevm.org](https://rpc.xrplevm.org)                 |
-| Ethereum JSON WS  | [https://ws.xrplevm.org](https://ws.xrplevm.org)                   |
+| Ethereum JSON WS  | `wss://ws.xrplevm.org`                                             |
 | Tendermint RPC    | [https://cosmos-rpc.xrplevm.org](https://cosmos-rpc.xrplevm.org)   |
-| Cosmos gRPC       | `cosmos-grpc.xrplevm.org:443` |
+| Cosmos gRPC       | `cosmos-grpc.xrplevm.org:443`                                      |
 | Cosmos API        | [https://cosmos-api.xrplevm.org](https://cosmos-api.xrplevm.org)   |
 
 ## Additional Endpoints
@@ -31,12 +31,12 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         {% tab label="Ethereum JSON WS" %}
         | Provider/Validator  | WSS Endpoint URL                                                                              |
         | ------------------- | --------------------------------------------------------------------------------------------- |
-        | **Cumulo**          | [https://ws.xrpl.cumulo.org.es](https://ws.xrpl.cumulo.org.es)                                |
-        | **ITRocket**        | [wss://xrplevm-mainnet-rpc.itrocket.net](wss://xrplevm-mainnet-rpc.itrocket.net)              |
+        | **Cumulo**          | `wss://ws.xrpl.cumulo.org.es`                                                                 |
+        | **ITRocket**        | `wss://xrplevm-mainnet-wss.itrocket.net`                                                      |
 
         {% /tab %}
         {% tab label="Tendermint RPC" %}
-        | Provider/Validator  | EVM RPC Endpoint URL                                                                          |
+        | Provider/Validator  | RPC Endpoint URL                                                                              |
         | ------------------- | --------------------------------------------------------------------------------------------- |
         | **Polkachu**        | [https://xrp-rpc.polkachu.com/](https://xrp-rpc.polkachu.com/)                                |
         | **Cumulo**          | [https://rpc.xrpl.cumulo.org.es/](https://rpc.xrpl.cumulo.org.es/)                            |
@@ -46,9 +46,8 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         {% tab label="Cosmos gRPC" %}
         | Provider/Validator  | gRPC Endpoint URL                                                                             |
         | ------------------- | --------------------------------------------------------------------------------------------- |
-        | **Polkachu**        | xrp-grpc.polkachu.com:30090                                                                   |
-        | **Cumulo**          | [http://grpc.xrpl.cumulo.org.es](http://grpc.xrpl.cumulo.org.es)                              |
-        | **ITRocket**        | xrplevm-mainnet-grpc.itrocket.net:443                                                         |
+        | **Cumulo**          | `grpc.xrpl.cumulo.org.es`                                                                     |
+        | **ITRocket**        | `xrplevm-mainnet-grpc.itrocket.net:443`                                                       |
 
         {% /tab %}
         {% tab label="Cosmos API" %}
@@ -70,7 +69,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
 | Type              | URL                                                                              |
 | ----------------- | -------------------------------------------------------------------------------- |
 | Ethereum JSON RPC | [https://rpc.testnet.xrplevm.org](https://rpc.testnet.xrplevm.org)               |
-| Ethereum JSON WS  | [https://ws.testnet.xrplevm.org](https://ws.testnet.xrplevm.org)                 |
+| Ethereum JSON WS  | `wss://ws.testnet.xrplevm.org`                                                   |
 | Tendermint RPC    | [https://cosmos-rpc.testnet.xrplevm.org](https://cosmos-rpc.testnet.xrplevm.org) |
 | Cosmos gRPC       | `cosmos-grpc.testnet.xrplevm.org:443`                                            |
 | Cosmos API        | [https://cosmos-api.testnet.xrplevm.org](https://cosmos-api.testnet.xrplevm.org) |
@@ -82,18 +81,17 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         {% tab label="Ethereum JSON RPC" %}
         | Provider/Validator  | RPC Endpoint URL                                                                         |
         | ------------------- | ---------------------------------------------------------------------------------------- |
-        | **Cumulo**          | [https://json-rpc.xrpl.cumulo.com.es](https://json-rpc.xrpl.cumulo.com.es)               |
         | **ITRocket**        | [https://xrplevm-testnet-evm.itrocket.net](https://xrplevm-testnet-evm.itrocket.net)     |
         {% /tab %}
 
         {% tab label="Ethereum JSON WS" %}
         | Provider/Validator  | WSS Endpoint URL                                                                         |
         | ------------------- | ---------------------------------------------------------------------------------------- |
-        | **Cumulo**          | [https://ws.xrpl.cumulo.org.es](https://ws.xrpl.cumulo.org.es)                           |
+        | **ITRocket**        | `wss://xrplevm-testnet-wss.itrocket.net`                                                 |
         {% /tab %}
 
         {% tab label="Tendermint RPC" %}
-        | Provider/Validator  | EVM RPC Endpoint URL                                                                     |
+        | Provider/Validator  | RPC Endpoint URL                                                                         |
         | ------------------- | ---------------------------------------------------------------------------------------- |
         | **Polkachu**        | [https://xrp-testnet-rpc.polkachu.com/](https://xrp-testnet-rpc.polkachu.com/)           |
         | **Cumulo**          | [https://rpc.xrpl.cumulo.com.es](https://rpc.xrpl.cumulo.com.es)                         |
@@ -103,9 +101,9 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
         {% tab label="Cosmos gRPC" %}
         | Provider/Validator  | gRPC Endpoint URL                                                                        |
         | ------------------- | ---------------------------------------------------------------------------------------- |
-        | **Polkachu**        | xrp-testnet-grpc.polkachu.com:30090                                                      |
-        | **Cumulo**          | grpc.xrpl.cumulo.com.es                                                                  |
-        | **ITRocket**        | xrplevm-testnet-grpc.itrocket.net:443                                                    |
+        | **Polkachu**        | `xrp-testnet-grpc.polkachu.com:30090`                                                    |
+        | **Cumulo**          | `grpc.xrpl.cumulo.com.es`                                                                |
+        | **ITRocket**        | `xrplevm-testnet-grpc.itrocket.net:443`                                                  |
         {% /tab %}
 
         {% tab label="Cosmos API" %}
@@ -126,7 +124,7 @@ Public APIs offer ready-to-use endpoints for accessing and interacting with the 
 | Type              | URL                                                                            |
 | ----------------- | ------------------------------------------------------------------------------ |
 | Ethereum JSON RPC | [https://rpc.devnet.xrplevm.org](https://rpc.devnet.xrplevm.org)               |
-| Ethereum JSON WS  | [https://ws.devnet.xrplevm.org](https://ws.devnet.xrplevm.org)                 |
+| Ethereum JSON WS  | `wss://ws.devnet.xrplevm.org`                                                  |
 | Tendermint RPC    | [https://cosmos-rpc.devnet.xrplevm.org](https://cosmos-rpc.devnet.xrplevm.org) |
 | Cosmos gRPC       | `cosmos-grpc.devnet.xrplevm.org:443`                                           |
 | Cosmos API        | [https://cosmos-api.devnet.xrplevm.org](https://cosmos-api.devnet.xrplevm.org) |

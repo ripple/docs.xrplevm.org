@@ -10,18 +10,8 @@
   page: general-message-passing.md
   expanded: false
   items:
-    - group: Axelar Interchain Transfer
-      page: interchain-transfer.md
-      expanded: false
-      items:
-        - page: interchain-evm-sidechain-avalanche.md
-        - page: interchain-evm-sidechain-xrpl.md
-    - group: Relaying messages manually
-      page: manually-relay-messages.md
-      expanded: false
-      items:
-        - page: relay-transfer-xrpl-to-xrpl-evm-sidechain.md
-        - page: relay-transfer-xrpl-evm-sidechain-to-xrpl.md
+    - page: interchain-transfer.md
+    - page: manually-relay-messages.md
     - group: Deployed contracts
       page: deployed-contracts.md
       expanded: false
