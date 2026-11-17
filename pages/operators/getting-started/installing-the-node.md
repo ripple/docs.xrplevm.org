@@ -16,8 +16,8 @@ If you specifically need full historical replay from block 0, use [Sync from Gen
 
 | Network | Chain ID            | Current Version | Genesis                                                                                            |
 | ------- | ------------------- | --------------- | -------------------------------------------------------------------------------------------------- |
-| Mainnet | `xrplevm_1440000-1` | `v10.1.0`       | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/mainnet/genesis.json) |
-| Testnet | `xrplevm_1449000-1` | `v10.1.0`       | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json) |
+| Mainnet | `xrplevm_1440000-1` | `v11.3.0`       | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/mainnet/genesis.json) |
+| Testnet | `xrplevm_1449000-1` | `v11.3.0`       | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json) |
 | Devnet  | `xrplevm_1449900-1` | `v11.0.0-rc.1`  | [Genesis](https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/devnet/genesis.json)  |
 
 ## Recommended flow (snapshot-first)
@@ -28,7 +28,7 @@ If you specifically need full historical replay from block 0, use [Sync from Gen
 4. Run the node with `systemctl`, `cosmovisor`, or `docker`.
 
 {% admonition type="info" name="Snapshot availability" %}
-Public snapshot providers are currently listed for Mainnet and Testnet in [Snapshots](../resources/snapshots.md). If a Devnet snapshot is not published, use [State Sync](../advanced/sync-options.md#state-sync) or [Sync from Genesis](./sync-from-genesis.md).
+Public snapshot providers are listed for Mainnet, Testnet and Devnet in [Snapshots](../resources/snapshots.md). Snapshots are pruned and do not contain full history. If you need full history, use [Sync from Genesis](./sync-from-genesis.md). If a snapshot is not available on Mainnet or Testnet, use [State Sync](../advanced/sync-options.md#state-sync), which also starts from a recent height.
 {% /admonition %}
 
 ## 1) Install `exrpd`
@@ -47,8 +47,12 @@ sudo apt-get install -y curl wget jq lz4 build-essential git rsync
 ```bash
 cd /tmp
 TARGET_TAG=<target-tag>
-wget "https://github.com/xrplevm/node/releases/download/${TARGET_TAG}/node_${TARGET_TAG#v}_Linux_amd64.tar.gz"
-tar -xzf "node_${TARGET_TAG#v}_Linux_amd64.tar.gz"
+ARCH=amd64 # or arm64
+ASSET="node_${TARGET_TAG#v}_Linux_${ARCH}.tar.gz"
+wget -O "${ASSET}" "https://github.com/xrplevm/node/releases/download/${TARGET_TAG}/${ASSET}"
+wget -O checksums.txt "https://github.com/xrplevm/node/releases/download/${TARGET_TAG}/checksums.txt"
+sha256sum -c checksums.txt --ignore-missing
+tar -xzf "${ASSET}"
 sudo mv bin/exrpd /usr/local/bin/exrpd
 sudo chmod +x /usr/local/bin/exrpd
 exrpd version
@@ -56,43 +60,55 @@ exrpd version
 
 Set `<target-tag>` from [Networks](../resources/networks.md) for your network:
 
-- Mainnet: `v10.1.0`
-- Testnet: `v10.1.0`
+- Mainnet: `v11.3.0`
+- Testnet: `v11.3.0`
 - Devnet: `v11.0.0-rc.1`
+
+Release binaries are published for Linux (`amd64` and `arm64`) and macOS. Docker images are `amd64` only.
 
 ### Method B: Build from source
 
-If you build from source, check the required Go version in upstream `go.mod` before compiling:
+Always build a release tag. The default branch is under active development and does not match any network.
+
+Check the Go version required by the tag you are building:
 
 ```bash
-REQUIRED_GO=$(curl -fsSL https://raw.githubusercontent.com/xrplevm/node/main/go.mod | awk '/^go /{print $2; exit}')
+TARGET_TAG=<target-tag>
+REQUIRED_GO=$(curl -fsSL "https://raw.githubusercontent.com/xrplevm/node/${TARGET_TAG}/go.mod" | awk '/^go /{print $2; exit}')
 echo "Required Go: ${REQUIRED_GO}"
 go version
 ```
 
-If your installed Go version is older than `REQUIRED_GO`, upgrade Go before compiling.
+Distribution packages (`apt install golang-go`) are usually too old. Install the `REQUIRED_GO` version or newer from [go.dev/dl](https://go.dev/dl/), then build:
 
 ```bash
-sudo apt-get update
-sudo apt-get install -y golang-go
-
 git clone https://github.com/xrplevm/node.git
 cd node
+git checkout "${TARGET_TAG}"
 make build
-sudo mv build/exrpd /usr/local/bin/exrpd
+sudo mv bin/exrpd /usr/local/bin/exrpd
 sudo chmod +x /usr/local/bin/exrpd
 exrpd version
 ```
 
+{% admonition type="info" name="Releases without public sources" %}
+`v10.1.0`, `v10.2.0`, `v10.2.1` and `v11.3.0` depend on non-public security fixes and cannot be built from source. Use the release binaries or Docker images for those versions.
+{% /admonition %}
+
 ## 2) Initialize and configure for your network
 
 {% admonition type="warning" name="Mandatory EVM chain-id setting (v10+)" %}
-Before starting the node, set `evm-chain-id` under `[evm]` in `app.toml`:
+`evm-chain-id` under `[evm]` in `app.toml` must match your network. `exrpd init --chain-id <chain-id>` (v10 or later) writes it, but only if `app.toml` does not exist yet. Run `exrpd init` before any `exrpd config set` command, because `config set` creates `app.toml` with `evm-chain-id = 0`. Check the value before starting, especially on homes initialized with an older binary:
 
-- Mainnet: `evm-chain-id = "1440000"`
-- Testnet: `evm-chain-id = "1449000"`
+- Mainnet: `evm-chain-id = 1440000`
+- Testnet: `evm-chain-id = 1449000`
+- Devnet: `evm-chain-id = 1449900`
 
-File path (depending on your node home): `~/.exrpd/config/app.toml` or `/var/lib/exrpd/.exrpd/config/app.toml`.
+File path (depending on your node home): `~/.exrpd/config/app.toml` or `/var/lib/exrpd/.exrpd/config/app.toml`. To check it:
+
+```bash
+awk '/^\[evm\]/{f=1;next} /^\[/{f=0} f && /^evm-chain-id/' ~/.exrpd/config/app.toml
+```
 {% /admonition %}
 
 {% admonition type="warning" name="Validator signer safety" %}
@@ -104,11 +120,14 @@ If this node is an active validator signer, do not re-run `exrpd init` on an exi
 {% tab label="Mainnet" %}
 
 ```bash
-exrpd config set client chain-id xrplevm_1440000-1
 exrpd init <moniker> --chain-id xrplevm_1440000-1
+exrpd config set client chain-id xrplevm_1440000-1
 wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/mainnet/genesis.json
 PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/mainnet/peers.txt | sort -R | head -n 10 | paste -sd, -)
 sed -i.bak -e "s/^seeds *=.*/seeds = \"${PEERS}\"/" ~/.exrpd/config/config.toml
+# Persistent peers taken from a public RPC node, in case the seeds are not enough
+PERSISTENT_PEERS=$(curl -s https://cosmos-rpc.xrplevm.org/net_info | jq -r '.result.peers[] | select(.remote_ip | test("^(10\\.|192\\.168\\.|172\\.(1[6-9]|2[0-9]|3[01])\\.)") | not) | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr | split(":") | last)"' | sort -R | head -n 10 | paste -sd, -)
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"${PERSISTENT_PEERS}\"/" ~/.exrpd/config/config.toml
 ```
 
 {% /tab %}
@@ -116,11 +135,14 @@ sed -i.bak -e "s/^seeds *=.*/seeds = \"${PEERS}\"/" ~/.exrpd/config/config.toml
 {% tab label="Testnet" %}
 
 ```bash
-exrpd config set client chain-id xrplevm_1449000-1
 exrpd init <moniker> --chain-id xrplevm_1449000-1
+exrpd config set client chain-id xrplevm_1449000-1
 wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/testnet/genesis.json
 PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/testnet/peers.txt | sort -R | head -n 10 | paste -sd, -)
 sed -i.bak -e "s/^seeds *=.*/seeds = \"${PEERS}\"/" ~/.exrpd/config/config.toml
+# Persistent peers taken from a public RPC node, in case the seeds are not enough
+PERSISTENT_PEERS=$(curl -s https://cosmos-rpc.testnet.xrplevm.org/net_info | jq -r '.result.peers[] | select(.remote_ip | test("^(10\\.|192\\.168\\.|172\\.(1[6-9]|2[0-9]|3[01])\\.)") | not) | "\(.node_info.id)@\(.remote_ip):\(.node_info.listen_addr | split(":") | last)"' | sort -R | head -n 10 | paste -sd, -)
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"${PERSISTENT_PEERS}\"/" ~/.exrpd/config/config.toml
 ```
 
 {% /tab %}
@@ -128,8 +150,8 @@ sed -i.bak -e "s/^seeds *=.*/seeds = \"${PEERS}\"/" ~/.exrpd/config/config.toml
 {% tab label="Devnet" %}
 
 ```bash
-exrpd config set client chain-id xrplevm_1449900-1
 exrpd init <moniker> --chain-id xrplevm_1449900-1
+exrpd config set client chain-id xrplevm_1449900-1
 wget -O ~/.exrpd/config/genesis.json https://raw.githubusercontent.com/xrplevm/networks/refs/heads/main/devnet/genesis.json
 PEERS=$(curl -sL https://raw.githubusercontent.com/xrplevm/networks/main/devnet/peers.txt | sort -R | head -n 10 | paste -sd, -)
 sed -i.bak -e "s/^seeds *=.*/seeds = \"${PEERS}\"/" ~/.exrpd/config/config.toml
@@ -139,11 +161,15 @@ sed -i.bak -e "s/^seeds *=.*/seeds = \"${PEERS}\"/" ~/.exrpd/config/config.toml
 
 {% /tabs %}
 
+`peers.txt` lists seed nodes, which only help your node discover other peers. The `persistent_peers` line adds peers your node keeps connected to, taken from the `net_info` endpoint of a public RPC node. You can refresh them the same way at any time.
+
 ## 3) Restore snapshot data
 
 {% admonition type="warning" name="Signer role restriction" %}
 Snapshot restore is for bootstrapping non-signing nodes (or fresh replacement nodes) only. For active validator signer nodes, do not overwrite chain state with snapshot restore.
 {% /admonition %}
+
+Peersyst snapshots are pruned nodes restored with state sync and regenerated daily. They do not contain historical blocks or state. The archives also contain a `data/priv_validator_state.json` reset to height `0`, so the commands below exclude it and keep the file created by `exrpd init` (or your existing one).
 
 {% tabs %}
 
@@ -153,7 +179,7 @@ Use any provider from [Snapshots](../resources/snapshots.md) and extract into `~
 ```bash
 cd ~/.exrpd
 wget -O exrpd.tar.lz4 https://xrpl-evm-snapshots.s3.us-east-1.amazonaws.com/mainnet.tar.lz4
-tar -xI lz4 -f exrpd.tar.lz4
+tar -xI lz4 -f exrpd.tar.lz4 --exclude='data/priv_validator_state.json'
 ```
 
 If this URL is temporarily unavailable, use another provider from [Snapshots](../resources/snapshots.md) and follow that provider's archive format (`.tar.lz4` or `.tar.zst`) and extraction command.
@@ -165,7 +191,7 @@ Use any provider from [Snapshots](../resources/snapshots.md) and extract into `~
 ```bash
 cd ~/.exrpd
 wget -O exrpd.tar.lz4 https://xrpl-evm-snapshots.s3.us-east-1.amazonaws.com/testnet.tar.lz4
-tar -xI lz4 -f exrpd.tar.lz4
+tar -xI lz4 -f exrpd.tar.lz4 --exclude='data/priv_validator_state.json'
 ```
 
 If this URL is temporarily unavailable, use another provider from [Snapshots](../resources/snapshots.md) and follow that provider's archive format (`.tar.lz4` or `.tar.zst`) and extraction command.
@@ -177,10 +203,10 @@ Use any provider from [Snapshots](../resources/snapshots.md) and extract into `~
 ```bash
 cd ~/.exrpd
 wget -O exrpd.tar.lz4 https://xrpl-evm-snapshots.s3.us-east-1.amazonaws.com/devnet.tar.lz4
-tar -xI lz4 -f exrpd.tar.lz4
+tar -xI lz4 -f exrpd.tar.lz4 --exclude='data/priv_validator_state.json'
 ```
 
-If this URL is temporarily unavailable, use [State Sync](../advanced/sync-options.md#state-sync) or [Sync from Genesis](./sync-from-genesis.md).
+If this URL is temporarily unavailable, use [Sync from Genesis](./sync-from-genesis.md). The [State Sync](../advanced/sync-options.md#state-sync) procedure covers Mainnet and Testnet only.
 {% /tab %}
 
 {% /tabs %}
@@ -239,17 +265,13 @@ sudo journalctl -u exrpd -f
 
 ### Option B: `cosmovisor` + `systemctl`
 
-Install Go first (required for `go install`):
-
-```bash
-sudo apt-get update
-sudo apt-get install -y golang-go
-```
+Install a recent Go release from [go.dev/dl](https://go.dev/dl/) first (required for `go install`; current Cosmovisor releases need Go 1.23 or newer).
 
 Install and prepare layout:
 
 ```bash
-sudo env GOBIN=/usr/local/bin go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest
+go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest
+sudo install -m755 "$(go env GOPATH)/bin/cosmovisor" /usr/local/bin/
 sudo mkdir -p /var/lib/exrpd/.exrpd/cosmovisor/genesis/bin
 sudo cp /usr/local/bin/exrpd /var/lib/exrpd/.exrpd/cosmovisor/genesis/bin/exrpd
 sudo chmod +x /var/lib/exrpd/.exrpd/cosmovisor/genesis/bin/exrpd
@@ -307,7 +329,7 @@ sudo systemctl start cosmovisor-exrpd
 sudo journalctl -u cosmovisor-exrpd -f
 ```
 
-With `UNSAFE_SKIP_BACKUP=false`, first start may take several minutes while Cosmovisor creates a full data backup before restart.
+With `UNSAFE_SKIP_BACKUP=false`, Cosmovisor backs up the full `data/` directory before applying each upgrade, so every upgrade can take several minutes and needs free disk space for that copy.
 
 For upgrade operations and safer backup settings, follow [Upgrading your node](../guides/upgrading-your-node.md).
 
@@ -324,15 +346,16 @@ sudo systemctl enable --now docker
 ```bash
 TARGET_TAG=<target-tag>
 
-# Make RPC reachable through -p 26657:26657
+# Make RPC reachable from the host through -p 127.0.0.1:26657:26657 (localhost only)
 # Note: this RPC listener is in config.toml ([rpc].laddr), not app.toml.
 sed -i.bak -E 's#^laddr = "tcp://127.0.0.1:26657"#laddr = "tcp://0.0.0.0:26657"#' ~/.exrpd/config/config.toml
 
 docker run -d \
   --name xrplevm-node \
   --restart unless-stopped \
-  -p 26657:26657 \
-  -v /root/.exrpd:/root/.exrpd \
+  -p 26656:26656 \
+  -p 127.0.0.1:26657:26657 \
+  -v "$HOME/.exrpd:/root/.exrpd" \
   --entrypoint exrpd \
   peersyst/exrp:${TARGET_TAG} \
   start
@@ -340,7 +363,9 @@ docker run -d \
 docker logs -f xrplevm-node
 ```
 
-Use the exact `<target-tag>` from [Networks](../resources/networks.md) (for example, Mainnet `v10.1.0`).
+Use the exact `<target-tag>` for your network from [Networks](../resources/networks.md). Do not use `latest` (it follows the newest release, which may not support your network) or `main` (development build).
+
+The image runs as `root`, so the container reads the node home from `/root/.exrpd`. The volume maps your host `~/.exrpd` there. Port `26656` accepts inbound P2P connections, and the RPC is published on `127.0.0.1` only, because Docker port publishing bypasses host firewalls such as `ufw`.
 
 ## Validation
 

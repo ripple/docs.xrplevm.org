@@ -12,7 +12,7 @@ Horcrux is a secure multi-party computation (MPC) signing service designed for C
 
 ### Why is Horcrux Important?
 
-Validator operators face a critical challenge in balancing operational reliability and security to avoid penalties such as slashing due to downtime or double signing.
+A validator must stay online and must never sign twice. Downtime gets it jailed, and double signing gets it tombstoned.
 
 Horcrux addresses these challenges by:
 
@@ -22,6 +22,10 @@ Horcrux addresses these challenges by:
 
 ## Learn More and Install Horcrux
 
-For detailed installation instructions and migration guidance, refer to the official Horcrux installation guide:
+For detailed installation instructions and migration guidance, refer to the Horcrux migration guide:
 
-[Horcrux Installation Guide](https://github.com/strangelove-ventures/horcrux/blob/main/docs/migrating.md)
+[Horcrux Installation Guide](https://github.com/amygdala-labs/horcrux/blob/main/docs/migrating.md)
+
+{% admonition type="warning" name="Archived repository" %}
+The Horcrux repository (formerly `strangelove-ventures/horcrux`, now `amygdala-labs/horcrux`) was archived in March 2025 and no longer receives updates. Take this into account before using it on a production validator.
+{% /admonition %}
